@@ -23,7 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65316079-0461-48d7-9db7-05131b9da588" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../YoloTrader/Iteration2/VS-Projects/Iteration2-Diagrams.vpp" beforeDir="false" afterPath="$PROJECT_DIR$/../YoloTrader/Iteration2/VS-Projects/Iteration2-Diagrams.vpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Prototype.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/baylor/ecs/csi3471/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/baylor/ecs/csi3471/MySetup.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/baylor/ecs/csi3471/Window$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/baylor/ecs/csi3471/Window$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/baylor/ecs/csi3471/Window$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/edu/baylor/ecs/csi3471/Window.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +112,7 @@
       <workItem from="1603934833731" duration="5162000" />
       <workItem from="1603945514035" duration="21000" />
       <workItem from="1603982832667" duration="37000" />
+      <workItem from="1603983055886" duration="6000" />
     </task>
     <servers />
   </component>
