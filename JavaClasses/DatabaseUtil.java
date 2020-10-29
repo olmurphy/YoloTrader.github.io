@@ -7,10 +7,6 @@ public class DatabaseUtil {
 	
 	
 	
-	public static void main(String args[]) {
-		
-	}
-	
 	
 	//This function attempts to add a user to the
 	//database, a boolean describing the result of the operation
