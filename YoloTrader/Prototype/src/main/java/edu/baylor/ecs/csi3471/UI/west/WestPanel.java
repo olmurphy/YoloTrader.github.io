@@ -1,11 +1,11 @@
 package edu.baylor.ecs.csi3471.UI.west;
 
 import edu.baylor.ecs.csi3471.UI.MainPanel;
-import edu.baylor.ecs.csi3471.UI.west.about.About;
-import edu.baylor.ecs.csi3471.UI.west.help.Help;
-import edu.baylor.ecs.csi3471.UI.west.home.Home;
-import edu.baylor.ecs.csi3471.UI.west.profile.Profile;
-import edu.baylor.ecs.csi3471.UI.west.stocks.Stock;
+import edu.baylor.ecs.csi3471.UI.west.subpanels.About;
+import edu.baylor.ecs.csi3471.UI.west.subpanels.Help;
+import edu.baylor.ecs.csi3471.UI.west.subpanels.Home;
+import edu.baylor.ecs.csi3471.UI.west.subpanels.Stock;
+import edu.baylor.ecs.csi3471.UI.west.subpanels.Profile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,6 @@ public class WestPanel {
         westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         WestPanelUtility.initializePublicStaticVariables();
-
 
         westPanel.setPreferredSize(new Dimension(westPanelWidth, westPanelHeight));
         westPanel.setBackground(WestPanelUtility.westPanelColor);

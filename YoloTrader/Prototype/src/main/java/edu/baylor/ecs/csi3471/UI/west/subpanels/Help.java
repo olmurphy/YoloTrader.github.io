@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.UI.west.help;
+package edu.baylor.ecs.csi3471.UI.west.subpanels;
 
 import edu.baylor.ecs.csi3471.UI.west.WestPanelUtility;
 
@@ -19,18 +19,9 @@ public class Help {
         helpPanel.add(helpLabel);
         helpPanel.setBackground(WestPanelUtility.westPanelColor);
         helpPanel.addMouseListener(WestPanelUtility.getGeneralWestPanelActions(helpPanel));
-        helpPanel.addMouseListener(getHelpPanelAction());
+        helpPanel.addMouseListener(WestPanelUtility.getHelpPanelAction());
 
         return helpPanel;
     }
 
-    public static MouseAdapter getHelpPanelAction() {
-        return new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("clicked");
-                // FIXME: add cool effects
-            }
-        };
-    }
 }

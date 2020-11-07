@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.UI.north;
+package edu.baylor.ecs.csi3471.UI.heading;
 
 import edu.baylor.ecs.csi3471.UI.MainPanel;
 

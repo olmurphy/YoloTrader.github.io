@@ -1,6 +1,6 @@
-package edu.baylor.ecs.csi3471.UI.north.title;
+package edu.baylor.ecs.csi3471.UI.heading.title;
 
-import edu.baylor.ecs.csi3471.UI.north.NorthPanelUtility;
+import edu.baylor.ecs.csi3471.UI.heading.NorthPanelUtility;
 
 import javax.swing.*;
 import java.awt.*;

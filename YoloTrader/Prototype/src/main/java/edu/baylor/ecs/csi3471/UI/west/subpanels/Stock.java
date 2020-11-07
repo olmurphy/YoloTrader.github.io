@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.UI.west.stocks;
+package edu.baylor.ecs.csi3471.UI.west.subpanels;
 
 import edu.baylor.ecs.csi3471.UI.west.WestPanelUtility;
 
@@ -18,18 +18,9 @@ public class Stock {
         stockPanel.add(stockLabel);
         stockPanel.setBackground(WestPanelUtility.westPanelColor);
         stockPanel.addMouseListener(WestPanelUtility.getGeneralWestPanelActions(stockPanel));
-        stockPanel.addMouseListener(getStockPanelAction());
+        stockPanel.addMouseListener(WestPanelUtility.getStockPanelAction());
 
         return stockPanel;
     }
 
-    public static MouseAdapter getStockPanelAction() {
-        return new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // FIXME: add action here
-                System.out.println("clicked");
-            }
-        };
-    }
 }

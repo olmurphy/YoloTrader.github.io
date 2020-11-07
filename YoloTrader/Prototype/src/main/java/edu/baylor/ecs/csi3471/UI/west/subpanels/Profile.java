@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.UI.west.profile;
+package edu.baylor.ecs.csi3471.UI.west.subpanels;
 
 import edu.baylor.ecs.csi3471.UI.west.WestPanelUtility;
 
@@ -19,18 +19,10 @@ public class Profile {
         profilePanel.add(profileLabel);
         profilePanel.setBackground(WestPanelUtility.westPanelColor);
         profilePanel.addMouseListener(WestPanelUtility.getGeneralWestPanelActions(profilePanel));
-        profilePanel.addMouseListener(getProfilePanelAction());
+        profilePanel.addMouseListener(WestPanelUtility.getProfilePanelAction());
 
         return profilePanel;
     }
 
-    public static MouseAdapter getProfilePanelAction() {
-        return new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("clicked");
-                // FIXME: add cool effects
-            }
-        };
-    }
+
 }

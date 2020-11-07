@@ -1,10 +1,8 @@
-package edu.baylor.ecs.csi3471.UI.west.home;
+package edu.baylor.ecs.csi3471.UI.west.subpanels;
 
 import edu.baylor.ecs.csi3471.UI.west.WestPanelUtility;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Home {
 
@@ -18,7 +16,7 @@ public class Home {
         homeLabel.setFont(WestPanelUtility.panelLabelFonts);
         homePanel.add(homeLabel);
         homePanel.addMouseListener(WestPanelUtility.getGeneralWestPanelActions(homePanel));
-        homePanel.addMouseListener(getHomePanelAction());
+        homePanel.addMouseListener(WestPanelUtility.getHomePanelAction());
 
 
         homePanel.setBackground(WestPanelUtility.westPanelColor);
@@ -26,15 +24,7 @@ public class Home {
         return homePanel;
     }
 
-    public static MouseAdapter getHomePanelAction() {
-        return new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("clicked");
-                // FIXME: perform action here
-            }
-        };
-    }
+
 
 
 
