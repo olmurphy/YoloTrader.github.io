@@ -2,7 +2,7 @@ package edu.baylor.ecs.csi3471.UI.west;
 
 import edu.baylor.ecs.csi3471.UI.MainPanel;
 import edu.baylor.ecs.csi3471.UI.center.CenterPanelUtility;
-import edu.baylor.ecs.csi3471.main.Main;
+import edu.baylor.ecs.csi3471.main.YoloTrader;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -29,20 +29,6 @@ public class WestPanelUtility {
     public static MouseAdapter getGeneralWestPanelActions(JPanel panel) {
         return new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-
-                // FIXME: record the action hear
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
-                // FIXME: add cool effects
-            }
-
-            @Override
             public void mouseEntered(MouseEvent e) {
                 panel.setBackground(active);
             }
@@ -58,7 +44,7 @@ public class WestPanelUtility {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("clicked");
+                YoloTrader.logger.info("User clicks on profile panel");
                 // FIXME: add cool effects
 
                 MainPanel.getMainPanel().add(CenterPanelUtility.getProfilePanel(), BorderLayout.CENTER);
