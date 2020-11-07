@@ -11,15 +11,15 @@ import java.util.logging.LogManager;
 
 public class Window implements ActionListener {
 
-    private static String login = "LogIn";
-    private static String help = "Help";
-    private static String createAcc = "Create Account";
-    private static String title = "YoloTrader";
-    private static String usernameStr = "Username: ";
-    private static String passwordStr = "Password: ";
-    private static String passwordAgainStr = "Re-enter Password: ";
-    private static int width = 350;
-    private static int height = 500;
+    public static String login = "LogIn";
+    public static String help = "Help";
+    public static String createAcc = "Create Account";
+    public static String title = "YoloTrader";
+    public static String usernameStr = "Username: ";
+    public static String passwordStr = "Password: ";
+    public static String passwordAgainStr = "Re-enter Password: ";
+    public static int width = 350;
+    public static int height = 500;
 
     static JFrame frame;
 
