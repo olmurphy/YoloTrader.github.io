@@ -1,5 +1,7 @@
 package edu.baylor.ecs.csi3471.UI.heading.search;
 
+import edu.baylor.ecs.csi3471.UI.heading.NorthPanelController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,6 +18,7 @@ public class Search {
 
         searchStockPanel.add(getSearchTextField(), BorderLayout.CENTER);
         searchStockPanel.add(getSearchButton(), BorderLayout.EAST);
+        searchStockPanel.setBackground(NorthPanelController.northPanelColor);
 
         return searchStockPanel;
     }

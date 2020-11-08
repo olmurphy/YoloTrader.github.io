@@ -1,10 +1,8 @@
 package edu.baylor.ecs.csi3471.UI.west.subpanels;
 
-import edu.baylor.ecs.csi3471.UI.west.WestPanelUtility;
+import edu.baylor.ecs.csi3471.UI.west.WestPanelController;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class About {
 
@@ -13,14 +11,14 @@ public class About {
 
 
     public static JPanel getAboutPanel() {
-        aboutPanel = WestPanelUtility.getEachWestSubPanel();
+        aboutPanel = WestPanelController.getEachWestSubPanel();
 
         JLabel aboutLabel = new JLabel(aboutButtonString, JLabel.CENTER);
-        aboutLabel.setFont(WestPanelUtility.panelLabelFonts);
+        aboutLabel.setFont(WestPanelController.panelLabelFonts);
         aboutPanel.add(aboutLabel);
-        aboutPanel.setBackground(WestPanelUtility.westPanelColor);
-        aboutPanel.addMouseListener(WestPanelUtility.getGeneralWestPanelActions(aboutPanel));
-        aboutPanel.addMouseListener(WestPanelUtility.getAboutPanelAction());
+        aboutPanel.setBackground(WestPanelController.westPanelColor);
+        aboutPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(aboutPanel));
+        aboutPanel.addMouseListener(WestPanelController.getAboutPanelAction());
 
         return aboutPanel;
     }

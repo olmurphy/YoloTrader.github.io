@@ -20,10 +20,10 @@ public class WestPanel {
     public static void creatWestPanel(JPanel mainPanel) {
         westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
-        WestPanelUtility.initializePublicStaticVariables();
+        WestPanelController.initializePublicStaticVariables();
 
         westPanel.setPreferredSize(new Dimension(westPanelWidth, westPanelHeight));
-        westPanel.setBackground(WestPanelUtility.westPanelColor);
+        westPanel.setBackground(WestPanelController.westPanelColor);
 
         westPanel.add(Home.getHomePanel());
         westPanel.add(Profile.getProfilePanel());

@@ -1,10 +1,8 @@
 package edu.baylor.ecs.csi3471.UI.west.subpanels;
 
-import edu.baylor.ecs.csi3471.UI.west.WestPanelUtility;
+import edu.baylor.ecs.csi3471.UI.west.WestPanelController;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Profile {
 
@@ -12,14 +10,14 @@ public class Profile {
     public static JPanel profilePanel;
 
     public static JPanel getProfilePanel() {
-        profilePanel = WestPanelUtility.getEachWestSubPanel();
+        profilePanel = WestPanelController.getEachWestSubPanel();
 
         JLabel profileLabel = new JLabel(profilePanelLabel, JLabel.CENTER);
-        profileLabel.setFont(WestPanelUtility.panelLabelFonts);
+        profileLabel.setFont(WestPanelController.panelLabelFonts);
         profilePanel.add(profileLabel);
-        profilePanel.setBackground(WestPanelUtility.westPanelColor);
-        profilePanel.addMouseListener(WestPanelUtility.getGeneralWestPanelActions(profilePanel));
-        profilePanel.addMouseListener(WestPanelUtility.getProfilePanelAction());
+        profilePanel.setBackground(WestPanelController.westPanelColor);
+        profilePanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(profilePanel));
+        profilePanel.addMouseListener(WestPanelController.getProfilePanelAction());
 
         return profilePanel;
     }

@@ -1,10 +1,8 @@
 package edu.baylor.ecs.csi3471.UI.west.subpanels;
 
-import edu.baylor.ecs.csi3471.UI.west.WestPanelUtility;
+import edu.baylor.ecs.csi3471.UI.west.WestPanelController;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Help {
 
@@ -12,14 +10,14 @@ public class Help {
     public static String helpButtonString = "HELP";
 
     public static JPanel getHelpPanel() {
-        helpPanel = WestPanelUtility.getEachWestSubPanel();
+        helpPanel = WestPanelController.getEachWestSubPanel();
 
         JLabel helpLabel = new JLabel(helpButtonString, JLabel.CENTER);
-        helpLabel.setFont(WestPanelUtility.panelLabelFonts);
+        helpLabel.setFont(WestPanelController.panelLabelFonts);
         helpPanel.add(helpLabel);
-        helpPanel.setBackground(WestPanelUtility.westPanelColor);
-        helpPanel.addMouseListener(WestPanelUtility.getGeneralWestPanelActions(helpPanel));
-        helpPanel.addMouseListener(WestPanelUtility.getHelpPanelAction());
+        helpPanel.setBackground(WestPanelController.westPanelColor);
+        helpPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(helpPanel));
+        helpPanel.addMouseListener(WestPanelController.getHelpPanelAction());
 
         return helpPanel;
     }

@@ -13,6 +13,7 @@ public class MainPanel {
     public static int frameWidth = 700;
     public static int frameHeight = 500;
     public static JPanel mainPanel;
+    public static Color backGroundColor = Color.lightGray;
 
     public static void createUI (String name) {
         homeFrame = new JFrame();

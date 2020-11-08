@@ -1,6 +1,6 @@
 package edu.baylor.ecs.csi3471.UI.heading.title;
 
-import edu.baylor.ecs.csi3471.UI.heading.NorthPanelUtility;
+import edu.baylor.ecs.csi3471.UI.heading.NorthPanelController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class CompanyName {
 
     public static JPanel getTitlePanel() {
         titlePanel = new JPanel(new GridLayout(1, 1));
-        titlePanel.setPreferredSize(new Dimension((int)(NorthPanelUtility.northPanelWidth / 2.25), NorthPanelUtility.northPanelHeight));
+        titlePanel.setPreferredSize(new Dimension((int)(NorthPanelController.northPanelWidth / 2.25), NorthPanelController.northPanelHeight));
         titlePanel.setBackground(Color.red);
 
         titlePanel.add(getTitleLabel());

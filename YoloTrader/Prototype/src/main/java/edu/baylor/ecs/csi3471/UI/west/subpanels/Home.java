@@ -1,6 +1,6 @@
 package edu.baylor.ecs.csi3471.UI.west.subpanels;
 
-import edu.baylor.ecs.csi3471.UI.west.WestPanelUtility;
+import edu.baylor.ecs.csi3471.UI.west.WestPanelController;
 
 import javax.swing.*;
 
@@ -10,16 +10,16 @@ public class Home {
     public static JPanel homePanel;
 
     public static JPanel getHomePanel() {
-        homePanel = WestPanelUtility.getEachWestSubPanel();
+        homePanel = WestPanelController.getEachWestSubPanel();
 
         JLabel homeLabel = new JLabel(homeButtonString, JLabel.CENTER);
-        homeLabel.setFont(WestPanelUtility.panelLabelFonts);
+        homeLabel.setFont(WestPanelController.panelLabelFonts);
         homePanel.add(homeLabel);
-        homePanel.addMouseListener(WestPanelUtility.getGeneralWestPanelActions(homePanel));
-        homePanel.addMouseListener(WestPanelUtility.getHomePanelAction());
+        homePanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(homePanel));
+        homePanel.addMouseListener(WestPanelController.getHomePanelAction());
 
 
-        homePanel.setBackground(WestPanelUtility.westPanelColor);
+        homePanel.setBackground(WestPanelController.westPanelColor);
 
         return homePanel;
     }

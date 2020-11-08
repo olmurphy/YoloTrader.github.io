@@ -1,5 +1,7 @@
 package edu.baylor.ecs.csi3471.UI.heading.search;
 
+import edu.baylor.ecs.csi3471.UI.heading.NorthPanelController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,6 +14,7 @@ public class Name {
         welcomePanel = new JPanel(new GridLayout(1, 1));
 
         welcomePanel.add(getLabel(name));
+        welcomePanel.setBackground(NorthPanelController.northPanelColor);
 
         return welcomePanel;
     }
@@ -21,6 +24,7 @@ public class Name {
 
         JLabel welcomeLabel = new JLabel("Welcome, " + Name.name + "!", JLabel.RIGHT);
         welcomeLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
+        welcomeLabel.setBackground(NorthPanelController.northPanelColor);
 
         return welcomeLabel;
     }
