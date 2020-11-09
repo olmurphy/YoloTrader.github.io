@@ -1,7 +1,12 @@
 package edu.baylor.ecs.csi3471.main;
 
-import edu.baylor.ecs.csi3471.UI.MainPanel;
+import edu.baylor.ecs.csi3471.UI.form.FormController;
+import edu.baylor.ecs.csi3471.UI.mainPage.MainPanel;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.LogManager;
@@ -26,6 +31,7 @@ public class YoloTrader {
 
 
     public static void main(String[] args) {
-        MainPanel.createUI("Owen");
+        //MainPanel.createUI("Owen");
+        FormController.startWindowInLogIn();
     }
 }
