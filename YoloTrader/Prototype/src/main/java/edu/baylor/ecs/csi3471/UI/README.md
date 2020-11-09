@@ -10,4 +10,3 @@ The main `JPanel` of the User interface is a `BorderLayout` and is as follow:
 
 
 **NOTE:** the main`JPanel` is inside a `JFrame` 
-

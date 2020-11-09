@@ -19,7 +19,7 @@ public class CenterPanelController {
 
     public static int centerPanelHeight = MainPanel.frameHeight - NorthPanelController.northPanelHeight;
 
-    public static JPanel getProfilePanel() { return ProfileSection.getProfilePanel(); }
+    public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
 
     public static JPanel getStockPanel() { return StocksSection.getStocksMainPanel(); }
 

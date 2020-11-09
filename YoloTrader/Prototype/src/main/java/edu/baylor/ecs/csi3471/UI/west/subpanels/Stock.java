@@ -20,5 +20,4 @@ public class Stock {
 
         return stockPanel;
     }
-
 }

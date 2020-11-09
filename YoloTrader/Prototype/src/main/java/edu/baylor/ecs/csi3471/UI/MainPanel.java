@@ -10,8 +10,8 @@ public class MainPanel {
 
 
     public static JFrame homeFrame;
-    public static int frameWidth = 700;
-    public static int frameHeight = 500;
+    public static int frameWidth = 800;
+    public static int frameHeight = 600;
     public static JPanel mainPanel;
     public static Color backGroundColor = Color.lightGray;
 
