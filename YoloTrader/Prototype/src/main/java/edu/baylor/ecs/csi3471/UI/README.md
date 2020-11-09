@@ -2,12 +2,12 @@
 
 The package naming was chosen to fit the the layout of the `JFrame`
 
-The main frame of the User interface is a `BorderLayout` and is as follow:
+The main `JPanel` of the User interface is a `BorderLayout` and is as follow:
 
-- [center](/center) will indicate the `BorderLayout.CENTER` of `JPanel`
-- [heading](/heading) will indicate the `BorderLayout.NORTH` of `JPanel`
-- [west](/west) will indicate the `BorderLayout.WEST` of `JPanel`
+- [center](center/) indicates the `BorderLayout.CENTER` of `JPanel`
+- [heading](heading/) indicates the `BorderLayout.NORTH` of `JPanel`
+- [west](west/) will indicates the `BorderLayout.WEST` of `JPanel`
 
 
-**NOTE:** `JPanel` is inside the `JFrame` 
+**NOTE:** the main`JPanel` is inside a `JFrame` 
 
