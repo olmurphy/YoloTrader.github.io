@@ -13,3 +13,6 @@ avoid duplication
 
 **IMPORTANT:** the create account will now use the 'email' attribute
 as a user's unique attribute
+
+
+could add [link](https://kodejava.org/how-do-i-create-a-simple-mail-client-program-in-swing/) into the [Help](Help.java) class... ? Thoughts? 
