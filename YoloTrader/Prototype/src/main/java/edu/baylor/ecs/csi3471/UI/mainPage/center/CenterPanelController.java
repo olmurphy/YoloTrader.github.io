@@ -2,6 +2,8 @@ package edu.baylor.ecs.csi3471.UI.mainPage.center;
 
 import edu.baylor.ecs.csi3471.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.UI.mainPage.center.profile.ProfileSection;
+import edu.baylor.ecs.csi3471.UI.mainPage.center.stocks.AddStock;
+import edu.baylor.ecs.csi3471.UI.mainPage.center.stocks.CreateWatchList;
 import edu.baylor.ecs.csi3471.UI.mainPage.center.stocks.StocksSection;
 import edu.baylor.ecs.csi3471.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
@@ -27,15 +29,12 @@ public class CenterPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                YoloTrader.logger.info("mouse entered stock button");
                 button.setBackground(buttonColorActive);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                YoloTrader.logger.info("mouse exited stock button");
                 button.setBackground(centerPanelColor);
-                super.mouseExited(e);
             }
         };
     }
@@ -46,6 +45,13 @@ public class CenterPanelController {
             public void mouseClicked(MouseEvent e) {
                 // FIXME: add an action here
                 // FIXME: need to add a disabled button action for when no watchlist is selected
+
+                if (StocksSection.getWatchListList().isSelectionEmpty()) {
+                    AddStock.getWarningMessage();
+                } else {
+
+                }
+
                 YoloTrader.logger.info("user wants to add a stock");
             }
         };
@@ -58,8 +64,10 @@ public class CenterPanelController {
 
                 // FIXME: add an action here
                 YoloTrader.logger.info("user wants to add a watchlist");
+
+                String watchListName = CreateWatchList.watchListNameWindow();
+                ((DefaultListModel<String>)StocksSection.watchListModel).addElement(watchListName);
             }
         };
     }
-
 }

@@ -11,47 +11,43 @@ public class ProfileSection {
     FIXME: NEED TO FINISH DESIGNING THE PROFILE PANEL, UNFINISHED
      */
 
-
     public static JPanel profilePanel;
     public static JPanel picturePanel;
     public static JPanel descriptionPanel;
     public static JPanel labelValuePanel;
     public static JPanel buttonPanel;
 
-    public static String firstNameString = "Owen";
-    public static String lastNameString = "Murphy";
+    public static String firstString = "Owen";
+    public static String lastString = "Murphy";
     public static String emailString = "owen.murphy@hotmail.org";
+    public static String userString = "olmurphy";
 
-    public static Component spaceBetweenLabels;
+    public static String emailLabelString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>Email: </B>";
+    public static String firstLabelString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>First: </B>";
+    public static String lastLabelString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>Last: </B>";
+    public static String userLabelString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>Username: </B>";
 
-    public static JLabel firstNameLabel;
-    public static JLabel lastNameLabel;
+    public static JLabel firstLabel;
+    public static JLabel lastLabel;
     public static JLabel emailLabel;
-    public static JLabel firstNameValue;
-    public static JLabel lastNameValue;
-    public static JLabel emailValue;
-
-    public static Font valueFont;
-    public static Font labelFont;
+    public static JLabel userLabel;
 
     public static JButton changePasswordButton;
     public static JButton changeUsernameButton;
     public static JButton deleteAccountButton;
+
+    public static JLabel picture;
 
     public static int verticalLabelValueSpace = 30;
     public static int verticalButtonSpace = 20;
 
     public static JScrollPane getProfilePanel() {
         profilePanel = new JPanel(new BorderLayout());
-        labelFont = new Font("Sans-Serif", Font.BOLD, 14);
-        valueFont = new Font("Sans-Serif", Font.PLAIN, 14);
-
         profilePanel.add(getPicturePanel(), BorderLayout.WEST);
         profilePanel.add(getDescriptionPanel(), BorderLayout.CENTER);
 
         JScrollPane descriptionScrollPanel = new JScrollPane(profilePanel);
         descriptionScrollPanel.setBorder(BorderFactory.createEmptyBorder());
-
 
         return descriptionScrollPanel;
     }
@@ -62,17 +58,30 @@ public class ProfileSection {
         picturePanel.setBackground(CenterPanelController.centerPanelColor);
 
         // FIXME: need to configure for profile picture in the left side of panel
-        picturePanel.add(new JLabel("Profile pic goes here")); // test, delete later
+        picturePanel.add(getPicture());
 
         return picturePanel;
     }
 
+    public static JLabel getPicture() {
+        picture = new JLabel();
+
+        ImageIcon icon = new ImageIcon(
+                "Prototype/src/main/resources/test.png"
+        );
+        picture.setIcon(icon);
+
+        return picture;
+    }
+
     public static JPanel getDescriptionPanel() {
         descriptionPanel = new JPanel();
+        //descriptionPanel.add(new JLabel("What is going on??"));
         descriptionPanel.setLayout(new BoxLayout(descriptionPanel, BoxLayout.Y_AXIS));
 
         descriptionPanel.add(getLabelValuePanel()); // labels w/ associated values
-        //descriptionPanel.add(getButtonPanel());  // buttons are align vertically, no grid Layout
+
+        descriptionPanel.add(getButtonPanel());  // buttons are align vertically, no grid Layout
         descriptionPanel.add(new JLabel("What is going on??"));
 
         descriptionPanel.setBackground(CenterPanelController.centerPanelColor);
@@ -81,10 +90,19 @@ public class ProfileSection {
     }
 
     public static JPanel getLabelValuePanel() {
-        labelValuePanel = new JPanel(/*new GridLayout(0, 2)*/);
+        labelValuePanel = new JPanel();
+        labelValuePanel.setLayout(new BoxLayout(labelValuePanel, BoxLayout.Y_AXIS));
 
-        labelValuePanel.add(getLabelPanelOnDescriptionPanel());// left side w/ labels
-        labelValuePanel.add(getValuePanelOnDescriptionPanel());// right side w/ values of associated labels
+        labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+        labelValuePanel.add(getFirstLabel());
+        labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+        labelValuePanel.add(getLastLabel());
+        labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+        labelValuePanel.add(getUserLabel());
+        labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+        labelValuePanel.add(getEmailLabel());
+        labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+        labelValuePanel.setBackground(CenterPanelController.centerPanelColor);
 
         return labelValuePanel;
     }
@@ -101,108 +119,75 @@ public class ProfileSection {
         buttonPanel.add(getDeleteAccountButton());
         buttonPanel.add(Box.createRigidArea(new Dimension(0, verticalButtonSpace)));
         buttonPanel.setBackground(CenterPanelController.centerPanelColor);
+        buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         return buttonPanel;
     }
 
-    public static JPanel getLabelPanelOnDescriptionPanel() {
-        JPanel labelPanel = new JPanel();
-        labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
-
-        labelPanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        labelPanel.add(getFirstNameLabel());
-        labelPanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        labelPanel.add(getLastNameLabel());
-        labelPanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        labelPanel.add(getEmailLabel());
-        //labelPanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        labelPanel.setBackground(CenterPanelController.centerPanelColor);
-
-        return labelPanel;
+    public static JLabel getFirstLabel() {
+        firstLabel = new JLabel(firstLabelString + firstString);
+        return firstLabel;
     }
 
-    public static JPanel getValuePanelOnDescriptionPanel() {
-        JPanel valuePanel = new JPanel();
-        valuePanel.setLayout(new BoxLayout(valuePanel, BoxLayout.Y_AXIS));
-
-        // FIXME: SET TO 'VALUE' labels
-        valuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        valuePanel.add(getFirstNameValue());
-        valuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        valuePanel.add(getLastNameValue());
-        valuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        valuePanel.add(getEmailValue());
-        //valuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        valuePanel.setBackground(CenterPanelController.centerPanelColor);
-
-        return valuePanel;
+    public static JLabel getLastLabel() {
+        lastLabel = new JLabel(lastLabelString + lastString);
+        return lastLabel;
     }
 
-    public static JLabel getFirstNameLabel() {
-        firstNameLabel = new JLabel("First Name: ", JLabel.LEFT);
-        firstNameLabel.setFont(labelFont);
-
-        return firstNameLabel;
-    }
-
-    public static JLabel getFirstNameValue() {
-
-        // FIXME: need to configure for when user logs in in
-        firstNameValue = new JLabel(firstNameString);
-        firstNameValue.setFont(valueFont);
-
-        return firstNameValue;
-    }
-
-    public static JLabel getLastNameLabel() {
-        lastNameLabel = new JLabel("Last Name: ", JLabel.LEFT);
-        lastNameLabel.setFont(labelFont);
-
-        return lastNameLabel;
-    }
-
-    public static JLabel getLastNameValue() {
-
-        // FIXME: need to configure for when user logs in in
-        lastNameValue = new JLabel(lastNameString);
-        lastNameValue.setFont(valueFont);
-
-        return lastNameValue;
-    }
 
     public static JLabel getEmailLabel() {
-        emailLabel = new JLabel("Email: ", JLabel.RIGHT);
-        emailLabel.setFont(labelFont);
-
+        emailLabel = new JLabel(emailLabelString + emailString);
         return emailLabel;
     }
 
-    public static JLabel getEmailValue() {
-
-        // FIXME: need to configure for when user logs in in
-        emailValue = new JLabel(emailString);
-        emailValue.setFont(valueFont);
-
-        return emailValue;
+    public static JLabel getUserLabel() {
+        userLabel = new JLabel(userLabelString + userString);
+        return userLabel;
     }
 
     public static JButton getChangeUsernameButton() {
         changeUsernameButton = new JButton("Change Username");
+        changeUsernameButton.setHorizontalAlignment(JButton.LEFT);
+
+        // FIXME: need to add action to this in the "Controller"
+        // changeUsernameButton.addActionListener();
 
         return changeUsernameButton;
     }
 
     public static JButton getChangePasswordButton() {
         changePasswordButton = new JButton("Change Password");
+        changePasswordButton.setHorizontalAlignment(JButton.LEFT);
+
+        // FIXME: need to add action to this in the "Controller"
+        // changePasswordButton.addActionListener();
 
         return changePasswordButton;
     }
 
     public static JButton getDeleteAccountButton() {
         deleteAccountButton = new JButton("Delete Account");
+        deleteAccountButton.setHorizontalAlignment(JButton.LEFT);
+
+        // FIXME: need to add action to this in the "Controller"
+        // deleteAccountButton.addActionListener();
 
         return deleteAccountButton;
     }
 
+    public static void setEmailLabel() {
+        emailLabel.setText(emailLabelString + emailString);
+    }
 
+    public static void setFirstLabel() {
+        firstLabel.setText(firstLabelString + lastString);
+    }
+
+    public static void setLastLabel() {
+        lastLabel.setText(lastLabelString + lastString);
+    }
+
+    public static void setUserLabel() {
+        ProfileSection.userLabel.setText(userLabelString + userString);
+    }
 }

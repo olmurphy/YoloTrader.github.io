@@ -10,13 +10,17 @@ public class StocksSection {
 
     public static JPanel stocksMainPanel;
     public static JPanel stockButtonPanel;
+
     public static Font stockButtonFont;
     public static Font stockLabelFont;
+
     public static JList watchListList;
     public static JList stockList;
+
+    public static ListModel watchListModel; // need these
+    public static ListModel stockListModel; // need these
+
     public static Border buttonBorder;
-
-
 
     public static JPanel getStocksMainPanel() {
         stocksMainPanel = new JPanel(new BorderLayout());
@@ -25,7 +29,6 @@ public class StocksSection {
         buttonBorder = BorderFactory.createEmptyBorder();
         stocksMainPanel.add(getStockButtonPanel(), BorderLayout.NORTH);
         stocksMainPanel.add(getStockListPanel(), BorderLayout.CENTER);
-
 
         return stocksMainPanel;
     }
@@ -118,21 +121,36 @@ public class StocksSection {
     }
 
     public static JScrollPane getWatchListJListWithScrolling() {
-        // FIXME: experiment, delete later
-        String labels[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-
-        watchListList = new JList(labels);
+        watchListList = new JList(getWatchListModel());
 
         return new JScrollPane(watchListList);
     }
 
     public static JScrollPane getStockJListWithScrolling() {
-        // FIXME: experiment, delete later
-        String labels[] = {"K", "L", "M", "N", "O"};
-
-        stockList = new JList(labels);
+        stockList = new JList(getStockListModel());
 
         return new JScrollPane(stockList);
     }
 
+    public static ListModel getStockListModel() {
+
+        // FIXME: in place of 'String' put Stock
+        stockListModel = new DefaultListModel<String>();
+        return stockListModel;
+    }
+
+    public static ListModel getWatchListModel() {
+
+        // FIXME: in place of 'String' put watchList
+        watchListModel = new DefaultListModel<String>();
+        return watchListModel;
+    }
+
+    public static JList getWatchListList() {
+        return watchListList;
+    }
+
+    public static JList getStockList() {
+        return stockList;
+    }
 }

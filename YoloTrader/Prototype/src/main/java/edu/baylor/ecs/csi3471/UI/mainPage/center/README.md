@@ -10,3 +10,7 @@ The main `JPanel` of the User interface is a `BorderLayout` and is as follow:
 
 
 **NOTE:** the main`JPanel` is inside a `JFrame` 
+
+## Todo List
+- implement the DAO's to make the functionality work with the JLists
+- add a sorter to both JLists after the first bullet point is satisfied
