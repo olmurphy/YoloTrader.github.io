@@ -1,6 +1,8 @@
 package edu.baylor.ecs.csi3471.UI.mainPage.center;
 
 import edu.baylor.ecs.csi3471.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.UI.mainPage.center.about.AboutSection;
+import edu.baylor.ecs.csi3471.UI.mainPage.center.help.HelpSection;
 import edu.baylor.ecs.csi3471.UI.mainPage.center.profile.ProfileSection;
 import edu.baylor.ecs.csi3471.UI.mainPage.center.stocks.AddStock;
 import edu.baylor.ecs.csi3471.UI.mainPage.center.stocks.CreateWatchList;
@@ -24,6 +26,10 @@ public class CenterPanelController {
     public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
 
     public static JPanel getStockPanel() { return StocksSection.getStocksMainPanel(); }
+
+    public static JPanel getHelpPanel() { return HelpSection.getHelpPanel(); }
+
+    public static JPanel getAboutPanel() { return AboutSection.getMainAboutPanel(); }
 
     public static MouseAdapter getGeneralStockButtonAction(JButton button) {
         return new MouseAdapter() {

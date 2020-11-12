@@ -22,9 +22,7 @@ public class WestPanelController {
         emptyBorder = BorderFactory.createEmptyBorder();
     }
 
-    public static JPanel getEachWestSubPanel() {
-        return new JPanel(new GridLayout(1,1));
-    }
+    public static JPanel getEachWestSubPanel() { return new JPanel(new GridLayout(1,1)); }
 
     public static MouseAdapter getGeneralWestPanelActions(JPanel panel) {
         return new MouseAdapter() {
@@ -45,14 +43,15 @@ public class WestPanelController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 YoloTrader.logger.info("User clicks on profile panel");
-                // FIXME: add cool effects
 
                 BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
+
                 try {
                     MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
                 } catch (NullPointerException n) {
                     YoloTrader.logger.warning("NullPointerException raised");
                 }
+
                 MainPanel.getMainPanel().add(CenterPanelController.getProfilePanel(), BorderLayout.CENTER);
                 MainPanel.getMainPanel().updateUI();
             }
@@ -63,8 +62,18 @@ public class WestPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("clicked");
-                // FIXME: add cool effects
+                YoloTrader.logger.info("User clicks on about panel");
+
+                BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
+
+                try {
+                    MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
+                } catch (NullPointerException n) {
+                    YoloTrader.logger.warning("NullPointerException raised");
+                }
+
+                MainPanel.getMainPanel().add(CenterPanelController.getAboutPanel(), BorderLayout.CENTER);
+                MainPanel.getMainPanel().updateUI();
             }
         };
     }
@@ -73,8 +82,17 @@ public class WestPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("clicked");
-                // FIXME: add cool effects
+                YoloTrader.logger.info("User clicks on help panel");
+
+                BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
+                try {
+                    MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
+                } catch (NullPointerException n) {
+                    YoloTrader.logger.warning("NullPointerException raised");
+                }
+
+                MainPanel.getMainPanel().add(CenterPanelController.getHelpPanel(), BorderLayout.CENTER);
+                MainPanel.getMainPanel().updateUI();
             }
         };
     }
