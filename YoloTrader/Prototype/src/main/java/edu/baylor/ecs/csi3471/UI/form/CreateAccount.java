@@ -5,69 +5,154 @@ import java.awt.*;
 
 public class CreateAccount {
 
+    public static String userString = "Username";
+    public static String firstString = "First";
+    public static String lastString = "Last";
     public static String passwordAgainStr = "Re-enter Password: ";
 
-    public static void createAccount() {
-        JFrame createAccountFrame = new JFrame("Create Account");
+    public static JPanel createAccPanel;
+    public static JPanel firstLastPanel;
+    public static JPanel fieldPanel;
+    public static JPanel buttonPanel;
 
-        JPanel mainPanel = new JPanel(new GridLayout(3, 1));
+    public static JTextField firstField;
+    public static JTextField lastField;
+    public static JTextField userField;
+    public static JPasswordField re_passwordField;
 
-        // creating panels
-        JPanel signInPanel = new JPanel(new GridLayout(6,1));
-        JPanel titlePanel = new JPanel(new BorderLayout());
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
+    public static JFrame frame;
 
-        // sign in button
-        JButton signInButton = new JButton(FormController.login);
-        JButton createAccButton = new JButton(FormController.createAcc);
-        JButton helpButton = new JButton(FormController.help);
+    public static void startCreateAccount() {
 
-        // adding the general buttons to the Form pages (i.e. switching between forms) :)
-        signInButton.addActionListener(FormController.getGeneralFormAction(FormController.createAcc, createAccountFrame));
-        createAccButton.addActionListener(FormController.getGeneralFormAction(FormController.createAcc, createAccountFrame));
-        helpButton.addActionListener(FormController.getGeneralFormAction(FormController.createAcc, createAccountFrame));
+        frame = new JFrame("Create Account");
 
-        // App name title
-        JLabel appName = new JLabel(FormController.title);
-        appName.setVerticalAlignment(JLabel.CENTER);
-        appName.setHorizontalAlignment(JLabel.CENTER);
+        frame.add(CreateAccount.getCreateAccPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
-        // create username fields
-        JLabel userLabel = new JLabel(FormController.usernameStr);
-        userLabel.setHorizontalAlignment(JLabel.CENTER);
-        JTextField userText = new JTextField();
+    public static JPanel getCreateAccPanel() {
+        createAccPanel = new JPanel();
+        createAccPanel.setLayout(new BoxLayout(createAccPanel, BoxLayout.Y_AXIS));
+        createAccPanel.setBackground(FormController.formColor);
 
-        // create password fields
-        JLabel passLabel = new JLabel(FormController.passwordStr);
-        JLabel passLabelConfirm = new JLabel(passwordAgainStr);
-        passLabelConfirm.setHorizontalAlignment(JLabel.CENTER);
-        passLabel.setHorizontalAlignment(JLabel.CENTER);
-        JPasswordField passwordField = new JPasswordField();
-        JPasswordField passwordFieldConfirm = new JPasswordField();
+        // adding company title to create account form
+        createAccPanel.add(LogIn.getCompanyLabel());
 
-        // add title to pane
-        titlePanel.add(appName);
-        mainPanel.add(titlePanel);
+        // adding fields to panel
+        createAccPanel.add(getFieldPanel());
 
-        // add input fields
-        signInPanel.add(userLabel);
-        signInPanel.add(userText);
-        signInPanel.add(passLabel);
-        signInPanel.add(passwordField);
-        signInPanel.add(passwordField);
-        signInPanel.add(passwordFieldConfirm);
-        mainPanel.add(signInPanel);
+        // adding all buttons to panel
+        createAccPanel.add(getButtonPanel());
 
-        // add button fields to pane
-        buttonPanel.add(signInButton);
-        buttonPanel.add(helpButton);
-        buttonPanel.add(createAccButton);
-        mainPanel.add(buttonPanel);
+        return createAccPanel;
+    }
 
-        // add mainPanel to frame and set frame values
-        createAccountFrame.add(mainPanel);
-        createAccountFrame.setSize(FormController.width, FormController.height);
-        createAccountFrame.setVisible(true);
-        createAccountFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    public static JPanel getFieldPanel() {
+        fieldPanel = new JPanel();
+        fieldPanel.setLayout(new GridLayout(9, 1));
+        fieldPanel.setBackground(FormController.formColor);
+
+        // adding first & last name fields
+        fieldPanel.add(getFirstLastPanel());
+
+        // adding username field
+        fieldPanel.add(getUserLabel());
+        fieldPanel.add(getUserField());
+
+        // adding email field
+        fieldPanel.add(LogIn.getEmailLabel());
+        fieldPanel.add(LogIn.getEmailField());
+
+        // adding password and re-password field
+        fieldPanel.add(LogIn.getPassLabel());
+        fieldPanel.add(LogIn.getPasswordField());
+        fieldPanel.add(getPasswordAgainLabel());
+        fieldPanel.add(getRe_passwordField());
+
+        return fieldPanel;
+    }
+
+    public static JPanel getFirstLastPanel() {
+        firstLastPanel = new JPanel();
+        firstLastPanel.setLayout(new GridLayout(2, 2));
+        firstLastPanel.setBackground(FormController.formColor);
+
+        // adding name labels
+        firstLastPanel.add(getFirstLabel());
+        firstLastPanel.add(getLastLabel());
+
+        // adding name fields
+        firstLastPanel.add(getFirstField());
+        firstLastPanel.add(getLastField());
+
+
+
+        return firstLastPanel;
+    }
+
+    public static JPanel getButtonPanel() {
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(3, 1));
+        buttonPanel.setBackground(FormController.formColor);
+
+        // need to re-initialize for createAccount specific
+        LogIn.initializeButtons();
+        buttonPanel.add(getLogInButton());
+        LogIn.getHelpButton().addActionListener(FormController.getGeneralFormAction(FormController.createAcc));
+        buttonPanel.add(LogIn.getHelpButton());
+        buttonPanel.add(getCreateAccountButton());
+
+        return buttonPanel;
+    }
+
+    public static JButton getLogInButton() {
+        LogIn.getLogInButton().addActionListener(FormController.getGeneralFormAction(FormController.createAcc));
+        return LogIn.getLogInButton();
+    }
+
+    public static JButton getCreateAccountButton() {
+        LogIn.getCreateAccountButton().addActionListener(FormController.getGeneralFormAction(FormController.createAcc));
+
+        LogIn.getCreateAccountButton().addActionListener(FormController.getCreateAccountAction());
+
+        return LogIn.getCreateAccountButton();
+    }
+
+    public static JLabel getFirstLabel() {
+        return new JLabel(firstString);
+    }
+
+    public static JTextField getFirstField() {
+        return firstField = new JTextField();
+    }
+
+    public static JLabel getLastLabel() {
+        return new JLabel(lastString);
+    }
+
+    public static JTextField getLastField() {
+        return lastField = new JTextField();
+    }
+
+    public static JLabel getUserLabel() {
+        return new JLabel(userString);
+    }
+
+    public static JTextField getUserField() {
+        return userField = new JTextField();
+    }
+
+    public static JLabel getPasswordAgainLabel() {
+        return new JLabel(passwordAgainStr);
+    }
+
+    public static JPasswordField getRe_passwordField() {
+        return re_passwordField = new JPasswordField();
+    }
+
+    public static JFrame getFrame() {
+        return frame;
     }
 }

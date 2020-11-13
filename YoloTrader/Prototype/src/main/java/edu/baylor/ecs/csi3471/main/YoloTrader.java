@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.main;
 
+import edu.baylor.ecs.csi3471.UI.form.FormController;
 import edu.baylor.ecs.csi3471.UI.mainPage.MainPanel;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class YoloTrader {
 
 
     public static void main(String[] args) {
-        MainPanel.createUI("Owen");
-        //FormController.startWindowInLogIn();
+        // MainPanel.createUI("Owen");
+        FormController.getStartFrame();
     }
 }

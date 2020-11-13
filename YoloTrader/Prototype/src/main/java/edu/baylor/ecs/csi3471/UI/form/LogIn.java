@@ -1,76 +1,166 @@
 package edu.baylor.ecs.csi3471.UI.form;
 
-
 import javax.swing.*;
 import java.awt.*;
 
 public class LogIn {
 
+    public static JPanel logInPanel;
+    public static JPanel fieldPanel;
+    public static JPanel buttonPanel;
 
-    public static void logIn() {
-        JFrame loginFrame = new JFrame("Log-In");
+    public static JButton loginButton;
+    public static JButton createAccountButton;
+    public static JButton helpButton;
 
-        JPanel mainPanel = new JPanel(new GridLayout(3, 1));
+    public static String emailString = "Email";
+    public static String passString = "Password";
 
-        // creating panels
-        JPanel logInPanel = new JPanel(new GridLayout(4,1));
-        JPanel titlePanel = new JPanel(new BorderLayout());
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
+    public static JTextField emailField;
+    public static JPasswordField passwordField;
 
-        // sign in button
-        JButton logInButton = new JButton(FormController.login);
-        JButton createAccButton = new JButton(FormController.createAcc);
-        JButton helpButton = new JButton(FormController.help);
+    public static JFrame frame;
 
-        logInButton.addActionListener(FormController.getGeneralFormAction(FormController.login, loginFrame));
-        createAccButton.addActionListener(FormController.getGeneralFormAction(FormController.login, loginFrame));
-        helpButton.addActionListener(FormController.getGeneralFormAction(FormController.login, loginFrame));
-
-        // App name title
-        JLabel appName = new JLabel(FormController.title);
-        appName.setVerticalAlignment(JLabel.CENTER);
-        appName.setHorizontalAlignment(JLabel.CENTER);
-
-        // create username fields
-        JLabel userLabel = new JLabel(FormController.usernameStr);
-        userLabel.setHorizontalAlignment(JLabel.CENTER);
-        JTextField userText = new JTextField();
-
-        // create password fields
-        JPasswordField passwordField = new JPasswordField();
-        JLabel passLabel = new JLabel(FormController.usernameStr);
-        passLabel.setHorizontalAlignment(JLabel.CENTER);
-
-        // adding color to buttons
-        logInButton.setBackground(Color.CYAN);
-        createAccButton.setBackground(Color.CYAN);
-        helpButton.setBackground(Color.CYAN);
-        logInButton.setOpaque(true);
-        createAccButton.setOpaque(true);
-        helpButton.setOpaque(true);
+    public static String companyString = "<html><span style=\"" +
+            "font-family:Arial;" +
+            "font-size:20px;" +
+            "\"><B>" + FormController.title +
+            "</B>";
 
 
-        // add title to pane
-        titlePanel.add(appName);
-        mainPanel.add(titlePanel);
+    public static void startWindowInLogIn() {
+        frame = new JFrame("Log-In");
 
-        // add input fields
-        logInPanel.add(userLabel);
-        logInPanel.add(userText);
-        logInPanel.add(passLabel);
-        logInPanel.add(passwordField);
-        mainPanel.add(logInPanel);
+        frame.add(getLogInPanel());
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
-        // add button fields to pane
-        buttonPanel.add(logInButton);
-        buttonPanel.add(helpButton);
-        buttonPanel.add(createAccButton);
-        mainPanel.add(buttonPanel);
+    public static JPanel getLogInPanel() {
+        logInPanel = new JPanel();
+        logInPanel.setLayout(new BoxLayout(logInPanel, BoxLayout.Y_AXIS));
+        logInPanel.setBackground(FormController.formColor);
 
-        // add mainPanel to frame and set frame values
-        loginFrame.add(mainPanel);
-        loginFrame.setVisible(true);
-        loginFrame.setSize(FormController.width, FormController.height);
-        loginFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        logInPanel.add(getCompanyLabel());
+        logInPanel.add(getFieldPanel());
+        logInPanel.add(getButtonPanel());
+
+        return logInPanel;
+    }
+
+    public static JLabel getCompanyLabel() {
+        return new JLabel(companyString, JLabel.CENTER);
+    }
+
+    public static JPanel getFieldPanel() {
+        fieldPanel = new JPanel();
+        fieldPanel.setLayout(new BoxLayout(fieldPanel, BoxLayout.Y_AXIS));
+        fieldPanel.setBackground(FormController.formColor);
+
+        fieldPanel.add(getEmailLabel());
+        fieldPanel.add(getEmailField());
+        fieldPanel.add(getPassLabel());
+        fieldPanel.add(getPasswordField());
+
+        return fieldPanel;
+    }
+
+    public static JLabel getEmailLabel() {
+        return new JLabel(emailString);
+    }
+
+    public static JTextField getEmailField() {
+        emailField = new JTextField();
+
+        return emailField;
+    }
+
+    public static JLabel getPassLabel() {
+        return new JLabel(passString);
+    }
+
+    public static JPasswordField getPasswordField() {
+        passwordField = new JPasswordField();
+
+        return passwordField;
+    }
+
+    public static JPanel getButtonPanel() {
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(3, 1));
+        buttonPanel.setBackground(FormController.formColor);
+
+        // need to restart all buttons to add specific functionality for log-in
+        initializeButtons();
+
+        // need to set all buttons specific for the log-in form
+        setAllButtons();
+
+        // adding the buttons
+        buttonPanel.add(getLogInButton());
+        buttonPanel.add(getHelpButton());
+        buttonPanel.add(getCreateAccountButton());
+
+        return buttonPanel;
+    }
+
+    public static JButton getLogInButton() {
+        return loginButton;
+    }
+
+    public static void setLoginButton() {
+        LogIn.loginButton
+                .addActionListener(FormController.getGeneralFormAction(FormController.login));
+
+        LogIn.loginButton
+                .addActionListener(FormController.getLogInAction());
+    }
+
+    public static JButton getCreateAccountButton() {
+        return createAccountButton;
+    }
+
+    public static void setCreateAccountButton() {
+        createAccountButton
+                .addActionListener(FormController.getGeneralFormAction(FormController.login));
+    }
+
+    public static JButton getHelpButton() {
+        return helpButton;
+    }
+
+    public static void setHelpButton() {
+        helpButton.addActionListener(FormController.getGeneralFormAction(FormController.login));
+    }
+
+    public static void setAllButtons() {
+        setLoginButton();
+        setHelpButton();
+        setCreateAccountButton();
+    }
+
+    public static void initializeButtons() {
+        loginButton = new JButton(FormController.login);
+        loginButton.setHorizontalAlignment(JButton.CENTER);
+        loginButton.setVerticalAlignment(JButton.CENTER);
+
+
+        createAccountButton = new JButton(FormController.createAcc);
+        createAccountButton.setHorizontalAlignment(JButton.CENTER);
+        createAccountButton.setVerticalAlignment(JButton.CENTER);
+
+        helpButton = new JButton(FormController.help);
+        helpButton.setHorizontalAlignment(JButton.CENTER);
+        helpButton.setVerticalAlignment(JButton.CENTER);
+    }
+
+    public static JFrame getFrame() {
+        return frame;
+    }
+
+    public static void getEmailWarning() {
+        JOptionPane.showMessageDialog(null, "Invalid Email Format",
+                "Warning", JOptionPane.WARNING_MESSAGE);
     }
 }

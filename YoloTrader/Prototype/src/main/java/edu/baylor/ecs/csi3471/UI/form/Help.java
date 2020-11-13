@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class Help {
 
+
     public static void createHelp() {
         JFrame helpFrame = new JFrame("Help");
 
@@ -14,11 +15,8 @@ public class Help {
         JPanel infoPanel = new JPanel(new GridLayout(1, 1));
         JPanel titlePanel = new JPanel(new BorderLayout());
 
-        JButton helpButton = new JButton(FormController.help);
         JLabel emailHelpLabel = new JLabel("volatiles.stocks@gmail.com");
         emailHelpLabel.setHorizontalAlignment(JLabel.LEFT);
-
-        helpButton.addActionListener(FormController.getGeneralFormAction(FormController.help, helpFrame));
 
         // App name title
         JLabel appName = new JLabel(FormController.title);

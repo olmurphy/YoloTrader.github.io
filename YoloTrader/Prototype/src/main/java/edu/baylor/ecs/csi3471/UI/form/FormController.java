@@ -1,8 +1,10 @@
 package edu.baylor.ecs.csi3471.UI.form;
 
+import edu.baylor.ecs.csi3471.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 
-import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FormController {
@@ -11,37 +13,77 @@ public class FormController {
     public static String help = "Help";
     public static String createAcc = "Create Account";
     public static String title = "YoloTrader";
-    public static String usernameStr = "Username: ";
-    public static String passwordStr = "Password: ";
-    public static int width = 350;
-    public static int height = 500;
-    public static JFrame frame;
 
+    public static Color formColor = MainPanel.backGroundColor;
 
-    public static void startWindowInLogIn() {
-        LogIn.logIn();
+    public static void getStartFrame() {
+        LogIn.startWindowInLogIn();
     }
 
-    public static ActionListener getGeneralFormAction(String action, JFrame frame) {
+    public static ActionListener getGeneralFormAction(String action) {
         return e -> {
             if (!action.equals(e.getActionCommand())) {
                 if (e.getActionCommand().equals(login)) {
-                    frame.dispose();
-                    LogIn.logIn();
-                    YoloTrader.logger.info(login + " == " + e.getActionCommand());
+
+                    CreateAccount.getFrame().dispose();
+                    LogIn.startWindowInLogIn();
+
+                    YoloTrader.logger.info("switch to log-in");
                 } else if (e.getActionCommand().equals(help)) {
+
+                    YoloTrader.logger.info("go to help");
                     Help.createHelp();
-                    YoloTrader.logger.info(help + " == " + e.getActionCommand());
+
                 } else if (e.getActionCommand().equals(createAcc)) {
-                    frame.dispose();
-                    CreateAccount.createAccount();
-                    YoloTrader.logger.info(createAcc + " == " + e.getActionCommand());
+
+                    LogIn.getFrame().dispose();
+                    CreateAccount.startCreateAccount();
+                    YoloTrader.logger.info("switch to create an account");
                 }
             }
         };
     }
 
-    public static JFrame getFrame() {
-        return frame;
+    public static ActionListener getCreateAccountAction() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+                // check for valid email format
+                if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
+
+                    // FIXME: check the email credential to make sure it is unique
+                    CreateAccount.getFrame().dispose();
+                    MainPanel.createUI("Owen");
+                } else {
+                    LogIn.getEmailWarning();
+                }
+
+                YoloTrader.logger.info("creating an account");
+
+            }
+        };
     }
+
+    public static ActionListener getLogInAction() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // check for valid email format
+                if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
+                    // FIXME: check the email credential to make sure it is unique
+                    LogIn.getFrame().dispose();
+                    MainPanel.createUI("Owen");
+                } else {
+                    LogIn.getEmailWarning();
+                }
+                // FIXME: need to add action
+
+                YoloTrader.logger.info("logging in");
+            }
+        };
+    }
+
 }
