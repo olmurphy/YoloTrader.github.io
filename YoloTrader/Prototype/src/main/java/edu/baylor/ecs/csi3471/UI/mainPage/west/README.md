@@ -16,3 +16,7 @@ in the form directory are not the same. Better name suggestions are encouraged
 
 **To-Do-List or Notes:**
 - Finish design for all pages
+
+### Panels Image
+
+![](Images/panels.png)

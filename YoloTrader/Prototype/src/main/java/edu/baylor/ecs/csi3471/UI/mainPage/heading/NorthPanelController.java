@@ -10,6 +10,4 @@ public class NorthPanelController {
     public static int northPanelHeight = 120;
     public static Color northPanelColor = MainPanel.backGroundColor;
 
-
-
 }

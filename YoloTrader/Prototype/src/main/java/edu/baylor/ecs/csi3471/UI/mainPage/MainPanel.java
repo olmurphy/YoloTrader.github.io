@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.UI.mainPage;
 
+import edu.baylor.ecs.csi3471.UI.form.FormController;
 import edu.baylor.ecs.csi3471.UI.mainPage.heading.NorthPanel;
 import edu.baylor.ecs.csi3471.UI.mainPage.west.WestPanel;
 
@@ -30,5 +31,10 @@ public class MainPanel {
 
     public static JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    /* low coupling */
+    public static void getStartFrame() {
+        FormController.getStartFrame();
     }
 }

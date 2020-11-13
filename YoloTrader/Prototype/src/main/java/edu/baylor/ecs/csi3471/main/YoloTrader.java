@@ -25,9 +25,8 @@ public class YoloTrader {
         logger.info("starting the app");
     }
 
-
     public static void main(String[] args) {
         // MainPanel.createUI("Owen");
-        FormController.getStartFrame();
+        MainPanel.getStartFrame();
     }
 }

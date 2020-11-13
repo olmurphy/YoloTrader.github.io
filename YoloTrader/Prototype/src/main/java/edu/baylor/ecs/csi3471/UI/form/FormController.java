@@ -17,7 +17,7 @@ public class FormController {
     public static Color formColor = MainPanel.backGroundColor;
 
     public static void getStartFrame() {
-        LogIn.startWindowInLogIn();
+        LogIn.startFrame();
     }
 
     public static ActionListener getGeneralFormAction(String action) {
@@ -26,7 +26,7 @@ public class FormController {
                 if (e.getActionCommand().equals(login)) {
 
                     CreateAccount.getFrame().dispose();
-                    LogIn.startWindowInLogIn();
+                    LogIn.startFrame();
 
                     YoloTrader.logger.info("switch to log-in");
                 } else if (e.getActionCommand().equals(help)) {
@@ -51,14 +51,14 @@ public class FormController {
 
 
                 // check for valid email format
-                if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
+                //if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
 
                     // FIXME: check the email credential to make sure it is unique
                     CreateAccount.getFrame().dispose();
                     MainPanel.createUI("Owen");
-                } else {
-                    LogIn.getEmailWarning();
-                }
+                //} else {
+                //    LogIn.getEmailWarning();
+                //}
 
                 YoloTrader.logger.info("creating an account");
 
@@ -85,5 +85,4 @@ public class FormController {
             }
         };
     }
-
 }

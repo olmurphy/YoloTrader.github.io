@@ -28,7 +28,7 @@ public class LogIn {
             "</B>";
 
 
-    public static void startWindowInLogIn() {
+    public static void startFrame() {
         frame = new JFrame("Log-In");
 
         frame.add(getLogInPanel());
