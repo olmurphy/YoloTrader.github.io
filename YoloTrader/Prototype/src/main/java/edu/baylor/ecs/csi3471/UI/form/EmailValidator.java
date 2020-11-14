@@ -5,8 +5,7 @@ import java.util.regex.Pattern;
 
 public class EmailValidator {
     private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            "\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b";
 
     /**
      * Validate hex with regular expression
@@ -20,7 +19,6 @@ public class EmailValidator {
         Matcher matcher = pattern.matcher(hex);
 
         System.out.println("This -> " + matcher.matches());
-
 
         return matcher.matches();
     }

@@ -49,7 +49,6 @@ public class FormController {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
                 // check for valid email format
                 //if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
 

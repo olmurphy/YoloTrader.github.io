@@ -7,8 +7,6 @@ import java.awt.*;
 
 public class Search {
 
-
-
     public static JTextField searchTextField;
     public static JButton searchButton;
     public static JPanel searchStockPanel;
@@ -16,34 +14,41 @@ public class Search {
     public static JPanel getSearchStockPanel() {
         searchStockPanel = new JPanel(new BorderLayout());
 
+        // setting the search field
+        setSearchTextField();
+
+        // adding search field, search button
         searchStockPanel.add(getSearchTextField(), BorderLayout.CENTER);
         searchStockPanel.add(getSearchButton(), BorderLayout.EAST);
+
+        // setting the background color
         searchStockPanel.setBackground(NorthPanelController.northPanelColor);
 
         return searchStockPanel;
     }
 
     public static JTextField getSearchTextField() {
-        searchTextField = new JTextField();
-
-        // FIXME: need to add action
-
         return searchTextField;
     }
 
     public static JButton getSearchButton() {
         searchButton = new JButton("Search");
 
+        searchButton.addActionListener(NorthPanelController.getSearchButtonAction(getSearchTextField()));
+
         return searchButton;
     }
 
     public static JLabel getSearchLabel() {
-        JLabel searchLabel = new JLabel("Enter stock name to search", JLabel.LEFT);
-
-
-
-        return searchLabel;
+        return new JLabel("Enter stock name to search", JLabel.LEFT);
     }
 
+    public static void setSearchTextField() {
+        Search.searchTextField = new JTextField();
+    }
 
+    public static void getSearchWarning() {
+        JOptionPane.showMessageDialog(null, "Need to input a stock ticker",
+                "Warning", JOptionPane.WARNING_MESSAGE);
+    }
 }
