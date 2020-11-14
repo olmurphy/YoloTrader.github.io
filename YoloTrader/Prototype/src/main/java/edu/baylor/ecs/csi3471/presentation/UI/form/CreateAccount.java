@@ -58,14 +58,18 @@ public class CreateAccount {
         fieldPanel.add(getFirstLastPanel());
 
         // adding username field
+        setUserField(new JTextField());
         fieldPanel.add(getUserLabel());
         fieldPanel.add(getUserField());
 
         // adding email field
+        LogIn.setEmailField(new JTextField());
         fieldPanel.add(LogIn.getEmailLabel());
         fieldPanel.add(LogIn.getEmailField());
 
         // adding password and re-password field
+        LogIn.setPasswordField(new JPasswordField());
+        setRe_passwordField(new JPasswordField());
         fieldPanel.add(LogIn.getPassLabel());
         fieldPanel.add(LogIn.getPasswordField());
         fieldPanel.add(getPasswordAgainLabel());
@@ -84,10 +88,10 @@ public class CreateAccount {
         firstLastPanel.add(getLastLabel());
 
         // adding name fields
+        setFirstField(new JTextField());
+        setLastField(new JTextField());
         firstLastPanel.add(getFirstField());
         firstLastPanel.add(getLastField());
-
-
 
         return firstLastPanel;
     }
@@ -124,6 +128,10 @@ public class CreateAccount {
         return new JLabel(firstString);
     }
 
+    public static void setFirstField(JTextField firstField) {
+        CreateAccount.firstField = firstField;
+    }
+
     public static JTextField getFirstField() {
         return firstField = new JTextField();
     }
@@ -132,24 +140,36 @@ public class CreateAccount {
         return new JLabel(lastString);
     }
 
+    public static void setLastField(JTextField lastField) {
+        CreateAccount.lastField = lastField;
+    }
+
     public static JTextField getLastField() {
-        return lastField = new JTextField();
+        return lastField;
     }
 
     public static JLabel getUserLabel() {
         return new JLabel(userString);
     }
 
+    public static void setUserField(JTextField userField) {
+        CreateAccount.userField = userField;
+    }
+
     public static JTextField getUserField() {
-        return userField = new JTextField();
+        return userField;
     }
 
     public static JLabel getPasswordAgainLabel() {
         return new JLabel(passwordAgainStr);
     }
 
+    public static void setRe_passwordField(JPasswordField re_passwordField) {
+        CreateAccount.re_passwordField = re_passwordField;
+    }
+
     public static JPasswordField getRe_passwordField() {
-        return re_passwordField = new JPasswordField();
+        return re_passwordField;
     }
 
     public static JFrame getFrame() {

@@ -58,8 +58,13 @@ public class LogIn {
         fieldPanel.setLayout(new BoxLayout(fieldPanel, BoxLayout.Y_AXIS));
         fieldPanel.setBackground(FormController.formColor);
 
+        // adding email field
+        setEmailField(new JTextField());
         fieldPanel.add(getEmailLabel());
         fieldPanel.add(getEmailField());
+
+        // adding password field
+        setPasswordField(new JPasswordField());
         fieldPanel.add(getPassLabel());
         fieldPanel.add(getPasswordField());
 
@@ -68,6 +73,10 @@ public class LogIn {
 
     public static JLabel getEmailLabel() {
         return new JLabel(emailString);
+    }
+
+    public static void setEmailField(JTextField emailField) {
+        LogIn.emailField = emailField;
     }
 
     public static JTextField getEmailField() {
@@ -80,9 +89,11 @@ public class LogIn {
         return new JLabel(passString);
     }
 
-    public static JPasswordField getPasswordField() {
-        passwordField = new JPasswordField();
+    public static void setPasswordField(JPasswordField passwordField) {
+        LogIn.passwordField = passwordField;
+    }
 
+    public static JPasswordField getPasswordField() {
         return passwordField;
     }
 
@@ -159,8 +170,8 @@ public class LogIn {
         return frame;
     }
 
-    public static void getEmailWarning() {
-        JOptionPane.showMessageDialog(null, "Invalid Email Format",
+    public static void getEmptyFieldWarning() {
+        JOptionPane.showMessageDialog(null, "Some fields have not been filled in",
                 "Warning", JOptionPane.WARNING_MESSAGE);
     }
 }

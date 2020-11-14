@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471;
+package edu.baylor.ecs.csi3471.extra;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

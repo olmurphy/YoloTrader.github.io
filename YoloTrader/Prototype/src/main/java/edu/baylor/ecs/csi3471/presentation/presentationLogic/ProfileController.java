@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.presentation.presentationLogic;
 
+import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.service.ProfileService;
 
@@ -11,8 +12,13 @@ public class ProfileController {
     /** Profile Service, the user is accessing the methods*/
     private ProfileService service;
 
-    public void save() {
+    public ProfileController(Profile profile, ProfileService service) {
+        this.profile = profile;
+        this.service = service;
+    }
 
+    public void save() {
+            service.save(profile);
     }
 
     /**
