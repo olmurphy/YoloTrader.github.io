@@ -1,7 +1,6 @@
 package edu.baylor.ecs.csi3471.main;
 
-import edu.baylor.ecs.csi3471.UI.form.FormController;
-import edu.baylor.ecs.csi3471.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 
 import java.io.IOException;
 import java.io.InputStream;
