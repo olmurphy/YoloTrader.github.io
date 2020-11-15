@@ -10,13 +10,13 @@ public class NorthPanel {
 
     public static JPanel northPanel;
 
-    public static void createNorthPanel(JPanel mainPanel, String name) {
+    public static void createNorthPanel(JPanel mainPanel) {
         northPanel = new JPanel(new BorderLayout());
 
         northPanel.setPreferredSize(new Dimension(NorthPanelController.northPanelWidth, NorthPanelController.northPanelHeight));
 
         northPanel.add(CompanyName.getTitlePanel(), BorderLayout.WEST);
-        northPanel.add(SearchPanel.getSearchPanel(name));
+        northPanel.add(SearchPanel.getSearchPanel());
 
         mainPanel.add(northPanel, BorderLayout.NORTH);
     }

@@ -133,7 +133,7 @@ public class CreateAccount {
     }
 
     public static JTextField getFirstField() {
-        return firstField = new JTextField();
+        return firstField;
     }
 
     public static JLabel getLastLabel() {

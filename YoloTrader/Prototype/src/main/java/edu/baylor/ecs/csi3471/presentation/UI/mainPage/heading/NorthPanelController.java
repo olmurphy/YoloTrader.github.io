@@ -1,6 +1,7 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading;
 
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Name;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Search;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 
@@ -22,5 +23,9 @@ public class NorthPanelController {
                 YoloTrader.logger.info("Searching stock...");
             }
         };
+    }
+
+    public static void setName(String name) {
+        Name.setName(name);
     }
 }

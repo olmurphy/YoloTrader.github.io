@@ -10,7 +10,7 @@ public class Name {
     private static String name;
     public  static JPanel welcomePanel;
 
-    public static JPanel getWelcomePanel(String name) {
+    public static JPanel getWelcomePanel() {
         welcomePanel = new JPanel(new GridLayout(1, 1));
 
         welcomePanel.add(getLabel(name));
@@ -28,7 +28,6 @@ public class Name {
 
         return welcomeLabel;
     }
-
 
     public static String getName() {
         return name;

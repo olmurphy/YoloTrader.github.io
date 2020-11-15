@@ -1,8 +1,9 @@
 package edu.baylor.ecs.csi3471.presentation.presentationLogic;
 
-import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.service.ProfileService;
+
+import java.util.List;
 
 public class ProfileController {
 
@@ -15,6 +16,16 @@ public class ProfileController {
     public ProfileController(Profile profile, ProfileService service) {
         this.profile = profile;
         this.service = service;
+    }
+
+    public void addProfile(Profile profile) {
+        service.addProfile(profile);
+
+
+    }
+
+    public List<Profile> getAllProfiles() {
+        return service.getAllProfiles();
     }
 
     public void save() {

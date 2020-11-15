@@ -1,7 +1,11 @@
 package edu.baylor.ecs.csi3471.presentation.UI.form;
 
+import edu.baylor.ecs.csi3471.dao.ProfileDAOImpl;
+import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
+import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
+import edu.baylor.ecs.csi3471.service.ProfileService;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,6 +27,8 @@ public class FormController {
 
     /** this is the color of the whole application interface the user will have */
     public static Color formColor = MainPanel.backGroundColor;
+
+    private static ProfileController profileController;
 
     /**
      * method to start the application, the application will start in the log-in page
@@ -82,7 +88,7 @@ public class FormController {
                 if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
                     // FIXME: check the email credential to make sure it is unique
                     LogIn.getFrame().dispose();
-                    MainPanel.createUI("Owen");
+                    MainPanel.createUI();
                 } else {
                     LogIn.getEmptyFieldWarning();
                 }
@@ -102,25 +108,24 @@ public class FormController {
      * @return ActionListener for the createAccount button
      */
     public static ActionListener getCreateAccountAction() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        return e -> {
 
-                // check for valid email format
+            // check for valid email format
+            if (validCreateAccountFieldsNotEmpty()) {
 
-                if (validCreateAccountFieldsNotEmpty()) {
+                YoloTrader.logger.info("creating account...");
+
+                profileController = new ProfileController(createNewProfile(),
+                        new ProfileService(new ProfileDAOImpl()));
 
 
-                    YoloTrader.logger.info("creating account...");
-                    CreateAccount.getFrame().dispose();
-                }
-                // FIXME: check the email credential to make sure it is unique
-
-                MainPanel.createUI("Owen");
+                CreateAccount.getFrame().dispose();
+                MainPanel.createUI();
             }
+            // FIXME: check the email credential to make sure it is unique
+
         };
     }
-
 
     /**
      * checks if email and password fields are not empty
@@ -131,10 +136,13 @@ public class FormController {
         boolean allField = true;
 
         if (LogIn.getEmailField().getText().equals("")) {
+            System.out.println("email: " + LogIn.getEmailField().getText());
             allField = false;
         }
 
         if (LogIn.getPasswordField().getPassword().length == 0) {
+            System.out.println("pass length: " + LogIn.getPasswordField().getPassword().length);
+
             allField = false;
         }
 
@@ -152,25 +160,41 @@ public class FormController {
         boolean allField = true;
 
         if (!validateLogInFieldsNotEmpty()) {
+            System.out.println("email and pass are not valid");
             allField = false;
         }
 
         if (CreateAccount.getFirstField().getText().equals("")) {
+            System.out.println("first name: " + CreateAccount.getFirstField().getText());
             allField = false;
         }
 
-        if (CreateAccount.getFirstField().getText().equals("")) {
+        if (CreateAccount.getLastField().getText().equals("")) {
+            System.out.println("last name: " + CreateAccount.getLastField().getText());
             allField = false;
         }
 
         if (CreateAccount.getUserField().getText().equals("")) {
+            System.out.println("user: " + CreateAccount.getUserField().getText());
             allField = false;
         }
 
         if (CreateAccount.getRe_passwordField().getPassword().length == 0) {
+            System.out.println("re-pass length: " + CreateAccount.getRe_passwordField().getPassword().length);
             allField = false;
         }
 
         return allField;
+    }
+
+    public static Profile createNewProfile() {
+        return new Profile(LogIn.getEmailField().getText(),
+                CreateAccount.getUserField().getText(),
+                new String(LogIn.getPasswordField().getPassword()),
+                CreateAccount.getFirstField().getText(), CreateAccount.getLastField().getText());
+    }
+
+    public static ProfileController getProfileController() {
+        return profileController;
     }
 }

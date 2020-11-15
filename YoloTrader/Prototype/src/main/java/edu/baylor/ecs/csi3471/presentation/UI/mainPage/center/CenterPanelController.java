@@ -20,7 +20,6 @@ public class CenterPanelController {
     public static Color buttonColorActive = Color.GRAY;
     public static Color centerPanelColor = MainPanel.backGroundColor;
 
-
     public static int centerPanelHeight = MainPanel.frameHeight - NorthPanelController.northPanelHeight;
 
     public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
@@ -76,4 +75,21 @@ public class CenterPanelController {
             }
         };
     }
+
+    public static void setFirst(String first) {
+        ProfileSection.setFirstString(first);
+    }
+
+    public static void setLast(String last) {
+        ProfileSection.setLastString(last);
+    }
+
+    public static void setEmail(String email) {
+        ProfileSection.setEmailString(email);
+    }
+
+    public static void setUser(String user) {
+        ProfileSection.setUserString(user);
+    }
 }
+

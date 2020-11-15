@@ -93,13 +93,25 @@ public class ProfileSection {
         labelValuePanel = new JPanel();
         labelValuePanel.setLayout(new BoxLayout(labelValuePanel, BoxLayout.Y_AXIS));
 
+
+        // adding first name
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+        setFirstLabel(new JLabel(firstLabelString + firstString));
         labelValuePanel.add(getFirstLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+
+        // adding last name
+        setLastLabel(new JLabel(lastLabelString + lastString));
         labelValuePanel.add(getLastLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+
+        // adding username
+        setUserLabel(new JLabel(userLabelString + userString));
         labelValuePanel.add(getUserLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
+
+        // adding email
+        setEmailLabel(new JLabel(userLabelString + userString));
         labelValuePanel.add(getEmailLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
         labelValuePanel.setBackground(CenterPanelController.centerPanelColor);
@@ -125,23 +137,18 @@ public class ProfileSection {
     }
 
     public static JLabel getFirstLabel() {
-        firstLabel = new JLabel(firstLabelString + firstString);
         return firstLabel;
     }
 
     public static JLabel getLastLabel() {
-        lastLabel = new JLabel(lastLabelString + lastString);
         return lastLabel;
     }
 
-
     public static JLabel getEmailLabel() {
-        emailLabel = new JLabel(emailLabelString + emailString);
         return emailLabel;
     }
 
     public static JLabel getUserLabel() {
-        userLabel = new JLabel(userLabelString + userString);
         return userLabel;
     }
 
@@ -175,19 +182,35 @@ public class ProfileSection {
         return deleteAccountButton;
     }
 
-    public static void setEmailLabel() {
-        emailLabel.setText(emailLabelString + emailString);
+    public static void setEmailLabel(JLabel emailLabel) {
+        ProfileSection.emailLabel = emailLabel;
     }
 
-    public static void setFirstLabel() {
-        firstLabel.setText(firstLabelString + lastString);
+    public static void setFirstLabel(JLabel firstLabel) {
+        ProfileSection.firstLabel = firstLabel;
     }
 
-    public static void setLastLabel() {
-        lastLabel.setText(lastLabelString + lastString);
+    public static void setLastLabel(JLabel lastLabel) {
+        ProfileSection.lastLabel = lastLabel;
     }
 
-    public static void setUserLabel() {
-        ProfileSection.userLabel.setText(userLabelString + userString);
+    public static void setUserLabel(JLabel userLabel) {
+        ProfileSection.userLabel = userLabel;
+    }
+
+    public static void setFirstString(String firstString) {
+        ProfileSection.firstString = firstString;
+    }
+
+    public static void setLastString(String lastString) {
+        ProfileSection.lastString = lastString;
+    }
+
+    public static void setEmailString(String emailString) {
+        ProfileSection.emailString = emailString;
+    }
+
+    public static void setUserString(String userString) {
+        ProfileSection.userString = userString;
     }
 }

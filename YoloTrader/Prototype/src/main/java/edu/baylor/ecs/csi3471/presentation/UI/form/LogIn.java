@@ -80,8 +80,6 @@ public class LogIn {
     }
 
     public static JTextField getEmailField() {
-        emailField = new JTextField();
-
         return emailField;
     }
 

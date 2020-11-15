@@ -9,10 +9,10 @@ public class SearchPanel {
 
     public static JPanel searchPanel;
 
-    public static JPanel getSearchPanel(String name) {
+    public static JPanel getSearchPanel() {
         searchPanel = new JPanel();
         searchPanel.setLayout(new GridLayout(3, 1));
-        searchPanel.add(Name.getWelcomePanel(name));
+        searchPanel.add(Name.getWelcomePanel());
         searchPanel.add(Search.getSearchLabel());
         searchPanel.add(Search.getSearchStockPanel());
         searchPanel.setBackground(NorthPanelController.northPanelColor);
