@@ -148,4 +148,16 @@ public class Profile {
     public void addWatchList(StockWatchList stw) {
         this.watchLists.add(stw);
     }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", first='" + first + '\'' +
+                ", last='" + last + '\'' +
+                ", watchLists=" + watchLists +
+                '}';
+    }
 }

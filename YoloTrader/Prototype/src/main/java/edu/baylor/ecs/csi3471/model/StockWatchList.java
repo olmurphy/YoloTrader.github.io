@@ -98,4 +98,13 @@ public class StockWatchList implements Comparable<StockWatchList> {
     public void addStock(Stock stock) {
         this.stockWatchList.add(stock);
     }
+
+    @Override
+    public String toString() {
+        return "StockWatchList{" +
+                "name='" + name + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", stockWatchList=" + stockWatchList +
+                '}';
+    }
 }

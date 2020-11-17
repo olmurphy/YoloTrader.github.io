@@ -132,4 +132,14 @@ public class Stock implements Comparable<Stock> {
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "ticker='" + ticker + '\'' +
+                ", name='" + name + '\'' +
+                ", dateAdded=" + dateAdded +
+                ", comments=" + comments +
+                '}';
+    }
 }

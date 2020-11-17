@@ -12,7 +12,7 @@ from this, the basic idea is the user is able to keep a list of
 stocks they are interested in and track them.
 
 Some possible functionalities that we could incorporate are:
-- 'univerisal comments', where a comment from one user on a particular
+- 'universal comments', where a comment from one user on a particular
 stock would be viewable from other users
 - look up other users
 

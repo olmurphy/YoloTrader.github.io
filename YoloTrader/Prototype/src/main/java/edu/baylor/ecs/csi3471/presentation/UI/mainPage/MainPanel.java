@@ -24,7 +24,7 @@ public class MainPanel {
         homeFrame.setSize(new Dimension(frameWidth, frameHeight));
         mainPanel = new JPanel(new BorderLayout());
 
-        initializeAllFieldsInMainPanel();
+        //initializeAllFieldsInMainPanel();
 
         WestPanel.creatWestPanel(mainPanel);
         NorthPanel.createNorthPanel(mainPanel);

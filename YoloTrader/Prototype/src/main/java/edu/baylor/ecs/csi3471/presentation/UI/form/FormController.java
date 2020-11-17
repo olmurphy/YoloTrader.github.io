@@ -85,13 +85,13 @@ public class FormController {
             public void actionPerformed(ActionEvent e) {
 
                 // check for valid email format
-                if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
+                //if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
                     // FIXME: check the email credential to make sure it is unique
                     LogIn.getFrame().dispose();
                     MainPanel.createUI();
-                } else {
-                    LogIn.getEmptyFieldWarning();
-                }
+                //} else {
+                    //LogIn.getEmptyFieldWarning();
+                //}
                 // FIXME: need to add action
 
                 YoloTrader.logger.info("logging in");
@@ -115,11 +115,10 @@ public class FormController {
 
                 YoloTrader.logger.info("creating account...");
 
-                profileController = new ProfileController(createNewProfile(),
+                /*profileController = new ProfileController(createNewProfile(),
                         new ProfileService(new ProfileDAOImpl()));
 
-
-                profileController.addProfile(profileController.getProfile());
+                profileController.addProfile(profileController.getProfile());*/
 
                 CreateAccount.getFrame().dispose();
                 MainPanel.createUI();

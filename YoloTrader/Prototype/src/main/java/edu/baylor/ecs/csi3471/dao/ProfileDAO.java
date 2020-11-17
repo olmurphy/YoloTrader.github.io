@@ -1,10 +1,8 @@
 package edu.baylor.ecs.csi3471.dao;
 
 
-import edu.baylor.ecs.csi3471.model.DataBaseUtil;
 import edu.baylor.ecs.csi3471.model.Profile;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface ProfileDAO {
@@ -17,8 +15,10 @@ public interface ProfileDAO {
 
     List<Profile> getAllProfiles();
 
-    DataBaseUtil load() throws FileNotFoundException;
+    void setProfile(List<Profile> profiles);
 
-    void doSave(DataBaseUtil db);
+    void loadProfiles();
+
+    void saveProfiles();
 
 }

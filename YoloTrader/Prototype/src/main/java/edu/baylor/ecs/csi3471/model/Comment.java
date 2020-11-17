@@ -97,4 +97,13 @@ public class Comment {
     public int hashCode() {
         return Objects.hash(dateCreated, text, subject);
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "dateCreated=" + dateCreated +
+                ", text='" + text + '\'' +
+                ", subject='" + subject + '\'' +
+                '}';
+    }
 }

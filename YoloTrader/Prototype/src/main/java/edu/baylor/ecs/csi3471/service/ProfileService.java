@@ -3,7 +3,6 @@ package edu.baylor.ecs.csi3471.service;
 import edu.baylor.ecs.csi3471.dao.ProfileDAO;
 import edu.baylor.ecs.csi3471.model.Profile;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ProfileService {
@@ -56,10 +55,5 @@ public class ProfileService {
     }
 
     public void loadProfiles() {
-        try {
-            this.dao.load();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

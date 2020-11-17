@@ -1,14 +1,11 @@
 package edu.baylor.ecs.csi3471.main;
 
-import edu.baylor.ecs.csi3471.dao.ProfileDAO;
-import edu.baylor.ecs.csi3471.dao.ProfileDAOImpl;
+import edu.baylor.ecs.csi3471.dao.*;
 import edu.baylor.ecs.csi3471.model.*;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
+import java.util.List;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -30,10 +27,10 @@ public class YoloTrader {
     }
 
     public static void main(String[] args) {
-        // MainPanel.createUI("Owen");
+
         //MainPanel.getStartFrame();
 
-        Profile profile = new Profile("email", "user", "pass", "first", "last");
+        /*Profile profile = new Profile("email", "user", "pass", "first", "last");
         Profile profile1 = new Profile("email1", "user1", "pass1", "first1", "last1");
 
         Comment comment = new Comment();
@@ -47,13 +44,17 @@ public class YoloTrader {
 
         profile.addWatchList(stw);
         profile1.addWatchList(stw);
-
+*/
         ProfileDAO dao = new ProfileDAOImpl();
+        //dao.addProfile(profile);
+        //dao.addProfile(profile1);
+        //dao.saveProfiles();
 
-        DataBaseUtil db = new DataBaseUtil();
-        db.addProfile(profile);
-        db.addProfile(profile1);
-        db.setStorageName("YoloTrader");
-        dao.doSave(db);
+        dao.loadProfiles();
+
+        List<Profile> profileList = dao.getAllProfiles();
+
+        profileList.forEach(System.out::println);
+
     }
 }

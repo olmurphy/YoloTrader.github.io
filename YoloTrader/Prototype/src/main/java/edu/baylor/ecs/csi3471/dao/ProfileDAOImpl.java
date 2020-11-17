@@ -1,19 +1,26 @@
 package edu.baylor.ecs.csi3471.dao;
 
-import edu.baylor.ecs.csi3471.model.DataBaseUtil;
 import edu.baylor.ecs.csi3471.model.Profile;
+import edu.baylor.ecs.csi3471.util.XMLProfileDAOUtil;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(namespace = "Database")
 public class ProfileDAOImpl implements ProfileDAO {
 
-    private static List<Profile> profiles = new ArrayList<>();
+    @XmlElementWrapper(name = "ProfileList")
+    @XmlElement(name = "Profile")
+    private List<Profile> profiles;
+
+    private static XMLProfileDAOUtil profileDAOUtil;
+
+    public ProfileDAOImpl() {
+        this.profiles = new ArrayList<>();
+    }
 
     @Override
     public int insertProfile(Profile profile) {
@@ -27,40 +34,25 @@ public class ProfileDAOImpl implements ProfileDAO {
     }
 
     @Override
-    public DataBaseUtil load() throws FileNotFoundException {
-        DataBaseUtil db = null;
-
-        try {
-            // create new instance of JAXBContext
-            JAXBContext context = JAXBContext.newInstance(edu.baylor.ecs.csi3471.model.DataBaseUtil.class);
-
-            // Unmarshaller governs process of deserializing XML data into newly created Java
-            // content trees, optionally validating the XML data
-            Unmarshaller um = context.createUnmarshaller();
-
-            // unmarshal a global XML root and its data
-            db = (DataBaseUtil) um.unmarshal(new FileReader("database.xml"));
-
-        } catch (JAXBException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return db;
+    public void setProfile(List<Profile> profiles) {
+        this.profiles = profiles;
     }
 
     @Override
-    public void doSave(DataBaseUtil db) {
-        try {
+    public void loadProfiles() {
+        profileDAOUtil = new XMLProfileDAOUtil();
 
-            JAXBContext context = JAXBContext.newInstance(edu.baylor.ecs.csi3471.model.DataBaseUtil.class);
+        ProfileDAO dao;
 
-            Marshaller m = context.createMarshaller();
+        dao = profileDAOUtil.load();
 
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        this.profiles = dao.getAllProfiles();
+    }
 
-            m.marshal(db, new File("database.xml"));
+    @Override
+    public void saveProfiles() {
+        profileDAOUtil = new XMLProfileDAOUtil();
 
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+        profileDAOUtil.doSave(this);
     }
 }
