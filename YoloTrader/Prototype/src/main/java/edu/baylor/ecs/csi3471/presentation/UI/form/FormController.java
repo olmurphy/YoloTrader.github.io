@@ -119,6 +119,8 @@ public class FormController {
                         new ProfileService(new ProfileDAOImpl()));
 
 
+                profileController.addProfile(profileController.getProfile());
+
                 CreateAccount.getFrame().dispose();
                 MainPanel.createUI();
             }

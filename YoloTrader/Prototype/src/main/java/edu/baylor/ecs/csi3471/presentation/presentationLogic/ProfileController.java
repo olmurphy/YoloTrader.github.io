@@ -20,8 +20,10 @@ public class ProfileController {
 
     public void addProfile(Profile profile) {
         service.addProfile(profile);
+    }
 
-
+    public void loadProfiles() {
+        service.loadProfiles();
     }
 
     public List<Profile> getAllProfiles() {

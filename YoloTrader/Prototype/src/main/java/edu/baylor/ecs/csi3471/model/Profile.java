@@ -1,8 +1,12 @@
 package edu.baylor.ecs.csi3471.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "Profile")
 public class Profile {
 
     /** represents user's email */
@@ -17,7 +21,13 @@ public class Profile {
     private String last;
 
     /** ArrayList implementation is faster it seems */
+    @XmlElementWrapper(name = "listOfWatchLists")
+    @XmlElement(name = "watchList")
     private List<StockWatchList> watchLists;
+
+    public Profile() {
+        // do nothing
+    }
 
     /**
      * default constructor for creating a Profile. creates Profile with
@@ -82,16 +92,9 @@ public class Profile {
     }
 
     /**
-     * checks if password passed in is same as Profile password
-     *
-     * @param password password user's enters to validate
-     * @return true if password matches, false otherwise
+     * @return users password
      */
-    public boolean isPassword(String password) {
-
-        // if password is null, the function returns false
-        return this.password.equals(password);
-    }
+    public String getPassword() { return password; }
 
     /**
      * @return first name of user
@@ -128,9 +131,9 @@ public class Profile {
     /**
      * @return the stockWatchList
      */
-    public List<StockWatchList> getWatchLists() {
-        return watchLists;
-    }
+    //public List<StockWatchList> getWatchLists() {
+    //    return watchLists;
+    //}
 
     /**
      * sets the stockWatchList of user's Profile
@@ -139,5 +142,10 @@ public class Profile {
      */
     public void setWatchLists(List<StockWatchList> watchLists) {
         this.watchLists = watchLists;
+    }
+
+    // FIXME: delete later
+    public void addWatchList(StockWatchList stw) {
+        this.watchLists.add(stw);
     }
 }

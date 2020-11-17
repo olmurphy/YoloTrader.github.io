@@ -16,4 +16,11 @@ Some possible functionalities that we could incorporate are:
 stock would be viewable from other users
 - look up other users
 
+### IMPORTANT:
+- [DataBaseUtil](YoloTrader/Prototype/src/main/java/edu/baylor/ecs/csi3471/model/DataBaseUtil.java) 
+is only an experimental class and will be deleted once database configurations for the xml
+binding are complete.
+- [database.xml](YoloTrader/Prototype/database.xml) has experimental values. **Need** to figure
+how to make the "comments" be properly indented
+
 contributors are Owen Murphy and Prince Kalu
