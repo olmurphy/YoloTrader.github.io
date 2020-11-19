@@ -1,12 +1,11 @@
 package edu.baylor.ecs.csi3471.model;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "Profile")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Profile {
 
     /** represents user's email */
@@ -22,7 +21,7 @@ public class Profile {
 
     /** ArrayList implementation is faster it seems */
     @XmlElementWrapper(name = "listOfWatchLists")
-    @XmlElement(name = "watchList")
+    @XmlElement(name = "watchListName")
     private List<StockWatchList> watchLists;
 
     public Profile() {
@@ -47,7 +46,7 @@ public class Profile {
         this.last = last;
 
         // users watchLists is empty upon creating an account
-        watchLists = new ArrayList<>();
+        this.watchLists = new ArrayList<>();
     }
 
     /**
@@ -131,9 +130,9 @@ public class Profile {
     /**
      * @return the stockWatchList
      */
-    //public List<StockWatchList> getWatchLists() {
-    //    return watchLists;
-    //}
+    public List<StockWatchList> getWatchLists() {
+        return watchLists;
+    }
 
     /**
      * sets the stockWatchList of user's Profile
@@ -142,11 +141,6 @@ public class Profile {
      */
     public void setWatchLists(List<StockWatchList> watchLists) {
         this.watchLists = watchLists;
-    }
-
-    // FIXME: delete later
-    public void addWatchList(StockWatchList stw) {
-        this.watchLists.add(stw);
     }
 
     @Override

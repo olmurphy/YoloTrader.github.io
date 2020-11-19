@@ -32,6 +32,10 @@ public class AboutSection {
             "</html";
 
     public static JPanel getMainAboutPanel() {
+        return mainAboutPanel;
+    }
+
+    public static void setMainAboutPanel() {
         mainAboutPanel = new JPanel();
         mainAboutPanel.setLayout(new BoxLayout(mainAboutPanel, BoxLayout.Y_AXIS));
         mainAboutPanel.setBackground(CenterPanelController.centerPanelColor);
@@ -39,8 +43,6 @@ public class AboutSection {
         mainAboutPanel.add(getAboutPanel());
         mainAboutPanel.add(Box.createRigidArea(new Dimension(0, 50)));
         mainAboutPanel.add(getDevelopersPanel());
-
-        return mainAboutPanel;
     }
 
     public static JPanel getAboutPanel() {

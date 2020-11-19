@@ -2,74 +2,75 @@
 <ns2:profileDAOImpl xmlns:ns2="Database">
     <ProfileList>
         <Profile>
-            <listOfWatchLists>
-                <watchList>
-                    <ListOfStocks>
-                        <AStock>
-                            <commentList>
-<comment>
-    <subject>Concern</subject>
-    <dateCreated>2020-11-17T17:12:04.105-06:00</dateCreated>
-    <text>ok this is text</text>
-</comment>
-                            </commentList>
-                            <dateAdded>2020-11-17T17:12:04.105-06:00</dateAdded>
-                            <name>Dillard</name>
-                            <ticker>Did</ticker>
-                        </AStock>
-                    </ListOfStocks>
-                    <dateCreated>2020-11-17T17:12:04.105-06:00</dateCreated>
-                    <name>Clothing Companies</name>
-                </watchList>
-            </listOfWatchLists>
             <email>email</email>
+            <username>user</username>
+            <password>pass</password>
             <first>first</first>
             <last>last</last>
-            <password>pass</password>
-            <username>user</username>
+            <listOfWatchLists/>
         </Profile>
         <Profile>
-            <listOfWatchLists>
-                <watchList>
-                    <ListOfStocks>
-                        <AStock>
-                            <commentList>
-<comment>
-    <subject>Concern</subject>
-    <dateCreated>2020-11-17T17:12:04.105-06:00</dateCreated>
-    <text>ok this is text</text>
-</comment>
-                            </commentList>
-                            <dateAdded>2020-11-17T17:12:04.105-06:00</dateAdded>
-                            <name>Dillard</name>
-                            <ticker>Did</ticker>
-                        </AStock>
-                    </ListOfStocks>
-                    <dateCreated>2020-11-17T17:12:04.105-06:00</dateCreated>
-                    <name>Clothing Companies</name>
-                </watchList>
-            </listOfWatchLists>
             <email>email1</email>
+            <username>user1</username>
+            <password>pass1</password>
             <first>first1</first>
             <last>last1</last>
-            <password>pass1</password>
-            <username>user1</username>
+            <listOfWatchLists/>
         </Profile>
         <Profile>
-            <listOfWatchLists/>
             <email>q</email>
+            <username>q</username>
+            <password>q</password>
             <first>q</first>
             <last>q</last>
-            <password>q</password>
-            <username>q</username>
+            <listOfWatchLists>
+                <watchListName>
+                    <name>new </name>
+                    <dateCreated>2020-11-18T21:37:23.301-06:00</dateCreated>
+                    <AstockList/>
+                </watchListName>
+                <watchListName>
+                    <name>list1</name>
+                    <dateCreated>2020-11-18T21:37:28.717-06:00</dateCreated>
+                    <AstockList/>
+                </watchListName>
+                <watchListName>
+                    <name>list2</name>
+                    <dateCreated>2020-11-18T21:37:30.968-06:00</dateCreated>
+                    <AstockList/>
+                </watchListName>
+                <watchListName>
+                    <name>list3</name>
+                    <dateCreated>2020-11-18T21:37:32.813-06:00</dateCreated>
+                    <AstockList/>
+                </watchListName>
+                <watchListName>
+                    <name>list4</name>
+                    <dateCreated>2020-11-18T21:37:35.502-06:00</dateCreated>
+                    <AstockList/>
+                </watchListName>
+                <watchListName>
+                    <name>list5-test</name>
+                    <dateCreated>2020-11-18T22:12:38.860-06:00</dateCreated>
+                    <AstockList/>
+                </watchListName>
+            </listOfWatchLists>
         </Profile>
         <Profile>
-            <listOfWatchLists/>
             <email>uniqueEmailTest</email>
+            <username>q</username>
+            <password>q</password>
             <first>q</first>
             <last>q</last>
-            <password>q</password>
-            <username>q</username>
+            <listOfWatchLists/>
+        </Profile>
+        <Profile>
+            <email>a;dfslk</email>
+            <username>;fdlkj</username>
+            <password>as</password>
+            <first>adfs</first>
+            <last>;adslfkj</last>
+            <listOfWatchLists/>
         </Profile>
     </ProfileList>
 </ns2:profileDAOImpl>

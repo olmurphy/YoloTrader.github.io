@@ -6,13 +6,12 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelControl
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.WestPanel;
+import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
 
 public class MainPanel {
-
 
     public static JFrame homeFrame;
     public static int frameWidth = 800;
@@ -20,14 +19,19 @@ public class MainPanel {
     public static JPanel mainPanel;
     public static Color backGroundColor = Color.lightGray;
 
+    public static StockWatchListController stockWatchListController;
+
     public static void createUI () {
         homeFrame = new JFrame();
+
         homeFrame.setSize(new Dimension(frameWidth, frameHeight));
         mainPanel = new JPanel(new BorderLayout());
 
         homeFrame.addWindowFocusListener(MainPanelController.getMainFrameAction());
+        MainPanelController.initializeAllPanels();
 
         initializeAllFieldsInMainPanel();
+
 
         WestPanel.creatWestPanel(mainPanel);
         NorthPanel.createNorthPanel(mainPanel);
@@ -50,9 +54,13 @@ public class MainPanel {
         Profile profile = FormController.getProfileController().getProfile();
 
         NorthPanelController.setName(profile.getUsername());
-        CenterPanelController.setFirst(profile.getFirst());
-        CenterPanelController.setLast(profile.getLast());
-        CenterPanelController.setUser(profile.getUsername());
-        CenterPanelController.setEmail(profile.getEmail());
+
+        stockWatchListController = new StockWatchListController();
+        stockWatchListController.setListStockWatchList(profile.getWatchLists());
+        CenterPanelController.setAllFields();
+    }
+
+    public static StockWatchListController getStockWatchListController() {
+        return stockWatchListController;
     }
 }

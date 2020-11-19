@@ -16,6 +16,7 @@ public class ProfileSection {
     public static JPanel descriptionPanel;
     public static JPanel labelValuePanel;
     public static JPanel buttonPanel;
+    public static JScrollPane descriptionScrollPanel;
 
     public static String firstString = "Owen";
     public static String lastString = "Murphy";
@@ -42,14 +43,16 @@ public class ProfileSection {
     public static int verticalButtonSpace = 20;
 
     public static JScrollPane getProfilePanel() {
+        return descriptionScrollPanel;
+    }
+
+    public static void setProfilePanel() {
         profilePanel = new JPanel(new BorderLayout());
         profilePanel.add(getPicturePanel(), BorderLayout.WEST);
         profilePanel.add(getDescriptionPanel(), BorderLayout.CENTER);
 
-        JScrollPane descriptionScrollPanel = new JScrollPane(profilePanel);
+        descriptionScrollPanel = new JScrollPane(profilePanel);
         descriptionScrollPanel.setBorder(BorderFactory.createEmptyBorder());
-
-        return descriptionScrollPanel;
     }
 
     public static JPanel getPicturePanel() {
@@ -111,7 +114,7 @@ public class ProfileSection {
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
 
         // adding email
-        setEmailLabel(new JLabel(userLabelString + userString));
+        setEmailLabel(new JLabel(emailLabelString + emailString));
         labelValuePanel.add(getEmailLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
         labelValuePanel.setBackground(CenterPanelController.centerPanelColor);
@@ -212,5 +215,12 @@ public class ProfileSection {
 
     public static void setUserString(String userString) {
         ProfileSection.userString = userString;
+    }
+
+    public static void setFields(String first, String last, String email, String user) {
+        ProfileSection.setFirstString(first);
+        ProfileSection.setLastString(last);
+        ProfileSection.setEmailString(email);
+        ProfileSection.setUserString(user);
     }
 }

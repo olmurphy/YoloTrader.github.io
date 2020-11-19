@@ -1,14 +1,13 @@
 package edu.baylor.ecs.csi3471.presentation.UI.form;
 
-import edu.baylor.ecs.csi3471.dao.ProfileDAOImpl;
+import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
-import edu.baylor.ecs.csi3471.service.ProfileService;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class FormController {
 
@@ -27,6 +26,7 @@ public class FormController {
     /** this is the color of the whole application interface the user will have */
     public static Color formColor = MainPanel.backGroundColor;
 
+    /** controller that the form controller uses to control the creating a new profile and logging into existing */
     private static ProfileController profileController;
 
     /**
@@ -75,8 +75,6 @@ public class FormController {
     /**
      * this method generates an action when user pressed Log-In button.
      *
-     * FIXME: need confirm user credentials and log-in the user if valid credentials, otherwise, generating error message
-     *
      * @return ActionListener for the Log-In button when pressed
      */
     public static ActionListener getLogInAction() {
@@ -122,17 +120,23 @@ public class FormController {
             // check that all fields are not empty
             if (validCreateAccountFieldsNotEmpty()) {
 
+                boolean proceed = true;
                 YoloTrader.logger.info("check that email input is unique");
 
                 Profile profile = createNewProfile();
 
-                if (profileController.addProfile(profile)) {
+                if (!checkPassMatch()) {
+                    proceed = false;
+                    CreateAccount.getPassNotMatchWarning();
+                }
+
+                if (proceed && profileController.addProfile(profile) ) {
                     profileController.setProfile(profile);
                     CreateAccount.getFrame().dispose();
                     MainPanel.createUI();
                     YoloTrader.logger.info("creating account...");
 
-                } else {
+                } else if (proceed){
                     Email.getEmailWarning();
                 }
 
@@ -215,7 +219,11 @@ public class FormController {
     }
 
     public static void initialize() {
-        profileController = new ProfileController(null, new ProfileService(new ProfileDAOImpl()));
+        profileController = new ProfileController(null);
         profileController.loadProfiles();
+    }
+
+    public static boolean checkPassMatch() {
+        return Arrays.equals(LogIn.getPasswordField().getPassword(), CreateAccount.getRe_passwordField().getPassword());
     }
 }

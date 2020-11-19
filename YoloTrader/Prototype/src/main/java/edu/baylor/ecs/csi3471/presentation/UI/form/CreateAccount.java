@@ -175,4 +175,9 @@ public class CreateAccount {
     public static JFrame getFrame() {
         return frame;
     }
+
+    public static void getPassNotMatchWarning() {
+        JOptionPane.showMessageDialog(null, "Passwords do NOT match",
+                "Warning", JOptionPane.WARNING_MESSAGE);
+    }
 }

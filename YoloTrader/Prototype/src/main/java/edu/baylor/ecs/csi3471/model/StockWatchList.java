@@ -1,13 +1,12 @@
 package edu.baylor.ecs.csi3471.model;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @XmlRootElement(name = "stockWatchList")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class StockWatchList implements Comparable<StockWatchList> {
 
     /** name of stock watch list */
@@ -16,14 +15,13 @@ public class StockWatchList implements Comparable<StockWatchList> {
     /** date the stock watch list was created */
     private Date dateCreated;
 
-
     /** list of Stocks for watch list */
-    @XmlElementWrapper(name = "ListOfStocks")
-    @XmlElement(name = "AStock")
-    private List<Stock> stockWatchList;
+    @XmlElementWrapper(name = "AstockList")
+    @XmlElement(name = "stock")
+    private List<Stock> stockList;
 
     public StockWatchList() {
-        // do nothing
+        dateCreated = new Date();
     }
 
     /**
@@ -34,7 +32,7 @@ public class StockWatchList implements Comparable<StockWatchList> {
     public StockWatchList(String name, Date dateCreated) {
         this.name = name;
         this.dateCreated = dateCreated;
-        this.stockWatchList = new ArrayList<>();
+        this.stockList = new ArrayList<>();
     }
 
     /**
@@ -55,17 +53,17 @@ public class StockWatchList implements Comparable<StockWatchList> {
     /**
      * @return the list of stocks of watch list
      */
-    public List<Stock> getStockWatchList() {
-        return stockWatchList;
+    public List<Stock> getStockList() {
+        return stockList;
     }
 
     /**
      * sets watch list
-     * @param stockWatchList list of stocks specified by user
+     * @param stockList list of stocks specified by user
      */
-    //public void setStockWatchList(List<Stock> stockWatchList) {
-    //    this.stockWatchList = stockWatchList;
-    //}
+    public void setStockList(List<Stock> stockList) {
+        this.stockList = stockList;
+    }
 
     /**
      * @return date the stock watch list was created by user
@@ -93,18 +91,12 @@ public class StockWatchList implements Comparable<StockWatchList> {
         return this.name.compareTo(o.name);
     }
 
-
-    // FIXME: delete
-    public void addStock(Stock stock) {
-        this.stockWatchList.add(stock);
-    }
-
     @Override
     public String toString() {
         return "StockWatchList{" +
                 "name='" + name + '\'' +
                 ", dateCreated=" + dateCreated +
-                ", stockWatchList=" + stockWatchList +
+                ", stockWatchList=" + stockList +
                 '}';
     }
 }

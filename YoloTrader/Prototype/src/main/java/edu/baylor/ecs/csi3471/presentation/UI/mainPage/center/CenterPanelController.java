@@ -1,6 +1,9 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center;
 
+import edu.baylor.ecs.csi3471.model.Profile;
+import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.about.AboutSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.help.HelpSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.profile.ProfileSection;
@@ -14,6 +17,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
+import java.util.List;
 
 public class CenterPanelController {
 
@@ -22,13 +27,23 @@ public class CenterPanelController {
 
     public static int centerPanelHeight = MainPanel.frameHeight - NorthPanelController.northPanelHeight;
 
+
     public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
 
     public static JPanel getStockPanel() { return StocksSection.getStocksMainPanel(); }
 
     public static JPanel getHelpPanel() { return HelpSection.getHelpPanel(); }
 
+    public static void setAllCenterPanels() {
+        AboutSection.setMainAboutPanel();
+        HelpSection.setHelpPanel();
+        ProfileSection.setProfilePanel();
+        StocksSection.setStocksMainPanel();
+    }
+
     public static JPanel getAboutPanel() { return AboutSection.getMainAboutPanel(); }
+
+
 
     public static MouseAdapter getGeneralStockButtonAction(JButton button) {
         return new MouseAdapter() {
@@ -68,28 +83,32 @@ public class CenterPanelController {
             public void mouseClicked(MouseEvent e) {
 
                 // FIXME: add an action here
-                YoloTrader.logger.info("user wants to add a watchlist");
+                YoloTrader.logger.info("adding stock list a watchlist");
 
                 String watchListName = CreateWatchList.watchListNameWindow();
-                ((DefaultListModel<String>)StocksSection.watchListModel).addElement(watchListName);
+                StockWatchList stockWatchList = new StockWatchList(watchListName, new Date());
+
+                if (MainPanel.getStockWatchListController().addWatchList(stockWatchList)) {
+                    ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
+                } else {
+                    CreateWatchList.getWatchListNameTaken();
+                }
             }
         };
     }
 
-    public static void setFirst(String first) {
-        ProfileSection.setFirstString(first);
+    public static void  setAllFields() {
+        Profile profile = MainPanelController.getProfileController().getProfile();
+
+        ProfileSection.setFields(profile.getFirst(), profile.getLast(), profile.getUsername(), profile.getEmail());
+        initializeModels(profile.getWatchLists());
     }
 
-    public static void setLast(String last) {
-        ProfileSection.setLastString(last);
-    }
+    public static void initializeModels(List<StockWatchList> watchListList) {
 
-    public static void setEmail(String email) {
-        ProfileSection.setEmailString(email);
-    }
-
-    public static void setUser(String user) {
-        ProfileSection.setUserString(user);
+        for (int i = 0; i < watchListList.size(); i++) {
+            ((DefaultListModel<String>)StocksSection.watchListModel).addElement(watchListList.get(i).getName());
+        }
     }
 }
 

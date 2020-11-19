@@ -1,10 +1,12 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks;
 
+import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.List;
 
 public class StocksSection {
 
@@ -23,14 +25,16 @@ public class StocksSection {
     public static Border buttonBorder;
 
     public static JPanel getStocksMainPanel() {
+        return stocksMainPanel;
+    }
+
+    public static void setStocksMainPanel() {
         stocksMainPanel = new JPanel(new BorderLayout());
         stockButtonFont = new Font("Sans-Serif", Font.PLAIN, 16);
         stockLabelFont = new Font("Sans-Serif", Font.PLAIN, 16);
         buttonBorder = BorderFactory.createEmptyBorder();
         stocksMainPanel.add(getStockButtonPanel(), BorderLayout.NORTH);
         stocksMainPanel.add(getStockListPanel(), BorderLayout.CENTER);
-
-        return stocksMainPanel;
     }
 
     public static JPanel getStockButtonPanel() {
@@ -121,28 +125,33 @@ public class StocksSection {
     }
 
     public static JScrollPane getWatchListJListWithScrolling() {
+        setWatchListModel(new DefaultListModel<String>());
         watchListList = new JList(getWatchListModel());
 
         return new JScrollPane(watchListList);
     }
 
     public static JScrollPane getStockJListWithScrolling() {
+
+        setStockListModel(new DefaultListModel<String>());
         stockList = new JList(getStockListModel());
 
         return new JScrollPane(stockList);
     }
 
-    public static ListModel getStockListModel() {
+    public static void setStockListModel(ListModel stockListModel) {
+        StocksSection.stockListModel = stockListModel;
+    }
 
-        // FIXME: in place of 'String' put Stock
-        stockListModel = new DefaultListModel<String>();
+    public static ListModel getStockListModel() {
         return stockListModel;
     }
 
-    public static ListModel getWatchListModel() {
+    public static void setWatchListModel(ListModel watchListModel) {
+        StocksSection.watchListModel = watchListModel;
+    }
 
-        // FIXME: in place of 'String' put watchList
-        watchListModel = new DefaultListModel<String>();
+    public static ListModel getWatchListModel() {
         return watchListModel;
     }
 
@@ -153,4 +162,6 @@ public class StocksSection {
     public static JList getStockList() {
         return stockList;
     }
+
+
 }

@@ -1,6 +1,7 @@
 package edu.baylor.ecs.csi3471.service;
 
 import edu.baylor.ecs.csi3471.dao.ProfileDAO;
+import edu.baylor.ecs.csi3471.dao.ProfileDAOImpl;
 import edu.baylor.ecs.csi3471.model.Profile;
 
 import java.util.List;
@@ -8,6 +9,10 @@ import java.util.List;
 public class ProfileService {
 
     private ProfileDAO dao;
+
+    public ProfileService() {
+        this.dao = new ProfileDAOImpl();
+    }
 
     public ProfileService(ProfileDAO dao) {
         this.dao = dao;
@@ -48,19 +53,7 @@ public class ProfileService {
         return retProfile;
     }
 
-    public void save(Profile profile) {
-
-        // perform validation
-        // checkUnique(profile.getEmail());
-
-        /*
-        if (profile.getEmail() == null) {
-            dao.addProfile(profile);
-        } else {
-            dao.updateProfile(profile);
-        }*/
-    }
-
+    public void saveProfiles() { dao.saveProfiles(); }
 
     /**
      * @return ProfileDAO for all profiles

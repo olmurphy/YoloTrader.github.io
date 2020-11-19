@@ -11,22 +11,19 @@ public class ProfileController {
     /** Profile Service, the user is accessing the methods*/
     private ProfileService service;
 
-    public ProfileController(Profile profile, ProfileService service) {
+    public ProfileController(Profile profile) {
         this.profile = profile;
-        this.service = service;
+
+        this.service = new ProfileService();
     }
 
     public boolean addProfile(Profile profile) {
         return service.addProfile(profile);
     }
 
-    public void loadProfiles() {
-        service.loadProfiles();
-    }
+    public void loadProfiles() { service.loadProfiles(); }
 
-    public void save() {
-            service.save(profile);
-    }
+    public void saveProfiles() { service.saveProfiles(); }
 
     public Profile checkCredentials(String email, String pass) {
         return service.getProfile(email, pass);

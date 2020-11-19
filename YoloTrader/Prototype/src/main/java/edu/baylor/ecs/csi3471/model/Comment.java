@@ -1,5 +1,7 @@
 package edu.baylor.ecs.csi3471.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
@@ -7,6 +9,7 @@ import java.util.Objects;
 
 @XmlRootElement(name = "comment")
 @XmlType(propOrder = {"subject", "dateCreated", "text"})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Comment {
 
     /** states the date an instance of Comment was created */

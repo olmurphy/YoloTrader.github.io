@@ -1,14 +1,13 @@
 package edu.baylor.ecs.csi3471.model;
 
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement(name = "stock")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Stock implements Comparable<Stock> {
 
     /** ticker of the stock that is used to search API */
@@ -24,7 +23,7 @@ public class Stock implements Comparable<Stock> {
     private List<Comment> comments;
 
     public Stock() {
-
+        this.comments = new ArrayList<>();
     }
 
     /**
@@ -125,12 +124,6 @@ public class Stock implements Comparable<Stock> {
     @Override
     public int hashCode() {
         return Objects.hash(ticker, name);
-    }
-
-
-    // FIXME: DELETE
-    public void addComment(Comment comment) {
-        this.comments.add(comment);
     }
 
     @Override

@@ -18,6 +18,10 @@ public class HelpSection {
 
 
     public static JPanel getHelpPanel() {
+        return helpPanel;
+    }
+
+    public static void setHelpPanel() {
         helpPanel = new JPanel();
         helpPanel.setLayout(new BoxLayout(helpPanel, BoxLayout.Y_AXIS));
         helpPanel.setBackground(CenterPanelController.centerPanelColor); // setting color of help panel
@@ -27,10 +31,6 @@ public class HelpSection {
         helpPanel.add(getWhatAreStocksPanel());
         helpPanel.add(getContact_Panel());
         helpPanel.add(getFAQ_Panel());
-
-
-
-        return helpPanel;
     }
 
     public static JLabel getHelpLabel() {
