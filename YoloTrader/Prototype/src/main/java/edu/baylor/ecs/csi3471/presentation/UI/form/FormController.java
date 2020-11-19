@@ -8,7 +8,6 @@ import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 import edu.baylor.ecs.csi3471.service.ProfileService;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FormController {
@@ -36,6 +35,7 @@ public class FormController {
      * In addition, this method allows for low coupling between classes
      */
     public static void getStartFrame() {
+        initialize();
         LogIn.startFrame();
     }
 
@@ -80,22 +80,31 @@ public class FormController {
      * @return ActionListener for the Log-In button when pressed
      */
     public static ActionListener getLogInAction() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        return e -> {
 
-                // check for valid email format
-                //if (EmailValidator.validate(LogIn.getEmailField().getText().trim())) {
-                    // FIXME: check the email credential to make sure it is unique
+            // check for valid email format
+            if (validateLogInFieldsNotEmpty()) {
+
+                Profile profile = profileController.checkCredentials(LogIn.getEmailField().getText(),
+                        new String(LogIn.getPasswordField().getPassword()));
+
+                if (profile != null) {
+
+                    profileController.setProfile(profile);
+
                     LogIn.getFrame().dispose();
                     MainPanel.createUI();
-                //} else {
-                    //LogIn.getEmptyFieldWarning();
-                //}
-                // FIXME: need to add action
+                } else {
+                    LogIn.getInvalidCredentialsWarning();
+                }
 
-                YoloTrader.logger.info("logging in");
+
+            } else {
+                LogIn.getEmptyFieldWarning();
             }
+            // FIXME: need to add action
+
+            YoloTrader.logger.info("logging in");
         };
     }
 
@@ -110,20 +119,26 @@ public class FormController {
     public static ActionListener getCreateAccountAction() {
         return e -> {
 
-            // check for valid email format
+            // check that all fields are not empty
             if (validCreateAccountFieldsNotEmpty()) {
 
-                YoloTrader.logger.info("creating account...");
+                YoloTrader.logger.info("check that email input is unique");
 
-                /*profileController = new ProfileController(createNewProfile(),
-                        new ProfileService(new ProfileDAOImpl()));
+                Profile profile = createNewProfile();
 
-                profileController.addProfile(profileController.getProfile());*/
+                if (profileController.addProfile(profile)) {
+                    profileController.setProfile(profile);
+                    CreateAccount.getFrame().dispose();
+                    MainPanel.createUI();
+                    YoloTrader.logger.info("creating account...");
 
-                CreateAccount.getFrame().dispose();
-                MainPanel.createUI();
+                } else {
+                    Email.getEmailWarning();
+                }
+
+            } else {
+                LogIn.getEmptyFieldWarning();
             }
-            // FIXME: check the email credential to make sure it is unique
 
         };
     }
@@ -197,5 +212,10 @@ public class FormController {
 
     public static ProfileController getProfileController() {
         return profileController;
+    }
+
+    public static void initialize() {
+        profileController = new ProfileController(null, new ProfileService(new ProfileDAOImpl()));
+        profileController.loadProfiles();
     }
 }

@@ -13,18 +13,45 @@ public class ProfileService {
         this.dao = dao;
     }
 
-    public int addProfile(Profile profile) {
-        return dao.insertProfile(profile);
+    public boolean addProfile(Profile profile) {
+
+        List<Profile> profiles = dao.getAllProfiles();
+
+        boolean uniqueEmail = true;
+
+        for (int i = 0; uniqueEmail && i < profiles.size(); i++) {
+            if (profiles.get(i).getEmail().equals(profile.getEmail())) {
+                uniqueEmail = false;
+            }
+        }
+
+        if (uniqueEmail) {
+            dao.insertProfile(profile);
+        }
+
+        return uniqueEmail;
     }
 
-    public List<Profile> getAllProfiles() {
-        return dao.getAllProfiles();
+    public Profile getProfile(String email, String pass) {
+        Profile retProfile = null;
+
+        List<Profile> profiles = dao.getAllProfiles();
+
+        boolean found = false;
+        for (int i = 0; !found && i < profiles.size(); i++) {
+            if (email.equals(profiles.get(i).getEmail()) && pass.equals(profiles.get(i).getPassword())) {
+                found = true;
+                retProfile = profiles.get(i);
+            }
+        }
+
+        return retProfile;
     }
 
     public void save(Profile profile) {
 
         // perform validation
-        checkUnique(profile.getEmail());
+        // checkUnique(profile.getEmail());
 
         /*
         if (profile.getEmail() == null) {
@@ -34,9 +61,6 @@ public class ProfileService {
         }*/
     }
 
-    public static void checkUnique(String email) {
-
-    }
 
     /**
      * @return ProfileDAO for all profiles
@@ -55,5 +79,6 @@ public class ProfileService {
     }
 
     public void loadProfiles() {
+        dao.loadProfiles();
     }
 }

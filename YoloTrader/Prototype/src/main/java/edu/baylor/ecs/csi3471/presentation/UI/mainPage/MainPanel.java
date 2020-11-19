@@ -9,6 +9,7 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.WestPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
 
 public class MainPanel {
 
@@ -24,7 +25,9 @@ public class MainPanel {
         homeFrame.setSize(new Dimension(frameWidth, frameHeight));
         mainPanel = new JPanel(new BorderLayout());
 
-        //initializeAllFieldsInMainPanel();
+        homeFrame.addWindowFocusListener(MainPanelController.getMainFrameAction());
+
+        initializeAllFieldsInMainPanel();
 
         WestPanel.creatWestPanel(mainPanel);
         NorthPanel.createNorthPanel(mainPanel);

@@ -3,8 +3,6 @@ package edu.baylor.ecs.csi3471.presentation.presentationLogic;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.service.ProfileService;
 
-import java.util.List;
-
 public class ProfileController {
 
     /** user's Profile they use */
@@ -18,20 +16,20 @@ public class ProfileController {
         this.service = service;
     }
 
-    public void addProfile(Profile profile) {
-        service.addProfile(profile);
+    public boolean addProfile(Profile profile) {
+        return service.addProfile(profile);
     }
 
     public void loadProfiles() {
         service.loadProfiles();
     }
 
-    public List<Profile> getAllProfiles() {
-        return service.getAllProfiles();
-    }
-
     public void save() {
             service.save(profile);
+    }
+
+    public Profile checkCredentials(String email, String pass) {
+        return service.getProfile(email, pass);
     }
 
     /**

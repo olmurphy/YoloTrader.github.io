@@ -55,5 +55,21 @@
             <password>pass1</password>
             <username>user1</username>
         </Profile>
+        <Profile>
+            <listOfWatchLists/>
+            <email>q</email>
+            <first>q</first>
+            <last>q</last>
+            <password>q</password>
+            <username>q</username>
+        </Profile>
+        <Profile>
+            <listOfWatchLists/>
+            <email>uniqueEmailTest</email>
+            <first>q</first>
+            <last>q</last>
+            <password>q</password>
+            <username>q</username>
+        </Profile>
     </ProfileList>
 </ns2:profileDAOImpl>

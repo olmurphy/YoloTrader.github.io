@@ -172,4 +172,9 @@ public class LogIn {
         JOptionPane.showMessageDialog(null, "Some fields have not been filled in",
                 "Warning", JOptionPane.WARNING_MESSAGE);
     }
+
+    public static void getInvalidCredentialsWarning() {
+        JOptionPane.showMessageDialog(null, "Invalid Credentials",
+                "Warning", JOptionPane.WARNING_MESSAGE);
+    }
 }
