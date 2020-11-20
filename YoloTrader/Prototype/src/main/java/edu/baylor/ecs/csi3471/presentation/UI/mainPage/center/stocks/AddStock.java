@@ -11,4 +11,6 @@ public class AddStock {
         JOptionPane.showMessageDialog(null, "Need to select a watchList to add to",
                 "Warning", JOptionPane.WARNING_MESSAGE);
     }
+
+    
 }
