@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import yahoofinance.Stock;
+
 @XmlRootElement(name = "stockWatchList")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class StockWatchList implements Comparable<StockWatchList> {
@@ -99,4 +101,30 @@ public class StockWatchList implements Comparable<StockWatchList> {
                 ", stockWatchList=" + stockList +
                 '}';
     }
+
+    /*
+
+		// FIXME: this class should NOT be in the StockWatchList class,
+		// FIXME: instead we should be using the StockController to call
+		// FIXME: service that injects addStock and call the StockDAO to add
+		// FIXME: if the stock was not already present
+		 * Adds a stock to the StockWatchList if it isn't a duplicate.
+		 * <p>
+		 * @param equity	{@link yahoofinance.Stock}
+		 * <p>
+		 * @return	true if equity was added, false otherwise.
+		 * <p>
+
+        public boolean add(Stock equity) {
+            boolean added = false;
+
+            if(list.contains(equity) == false) {
+                list.add(equity);
+                added = true;
+            }
+
+            return added;
+        }
+
+     */
 }

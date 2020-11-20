@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+
 public class YoloTrader {
 
     public static Logger logger = Logger.getLogger(YoloTrader.class.getName());
@@ -29,31 +30,7 @@ public class YoloTrader {
 
         MainPanel.getStartFrame();
 
-        /*Profile profile = new Profile("email", "user", "pass", "first", "last");
-        Profile profile1 = new Profile("email1", "user1", "pass1", "first1", "last1");
 
-        Comment comment = new Comment();
-        comment.setSubject("Concern");
-        comment.setText("ok this is text");
-        comment.setDateCreated(new Date());
-        Stock stock = new Stock("Did", "Dillard", new Date());
-        stock.addComment(comment);
-        StockWatchList stw = new StockWatchList("Clothing Companies", new Date());
-        stw.addStock(stock);
 
-        profile.addWatchList(stw);
-        profile1.addWatchList(stw);
-
-        ProfileDAO dao = new ProfileDAOImpl();
-        //dao.addProfile(profile);
-        //dao.addProfile(profile1);
-        //dao.saveProfiles();
-
-        dao.loadProfiles();
-
-        List<Profile> profileList = dao.getAllProfiles();
-
-        profileList.forEach(System.out::println);
-*/
     }
 }

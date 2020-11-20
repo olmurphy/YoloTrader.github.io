@@ -43,8 +43,6 @@ public class CenterPanelController {
 
     public static JPanel getAboutPanel() { return AboutSection.getMainAboutPanel(); }
 
-
-
     public static MouseAdapter getGeneralStockButtonAction(JButton button) {
         return new MouseAdapter() {
             @Override

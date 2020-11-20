@@ -96,7 +96,6 @@ public class FormController {
                     LogIn.getInvalidCredentialsWarning();
                 }
 
-
             } else {
                 LogIn.getEmptyFieldWarning();
             }

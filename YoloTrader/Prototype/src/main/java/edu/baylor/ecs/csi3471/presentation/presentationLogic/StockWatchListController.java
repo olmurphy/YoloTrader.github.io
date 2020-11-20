@@ -25,7 +25,6 @@ public class StockWatchListController {
         return this.service.addWatchList(list);
     }
 
-
     public StockWatchList getStockWatchList() {
         return stockWatchList;
     }

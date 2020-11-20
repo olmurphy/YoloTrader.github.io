@@ -32,7 +32,6 @@ public class MainPanel {
 
         initializeAllFieldsInMainPanel();
 
-
         WestPanel.creatWestPanel(mainPanel);
         NorthPanel.createNorthPanel(mainPanel);
 

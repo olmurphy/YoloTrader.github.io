@@ -13,4 +13,6 @@ public interface StockWatchListDAO {
     void addWatchList(StockWatchList list);
 
     void setWatchList(List<StockWatchList> list);
+
+    boolean removeWatchList(StockWatchList stockWatchList);
 }

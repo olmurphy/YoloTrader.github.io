@@ -9,8 +9,6 @@ public class StockController {
 
     private StockService service;
 
-
-
     public Stock getStock() {
         return stock;
     }

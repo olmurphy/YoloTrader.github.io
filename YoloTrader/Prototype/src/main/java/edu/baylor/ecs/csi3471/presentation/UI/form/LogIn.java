@@ -27,7 +27,6 @@ public class LogIn {
             "\"><B>" + FormController.title +
             "</B>";
 
-
     public static void startFrame() {
         frame = new JFrame("Log-In");
 

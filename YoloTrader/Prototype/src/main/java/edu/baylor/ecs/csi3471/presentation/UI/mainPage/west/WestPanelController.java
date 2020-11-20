@@ -111,10 +111,7 @@ public class WestPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // FIXME: add action here
                 YoloTrader.logger.info("User clicks on stock panel");
-
-
 
                 BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
                 try {
