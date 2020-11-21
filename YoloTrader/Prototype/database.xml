@@ -27,32 +27,31 @@
                 <watchListName>
                     <name>new </name>
                     <dateCreated>2020-11-18T21:37:23.301-06:00</dateCreated>
-                    <AstockList/>
                 </watchListName>
                 <watchListName>
                     <name>list1</name>
                     <dateCreated>2020-11-18T21:37:28.717-06:00</dateCreated>
-                    <AstockList/>
                 </watchListName>
                 <watchListName>
                     <name>list2</name>
                     <dateCreated>2020-11-18T21:37:30.968-06:00</dateCreated>
-                    <AstockList/>
                 </watchListName>
                 <watchListName>
                     <name>list3</name>
                     <dateCreated>2020-11-18T21:37:32.813-06:00</dateCreated>
-                    <AstockList/>
                 </watchListName>
                 <watchListName>
                     <name>list4</name>
                     <dateCreated>2020-11-18T21:37:35.502-06:00</dateCreated>
-                    <AstockList/>
                 </watchListName>
                 <watchListName>
                     <name>list5-test</name>
                     <dateCreated>2020-11-18T22:12:38.860-06:00</dateCreated>
-                    <AstockList/>
+                </watchListName>
+                <watchListName>
+                    <name>asdf</name>
+                    <dateCreated>2020-11-21T15:23:00.439-06:00</dateCreated>
+                    <stockList/>
                 </watchListName>
             </listOfWatchLists>
         </Profile>

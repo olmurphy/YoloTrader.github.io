@@ -8,6 +8,8 @@ import java.util.List;
 import yahoofinance.Stock;
 
 /**
+ * This class is the list of stocks, that is, a stock watch list
+ *
  * @author owenmurphy
  */
 @XmlRootElement(name = "stockWatchList")
@@ -21,10 +23,14 @@ public class StockWatchList implements Comparable<StockWatchList> {
     private Date dateCreated;
 
     /** list of Stocks for watch list */
-    @XmlElementWrapper(name = "AstockList")
+    @XmlElementWrapper(name = "stockList")
     @XmlElement(name = "stock")
     private List<Stock> stockList;
 
+    /**
+     * Constructor
+     * sets the date created
+     */
     public StockWatchList() {
         dateCreated = new Date();
     }
@@ -104,30 +110,4 @@ public class StockWatchList implements Comparable<StockWatchList> {
                 ", stockWatchList=" + stockList +
                 '}';
     }
-
-    /*
-
-		// FIXME: this class should NOT be in the StockWatchList class,
-		// FIXME: instead we should be using the StockController to call
-		// FIXME: service that injects addStock and call the StockDAO to add
-		// FIXME: if the stock was not already present
-		 * Adds a stock to the StockWatchList if it isn't a duplicate.
-		 * <p>
-		 * @param equity	{@link yahoofinance.Stock}
-		 * <p>
-		 * @return	true if equity was added, false otherwise.
-		 * <p>
-
-        public boolean add(Stock equity) {
-            boolean added = false;
-
-            if(list.contains(equity) == false) {
-                list.add(equity);
-                added = true;
-            }
-
-            return added;
-        }
-
-     */
 }

@@ -30,7 +30,7 @@ public class MainPanel {
         homeFrame.setSize(new Dimension(frameWidth, frameHeight));
         mainPanel = new JPanel(new BorderLayout());
 
-        homeFrame.addWindowFocusListener(MainPanelController.getMainFrameAction());
+        homeFrame.addWindowListener(MainPanelController.getMainFrameListener());
         MainPanelController.initializeAllPanels();
 
         initializeAllFieldsInMainPanel();
@@ -64,5 +64,13 @@ public class MainPanel {
 
     public static StockWatchListController getStockWatchListController() {
         return stockWatchListController;
+    }
+
+    /**
+     * used for closing the home frame when user logs out
+     * @return the home frame
+     */
+    public static JFrame getHomeFrame() {
+        return homeFrame;
     }
 }

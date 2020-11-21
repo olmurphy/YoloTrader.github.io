@@ -21,10 +21,10 @@ public class ProfileSection {
     public static JPanel buttonPanel;
     public static JScrollPane descriptionScrollPanel;
 
-    public static String firstString = "Owen";
-    public static String lastString = "Murphy";
-    public static String emailString = "owen.murphy@hotmail.org";
-    public static String userString = "olmurphy";
+    public static String firstString = "empty";
+    public static String lastString = "empty";
+    public static String emailString = "empty";
+    public static String userString = "empty";
 
     public static String emailLabelString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>Email: </B>";
     public static String firstLabelString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>First: </B>";

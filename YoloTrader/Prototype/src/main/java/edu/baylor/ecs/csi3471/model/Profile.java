@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class is the user's profile that holds the user's information
+ *
  * @author owenmurphy
  */
 @XmlRootElement(name = "Profile")

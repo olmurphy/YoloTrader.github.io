@@ -1,12 +1,10 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks;
 
-import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.util.List;
 
 /**
  * @author owenmurphy
@@ -85,7 +83,6 @@ public class StocksSection {
 
         stockListPanel.add(getStockListLabelPanel(), BorderLayout.NORTH);
 
-        // FIXME: add the JList of watchList and stocks
         stockListPanel.add(getStockJListsPanel(), BorderLayout.CENTER);
 
         return stockListPanel;
@@ -119,7 +116,7 @@ public class StocksSection {
 
     public static JPanel getStockJListsPanel() {
         JPanel stockJListPanel = new JPanel();
-        stockJListPanel.setLayout(new BoxLayout(stockJListPanel, BoxLayout.X_AXIS));
+        stockJListPanel.setLayout(new GridLayout(1, 2));
 
         stockJListPanel.add(getWatchListJListWithScrolling());
         stockJListPanel.add(getStockJListWithScrolling());
@@ -135,7 +132,6 @@ public class StocksSection {
     }
 
     public static JScrollPane getStockJListWithScrolling() {
-
         setStockListModel(new DefaultListModel<String>());
         stockList = new JList(getStockListModel());
 
@@ -165,6 +161,4 @@ public class StocksSection {
     public static JList getStockList() {
         return stockList;
     }
-
-
 }

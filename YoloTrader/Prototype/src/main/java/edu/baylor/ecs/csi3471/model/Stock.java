@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * This Stock class has the ticker, name and date added
+ *
  * @author owenmurphy
  */
 @XmlRootElement(name = "stock")

@@ -8,6 +8,10 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
+ * This class is representative of a comment created by a user.
+ * It has the subject line, the text, and the date created that the user
+ * has.
+ *
  * @author owenmurphy
  */
 @XmlRootElement(name = "comment")
@@ -18,27 +22,46 @@ public class Comment {
     /** states the date an instance of Comment was created */
     private Date dateCreated;
 
+    /** holds the date the user most recently modified the comment */
+    private Date dateLastModified;
+
     /** stores the user's comments */
     private String text;
 
     /** stores the subject of the comment */
     private String subject;
 
-    /*
+    /**
      * Constructor constructs instance with test, dateCreated and subject passed in
      *
-     * @param dateCreated date comment created
      * @param text description of comment
      * @param subject subject of comment
      */
-    /*public Comment(Date dateCreated, String text, String subject) {
-        this.dateCreated = dateCreated;
+    public Comment(String text, String subject) {
         this.text = text;
         this.subject = subject;
-    }*/
+        this.dateCreated = new Date();
+        this.dateLastModified = new Date();
+    }
 
     public Comment() {
         // do nothing
+    }
+
+    /**
+     *
+     * @return date last modified
+     */
+    public Date getDateLastModified() {
+        return dateLastModified;
+    }
+
+    /**
+     * sets the date Last modified
+     * @param dateLastModified date the user recently modifies the comment
+     */
+    public void setDateLastModified(Date dateLastModified) {
+        this.dateLastModified = dateLastModified;
     }
 
     /**
