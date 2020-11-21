@@ -13,15 +13,18 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Vector;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 
 
+
 /**
- * The GraphPanel Class is responsible for displaying
- * a detailed graph for tracking Stock movement.
+ * The GraphPanel class is responsible for displaying
+ * a graph for tracking daily stock movement.
  * <p>
  * @author      Prince Kalu
  */
@@ -31,18 +34,62 @@ public class GraphPanel extends JPanel {
     private int height = 400;
     private int padding = 25;
     private int labelPadding = 25;
+    private JFrame frame;
     private Color lineColor = new Color(44, 102, 230, 180);
     private Color pointColor = new Color(100, 100, 100, 180);
-    private Color gridColor = new Color(200, 200, 200, 200);
+    private Color gridColor = Color.BLACK;
     private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
     private int pointWidth = 4;
     private int numberYDivisions = 5;
-    private List<Double> prices;
-
-    public GraphPanel(List<Double> costs) {
+    private Vector<Double> prices;
+    
+    
+    
+    /**
+     * Constructor.
+     * <p>
+     * @param costs		${@link List<Double>} : the price values for the day.
+     * @param title		${@link String} : the title for the new window.
+     */
+    public GraphPanel(Vector<Double> costs, String title) {
         this.prices = costs;
+        frame = new JFrame(title);
+        frame.setPreferredSize(new Dimension(900, 700));
+        this.setBackground(Color.BLACK);
     }
 
+    
+    /**
+     * the setLineColor function changes the preset line color to paint.
+     * <p>
+     * @param paint		${@link Color} 
+     */
+    public void setLineColor(Color paint) {
+    	lineColor = paint;
+    }
+    
+    
+    /**
+     * the changeLineColor function changes the preset line color to paint,
+     * and visually updates the color change.
+     * <p>
+     * @param paint		${@link Color} 
+     */
+    public void changeLineColor(Color paint) {
+    	this.setLineColor(paint);
+    	this.paint(this.getGraphics());
+    	this.validate();
+    	frame.validate();
+    	frame.repaint();
+    }
+    
+    
+    
+    /**
+     * the paintComponent function draws the graph onto g.
+     * <p>
+     * @param g		${@link Graphics} 
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -59,10 +106,10 @@ public class GraphPanel extends JPanel {
             graphPoints.add(new Point(x1, y1));
         }
 
-        // draw white background
-        g2.setColor(Color.WHITE);
-        g2.fillRect(padding + labelPadding, padding, getWidth() - (2 * padding) - labelPadding, getHeight() - 2 * padding - labelPadding);
+        // draw black background
         g2.setColor(Color.BLACK);
+        g2.fillRect(padding + labelPadding, padding, getWidth() - (2 * padding) - labelPadding, getHeight() - 2 * padding - labelPadding);
+        
 
         // create hatch marks and grid lines for y axis.
         for (int i = 0; i < numberYDivisions + 1; i++) {
@@ -73,7 +120,7 @@ public class GraphPanel extends JPanel {
             if (prices.size() > 0) {
                 g2.setColor(gridColor);
                 g2.drawLine(padding + labelPadding + 1 + pointWidth, y0, getWidth() - padding, y1);
-                g2.setColor(Color.BLACK);
+                g2.setColor(Color.CYAN);
                 String yLabel = ((int) ((getMinPrice() + (getMaxPrice() - getMinPrice()) * ((i * 1.0) / numberYDivisions)) * 100)) / 100.0 + "";
                 FontMetrics metrics = g2.getFontMetrics();
                 int labelWidth = metrics.stringWidth(yLabel);
@@ -92,12 +139,12 @@ public class GraphPanel extends JPanel {
                 if ((i % ((int) ((prices.size() / 20.0)) + 1)) == 0) {
                     g2.setColor(gridColor);
                     g2.drawLine(x0, getHeight() - padding - labelPadding - 1 - pointWidth, x1, padding);
-                    g2.setColor(Color.BLACK);
+                    g2.setColor(Color.CYAN);
                     String xLabel = (time+i) + ":00";
                     FontMetrics metrics = g2.getFontMetrics();
                     int labelWidth = metrics.stringWidth(xLabel);
                    g2.drawString(xLabel, x0 - labelWidth / 2, y0 + metrics.getHeight() + 3);
-                }
+                     }
                 g2.drawLine(x0, y0, x1, y1);
             }
         }
@@ -128,6 +175,12 @@ public class GraphPanel extends JPanel {
         }
     }
 
+
+    /**
+     * the getMinPrice function returns the lowest price of the day.
+     * <p>
+     * @return	${@link Double}
+     */
     private double getMinPrice() {
         double minPrice = Double.MAX_VALUE;
         for (Double price : prices) {
@@ -136,6 +189,12 @@ public class GraphPanel extends JPanel {
         return minPrice;
     }
 
+    
+    /**
+     * the getMaxPrice function returns the highest price of the day.
+     * <p>
+     * @return	${@link Double}
+     */
     private double getMaxPrice() {
         double maxPrice = Double.MIN_VALUE;
         for (Double price : prices) {
@@ -144,34 +203,56 @@ public class GraphPanel extends JPanel {
         return maxPrice;
     }
 
-    public void setPrices(List<Double> costs) {
+    
+    /**
+     * the setPrices function sets the values for the y values to costs.
+     * <p>
+     * @param costs	
+     */
+    public void setPrices(Vector<Double> costs) {
         this.prices = costs;
-        invalidate();
+        this.revalidate();
         this.repaint();
     }
 
-    public List<Double> getPrices() {
+    
+    
+    /**
+     * the getPrices function sets the y values to costs.
+     * <p>
+     * @param costs	
+     */
+    public Vector<Double> getPrices() {
         return prices;
     }
     
-    public static void createAndShowGui() {
-        List<Double> scores = new ArrayList<>();
-        Random random = new Random();
-        int maxDataPoints = 9;
-        int maxScore = 10;
-        for (int i = 0; i < maxDataPoints; i++) {
-            scores.add((double) random.nextDouble() * maxScore);
-
-        }
-        GraphPanel mainPanel = new GraphPanel(scores);
-        mainPanel.setPreferredSize(new Dimension(800, 600));
-        JFrame frame = new JFrame("DrawGraph");
+    
+    /**
+     * the getJrame function returns the JFrame object housing the 
+     * GraphPanel.
+     * <p>
+     * @param costs	
+     */
+    public JFrame getJFrame() {
+    	return frame;
+    }
+    
+    /**
+     * the createAndShowGUI launches a new JFrame containing the
+     * GraphPanel.
+     * 
+     * <p>
+     * @param costs	
+     */
+    public void createAndShowGui() {
+       
+        this.setPreferredSize(new Dimension(800, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(mainPanel);
+        frame.getContentPane().add(this);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        
     }
     
    
-}
