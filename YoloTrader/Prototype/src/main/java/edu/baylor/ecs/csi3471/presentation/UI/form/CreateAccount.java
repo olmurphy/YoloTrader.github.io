@@ -3,6 +3,9 @@ package edu.baylor.ecs.csi3471.presentation.UI.form;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author owenmurphy
+ */
 public class CreateAccount {
 
     public static String userString = "Username";

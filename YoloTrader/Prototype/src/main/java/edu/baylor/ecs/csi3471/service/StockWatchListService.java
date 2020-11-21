@@ -6,6 +6,9 @@ import edu.baylor.ecs.csi3471.model.StockWatchList;
 
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 public class StockWatchListService {
 
     StockWatchListDAO dao;

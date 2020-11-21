@@ -3,11 +3,14 @@ package edu.baylor.ecs.csi3471.presentation.UI.mainPage;
 import edu.baylor.ecs.csi3471.presentation.UI.form.FormController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
-import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+
+/**
+ * @author owenmurphy
+ */
 public class MainPanelController {
 
 

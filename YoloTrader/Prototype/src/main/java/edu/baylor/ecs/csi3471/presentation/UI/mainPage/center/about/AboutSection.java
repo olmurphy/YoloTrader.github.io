@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
+/**
+ * @author owenmurphy
+ */
 public class AboutSection {
 
     public static JPanel mainAboutPanel;

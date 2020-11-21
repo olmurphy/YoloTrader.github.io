@@ -20,6 +20,9 @@ import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 public class CenterPanelController {
 
     public static Color buttonColorActive = Color.GRAY;

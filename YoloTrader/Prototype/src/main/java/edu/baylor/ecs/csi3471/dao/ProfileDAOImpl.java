@@ -9,6 +9,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @author owenmurphy
+ */
 @XmlRootElement(namespace = "Database")
 public class ProfileDAOImpl implements ProfileDAO {
 

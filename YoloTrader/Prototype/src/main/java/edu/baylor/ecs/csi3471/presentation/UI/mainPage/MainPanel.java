@@ -11,6 +11,9 @@ import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListContr
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author owenmurphy
+ */
 public class MainPanel {
 
     public static JFrame homeFrame;

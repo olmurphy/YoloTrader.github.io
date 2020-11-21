@@ -5,6 +5,9 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelControl
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author owenmurphy
+ */
 public class Search {
 
     public static JTextField searchTextField;

@@ -5,6 +5,9 @@ import edu.baylor.ecs.csi3471.model.StockWatchList;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 public class StockWatchListDAOImpl implements StockWatchListDAO {
 
     private List<StockWatchList> stockWatchLists;

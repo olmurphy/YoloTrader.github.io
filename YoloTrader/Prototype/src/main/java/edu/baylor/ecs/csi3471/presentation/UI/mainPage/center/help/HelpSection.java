@@ -4,6 +4,9 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelControl
 
 import javax.swing.*;
 
+/**
+ * @author owenmurphy
+ */
 public class HelpSection {
 
     public static JPanel helpPanel;

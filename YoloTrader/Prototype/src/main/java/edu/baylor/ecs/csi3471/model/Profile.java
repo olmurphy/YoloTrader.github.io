@@ -4,6 +4,9 @@ import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 @XmlRootElement(name = "Profile")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Profile {

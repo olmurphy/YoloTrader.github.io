@@ -5,6 +5,9 @@ import edu.baylor.ecs.csi3471.model.Profile;
 
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 public interface ProfileDAO {
 
     int insertProfile(Profile profile);

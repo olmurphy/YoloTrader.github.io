@@ -3,6 +3,10 @@ package edu.baylor.ecs.csi3471.presentation.presentationLogic;
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.service.StockService;
 
+
+/**
+ * @author owenmurphy
+ */
 public class StockController {
 
     private Stock stock;

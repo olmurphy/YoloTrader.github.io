@@ -3,39 +3,48 @@ package edu.baylor.ecs.csi3471.presentation.UI.form;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author owenmurphy
+ */
 public class Help {
 
+    // FIXME: still working on it.
+    
+    private static JButton forgotPassButton;
 
     public static void createHelp() {
         JFrame helpFrame = new JFrame("Help");
 
-        JPanel mainPanel = new JPanel(new GridLayout(2, 1));
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-        // creating panels
-        JPanel infoPanel = new JPanel(new GridLayout(1, 1));
-        JPanel titlePanel = new JPanel(new BorderLayout());
-
-        JLabel emailHelpLabel = new JLabel("volatiles.stocks@gmail.com");
+        // creating help label
+        JLabel emailHelpLabel = new JLabel(Email.companyEmail);
         emailHelpLabel.setHorizontalAlignment(JLabel.LEFT);
 
-        // App name title
-        JLabel appName = new JLabel(FormController.title);
-        appName.setVerticalAlignment(JLabel.CENTER);
-        appName.setHorizontalAlignment(JLabel.CENTER);
+        // adding help label to main help panel
+        mainPanel.add(emailHelpLabel);
 
-        // add title to pane
-        titlePanel.add(appName);
-        mainPanel.add(titlePanel);
-
-        // add help contact to pane
-        infoPanel.add(emailHelpLabel);
-        mainPanel.add(infoPanel);
-
+        // setting and adding forgot password
+        setForgotPassButton(new JButton("Forgot Password"));
+        mainPanel.add(getForgotPassButton());
 
         // add mainPanel to frame and set frame values
         helpFrame.add(mainPanel);
         helpFrame.pack();
         helpFrame.setVisible(true);
         helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    public static JButton getForgotPassButton() {
+        return forgotPassButton;
+    }
+
+    public static void setForgotPassButton(JButton forgotPassButton) {
+
+        Help.forgotPassButton = forgotPassButton;
+
+        // FIXME: add the button listener to this
+        Help.forgotPassButton.addActionListener(null);
     }
 }

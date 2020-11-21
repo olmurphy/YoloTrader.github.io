@@ -3,6 +3,9 @@ package edu.baylor.ecs.csi3471.presentation.presentationLogic;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.service.ProfileService;
 
+/**
+ * @author owenmurphy
+ */
 public class ProfileController {
 
     /** user's Profile they use */

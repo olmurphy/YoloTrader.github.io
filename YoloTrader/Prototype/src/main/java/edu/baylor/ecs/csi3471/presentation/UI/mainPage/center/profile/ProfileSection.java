@@ -5,6 +5,9 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelControl
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author owenmurphy
+ */
 public class ProfileSection {
 
     /*

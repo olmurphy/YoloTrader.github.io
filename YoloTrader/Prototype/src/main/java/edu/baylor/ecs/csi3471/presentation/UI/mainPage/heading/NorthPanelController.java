@@ -12,6 +12,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Map;
 
+/**
+ * @author owenmurphy
+ */
 public class NorthPanelController {
 
     public static int northPanelWidth = MainPanel.frameWidth;

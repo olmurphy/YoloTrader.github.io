@@ -7,6 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * @author owenmurphy
+ */
 @XmlRootElement(name = "comment")
 @XmlType(propOrder = {"subject", "dateCreated", "text"})
 @XmlAccessorType(XmlAccessType.FIELD)

@@ -7,6 +7,9 @@ import java.util.List;
 
 import yahoofinance.Stock;
 
+/**
+ * @author owenmurphy
+ */
 @XmlRootElement(name = "stockWatchList")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class StockWatchList implements Comparable<StockWatchList> {

@@ -6,6 +6,9 @@ import edu.baylor.ecs.csi3471.model.Profile;
 
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 public class ProfileService {
 
     private ProfileDAO dao;

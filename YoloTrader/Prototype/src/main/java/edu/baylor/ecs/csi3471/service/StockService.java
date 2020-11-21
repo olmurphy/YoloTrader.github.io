@@ -3,6 +3,9 @@ package edu.baylor.ecs.csi3471.service;
 import edu.baylor.ecs.csi3471.dao.StockDAO;
 import edu.baylor.ecs.csi3471.dao.StockDAOImpl;
 
+/**
+ * @author owenmurphy
+ */
 public class StockService {
 
     private StockDAO dao;

@@ -2,6 +2,9 @@ package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks;
 
 import javax.swing.*;
 
+/**
+ * @author owenmurphy
+ */
 public class CreateWatchList {
 
     public static String watchListNameWindow() {

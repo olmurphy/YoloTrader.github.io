@@ -5,6 +5,9 @@ import edu.baylor.ecs.csi3471.service.StockWatchListService;
 
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 public class StockWatchListController {
 
     private StockWatchList stockWatchList;

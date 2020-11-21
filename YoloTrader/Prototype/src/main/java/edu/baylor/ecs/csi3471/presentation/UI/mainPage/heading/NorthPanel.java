@@ -6,6 +6,9 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.title.CompanyName
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author owenmurphy
+ */
 public class NorthPanel {
 
     public static JPanel northPanel;

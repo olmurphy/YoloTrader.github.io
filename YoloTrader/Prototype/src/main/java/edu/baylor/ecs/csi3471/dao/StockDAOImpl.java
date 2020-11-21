@@ -4,6 +4,9 @@ import edu.baylor.ecs.csi3471.model.Stock;
 
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 public class StockDAOImpl implements StockDAO {
 
     private List<Stock> stocks;

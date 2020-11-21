@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+/**
+ * @author owenmurphy
+ */
 public class FormController {
 
     /** value for login button */

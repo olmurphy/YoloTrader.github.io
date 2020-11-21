@@ -8,6 +8,9 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * @author owenmurphy
+ */
 public class StocksSection {
 
     public static JPanel stocksMainPanel;

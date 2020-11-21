@@ -128,8 +128,6 @@ public class GraphPanel extends JPanel {
         }
     }
 
-
-
     private double getMinPrice() {
         double minPrice = Double.MAX_VALUE;
         for (Double price : prices) {

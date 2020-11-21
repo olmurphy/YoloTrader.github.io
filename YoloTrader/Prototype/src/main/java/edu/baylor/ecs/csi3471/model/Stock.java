@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author owenmurphy
+ */
 @XmlRootElement(name = "stock")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Stock implements Comparable<Stock> {
