@@ -71,5 +71,13 @@
             <last>;adslfkj</last>
             <listOfWatchLists/>
         </Profile>
+        <Profile>
+            <email>owen261@icloud.com</email>
+            <username>sa;dlfkj</username>
+            <password>50LVZGCRTZKGAZR1YC</password>
+            <first>ow</first>
+            <last>s;l</last>
+            <listOfWatchLists/>
+        </Profile>
     </ProfileList>
 </ns2:profileDAOImpl>

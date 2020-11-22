@@ -1,6 +1,7 @@
 package edu.baylor.ecs.csi3471.presentation.presentationLogic;
 
 import edu.baylor.ecs.csi3471.model.Stock;
+import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.service.StockService;
 
 
@@ -27,5 +28,9 @@ public class StockController {
 
     public void setService(StockService service) {
         this.service = service;
+    }
+
+    public boolean addStock(Stock stock, StockWatchList stockWatchList) {
+        return service.addStock(stock, stockWatchList);
     }
 }

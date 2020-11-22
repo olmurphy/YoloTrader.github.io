@@ -1,12 +1,8 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage;
 
-import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.presentation.UI.form.FormController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.WestPanel;
-import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +18,6 @@ public class MainPanel {
     public static JPanel mainPanel;
     public static Color backGroundColor = Color.lightGray;
 
-    public static StockWatchListController stockWatchListController;
 
     public static void createUI () {
         homeFrame = new JFrame();
@@ -30,10 +25,14 @@ public class MainPanel {
         homeFrame.setSize(new Dimension(frameWidth, frameHeight));
         mainPanel = new JPanel(new BorderLayout());
 
+        // adding the window listener when application exits to save the info
         homeFrame.addWindowListener(MainPanelController.getMainFrameListener());
+
+        // initializing all the panels and the fields inside when the frame opens
         MainPanelController.initializeAllPanels();
 
-        initializeAllFieldsInMainPanel();
+        // setting all the fields in the panel
+        // MainPanelController.initializeAllFieldsInMainPanel();
 
         WestPanel.creatWestPanel(mainPanel);
         NorthPanel.createNorthPanel(mainPanel);
@@ -52,19 +51,6 @@ public class MainPanel {
         FormController.getStartFrame();
     }
 
-    public static void initializeAllFieldsInMainPanel() {
-        Profile profile = FormController.getProfileController().getProfile();
-
-        NorthPanelController.setName(profile.getUsername());
-
-        stockWatchListController = new StockWatchListController();
-        stockWatchListController.setListStockWatchList(profile.getWatchLists());
-        CenterPanelController.setAllFields();
-    }
-
-    public static StockWatchListController getStockWatchListController() {
-        return stockWatchListController;
-    }
 
     /**
      * used for closing the home frame when user logs out

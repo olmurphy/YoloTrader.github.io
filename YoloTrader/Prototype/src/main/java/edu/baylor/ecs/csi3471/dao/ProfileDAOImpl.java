@@ -20,6 +20,7 @@ public class ProfileDAOImpl implements ProfileDAO {
     @XmlElement(name = "Profile")
     private List<Profile> profiles;
 
+    /** class is used for XML file transformations */
     private static XMLProfileDAOUtil profileDAOUtil;
 
     public ProfileDAOImpl() {
@@ -29,6 +30,7 @@ public class ProfileDAOImpl implements ProfileDAO {
     @Override
     public int insertProfile(Profile profile) {
         profiles.add(profile);
+        profiles.forEach(x -> System.out.println(x.toString()));
         return 1;
     }
 
@@ -58,5 +60,11 @@ public class ProfileDAOImpl implements ProfileDAO {
         profileDAOUtil = new XMLProfileDAOUtil();
 
         profileDAOUtil.doSave(this);
+    }
+
+    @Override
+    public void changeProfilePassword(int index, String newPass) {
+        this.profiles.get(index).setPassword(newPass);
+        profiles.forEach(x -> System.out.println(x.toString()));
     }
 }

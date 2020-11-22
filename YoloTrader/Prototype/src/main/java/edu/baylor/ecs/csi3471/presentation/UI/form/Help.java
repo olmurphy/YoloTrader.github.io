@@ -32,19 +32,12 @@ public class Help {
 
         // add mainPanel to dialog
         helpDialog.add(mainPanel);
+
+        helpDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // opens dialog in separate window
         helpDialog.setLocationRelativeTo(null); // centers dialog in middle of screen
+
         helpDialog.pack();
         helpDialog.setVisible(true);
-        /*
-        JDialog dialog = new JDialog();
-        dialog.add(getSearchPanel());
-
-        dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        dialog.setLocationRelativeTo(null);     // centers the frame in the middle of the screen
-                                                // regardless of the dual monitor setup
-        dialog.pack();                          // optimal if application is running on different computers
-        dialog.setVisible(true);
-         */
 
     }
 
@@ -53,10 +46,9 @@ public class Help {
     }
 
     public static void setForgotPassButton(JButton forgotPassButton) {
-
         Help.forgotPassButton = forgotPassButton;
 
-        // FIXME: add the button listener to this
-        Help.forgotPassButton.addActionListener(null);
+        // adding logic to the button
+        Help.forgotPassButton.addActionListener(FormController.getForgotPasswordButtonListener());
     }
 }

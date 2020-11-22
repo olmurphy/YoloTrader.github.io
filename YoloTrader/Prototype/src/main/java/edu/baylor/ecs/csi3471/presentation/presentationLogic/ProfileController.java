@@ -63,4 +63,8 @@ public class ProfileController {
     public void setService(ProfileService service) {
         this.service = service;
     }
+
+    public boolean recoverPassword(String email) {
+        return this.service.recoverPassword(email);
+    }
 }

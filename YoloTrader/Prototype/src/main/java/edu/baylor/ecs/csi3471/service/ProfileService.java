@@ -2,7 +2,9 @@ package edu.baylor.ecs.csi3471.service;
 
 import edu.baylor.ecs.csi3471.dao.ProfileDAO;
 import edu.baylor.ecs.csi3471.dao.ProfileDAOImpl;
+import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
+import edu.baylor.ecs.csi3471.presentation.UI.form.Email;
 
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class ProfileService {
 
         if (uniqueEmail) {
             dao.insertProfile(profile);
+            System.out.println("profile inserted: " + profile.toString());
         }
 
         return uniqueEmail;
@@ -76,5 +79,30 @@ public class ProfileService {
 
     public void loadProfiles() {
         dao.loadProfiles();
+    }
+
+    public boolean recoverPassword(String email) {
+        List<Profile> profiles = this.dao.getAllProfiles();
+
+        boolean found = false;
+        int index;
+        for (index = 0; index < profiles.size() && !found; index++ ) {
+            if (profiles.get(index).getEmail().equals(email)) {
+
+                // email is associated with a profile, change password
+                found = true;
+
+                // changing password with a random password
+                YoloTrader.logger.info("Changing password");
+                String password = Email.getSaltString();
+                this.dao.changeProfilePassword(index, password);
+
+                // sending client new password
+                Email.sendEmail(email, "Changed Password", "Your new password is: " +
+                        password);
+            }
+        }
+
+        return found;
     }
 }

@@ -6,6 +6,7 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
@@ -90,7 +91,7 @@ public class FormController {
                         new String(LogIn.getPasswordField().getPassword()));
 
                 if (profile != null) {
-
+                    YoloTrader.logger.info("logging in");
                     profileController.setProfile(profile);
 
                     LogIn.getFrame().dispose();
@@ -102,9 +103,8 @@ public class FormController {
             } else {
                 LogIn.getEmptyFieldWarning();
             }
-            // FIXME: need to add action
 
-            YoloTrader.logger.info("logging in");
+
         };
     }
 
@@ -145,7 +145,6 @@ public class FormController {
             } else {
                 LogIn.getEmptyFieldWarning();
             }
-
         };
     }
 
@@ -209,6 +208,10 @@ public class FormController {
         return allField;
     }
 
+    /**
+     * creates a new profile given the input fields from user
+     * @return a new profile instance
+     */
     public static Profile createNewProfile() {
         return new Profile(LogIn.getEmailField().getText(),
                 CreateAccount.getUserField().getText(),
@@ -220,6 +223,9 @@ public class FormController {
         return profileController;
     }
 
+    /**
+     * initializes the profile controller and all the profiles in YoloTrader Application
+     */
     public static void initialize() {
         profileController = new ProfileController(null);
         profileController.loadProfiles();
@@ -227,5 +233,28 @@ public class FormController {
 
     public static boolean checkPassMatch() {
         return Arrays.equals(LogIn.getPasswordField().getPassword(), CreateAccount.getRe_passwordField().getPassword());
+    }
+
+    /**
+     * the logic to the forgot password button given the email that the user inputs
+     * @return actionListener for the forgotPassword button
+     */
+    public static ActionListener getForgotPasswordButtonListener() {
+        return e -> {
+
+            // get email from user
+            String email = Email.getEmailInputDialog();
+
+            // check if password was changed given the email (email to recipient is also sent if condition is true)
+            if (profileController.recoverPassword(email)) {
+                YoloTrader.logger.info("Changed password");
+
+                // let user know the password was successfully changed
+                Email.getPasswordChangedSuccessful();
+            } else {
+                // display warning
+                Email.getEmailNotFound();
+            }
+        };
     }
 }

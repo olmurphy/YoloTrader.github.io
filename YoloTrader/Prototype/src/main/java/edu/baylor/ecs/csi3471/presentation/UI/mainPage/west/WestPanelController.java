@@ -17,13 +17,27 @@ public class WestPanelController {
     public static Color active = Color.GRAY;
     public static Color westPanelColor = MainPanel.backGroundColor;
 
+    /**
+     * initialize the look and feel of all JPanels in the ${@link WestPanel} area
+     */
     public static void initializePublicStaticVariables() {
         panelLabelFonts = new Font("Serif", Font.PLAIN, 18);
         emptyBorder = BorderFactory.createEmptyBorder();
     }
 
+    /**
+     * sets the layout of the west panels to GridLayout of 1 row and 1 column
+     * allows for local changes to be made and not have to individually change all panels
+     * @return JPanel with the indicated layout
+     */
     public static JPanel getEachWestSubPanel() { return new JPanel(new GridLayout(1,1)); }
 
+    /**
+     * This method is responsible for setting changing the colors of the west panel
+     * options when the cursor is hovering over them
+     * @param panel panel to set the background color of
+     * @return MouseAdapter to listen for when the mouse enters or exits the panel
+     */
     public static MouseAdapter getGeneralWestPanelActions(JPanel panel) {
         return new MouseAdapter() {
             @Override
@@ -38,6 +52,10 @@ public class WestPanelController {
         };
     }
 
+    /**
+     * sets the center in ${@link MainPanel} Center of BorderLayout to the Profile panel
+     * @return MouseAdapter to listen for when the user clicks on the panel
+     */
     public static MouseAdapter getProfilePanelAction() {
         return new MouseAdapter() {
             @Override
@@ -58,6 +76,10 @@ public class WestPanelController {
         };
     }
 
+    /**
+     * sets the center in ${@link MainPanel} Center of BorderLayout to the About panel
+     * @return MouseAdapter to listen for when the user clicks on the panel
+     */
     public static MouseAdapter getAboutPanelAction() {
         return new MouseAdapter() {
             @Override
@@ -78,6 +100,10 @@ public class WestPanelController {
         };
     }
 
+    /**
+     * sets the center in ${@link MainPanel} Center of BorderLayout to the Help panel
+     * @return MouseAdapter to listen for when the user clicks on the panel
+     */
     public static MouseAdapter getHelpPanelAction() {
         return new MouseAdapter() {
             @Override
@@ -97,6 +123,10 @@ public class WestPanelController {
         };
     }
 
+    /**
+     * sets the center in ${@link MainPanel} Center of BorderLayout to the Home panel
+     * @return MouseAdapter to listen for when the user clicks on the panel
+     */
     public static MouseAdapter getHomePanelAction() {
         return new MouseAdapter() {
             @Override
@@ -107,6 +137,10 @@ public class WestPanelController {
         };
     }
 
+    /**
+     * sets the center in ${@link MainPanel} Center of BorderLayout to the Stock panel
+     * @return MouseAdapter to listen for when the user clicks on the panel
+     */
     public static MouseAdapter getStockPanelAction() {
         return new MouseAdapter() {
             @Override

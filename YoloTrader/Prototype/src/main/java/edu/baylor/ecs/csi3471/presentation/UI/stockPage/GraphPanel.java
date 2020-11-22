@@ -20,8 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 
-
-
 /**
  * The GraphPanel class is responsible for displaying
  * a graph for tracking daily stock movement.
@@ -220,7 +218,6 @@ public class GraphPanel extends JPanel {
     /**
      * the getPrices function sets the y values to costs.
      * <p>
-     * @param costs	
      */
     public Vector<Double> getPrices() {
         return prices;
@@ -231,7 +228,6 @@ public class GraphPanel extends JPanel {
      * the getJrame function returns the JFrame object housing the 
      * GraphPanel.
      * <p>
-     * @param costs	
      */
     public JFrame getJFrame() {
     	return frame;
@@ -242,7 +238,6 @@ public class GraphPanel extends JPanel {
      * GraphPanel.
      * 
      * <p>
-     * @param costs	
      */
     public void createAndShowGui() {
        
@@ -254,5 +249,6 @@ public class GraphPanel extends JPanel {
         frame.setVisible(true);
         
     }
+}
     
    

@@ -1,8 +1,11 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage;
 
+import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.presentation.UI.form.FormController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
+import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockController;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -14,6 +17,7 @@ import java.awt.event.WindowListener;
  */
 public class MainPanelController {
 
+    public static StockController stockController;
 
     /**
      * This function handles saving all data to the database
@@ -24,7 +28,7 @@ public class MainPanelController {
         return new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                System.out.println("closing window");
+                YoloTrader.logger.info("Saving info");
 
                 FormController.getProfileController().saveProfiles();
             }
@@ -36,6 +40,17 @@ public class MainPanelController {
     }
 
     public static void initializeAllPanels() {
-        CenterPanelController.setAllCenterPanels();
+        setStockController(new StockController());
+
+        NorthPanelController.setNorthPanel(FormController.getProfileController().getProfile().getUsername());
+        CenterPanelController.setAllCenterPanels(FormController.getProfileController().getProfile());
+    }
+
+    public static void setStockController(StockController stockController) {
+        MainPanelController.stockController = stockController;
+    }
+
+    public static StockController getStockController() {
+        return stockController;
     }
 }

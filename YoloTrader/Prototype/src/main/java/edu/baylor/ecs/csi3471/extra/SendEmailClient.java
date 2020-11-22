@@ -1,5 +1,7 @@
 package edu.baylor.ecs.csi3471.extra;
 
+import edu.baylor.ecs.csi3471.presentation.UI.form.Email;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -14,7 +16,7 @@ import java.util.Properties;
 
 public class SendEmailClient extends JFrame {
     private JTextField fromField = new JTextField();
-    private JTextField toField = new JTextField();
+    private JLabel toField = new JLabel(Email.companyEmail);
     private JTextField subjectField = new JTextField();
     private JComboBox<String> mailSmtpHostComboBox = new JComboBox<>();
     private JTextField usernameField = new JTextField();
@@ -26,12 +28,9 @@ public class SendEmailClient extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                SendEmailClient client = new SendEmailClient();
-                client.setVisible(true);
-            }
+        SwingUtilities.invokeLater(() -> {
+            SendEmailClient client = new SendEmailClient();
+            client.setVisible(true);
         });
     }
 
@@ -57,6 +56,7 @@ public class SendEmailClient extends JFrame {
         headerPanel.add(new JLabel("STMP Server:"));
         headerPanel.add(mailSmtpHostComboBox);
         mailSmtpHostComboBox.addItem("smtp.gmail.com");
+        mailSmtpHostComboBox.addItem("smtp.mail.me.com");
 
         headerPanel.add(new JLabel("Username:"));
         headerPanel.add(usernameField);
@@ -96,6 +96,9 @@ public class SendEmailClient extends JFrame {
             props.put("mail.smtp.port", "465");
             props.put("mail.smtp.socketFactory.port", "465");
             props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+            // property for sending an email from an icloud email associated with Apple
+            props.put("smtp.mail.me.com", "587");
 
             Session session = Session.getDefaultInstance(props);
             try {

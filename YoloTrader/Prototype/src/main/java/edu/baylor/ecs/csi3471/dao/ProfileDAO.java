@@ -24,4 +24,5 @@ public interface ProfileDAO {
 
     void saveProfiles();
 
+    void changeProfilePassword(int index, String newPass);
 }

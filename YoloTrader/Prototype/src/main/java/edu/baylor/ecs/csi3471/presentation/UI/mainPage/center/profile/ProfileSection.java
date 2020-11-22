@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.profile;
 
+import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 
 import javax.swing.*;
@@ -49,7 +50,14 @@ public class ProfileSection {
         return descriptionScrollPanel;
     }
 
-    public static void setProfilePanel() {
+    /**
+     * setting up the profile panel when the application opens
+     * @param profile the user's profile used to get it's fields to set the fields of ${@link ProfileSection}
+     */
+    public static void setProfilePanel(Profile profile) {
+        // initialize the fields of the profile panel upon user entering the application
+        setFields(profile.getFirst(), profile.getLast(), profile.getUsername(), profile.getEmail());
+
         profilePanel = new JPanel(new BorderLayout());
         profilePanel.add(getPicturePanel(), BorderLayout.WEST);
         profilePanel.add(getDescriptionPanel(), BorderLayout.CENTER);
@@ -88,7 +96,6 @@ public class ProfileSection {
         descriptionPanel.add(getLabelValuePanel()); // labels w/ associated values
 
         descriptionPanel.add(getButtonPanel());  // buttons are align vertically, no grid Layout
-        descriptionPanel.add(new JLabel("What is going on??"));
 
         descriptionPanel.setBackground(CenterPanelController.centerPanelColor);
 
@@ -220,6 +227,13 @@ public class ProfileSection {
         ProfileSection.userString = userString;
     }
 
+    /**
+     * used to set all the profile panel
+     * @param first first name of user
+     * @param last last name of user
+     * @param email email of user
+     * @param user user's username to display
+     */
     public static void setFields(String first, String last, String email, String user) {
         ProfileSection.setFirstString(first);
         ProfileSection.setLastString(last);

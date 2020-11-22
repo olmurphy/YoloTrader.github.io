@@ -81,10 +81,13 @@ public class SearchResults {
     public static void setAddStockButton(JButton addStockButton) {
         SearchResults.addStockButton = addStockButton;
 
-        // adding the listener
+        // adding the listener for when button pressed
         addStockButton.addActionListener(NorthPanelController.getAddStockButtonListener());
     }
 
+    /**
+     * @return add stock button for when user wants to add a stock
+     */
     public static JButton getAddStockButton() {
         return addStockButton;
     }

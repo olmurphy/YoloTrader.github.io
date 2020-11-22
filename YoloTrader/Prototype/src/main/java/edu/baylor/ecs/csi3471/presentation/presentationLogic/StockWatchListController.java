@@ -32,6 +32,10 @@ public class StockWatchListController {
         return stockWatchList;
     }
 
+    public StockWatchList findStockWatchList(String listName) {
+        return stockWatchList;
+    }
+
     public void setStockWatchList(StockWatchList stockWatchList) {
         this.stockWatchList = stockWatchList;
     }

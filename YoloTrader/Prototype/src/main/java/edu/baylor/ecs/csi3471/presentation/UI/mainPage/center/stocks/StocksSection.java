@@ -1,15 +1,23 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks;
 
+import edu.baylor.ecs.csi3471.model.Profile;
+import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.List;
 
 /**
  * @author owenmurphy
  */
 public class StocksSection {
+
+    private static JButton addStockButton;
+    private static JButton addWatchListButton;
+    private static JButton deleteWatchListButton;
+    private static JButton deleteStockButton;
 
     public static JPanel stocksMainPanel;
     public static JPanel stockButtonPanel;
@@ -25,46 +33,76 @@ public class StocksSection {
 
     public static Border buttonBorder;
 
+    /**
+     * @return the stocks panel
+     */
     public static JPanel getStocksMainPanel() {
         return stocksMainPanel;
     }
 
-    public static void setStocksMainPanel() {
+    public static void setStocksMainPanel(Profile profile) {
         stocksMainPanel = new JPanel(new BorderLayout());
         stockButtonFont = new Font("Sans-Serif", Font.PLAIN, 16);
         stockLabelFont = new Font("Sans-Serif", Font.PLAIN, 16);
         buttonBorder = BorderFactory.createEmptyBorder();
         stocksMainPanel.add(getStockButtonPanel(), BorderLayout.NORTH);
         stocksMainPanel.add(getStockListPanel(), BorderLayout.CENTER);
+
+        initializeWatchListModel(profile); // initialize the JList model
     }
 
     public static JPanel getStockButtonPanel() {
 
         stockButtonPanel = new JPanel();
-        stockButtonPanel.setLayout(new GridLayout(1, 2));
-        stockButtonPanel.add(getAddListButton());
+        stockButtonPanel.setLayout(new GridLayout(2, 2));
+
+        // adding the 'add' buttons
+        stockButtonPanel.add(getAddWatchListButton());
         stockButtonPanel.add(getAddStockButton());
+
+        // adding the 'delete' buttons
+        stockButtonPanel.add(getDeleteWatchListButton());
+        stockButtonPanel.add(getDeleteStockButton());
 
         return stockButtonPanel;
     }
 
-    public static JButton getAddListButton() {
-        JButton addListButton = new JButton("Add List");
-        addListButton.setHorizontalAlignment(JButton.CENTER);
+    /**
+     * button for the add a list with the list name button to the user's watch lists
+     * @return JButton
+     */
+    public static JButton getAddWatchListButton() {
+        addWatchListButton = new JButton("Add List");
+        addWatchListButton.setHorizontalAlignment(JButton.CENTER);
 
-        addListButton.setFont(stockButtonFont);
-        addListButton.setBackground(CenterPanelController.centerPanelColor);
-        addListButton.setBorder(buttonBorder);
-        addListButton.setOpaque(true);
+        addWatchListButton.setFont(stockButtonFont);
+        addWatchListButton.setBackground(CenterPanelController.centerPanelColor);
+        addWatchListButton.setBorder(buttonBorder);
+        addWatchListButton.setOpaque(true);
 
-        addListButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(addListButton));
-        addListButton.addMouseListener(CenterPanelController.getAddWatchListButton());
+        addWatchListButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(addWatchListButton));
+        addWatchListButton.addMouseListener(CenterPanelController.getAddWatchListButton());
 
-        return addListButton;
+        return addWatchListButton;
+    }
+
+    public static JButton getDeleteWatchListButton() {
+        deleteWatchListButton = new JButton("Delete List");
+        deleteWatchListButton.setHorizontalAlignment(JButton.CENTER);
+
+        deleteWatchListButton.setFont(stockButtonFont);
+        deleteWatchListButton.setBackground(CenterPanelController.centerPanelColor);
+        deleteWatchListButton.setBorder(buttonBorder);
+        deleteWatchListButton.setOpaque(true);
+
+        deleteWatchListButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(deleteWatchListButton));
+        deleteWatchListButton.addMouseListener(CenterPanelController.getDeleteWatchListAction());
+
+        return deleteWatchListButton;
     }
 
     public static JButton getAddStockButton() {
-        JButton addStockButton = new JButton("Add Stock");
+        addStockButton = new JButton("Add Stock");
         addStockButton.setHorizontalAlignment(JButton.CENTER);
 
         addStockButton.setFont(stockButtonFont);
@@ -76,6 +114,21 @@ public class StocksSection {
         addStockButton.addMouseListener(CenterPanelController.getAddStockButtonAction());
 
         return  addStockButton;
+    }
+
+    public static JButton getDeleteStockButton() {
+        deleteStockButton = new JButton("Delete Stock");
+        deleteStockButton.setHorizontalAlignment(JButton.CENTER);
+
+        deleteStockButton.setFont(stockButtonFont);
+        deleteStockButton.setBackground(CenterPanelController.centerPanelColor);
+        deleteStockButton.setBorder(buttonBorder);
+        deleteStockButton.setOpaque(true);
+
+        deleteStockButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(deleteStockButton));
+        deleteStockButton.addMouseListener(CenterPanelController.getDeleteStockButtonAction());
+
+        return deleteStockButton;
     }
 
     public static JPanel getStockListPanel () {
@@ -140,6 +193,8 @@ public class StocksSection {
 
     public static void setStockListModel(ListModel stockListModel) {
         StocksSection.stockListModel = stockListModel;
+
+
     }
 
     public static ListModel getStockListModel() {
@@ -160,5 +215,19 @@ public class StocksSection {
 
     public static JList getStockList() {
         return stockList;
+    }
+
+    /**
+     * initializes the user's stock watch lists in the JList on the main frame when they login
+     * @param profile user's profile that contains the watchlist
+     */
+    public static void initializeWatchListModel(Profile profile) {
+        // get the profiles watch lists
+        List<StockWatchList> list = profile.getWatchLists();
+
+        // add watch lists to the JList
+        for (int i = 0; i < list.size(); i++) {
+            ((DefaultListModel<String>)watchListModel).addElement(list.get(i).getName());
+        }
     }
 }

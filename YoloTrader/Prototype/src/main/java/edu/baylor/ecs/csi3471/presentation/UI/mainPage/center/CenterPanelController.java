@@ -3,7 +3,6 @@ package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.about.AboutSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.help.HelpSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.profile.ProfileSection;
@@ -12,13 +11,13 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks.CreateWatch
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks.StocksSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
+import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author owenmurphy
@@ -30,19 +29,13 @@ public class CenterPanelController {
 
     public static int centerPanelHeight = MainPanel.frameHeight - NorthPanelController.northPanelHeight;
 
+    public static StockWatchListController stockWatchListController;
 
     public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
 
     public static JPanel getStockPanel() { return StocksSection.getStocksMainPanel(); }
 
     public static JPanel getHelpPanel() { return HelpSection.getHelpPanel(); }
-
-    public static void setAllCenterPanels() {
-        AboutSection.setMainAboutPanel();
-        HelpSection.setHelpPanel();
-        ProfileSection.setProfilePanel();
-        StocksSection.setStocksMainPanel();
-    }
 
     public static JPanel getAboutPanel() { return AboutSection.getMainAboutPanel(); }
 
@@ -60,6 +53,10 @@ public class CenterPanelController {
         };
     }
 
+    /**
+     * logic for adding a stock to a watch list of a user's watch list
+     * @return MouseAdapter to listen for when the button is clicked
+     */
     public static MouseAdapter getAddStockButtonAction () {
         return new MouseAdapter() {
             @Override
@@ -67,29 +64,46 @@ public class CenterPanelController {
                 // FIXME: add an action here
                 // FIXME: need to add a disabled button action for when no watchlist is selected
 
+                YoloTrader.logger.info("user wants to add a stock");
+
                 if (StocksSection.getWatchListList().isSelectionEmpty()) {
                     AddStock.getWarningMessage();
                 } else {
 
                 }
 
-                YoloTrader.logger.info("user wants to add a stock");
             }
         };
     }
 
+    /**
+     * logic for deleting a stock from a watchlist of user's specified watch list
+     * @return MouseAdapter to listen for when the button is clicked
+     */
+    public static MouseAdapter getDeleteStockButtonAction() {
+        return new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                YoloTrader.logger.info("deleting stock");
+            }
+        };
+    }
+
+    /**
+     * logic for adding a watch list to user's watch list
+     * @return MouseAdapter to listen for when the button is clicked
+     */
     public static MouseAdapter getAddWatchListButton() {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                // FIXME: add an action here
                 YoloTrader.logger.info("adding stock list a watchlist");
 
                 String watchListName = CreateWatchList.watchListNameWindow();
                 StockWatchList stockWatchList = new StockWatchList(watchListName, new Date());
 
-                if (MainPanel.getStockWatchListController().addWatchList(stockWatchList)) {
+                if (stockWatchListController.addWatchList(stockWatchList)) {
                     ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
                 } else {
                     CreateWatchList.getWatchListNameTaken();
@@ -98,18 +112,38 @@ public class CenterPanelController {
         };
     }
 
-    public static void  setAllFields() {
-        Profile profile = MainPanelController.getProfileController().getProfile();
+    /**
+     * logic for deleting a watchlist from a user's profile
+     * @return MouseAdapter to listen for when the button is clicked
+     */
+    public static MouseAdapter getDeleteWatchListAction() {
+        return  new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
 
-        ProfileSection.setFields(profile.getFirst(), profile.getLast(), profile.getUsername(), profile.getEmail());
-        initializeModels(profile.getWatchLists());
+                YoloTrader.logger.info("deleting watchList");
+
+            }
+        };
     }
 
-    public static void initializeModels(List<StockWatchList> watchListList) {
+    /**
+     * calls all the panels in the center panel of ${@link MainPanel}
+     * to set their fields accordingly
+     * @param profile user's profile to the necessary fields ot set the panel fields
+     */
+    public static void setAllCenterPanels(Profile profile) {
+        AboutSection.setMainAboutPanel();
+        HelpSection.setHelpPanel();
+        ProfileSection.setProfilePanel(profile);
+        StocksSection.setStocksMainPanel(profile);
+    }
 
-        for (int i = 0; i < watchListList.size(); i++) {
-            ((DefaultListModel<String>)StocksSection.watchListModel).addElement(watchListList.get(i).getName());
-        }
+    /**
+     * @return the stock watchList controller of the user's stocks
+     */
+    public static StockWatchListController getStockWatchListController() {
+        return stockWatchListController;
     }
 }
 
