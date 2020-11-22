@@ -21,7 +21,7 @@ public class AboutSection {
     public static String aboutString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>ABOUT</B>";
     public static String developerString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>DEVELOPERS</B>";
 
-    public static String developerLabelString = "<html><ul>" +
+     public static String developerLabelString = "<html><ul>" +
             "<li>Owen Murphy [Leader] (responsibilities):</li>" +
                 "<ul>" +
                     "<li>User Interface</li>" +
@@ -31,6 +31,8 @@ public class AboutSection {
             "<li>Prince Kalu (responsibilities):</li>" +
                 "<ul>" +
                     "<li>Analysis and Design</li>" +
+                    "<li>Backend Development</li>"+
+                    "<li>Middleware Development</li>"+
                 "</ul>" +
             "</html";
 
