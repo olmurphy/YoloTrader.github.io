@@ -5,6 +5,7 @@ import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks.StocksSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Name;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Search;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
@@ -109,21 +110,22 @@ public class NorthPanelController {
                     }
                 }
 
+                // check if the list exists
                 if (listExists) {
                     Stock stock = new Stock(stockString, results.get(stockString), new Date());
 
                     if (MainPanelController.getStockController().addStock(stock, list.get(index))) {
 
-                        System.out.println("adding " + stockString + " to " + listName);
+                        SearchResults.getStockAddedSuccessfullyMessage();
+
+                       YoloTrader.logger.info("adding " + stockString + " to " + listName);
                     } else {
-
+                        SearchResults.getStockAlreadyAddedWarning();
                     }
+                } else {
+                    // display error that the list does not exist
+                    SearchResults.getListNotExistWarning();
                 }
-
-
-
-
-
             }
             System.out.println();
         };

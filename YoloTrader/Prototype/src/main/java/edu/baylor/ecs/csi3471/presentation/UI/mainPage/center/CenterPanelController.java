@@ -3,6 +3,7 @@ package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.about.AboutSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.help.HelpSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.profile.ProfileSection;
@@ -61,13 +62,12 @@ public class CenterPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // FIXME: add an action here
-                // FIXME: need to add a disabled button action for when no watchlist is selected
 
                 YoloTrader.logger.info("user wants to add a stock");
 
                 if (StocksSection.getWatchListList().isSelectionEmpty()) {
-                    AddStock.getWarningMessage();
+                    // no watchlist selected
+                    AddStock.getNoWatchListSelectedWarning();
                 } else {
 
                 }
@@ -103,11 +103,24 @@ public class CenterPanelController {
                 String watchListName = CreateWatchList.watchListNameWindow();
                 StockWatchList stockWatchList = new StockWatchList(watchListName, new Date());
 
-                if (stockWatchListController.addWatchList(stockWatchList)) {
+                // MainPanelController.getProfileController()
+                stockWatchListController.addWatchList(stockWatchList);
+                // MainPanelController.getProfileController().getProfile().getWatchLists().add(stockWatchList);
+                ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
+
+                MainPanelController.getProfileController().save();
+
+                //MainPanelController
+
+
+                /*if (stockWatchListController.addWatchList(stockWatchList)) {
                     ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
+
+                    MainPanelController.getProfileController().getProfile().setWatchLists(stockWatchListController.getService().getDao().getAllWatchLists());
+
                 } else {
                     CreateWatchList.getWatchListNameTaken();
-                }
+                }*/
             }
         };
     }
@@ -121,15 +134,25 @@ public class CenterPanelController {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                YoloTrader.logger.info("deleting watchList");
+                if (StocksSection.getWatchListList().isSelectionEmpty()) {
+                    // no watchlist selected
+                    AddStock.getNoWatchListSelectedWarning();
+                } else {
+                    String listName = StocksSection.getWatchListList().getSelectedValue().toString();
 
+                    System.out.println("trying to delete: " + listName);
+                    if (stockWatchListController.removeWatchList(listName)) {
+                        ((DefaultListModel)StocksSection.watchListModel).removeElement(listName);
+                        YoloTrader.logger.info("deleting watchList");
+                    }
+                }
             }
         };
     }
 
     /**
      * calls all the panels in the center panel of ${@link MainPanel}
-     * to set their fields accordingly
+     * to set their fields accordingly. In addition, it initializes and load watch list controller
      * @param profile user's profile to the necessary fields ot set the panel fields
      */
     public static void setAllCenterPanels(Profile profile) {
@@ -137,6 +160,10 @@ public class CenterPanelController {
         HelpSection.setHelpPanel();
         ProfileSection.setProfilePanel(profile);
         StocksSection.setStocksMainPanel(profile);
+
+        stockWatchListController = new StockWatchListController();
+        stockWatchListController.loadStockLists(profile.getWatchLists());
+        stockWatchListController.getService().getDao().getAll().forEach(System.out::println);
     }
 
     /**

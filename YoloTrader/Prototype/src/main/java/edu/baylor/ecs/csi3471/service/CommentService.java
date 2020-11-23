@@ -1,28 +1,29 @@
 package edu.baylor.ecs.csi3471.service;
 
 import edu.baylor.ecs.csi3471.dao.CommentDAO;
-import edu.baylor.ecs.csi3471.dao.CommentDAOImpl;
+import edu.baylor.ecs.csi3471.dao.GenericDAO;
+import edu.baylor.ecs.csi3471.model.Comment;
 
 /**
  * @author owenmurphy
  */
 public class CommentService {
 
-    private CommentDAO dao;
+    private GenericDAO<Comment> dao;
 
     public CommentService() {
-        this.dao = new CommentDAOImpl();
+        this.dao = new CommentDAO();
     }
 
-    public CommentService(CommentDAO dao) {
+    public CommentService(GenericDAO<Comment> dao) {
         this.dao = dao;
     }
 
-    public CommentDAO getDao() {
+    public GenericDAO<Comment> getDao() {
         return dao;
     }
 
-    public void setDao(CommentDAO dao) {
+    public void setDao(GenericDAO<Comment> dao) {
         this.dao = dao;
     }
 }

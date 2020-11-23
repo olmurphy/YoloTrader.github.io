@@ -6,7 +6,6 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
@@ -87,12 +86,12 @@ public class FormController {
             // check for valid email format
             if (validateLogInFieldsNotEmpty()) {
 
-                Profile profile = profileController.checkCredentials(LogIn.getEmailField().getText(),
-                        new String(LogIn.getPasswordField().getPassword()));
+                if (profileController.checkCredentials(LogIn.getEmailField().getText(),
+                        new String(LogIn.getPasswordField().getPassword()))) {
 
-                if (profile != null) {
                     YoloTrader.logger.info("logging in");
-                    profileController.setProfile(profile);
+
+                    System.out.println("profile found at: " + profileController.getProfileIndex());
 
                     LogIn.getFrame().dispose();
                     MainPanel.createUI();

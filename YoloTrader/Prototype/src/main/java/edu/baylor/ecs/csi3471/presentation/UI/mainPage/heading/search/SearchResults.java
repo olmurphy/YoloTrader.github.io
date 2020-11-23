@@ -16,8 +16,6 @@ public class SearchResults {
 
     public static ListModel<String> stockModel;
 
-    public static int width = 300;
-    public static int height = 400;
 
     /**
      * main dialog that displays the company names from the result of the search
@@ -92,18 +90,50 @@ public class SearchResults {
         return addStockButton;
     }
 
+    /**
+     * displays warning that no results showed from the query of searching the stock
+     */
     public static void getNoResultsWarning() {
         JOptionPane.showMessageDialog(null, "No results found.",
                 "Warning", JOptionPane.WARNING_MESSAGE);
     }
 
+    /**
+     * pulls a input dialog asking for the user to input the name of the watch list they wnat to create
+     * @return name of stock watch list from user
+     */
     public static String getInputWatchListNameToAdd() {
         return JOptionPane.showInputDialog(null, "input the watchlist name",
                 "Input Window", JOptionPane.QUESTION_MESSAGE);
     }
 
+    /**
+     * displays a warning to the user saying no stock is selected for trying to add a stock
+     */
     public static void getNoStockSelectedWarning() {
         JOptionPane.showMessageDialog(null, "no stock selected",
                 "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+
+    /**
+     * displays error if the input name for the watch list does not exist
+     */
+    public static void getListNotExistWarning() {
+        JOptionPane.showMessageDialog(null, "not watch list exists",
+                "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+
+    /**
+     * displays successful message that the stock was added successfully
+     */
+    public static void getStockAddedSuccessfullyMessage() {
+        JOptionPane.showMessageDialog(null, "Stock was added successfully");
+    }
+
+    /**
+     * display errors to user saying the stock has already been added to the list wanted to add to
+     */
+    public static void getStockAlreadyAddedWarning() {
+        JOptionPane.showMessageDialog(null, "Stock already added", "Warning", JOptionPane.WARNING_MESSAGE);
     }
 }

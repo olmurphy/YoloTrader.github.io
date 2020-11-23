@@ -10,7 +10,10 @@ public class AddStock {
     // FIXME: This window will perform similarly to the "Search" a stock
     // FIXME: just with another reference place to add a stock
 
-    public static void getWarningMessage() {
+    /**
+     * displays warning if the user has not selected watch list to perform an action on
+     */
+    public static void getNoWatchListSelectedWarning() {
         JOptionPane.showMessageDialog(null, "Need to select a watchList to add to",
                 "Warning", JOptionPane.WARNING_MESSAGE);
     }

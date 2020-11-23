@@ -1,83 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:profileDAOImpl xmlns:ns2="Database">
-    <ProfileList>
-        <Profile>
-            <email>email</email>
-            <username>user</username>
-            <password>pass</password>
-            <first>first</first>
-            <last>last</last>
+<ns2:profileDAO xmlns:ns2="Database">
+    <profileList>
+        <profile>
+            <email>k</email>
+            <username>k</username>
+            <password>k</password>
+            <first>k</first>
+            <last>k</last>
             <listOfWatchLists/>
-        </Profile>
-        <Profile>
-            <email>email1</email>
-            <username>user1</username>
-            <password>pass1</password>
-            <first>first1</first>
-            <last>last1</last>
-            <listOfWatchLists/>
-        </Profile>
-        <Profile>
-            <email>q</email>
-            <username>q</username>
-            <password>q</password>
-            <first>q</first>
-            <last>q</last>
+        </profile>
+        <profile>
+            <email>a</email>
+            <username>a</username>
+            <password>a</password>
+            <first>a</first>
+            <last>a</last>
             <listOfWatchLists>
                 <watchListName>
-                    <name>new </name>
-                    <dateCreated>2020-11-18T21:37:23.301-06:00</dateCreated>
-                </watchListName>
-                <watchListName>
-                    <name>list1</name>
-                    <dateCreated>2020-11-18T21:37:28.717-06:00</dateCreated>
-                </watchListName>
-                <watchListName>
-                    <name>list2</name>
-                    <dateCreated>2020-11-18T21:37:30.968-06:00</dateCreated>
-                </watchListName>
-                <watchListName>
-                    <name>list3</name>
-                    <dateCreated>2020-11-18T21:37:32.813-06:00</dateCreated>
-                </watchListName>
-                <watchListName>
-                    <name>list4</name>
-                    <dateCreated>2020-11-18T21:37:35.502-06:00</dateCreated>
-                </watchListName>
-                <watchListName>
-                    <name>list5-test</name>
-                    <dateCreated>2020-11-18T22:12:38.860-06:00</dateCreated>
-                </watchListName>
-                <watchListName>
-                    <name>asdf</name>
-                    <dateCreated>2020-11-21T15:23:00.439-06:00</dateCreated>
+                    <name>test1</name>
+                    <dateCreated>2020-11-23T11:11:21.115-06:00</dateCreated>
                     <stockList/>
                 </watchListName>
             </listOfWatchLists>
-        </Profile>
-        <Profile>
-            <email>uniqueEmailTest</email>
-            <username>q</username>
-            <password>q</password>
-            <first>q</first>
-            <last>q</last>
-            <listOfWatchLists/>
-        </Profile>
-        <Profile>
-            <email>a;dfslk</email>
-            <username>;fdlkj</username>
-            <password>as</password>
-            <first>adfs</first>
-            <last>;adslfkj</last>
-            <listOfWatchLists/>
-        </Profile>
-        <Profile>
-            <email>owen261@icloud.com</email>
-            <username>sa;dlfkj</username>
-            <password>50LVZGCRTZKGAZR1YC</password>
-            <first>ow</first>
-            <last>s;l</last>
-            <listOfWatchLists/>
-        </Profile>
-    </ProfileList>
-</ns2:profileDAOImpl>
+        </profile>
+    </profileList>
+</ns2:profileDAO>

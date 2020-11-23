@@ -15,7 +15,7 @@ import java.util.Objects;
  * @author owenmurphy
  */
 @XmlRootElement(name = "comment")
-@XmlType(propOrder = {"subject", "dateCreated", "text"})
+@XmlType(propOrder = {"subject", "dateCreated", "dateLastModified", "text"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Comment {
 

@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import yahoofinance.Stock;
-
 /**
  * This class is the list of stocks, that is, a stock watch list
  *
  * @author owenmurphy
  */
-@XmlRootElement(name = "stockWatchList")
+@XmlRootElement(name = "watchList")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class StockWatchList implements Comparable<StockWatchList> {
 
@@ -107,7 +105,7 @@ public class StockWatchList implements Comparable<StockWatchList> {
         return "StockWatchList{" +
                 "name='" + name + '\'' +
                 ", dateCreated=" + dateCreated +
-                ", stockWatchList=" + stockList +
+                ", stockList=" + stockList +
                 '}';
     }
 }

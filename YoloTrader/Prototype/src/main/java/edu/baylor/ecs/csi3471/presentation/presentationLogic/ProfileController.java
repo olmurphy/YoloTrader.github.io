@@ -11,6 +11,9 @@ public class ProfileController {
     /** user's Profile they use */
     private Profile profile;
 
+    /** contains position that profile was found save it back in DAO */
+    int profileIndex;
+
     /** Profile Service, the user is accessing the methods*/
     private ProfileService service;
 
@@ -26,10 +29,29 @@ public class ProfileController {
 
     public void loadProfiles() { service.loadProfiles(); }
 
-    public void saveProfiles() { service.saveProfiles(); }
+    public void saveProfiles() {
+        service.saveProfiles();
+    }
 
-    public Profile checkCredentials(String email, String pass) {
-        return service.getProfile(email, pass);
+    public void save() {
+        if (this.profile != null) {
+            System.out.println("profile is NOT null\n" + "index is: " + profileIndex);
+        }
+        service.save(profileIndex, this.profile);
+    }
+
+    public boolean checkCredentials(String email, String pass) {
+
+        Object[] objects = service.getProfile(email, pass);
+
+        if (objects[0] != null) {
+            System.out.println("values are not null");
+            this.profileIndex = Integer.parseInt(objects[0].toString());
+            this.profile = (Profile)objects[1]; // this works
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -64,7 +86,19 @@ public class ProfileController {
         this.service = service;
     }
 
+    /**
+     * calls the service to inject the forgot password functionality
+     * @param email email of the user to check if exists
+     * @return true if password changed and email sent, o.w. false
+     */
     public boolean recoverPassword(String email) {
         return this.service.recoverPassword(email);
+    }
+
+    /**
+     * @return index that profile was found at
+     */
+    public Integer getProfileIndex() {
+        return profileIndex;
     }
 }

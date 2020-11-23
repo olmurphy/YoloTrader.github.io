@@ -7,11 +7,47 @@ import java.util.List;
 /**
  * @author owenmurphy
  */
-public interface StockDAO {
+public class StockDAO implements GenericDAO<Stock> {
 
-    List<Stock> getStocks();
+    private List<Stock> stocks;
 
-    void addStock(Stock stock);
+    @Override
+    public List<Stock> getAll() {
+        return this.stocks;
+    }
 
-    void removeStock(Stock stock);
+    @Override
+    public void save(Stock stock) {
+        // do nothing
+    }
+
+    @Override
+    public void update(Stock stock) {
+        // do nothing
+    }
+
+    @Override
+    public void delete(Stock stock) {
+        this.stocks.remove(stock);
+    }
+
+    @Override
+    public boolean add(Stock stock) {
+        return this.stocks.add(stock);
+    }
+
+    @Override
+    public void setAll(List<Stock> t) {
+        this.stocks = t;
+    }
+
+    @Override
+    public void saveAll() {
+        // do nothing
+    }
+
+    @Override
+    public void loadAll() {
+        // do nothing
+    }
 }

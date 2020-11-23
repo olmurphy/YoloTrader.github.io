@@ -1,6 +1,7 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.west;
 
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 
@@ -72,6 +73,7 @@ public class WestPanelController {
 
                 MainPanel.getMainPanel().add(CenterPanelController.getProfilePanel(), BorderLayout.CENTER);
                 MainPanel.getMainPanel().updateUI();
+                MainPanelController.getProfileController().save();
             }
         };
     }

@@ -1,7 +1,8 @@
 package edu.baylor.ecs.csi3471.API;
 
-import edu.baylor.ecs.csi3471.dao.StockWatchListDAO;
+import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.model.Stock;
+import edu.baylor.ecs.csi3471.model.StockWatchList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class StockUtil {
         NYSE
     }
 
-    StockWatchListDAO WatchLists;
+    GenericDAO<StockWatchList> WatchLists;
 
     private final static String SEARCH_URL ="https://financialmodelingprep.com/api/v3/search?query=";
     private final static  String EXCHANGE_URL = "&limit=10&exchange=";

@@ -1,7 +1,7 @@
 package edu.baylor.ecs.csi3471.service;
 
+import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.dao.ProfileDAO;
-import edu.baylor.ecs.csi3471.dao.ProfileDAOImpl;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.presentation.UI.form.Email;
@@ -13,58 +13,51 @@ import java.util.List;
  */
 public class ProfileService {
 
-    private ProfileDAO dao;
+    private GenericDAO<Profile> dao;
 
     public ProfileService() {
-        this.dao = new ProfileDAOImpl();
+        this.dao = new ProfileDAO();
     }
 
-    public ProfileService(ProfileDAO dao) {
+    public ProfileService(GenericDAO<Profile> dao) {
         this.dao = dao;
     }
 
     public boolean addProfile(Profile profile) {
-
-        List<Profile> profiles = dao.getAllProfiles();
-
-        boolean uniqueEmail = true;
-
-        for (int i = 0; uniqueEmail && i < profiles.size(); i++) {
-            if (profiles.get(i).getEmail().equals(profile.getEmail())) {
-                uniqueEmail = false;
-            }
-        }
-
-        if (uniqueEmail) {
-            dao.insertProfile(profile);
-            System.out.println("profile inserted: " + profile.toString());
-        }
-
-        return uniqueEmail;
+        return dao.add(profile);
     }
 
-    public Profile getProfile(String email, String pass) {
-        Profile retProfile = null;
 
-        List<Profile> profiles = dao.getAllProfiles();
+    public Object[] getProfile(String email, String pass) {
+        Object[] objects = new Object[2];
 
+        objects[0] = null;
+        objects[1] = null;
+
+        List<Profile> profiles = dao.getAll();
         boolean found = false;
-        for (int i = 0; !found && i < profiles.size(); i++) {
-            if (email.equals(profiles.get(i).getEmail()) && pass.equals(profiles.get(i).getPassword())) {
+        for (int index = 0; !found && index < profiles.size(); index++) {
+            if (profiles.get(index).getEmail().equals(email) && profiles.get(index).getPassword().equals(pass)) {
+                System.out.println("found profile at: " + index);
+                objects[0] = index;
+                objects[1] = profiles.get(index);
                 found = true;
-                retProfile = profiles.get(i);
             }
         }
 
-        return retProfile;
+        return objects;
     }
 
-    public void saveProfiles() { dao.saveProfiles(); }
+    public void saveProfiles() {
+        System.out.println("SaveAll");
+        dao.saveAll(); }
+
+    public void save(int index, Profile profile) { ((ProfileDAO)this.dao).save(index, profile); }
 
     /**
-     * @return ProfileDAO for all profiles
+     * @return GenericDAO of profiles for all profiles
      */
-    public ProfileDAO getDao() {
+    public GenericDAO<Profile> getDao() {
         return dao;
     }
 
@@ -73,16 +66,16 @@ public class ProfileService {
      *
      * @param dao ProfileDAO using
      */
-    public void setDao(ProfileDAO dao) {
+    public void setDao(GenericDAO<Profile> dao) {
         this.dao = dao;
     }
 
     public void loadProfiles() {
-        dao.loadProfiles();
+        dao.loadAll();
     }
 
     public boolean recoverPassword(String email) {
-        List<Profile> profiles = this.dao.getAllProfiles();
+        List<Profile> profiles = this.dao.getAll();
 
         boolean found = false;
         int index;
@@ -95,7 +88,7 @@ public class ProfileService {
                 // changing password with a random password
                 YoloTrader.logger.info("Changing password");
                 String password = Email.getSaltString();
-                this.dao.changeProfilePassword(index, password);
+                ((ProfileDAO)this.dao).changeProfilePassword(index, password);
 
                 // sending client new password
                 Email.sendEmail(email, "Changed Password", "Your new password is: " +

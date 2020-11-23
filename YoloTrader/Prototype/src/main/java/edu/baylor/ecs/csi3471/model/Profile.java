@@ -3,6 +3,7 @@ package edu.baylor.ecs.csi3471.model;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is the user's profile that holds the user's information
@@ -158,5 +159,22 @@ public class Profile {
                 ", last='" + last + '\'' +
                 ", watchLists=" + watchLists +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profile profile = (Profile) o;
+        return Objects.equals(email, profile.email) &&
+                Objects.equals(username, profile.username) &&
+                Objects.equals(password, profile.password) &&
+                Objects.equals(first, profile.first) &&
+                Objects.equals(last, profile.last);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, username, password, first, last);
     }
 }

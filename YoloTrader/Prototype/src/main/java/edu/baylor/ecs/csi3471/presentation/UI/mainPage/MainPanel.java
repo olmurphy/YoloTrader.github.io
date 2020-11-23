@@ -31,9 +31,6 @@ public class MainPanel {
         // initializing all the panels and the fields inside when the frame opens
         MainPanelController.initializeAllPanels();
 
-        // setting all the fields in the panel
-        // MainPanelController.initializeAllFieldsInMainPanel();
-
         WestPanel.creatWestPanel(mainPanel);
         NorthPanel.createNorthPanel(mainPanel);
 
@@ -50,7 +47,6 @@ public class MainPanel {
     public static void getStartFrame() {
         FormController.getStartFrame();
     }
-
 
     /**
      * used for closing the home frame when user logs out

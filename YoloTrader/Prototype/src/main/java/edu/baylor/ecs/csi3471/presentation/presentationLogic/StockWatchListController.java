@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.presentation.presentationLogic;
 
+import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.service.StockWatchListService;
 
@@ -19,6 +20,10 @@ public class StockWatchListController {
         this.stockWatchList = new StockWatchList();
     }
 
+    public void loadStockLists(List<StockWatchList> list) {
+        this.service.loadStockList(list);
+    }
+
     public StockWatchListController(StockWatchList stockWatchList, StockWatchListService service) {
         this.stockWatchList = stockWatchList;
         this.service = service;
@@ -26,6 +31,10 @@ public class StockWatchListController {
 
     public boolean addWatchList(StockWatchList list) {
         return this.service.addWatchList(list);
+    }
+
+    public boolean removeWatchList(String name) {
+        return this.service.removeWatchList(name);
     }
 
     public StockWatchList getStockWatchList() {
@@ -46,9 +55,5 @@ public class StockWatchListController {
 
     public void setService(StockWatchListService service) {
         this.service = service;
-    }
-
-    public void setListStockWatchList(List<StockWatchList> list) {
-        this.service.setWatchList(list);
     }
 }
