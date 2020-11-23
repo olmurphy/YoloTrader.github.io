@@ -133,6 +133,7 @@ public class FormController {
 
                 if (proceed && profileController.addProfile(profile) ) {
                     profileController.setProfile(profile);
+                    profileController.saveProfiles();
                     CreateAccount.getFrame().dispose();
                     MainPanel.createUI();
                     YoloTrader.logger.info("creating account...");

@@ -22,7 +22,7 @@ public class StockDAO implements GenericDAO<Stock> {
     }
 
     @Override
-    public void update(Stock stock) {
+    public void update(int index, Stock stock) {
         // do nothing
     }
 
@@ -32,8 +32,8 @@ public class StockDAO implements GenericDAO<Stock> {
     }
 
     @Override
-    public boolean add(Stock stock) {
-        return this.stocks.add(stock);
+    public void add(Stock stock) {
+        this.stocks.add(stock);
     }
 
     @Override

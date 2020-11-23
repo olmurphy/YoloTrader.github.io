@@ -24,9 +24,22 @@ public class ProfileService {
     }
 
     public boolean addProfile(Profile profile) {
-        return dao.add(profile);
-    }
 
+        List<Profile> profiles = this.dao.getAll();
+
+        boolean isUnique = true;
+        for (int i = 0; isUnique && i < profiles.size(); i++) { // short circuit the loop if found
+            if (profiles.get(i).equals(profile)) {
+                isUnique = false;
+            }
+        }
+
+        if (isUnique) {
+            this.dao.add(profile);
+        }
+
+        return isUnique;
+    }
 
     public Object[] getProfile(String email, String pass) {
         Object[] objects = new Object[2];
@@ -38,7 +51,6 @@ public class ProfileService {
         boolean found = false;
         for (int index = 0; !found && index < profiles.size(); index++) {
             if (profiles.get(index).getEmail().equals(email) && profiles.get(index).getPassword().equals(pass)) {
-                System.out.println("found profile at: " + index);
                 objects[0] = index;
                 objects[1] = profiles.get(index);
                 found = true;
@@ -49,7 +61,6 @@ public class ProfileService {
     }
 
     public void saveProfiles() {
-        System.out.println("SaveAll");
         dao.saveAll(); }
 
     public void save(int index, Profile profile) { ((ProfileDAO)this.dao).save(index, profile); }

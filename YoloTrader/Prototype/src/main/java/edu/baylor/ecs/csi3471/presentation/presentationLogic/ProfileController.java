@@ -34,9 +34,6 @@ public class ProfileController {
     }
 
     public void save() {
-        if (this.profile != null) {
-            System.out.println("profile is NOT null\n" + "index is: " + profileIndex);
-        }
         service.save(profileIndex, this.profile);
     }
 

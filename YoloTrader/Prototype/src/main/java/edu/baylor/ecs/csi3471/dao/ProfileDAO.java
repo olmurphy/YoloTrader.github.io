@@ -44,7 +44,7 @@ public class ProfileDAO implements GenericDAO<Profile> {
     }
 
     @Override
-    public void update(Profile profile) {
+    public void update(int index, Profile profile) {
         // don't do anything
     }
 
@@ -54,9 +54,8 @@ public class ProfileDAO implements GenericDAO<Profile> {
     }
 
     @Override
-    public boolean add(Profile profile) {
-        System.out.println("adding profile");
-        return profiles.add(profile);
+    public void add(Profile profile) {
+        profiles.add(profile);
     }
 
     @Override
@@ -78,15 +77,20 @@ public class ProfileDAO implements GenericDAO<Profile> {
     @Override
     public void saveAll() {
         // FIXME: Bug, I don't know what is going on
-        System.out.println("--------Inside DAO saving...---------");
+        System.out.println("--------Inside DAO saving---------");
         profiles.forEach(System.out::println);
-        System.out.println("----------------------\n\n");
+        System.out.println("----------------------------------\n\n");
 
         profileDAOUtil = new XMLProfileDAOUtil();
 
         profileDAOUtil.doSave(this);
     }
 
+    /**
+     * changes password of the profiles at index
+     * @param index index of profile to change password
+     * @param newPass new password of profile
+     */
     public void changeProfilePassword(int index, String newPass) {
         profiles.get(index).setPassword(newPass);
         profiles.forEach(x -> System.out.println(x.toString()));

@@ -138,7 +138,7 @@ public class NorthPanelController {
      */
     public static ActionListener getLogoutButtonListener() {
         return e -> {
-            YoloTrader.logger.info("logging out");
+            YoloTrader.logger.info("logging out...");
             MainPanel.getHomeFrame().dispose();
 
             MainPanel.getStartFrame();

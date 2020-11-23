@@ -32,7 +32,7 @@ public class StockWatchListDAO implements GenericDAO<StockWatchList> {
     }
 
     @Override
-    public void update(StockWatchList stockWatchList) {
+    public void update(int index, StockWatchList stockWatchList) {
         // do nothing
     }
 
@@ -42,8 +42,8 @@ public class StockWatchListDAO implements GenericDAO<StockWatchList> {
     }
 
     @Override
-    public boolean add(StockWatchList stockWatchList) {
-        return this.stockWatchLists.add(stockWatchList);
+    public void add(StockWatchList stockWatchList) {
+        this.stockWatchLists.add(stockWatchList);
     }
 
     @Override

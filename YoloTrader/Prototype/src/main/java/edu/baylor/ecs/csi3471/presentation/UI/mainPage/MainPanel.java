@@ -25,9 +25,6 @@ public class MainPanel {
         homeFrame.setSize(new Dimension(frameWidth, frameHeight));
         mainPanel = new JPanel(new BorderLayout());
 
-        // adding the window listener when application exits to save the info
-        homeFrame.addWindowListener(MainPanelController.getMainFrameListener());
-
         // initializing all the panels and the fields inside when the frame opens
         MainPanelController.initializeAllPanels();
 

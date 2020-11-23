@@ -6,7 +6,6 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelControl
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.Thread.*;
 
 
 import java.awt.event.WindowAdapter;
@@ -21,21 +20,6 @@ public class MainPanelController {
 
     /** stock controller handles events to stock, like add, delete */
     public static StockController stockController;
-
-    /**
-     * This function handles saving all data to the database
-     * @return WindowListener to listen when the application is exited
-     */
-    public static WindowListener getMainFrameListener() {
-
-        return new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                YoloTrader.logger.info("Saving info");
-                FormController.getProfileController().saveProfiles();
-            }
-        };
-    }
 
     public static ProfileController getProfileController() {
         return FormController.getProfileController();

@@ -23,7 +23,7 @@ public class CommentDAO implements GenericDAO<Comment> {
     }
 
     @Override
-    public void update(Comment comment) {
+    public void update(int index, Comment comment) {
         // do nothing
     }
 
@@ -33,8 +33,8 @@ public class CommentDAO implements GenericDAO<Comment> {
     }
 
     @Override
-    public boolean add(Comment comment) {
-        return this.comments.add(comment);
+    public void add(Comment comment) {
+        this.comments.add(comment);
     }
 
     @Override

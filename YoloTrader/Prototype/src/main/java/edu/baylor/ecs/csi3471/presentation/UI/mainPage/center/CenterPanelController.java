@@ -103,24 +103,14 @@ public class CenterPanelController {
                 String watchListName = CreateWatchList.watchListNameWindow();
                 StockWatchList stockWatchList = new StockWatchList(watchListName, new Date());
 
-                // MainPanelController.getProfileController()
-                stockWatchListController.addWatchList(stockWatchList);
-                // MainPanelController.getProfileController().getProfile().getWatchLists().add(stockWatchList);
-                ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
-
-                MainPanelController.getProfileController().save();
-
-                //MainPanelController
-
-
-                /*if (stockWatchListController.addWatchList(stockWatchList)) {
+                if (stockWatchListController.addWatchList(stockWatchList)) {
                     ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
 
-                    MainPanelController.getProfileController().getProfile().setWatchLists(stockWatchListController.getService().getDao().getAllWatchLists());
-
+                    // saving changes to xml file
+                    MainPanelController.getProfileController().saveProfiles();
                 } else {
                     CreateWatchList.getWatchListNameTaken();
-                }*/
+                }
             }
         };
     }
@@ -144,6 +134,9 @@ public class CenterPanelController {
                     if (stockWatchListController.removeWatchList(listName)) {
                         ((DefaultListModel)StocksSection.watchListModel).removeElement(listName);
                         YoloTrader.logger.info("deleting watchList");
+
+                        // saving changes to xml file
+                        MainPanelController.getProfileController().saveProfiles();
                     }
                 }
             }

@@ -23,5 +23,29 @@
                 </watchListName>
             </listOfWatchLists>
         </profile>
+        <profile>
+            <email>q</email>
+            <username>q</username>
+            <password>q</password>
+            <first>q</first>
+            <last>q</last>
+            <listOfWatchLists>
+                <watchListName>
+                    <name>test1</name>
+                    <dateCreated>2020-11-23T12:21:36.449-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+                <watchListName>
+                    <name>test2</name>
+                    <dateCreated>2020-11-23T12:21:44.220-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+                <watchListName>
+                    <name>test3</name>
+                    <dateCreated>2020-11-23T12:39:29.360-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+            </listOfWatchLists>
+        </profile>
     </profileList>
 </ns2:profileDAO>
