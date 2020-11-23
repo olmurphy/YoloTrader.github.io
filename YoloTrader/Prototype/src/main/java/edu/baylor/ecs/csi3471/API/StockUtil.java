@@ -1,6 +1,11 @@
 package edu.baylor.ecs.csi3471.API;
 
+<<<<<<< HEAD
 import edu.baylor.ecs.csi3471.dao.GenericDAO;
+=======
+import edu.baylor.ecs.csi3471.dao.StockWatchListDAO;
+import edu.baylor.ecs.csi3471.main.YoloTrader;
+>>>>>>> 9df659717b9e8744fdcff686467c1d80fe5e8d8b
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 
@@ -12,7 +17,19 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
+
+
+/**
+ * The StockUtil class is responsible for managing watch lists, and 
+ * looking up & analyzing stocks.
+ * <p>
+ * YoloTrader utilizes the YahooFinanceAPI & FinancialModelingPrepAPI(NASDAQ) to
+ * provide its services.
+ * 
+ * @author      Prince Kalu
+ */
 public class StockUtil {
 
     //Two different exchanges
@@ -26,7 +43,84 @@ public class StockUtil {
 
     private final static String SEARCH_URL ="https://financialmodelingprep.com/api/v3/search?query=";
     private final static  String EXCHANGE_URL = "&limit=10&exchange=";
-    private final static String API_URL = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+    private final static String SEARCH_API_URL = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+    
+    private final static String GRAPH_URL = "https://financialmodelingprep.com/api/v3/historical-chart/1hour/";
+    private final static String GRAPH_API_URL = "?apikey=4819ef0b5de9d90ed219e89c51f35d34";
+    
+    
+    
+
+    
+    /**
+     * The getGraphData function returns a list of equity's prices for the day.
+     * <p>
+     * @param equity	${@link yahoofinance.Stock}
+     * <p>
+     * @return	{@link Vector<Double>} 
+     */
+    public Vector<Double> getGraphData(yahoofinance.Stock equity){
+    	
+    	String query = GRAPH_URL + equity.getSymbol() + GRAPH_API_URL;
+    	Vector<Double> data = new Vector<Double>();
+    	String close = "close";
+    	String price;
+    	int begin;
+    	int end;
+    	String separate = ":";
+        String start = "\"";
+    	
+    	
+    	try {
+    	
+	    	URL url = new URL(query);
+	    	
+	    
+	    	//read and modify the data to double
+	    	try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+	    	    for (String line; (line = reader.readLine()) != null;) {
+	    	    	
+
+                    //Only be concerned with the closing price.
+                    if(line.contains(close)) {
+                    	
+
+                        //Get closing price.
+                        begin = line.indexOf(separate);
+                        begin= line.indexOf(start,begin);
+                        begin++;
+                        end = line.indexOf(start, begin);
+                        price = line.substring(begin, end);
+                        
+                       
+
+                        //Modify and save data.
+                        data.add(Double.parseDouble(price));
+                        
+                    }
+	    	    
+	    	  }
+	    	}
+	    	
+    	}
+    	catch(UnsupportedEncodingException u) {
+           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+           YoloTrader.logger.warning(u.toString());
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+        	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+        	YoloTrader.logger.warning(e.toString());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+        	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+            YoloTrader.logger.warning(e.toString());
+        }
+	    	
+	    //return data
+    	return data;
+    	
+    }
+    
 
     /**
      * The pullUp function returns a ${@link Map} of name keys to ticker values. The name
@@ -75,7 +169,7 @@ public class StockUtil {
                     search += Exchange.NYSE;
                 }
 
-                search += API_URL;
+                search += SEARCH_API_URL;
 
 
                 URL url = new URL(search);
@@ -86,7 +180,6 @@ public class StockUtil {
 
                     //Only be concerned with the symbol and name line.
                     if(line.contains(symbol)) {
-
 
                         //Get ticker.
                         begin = line.indexOf(separate);
@@ -110,17 +203,17 @@ public class StockUtil {
             }
         }
         catch(UnsupportedEncodingException u) {
-            System.out.print("An Unsupported encoding exception was caught..Printing stack trace...\n");
-            u.printStackTrace();
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            System.out.print("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            System.out.print("An Input/Output exception was caught..Printing stack trace...\n");
-            e.printStackTrace();
-        }
+            YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+            YoloTrader.logger.warning(u.toString());
+         } catch (MalformedURLException e) {
+             // TODO Auto-generated catch block
+         	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+         	YoloTrader.logger.warning(e.toString());
+         } catch (IOException e) {
+             // TODO Auto-generated catch block
+         	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+             YoloTrader.logger.warning(e.toString());
+         }
 
         return results;
     }
