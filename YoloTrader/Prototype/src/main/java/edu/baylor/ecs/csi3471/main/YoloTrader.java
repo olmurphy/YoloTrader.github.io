@@ -8,7 +8,9 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
- * @author owenmurphy
+ * This is the main application starter87
+ *
+ * @author owenmurphy & Prince Kalu
  */
 public class YoloTrader {
 
