@@ -6,6 +6,7 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelControl
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockController;
+import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
 
 
 import java.awt.event.WindowAdapter;
@@ -20,6 +21,7 @@ public class MainPanelController {
 
     /** stock controller handles events to stock, like add, delete */
     public static StockController stockController;
+    public static StockWatchListController stockWatchListController;
 
     public static ProfileController getProfileController() {
         return FormController.getProfileController();
@@ -43,5 +45,12 @@ public class MainPanelController {
 
     public static StockController getStockController() {
         return stockController;
+    }
+
+    /**
+     * @return the stock watchList controller of the user's stocks
+     */
+    public static StockWatchListController getStockWatchListController() {
+        return stockWatchListController;
     }
 }

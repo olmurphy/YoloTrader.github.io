@@ -10,7 +10,6 @@ import java.util.List;
  */
 public class StockWatchListDAO implements GenericDAO<StockWatchList> {
 
-
     private List<StockWatchList> stockWatchLists;
 
     public StockWatchListDAO() {

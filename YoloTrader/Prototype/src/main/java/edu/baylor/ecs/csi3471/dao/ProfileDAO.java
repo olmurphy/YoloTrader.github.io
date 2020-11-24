@@ -32,10 +32,7 @@ public class ProfileDAO implements GenericDAO<Profile> {
     }
 
     public void save(int index, Profile profile) {
-        System.out.println("Updating the profile");
-        // System.out.println(profile.toString());
         profiles.set(index, profile);
-        profiles.forEach(System.out::println);
     }
 
     @Override
@@ -93,6 +90,6 @@ public class ProfileDAO implements GenericDAO<Profile> {
      */
     public void changeProfilePassword(int index, String newPass) {
         profiles.get(index).setPassword(newPass);
-        profiles.forEach(x -> System.out.println(x.toString()));
+        // profiles.forEach(x -> System.out.println(x.toString()));
     }
 }

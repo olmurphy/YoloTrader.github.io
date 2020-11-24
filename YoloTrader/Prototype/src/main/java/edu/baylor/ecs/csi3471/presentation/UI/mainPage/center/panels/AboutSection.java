@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.about;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels;
 
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 

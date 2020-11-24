@@ -25,6 +25,25 @@ public class StockWatchListService {
         this.dao.setAll(list);
     }
 
+    /**
+     * searches the dao for the stock watch list given the list name
+     * @param listName name of the watch list to search for
+     * @return stock watch list if found, o.w. null
+     */
+    public StockWatchList findStockWatchList(String listName) {
+
+        List<StockWatchList> list = this.dao.getAll();
+        StockWatchList watchList = null;
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getName().equals(listName)) {
+                watchList = list.get(i);
+            }
+        }
+
+        return watchList;
+    }
+
     public boolean addWatchList(StockWatchList watchList) {
 
         List<StockWatchList> stockWatchLists = this.dao.getAll();
@@ -48,18 +67,11 @@ public class StockWatchListService {
         List<StockWatchList> list = this.dao.getAll();
 
         boolean listExists = false;
-        int index;
-        StockWatchList watchList = null;
-        for (index = 0; index < list.size() && !listExists; index++) {
+        for (int index = 0; index < list.size() && !listExists; index++) {
             if (list.get(index).getName().equals(name)) {
-                watchList = list.get(index);
-                System.out.println(list.get(index).getName() + " == " + name);
+                this.dao.delete(list.get(index));
                 listExists = true;
             }
-        }
-
-        if (watchList != null) {
-            this.dao.delete(watchList);
         }
 
         return listExists;

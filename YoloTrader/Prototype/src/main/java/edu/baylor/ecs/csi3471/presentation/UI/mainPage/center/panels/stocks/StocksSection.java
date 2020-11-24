@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks;
 
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
@@ -25,11 +25,11 @@ public class StocksSection {
     public static Font stockButtonFont;
     public static Font stockLabelFont;
 
-    public static JList watchListList;
-    public static JList stockList;
+    public static JList<String> watchListList;
+    public static JList<String> stockList;
 
-    public static ListModel watchListModel; // need these
-    public static ListModel stockListModel; // need these
+    public static ListModel<String> watchListModel; // need these
+    public static ListModel<String> stockListModel; // need these
 
     public static Border buttonBorder;
 
@@ -178,42 +178,43 @@ public class StocksSection {
     }
 
     public static JScrollPane getWatchListJListWithScrolling() {
-        setWatchListModel(new DefaultListModel<String>());
-        watchListList = new JList(getWatchListModel());
+        setWatchListModel(new DefaultListModel<>());
+        watchListList = new JList<>(getWatchListModel());
+
+        // FIXME: add listener
+        watchListList.addListSelectionListener(CenterPanelController.getWatchJListListener(watchListList));
 
         return new JScrollPane(watchListList);
     }
 
     public static JScrollPane getStockJListWithScrolling() {
-        setStockListModel(new DefaultListModel<String>());
-        stockList = new JList(getStockListModel());
+        setStockListModel(new DefaultListModel<>());
+        stockList = new JList<>(getStockListModel());
 
         return new JScrollPane(stockList);
     }
 
-    public static void setStockListModel(ListModel stockListModel) {
+    public static void setStockListModel(ListModel<String> stockListModel) {
         StocksSection.stockListModel = stockListModel;
-
-
     }
 
-    public static ListModel getStockListModel() {
+    public static ListModel<String> getStockListModel() {
         return stockListModel;
     }
 
-    public static void setWatchListModel(ListModel watchListModel) {
+    public static void setWatchListModel(ListModel<String> watchListModel) {
         StocksSection.watchListModel = watchListModel;
     }
 
-    public static ListModel getWatchListModel() {
+    public static ListModel<String> getWatchListModel() {
         return watchListModel;
     }
 
-    public static JList getWatchListList() {
+    public static JList<String> getWatchListList() {
         return watchListList;
     }
 
-    public static JList getStockList() {
+    public static JList<String> getStockList() {
         return stockList;
     }
 

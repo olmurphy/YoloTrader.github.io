@@ -38,9 +38,9 @@ public class Stock implements Comparable<Stock> {
      * @param name name of company
      * @param dateAdded date stock added to watchList
      */
-    public Stock(String ticker, String name, Date dateAdded) {
-        this.ticker = ticker;
+    public Stock(String name, String ticker, Date dateAdded) {
         this.name = name;
+        this.ticker = ticker;
         this.dateAdded = dateAdded;
         this.comments = new ArrayList<>();
     }

@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks;
 
 import javax.swing.*;
 

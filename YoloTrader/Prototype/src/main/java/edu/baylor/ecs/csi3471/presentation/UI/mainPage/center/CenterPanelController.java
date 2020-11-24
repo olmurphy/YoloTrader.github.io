@@ -1,24 +1,27 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center;
 
 import edu.baylor.ecs.csi3471.model.Profile;
+import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.about.AboutSection;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.help.HelpSection;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.profile.ProfileSection;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks.AddStock;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks.CreateWatchList;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.stocks.StocksSection;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.AboutSection;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HelpSection;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.ProfileSection;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.AddStock;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.CreateWatchList;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.StocksSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author owenmurphy
@@ -29,8 +32,6 @@ public class CenterPanelController {
     public static Color centerPanelColor = MainPanel.backGroundColor;
 
     public static int centerPanelHeight = MainPanel.frameHeight - NorthPanelController.northPanelHeight;
-
-    public static StockWatchListController stockWatchListController;
 
     public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
 
@@ -69,7 +70,10 @@ public class CenterPanelController {
                     // no watchlist selected
                     AddStock.getNoWatchListSelectedWarning();
                 } else {
+                    String stockName = AddStock.getAddStockInputDialog();
 
+                    // trying to add a single stock, else display the result from query using dialog from Result class
+                    NorthPanelController.launchSearch(stockName, true);
                 }
 
             }
@@ -84,7 +88,26 @@ public class CenterPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                YoloTrader.logger.info("deleting stock");
+
+                if (StocksSection.getStockList().isSelectionEmpty()) {
+                    // no stock selected
+                    AddStock.getNoStockSelectedWarning();
+                } else {
+
+                    String listName = StocksSection.getWatchListList().getSelectedValue();
+                    String stockName = StocksSection.getStockList().getSelectedValue();
+
+                    StockWatchList watchList = MainPanelController.stockWatchListController.findStockWatchList(listName);
+                    if(MainPanelController.getStockController().removeStock(stockName, watchList)) {
+
+                        ((DefaultListModel<String>)StocksSection.getStockListModel()).removeElement(stockName);
+
+                        YoloTrader.logger.info("stock deleted...");
+
+                        MainPanelController.getProfileController().saveProfiles();
+                    }
+                }
+
             }
         };
     }
@@ -103,7 +126,7 @@ public class CenterPanelController {
                 String watchListName = CreateWatchList.watchListNameWindow();
                 StockWatchList stockWatchList = new StockWatchList(watchListName, new Date());
 
-                if (stockWatchListController.addWatchList(stockWatchList)) {
+                if (MainPanelController.stockWatchListController.addWatchList(stockWatchList)) {
                     ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
 
                     // saving changes to xml file
@@ -128,11 +151,10 @@ public class CenterPanelController {
                     // no watchlist selected
                     AddStock.getNoWatchListSelectedWarning();
                 } else {
-                    String listName = StocksSection.getWatchListList().getSelectedValue().toString();
+                    String listName = StocksSection.getWatchListList().getSelectedValue();
 
-                    System.out.println("trying to delete: " + listName);
-                    if (stockWatchListController.removeWatchList(listName)) {
-                        ((DefaultListModel)StocksSection.watchListModel).removeElement(listName);
+                    if (MainPanelController.stockWatchListController.removeWatchList(listName)) {
+                        ((DefaultListModel<String>)StocksSection.watchListModel).removeElement(listName);
                         YoloTrader.logger.info("deleting watchList");
 
                         // saving changes to xml file
@@ -154,16 +176,54 @@ public class CenterPanelController {
         ProfileSection.setProfilePanel(profile);
         StocksSection.setStocksMainPanel(profile);
 
-        stockWatchListController = new StockWatchListController();
-        stockWatchListController.loadStockLists(profile.getWatchLists());
-        stockWatchListController.getService().getDao().getAll().forEach(System.out::println);
+        MainPanelController.stockWatchListController = new StockWatchListController();
+        MainPanelController.stockWatchListController.loadStockLists(profile.getWatchLists());
     }
 
     /**
-     * @return the stock watchList controller of the user's stocks
+     * listens for a change in the selected watch list and displays the stocks in the watch list on the second
+     * JList in the Stock Panel
+     * @param list JList to listen for a change to
+     * @return ListSelectionListener to listen for when a selected item in a list has changed
      */
-    public static StockWatchListController getStockWatchListController() {
-        return stockWatchListController;
+    public static ListSelectionListener getWatchJListListener(JList<String> list) {
+        return e -> {
+            if (!e.getValueIsAdjusting()) {
+                ((DefaultListModel<String>)StocksSection.getStockListModel()).removeAllElements();
+                String watchListName = list.getSelectedValue();
+
+                StockWatchList watchList = MainPanelController.getStockWatchListController().findStockWatchList(watchListName);
+                if (watchList != null) {
+                    List<Stock> stockList = watchList.getStockList();
+                    for (Stock stock : stockList) {
+                        ((DefaultListModel<String>) StocksSection.getStockListModel()).addElement(stock.getName());
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+     * method is responsible for updating the stock list
+     *
+     * - if a watch list is selected and a stock was added or deleted, then this method is called to update the stock list
+     */
+    public static void updateStockListModel() {
+        if (!StocksSection.getWatchListList().isSelectionEmpty()) {
+            ((DefaultListModel<String>)StocksSection.getStockListModel()).removeAllElements();
+            List<Stock> list = MainPanelController.getStockWatchListController().findStockWatchList(StocksSection.getWatchListList().getSelectedValue()).getStockList();
+            for (Stock stock : list) {
+                ((DefaultListModel<String>) StocksSection.getStockListModel()).addElement(stock.getName());
+            }
+        }
+    }
+
+    /**
+     * this class is introduced to promote low coupling between classes
+     * @return JList of the watch list
+     */
+    public static JList<String> getWatchListJList() {
+        return StocksSection.getWatchListList();
     }
 }
 

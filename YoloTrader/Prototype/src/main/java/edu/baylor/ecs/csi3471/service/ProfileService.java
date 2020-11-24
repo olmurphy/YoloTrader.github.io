@@ -81,19 +81,27 @@ public class ProfileService {
         this.dao = dao;
     }
 
+    /**
+     * this method calls dao to load all profiles upon the application starting
+     */
     public void loadProfiles() {
         dao.loadAll();
     }
 
+    /**
+     * this method takes in an email and sees if it exists in the database
+     * if so it changes the password associated to the email and changes the email
+     * @param email email of the user to check in database and potentially send email
+     * @return true if email found and email sent, o.w. false
+     */
     public boolean recoverPassword(String email) {
         List<Profile> profiles = this.dao.getAll();
 
         boolean found = false;
-        int index;
-        for (index = 0; index < profiles.size() && !found; index++ ) {
+        for (int index = 0; index < profiles.size() && !found; index++ ) {
             if (profiles.get(index).getEmail().equals(email)) {
 
-                // email is associated with a profile, change password
+                // email is associated with a profile
                 found = true;
 
                 // changing password with a random password

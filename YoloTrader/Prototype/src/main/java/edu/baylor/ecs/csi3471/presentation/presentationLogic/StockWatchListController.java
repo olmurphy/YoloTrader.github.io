@@ -1,6 +1,5 @@
 package edu.baylor.ecs.csi3471.presentation.presentationLogic;
 
-import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.service.StockWatchListService;
 
@@ -42,7 +41,7 @@ public class StockWatchListController {
     }
 
     public StockWatchList findStockWatchList(String listName) {
-        return stockWatchList;
+        return service.findStockWatchList(listName);
     }
 
     public void setStockWatchList(StockWatchList stockWatchList) {

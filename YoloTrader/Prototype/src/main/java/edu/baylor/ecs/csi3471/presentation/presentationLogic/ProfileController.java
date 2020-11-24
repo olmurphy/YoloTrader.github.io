@@ -42,7 +42,6 @@ public class ProfileController {
         Object[] objects = service.getProfile(email, pass);
 
         if (objects[0] != null) {
-            System.out.println("values are not null");
             this.profileIndex = Integer.parseInt(objects[0].toString());
             this.profile = (Profile)objects[1]; // this works
             return true;

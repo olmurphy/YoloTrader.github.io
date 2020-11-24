@@ -12,10 +12,9 @@ public class SearchResults {
     /** add stock button for stock selected */
     public static JButton addStockButton;
 
-    public static JList stockList;
+    public static JList<String> stockList;
 
     public static ListModel<String> stockModel;
-
 
     /**
      * main dialog that displays the company names from the result of the search
@@ -34,7 +33,7 @@ public class SearchResults {
 
     public static JScrollPane getScrollPane() {
 
-        setStockList(new JList(getStockModel()));
+        setStockList(new JList<>(getStockModel()));
 
         return new JScrollPane(getStockList());
     }
@@ -56,11 +55,11 @@ public class SearchResults {
         return searchPanel;
     }
 
-    public static void setStockList(JList stockList) {
+    public static void setStockList(JList<String> stockList) {
         SearchResults.stockList = stockList;
     }
 
-    public static JList getStockList() {
+    public static JList<String> getStockList() {
         return stockList;
     }
 

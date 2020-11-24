@@ -3,6 +3,7 @@ package edu.baylor.ecs.csi3471.presentation.UI.form;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 
 import java.awt.*;
@@ -91,8 +92,6 @@ public class FormController {
 
                     YoloTrader.logger.info("logging in");
 
-                    System.out.println("profile found at: " + profileController.getProfileIndex());
-
                     LogIn.getFrame().dispose();
                     MainPanel.createUI();
                 } else {
@@ -172,7 +171,7 @@ public class FormController {
 
     /**
      * check if first, last, username, re-password fields are not empty.
-     * Also calls {@link #validCreateAccountFieldsNotEmpty()} to check email
+     * Also calls {@link #validateLogInFieldsNotEmpty()} to check email
      * and password fields not empty
      *
      * @return true if the fields are not empty, false otherwise
@@ -248,6 +247,9 @@ public class FormController {
             // check if password was changed given the email (email to recipient is also sent if condition is true)
             if (profileController.recoverPassword(email)) {
                 YoloTrader.logger.info("Changed password");
+
+                // save to database
+                MainPanelController.getProfileController().saveProfiles();
 
                 // let user know the password was successfully changed
                 Email.getPasswordChangedSuccessful();

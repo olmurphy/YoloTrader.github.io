@@ -11,10 +11,18 @@ import javax.xml.bind.Unmarshaller;
 import java.io.*;
 
 /**
+ * This class is a utility class designed to transform memory representation of data to xml format
+ * and vice versa using JAXB library
+ *
  * @author owenmurphy
  */
 public class XMLProfileDAOUtil {
 
+    /**
+     * takes a profileDAO and uses JAXB to transform memory rep of data into data format, i.e. xml
+     *
+     * @param profileGenericDAO takes in a profile DAO to marshall
+     */
     public void doSave(GenericDAO<Profile> profileGenericDAO) {
         try {
 
@@ -31,6 +39,12 @@ public class XMLProfileDAOUtil {
         }
     }
 
+    /**
+     * transforms the data format representation, i.e. xml file, into memory representation for
+     * computer processing
+     *
+     * @return ProfileDAO containing list of profiles
+     */
     public GenericDAO<Profile> load() {
         GenericDAO<Profile> db = null;
 

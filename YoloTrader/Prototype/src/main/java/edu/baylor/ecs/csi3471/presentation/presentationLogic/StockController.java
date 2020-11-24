@@ -4,7 +4,6 @@ import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.service.StockService;
 
-
 /**
  * @author owenmurphy
  */
@@ -13,6 +12,10 @@ public class StockController {
     private Stock stock;
 
     private StockService service;
+
+    public StockController() {
+        this.service = new StockService();
+    }
 
     public Stock getStock() {
         return stock;
@@ -32,5 +35,9 @@ public class StockController {
 
     public boolean addStock(Stock stock, StockWatchList stockWatchList) {
         return service.addStock(stock, stockWatchList);
+    }
+
+    public boolean removeStock(String name, StockWatchList list) {
+        return this.service.removeStock(name, list);
     }
 }
