@@ -6,23 +6,21 @@ import javax.swing.*;
 
 public class About {
 
-    public static String aboutButtonString = "ABOUT";
+    public static String aboutPanelLabel = "<html><span style=\"font-family:Arial;font-size:" +
+            WestPanelController.size + "px;\"><B>ABOUT</B>";
     public static JPanel aboutPanel;
 
-
     public static JPanel getAboutPanel() {
-        aboutPanel = WestPanelController.getEachWestSubPanel();
-
-        JLabel aboutLabel = new JLabel(aboutButtonString, JLabel.CENTER);
-        aboutLabel.setFont(WestPanelController.panelLabelFonts);
-        aboutPanel.add(aboutLabel);
-        aboutPanel.setBackground(WestPanelController.westPanelColor);
-        aboutPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(aboutPanel));
-        aboutPanel.addMouseListener(WestPanelController.getAboutPanelAction());
-
         return aboutPanel;
     }
 
+    public static void setAboutPanel() {
+        aboutPanel = WestPanelController.getEachWestSubPanel();
 
-
+        JLabel aboutLabel = new JLabel(aboutPanelLabel, JLabel.CENTER);
+        aboutPanel.add(aboutLabel);
+        aboutPanel.setBackground(WestPanelController.westPanelColor);
+        aboutPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(aboutPanel, aboutPanelLabel));
+        aboutPanel.addMouseListener(WestPanelController.getAboutPanelAction(aboutPanel, aboutPanelLabel));
+    }
 }

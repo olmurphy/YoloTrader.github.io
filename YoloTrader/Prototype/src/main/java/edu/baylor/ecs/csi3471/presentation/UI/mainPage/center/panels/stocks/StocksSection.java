@@ -14,11 +14,6 @@ import java.util.List;
  */
 public class StocksSection {
 
-    private static JButton addStockButton;
-    private static JButton addWatchListButton;
-    private static JButton deleteWatchListButton;
-    private static JButton deleteStockButton;
-
     public static JPanel stocksMainPanel;
     public static JPanel stockButtonPanel;
 
@@ -72,7 +67,7 @@ public class StocksSection {
      * @return JButton
      */
     public static JButton getAddWatchListButton() {
-        addWatchListButton = new JButton("Add List");
+        JButton addWatchListButton = new JButton("Add List");
         addWatchListButton.setHorizontalAlignment(JButton.CENTER);
 
         addWatchListButton.setFont(stockButtonFont);
@@ -87,7 +82,7 @@ public class StocksSection {
     }
 
     public static JButton getDeleteWatchListButton() {
-        deleteWatchListButton = new JButton("Delete List");
+        JButton deleteWatchListButton = new JButton("Delete List");
         deleteWatchListButton.setHorizontalAlignment(JButton.CENTER);
 
         deleteWatchListButton.setFont(stockButtonFont);
@@ -102,7 +97,7 @@ public class StocksSection {
     }
 
     public static JButton getAddStockButton() {
-        addStockButton = new JButton("Add Stock");
+        JButton addStockButton = new JButton("Add Stock");
         addStockButton.setHorizontalAlignment(JButton.CENTER);
 
         addStockButton.setFont(stockButtonFont);
@@ -113,11 +108,11 @@ public class StocksSection {
         addStockButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(addStockButton));
         addStockButton.addMouseListener(CenterPanelController.getAddStockButtonAction());
 
-        return  addStockButton;
+        return addStockButton;
     }
 
     public static JButton getDeleteStockButton() {
-        deleteStockButton = new JButton("Delete Stock");
+        JButton deleteStockButton = new JButton("Delete Stock");
         deleteStockButton.setHorizontalAlignment(JButton.CENTER);
 
         deleteStockButton.setFont(stockButtonFont);

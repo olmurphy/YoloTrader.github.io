@@ -1,9 +1,9 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.west;
 
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.subpanels.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -14,16 +14,21 @@ import java.awt.event.MouseEvent;
 public class WestPanelController {
 
     public static Border emptyBorder;
-    public static Font panelLabelFonts;
     public static Color active = Color.GRAY;
     public static Color westPanelColor = MainPanel.backGroundColor;
+    public static int size = 14;
+
+    public static String currPanel = "HOME";
 
     /**
      * initialize the look and feel of all JPanels in the ${@link WestPanel} area
      */
     public static void initializePublicStaticVariables() {
-        panelLabelFonts = new Font("Serif", Font.PLAIN, 18);
         emptyBorder = BorderFactory.createEmptyBorder();
+
+        // setting home panel as initial panel
+        MainPanel.getMainPanel().add(CenterPanelController.getHomePanel(), BorderLayout.CENTER);
+        Home.getHomePanel().setBackground(active);
     }
 
     /**
@@ -39,16 +44,16 @@ public class WestPanelController {
      * @param panel panel to set the background color of
      * @return MouseAdapter to listen for when the mouse enters or exits the panel
      */
-    public static MouseAdapter getGeneralWestPanelActions(JPanel panel) {
+    public static MouseAdapter getGeneralWestPanelActions(JPanel panel, String panelName) {
         return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                panel.setBackground(active);
+                if (!panelName.equals(currPanel)) { panel.setBackground(active); }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                panel.setBackground(westPanelColor);
+                if (!panelName.equals(currPanel)) { panel.setBackground(westPanelColor); }
             }
         };
     }
@@ -57,7 +62,7 @@ public class WestPanelController {
      * sets the center in ${@link MainPanel} Center of BorderLayout to the Profile panel
      * @return MouseAdapter to listen for when the user clicks on the panel
      */
-    public static MouseAdapter getProfilePanelAction() {
+    public static MouseAdapter getProfilePanelAction(JPanel panel, String panelName) {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -72,8 +77,10 @@ public class WestPanelController {
                 }
 
                 MainPanel.getMainPanel().add(CenterPanelController.getProfilePanel(), BorderLayout.CENTER);
+                resetAllPanelColors();
+                panel.setBackground(active);
                 MainPanel.getMainPanel().updateUI();
-                MainPanelController.getProfileController().save();
+                currPanel = panelName;
             }
         };
     }
@@ -82,7 +89,7 @@ public class WestPanelController {
      * sets the center in ${@link MainPanel} Center of BorderLayout to the About panel
      * @return MouseAdapter to listen for when the user clicks on the panel
      */
-    public static MouseAdapter getAboutPanelAction() {
+    public static MouseAdapter getAboutPanelAction(JPanel panel, String panelName) {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -97,7 +104,10 @@ public class WestPanelController {
                 }
 
                 MainPanel.getMainPanel().add(CenterPanelController.getAboutPanel(), BorderLayout.CENTER);
+                resetAllPanelColors();
+                panel.setBackground(active);
                 MainPanel.getMainPanel().updateUI();
+                currPanel = panelName;
             }
         };
     }
@@ -106,7 +116,7 @@ public class WestPanelController {
      * sets the center in ${@link MainPanel} Center of BorderLayout to the Help panel
      * @return MouseAdapter to listen for when the user clicks on the panel
      */
-    public static MouseAdapter getHelpPanelAction() {
+    public static MouseAdapter getHelpPanelAction(JPanel panel, String panelName) {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -120,7 +130,10 @@ public class WestPanelController {
                 }
 
                 MainPanel.getMainPanel().add(CenterPanelController.getHelpPanel(), BorderLayout.CENTER);
+                resetAllPanelColors();
+                panel.setBackground(active);
                 MainPanel.getMainPanel().updateUI();
+                currPanel = panelName;
             }
         };
     }
@@ -129,12 +142,23 @@ public class WestPanelController {
      * sets the center in ${@link MainPanel} Center of BorderLayout to the Home panel
      * @return MouseAdapter to listen for when the user clicks on the panel
      */
-    public static MouseAdapter getHomePanelAction() {
+    public static MouseAdapter getHomePanelAction(JPanel panel, String panelName) {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("clicked");
-                // FIXME: perform action here
+                YoloTrader.logger.info("navigating to home panel");
+
+                BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
+                try {
+                    MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
+                } catch (NullPointerException n) {
+                    YoloTrader.logger.warning("NullPointerException raised");
+                }
+                MainPanel.getMainPanel().add(CenterPanelController.getHomePanel(), BorderLayout.CENTER);
+                resetAllPanelColors();
+                panel.setBackground(active);
+                MainPanel.getMainPanel().updateUI();
+                currPanel = panelName;
             }
         };
     }
@@ -143,7 +167,7 @@ public class WestPanelController {
      * sets the center in ${@link MainPanel} Center of BorderLayout to the Stock panel
      * @return MouseAdapter to listen for when the user clicks on the panel
      */
-    public static MouseAdapter getStockPanelAction() {
+    public static MouseAdapter getStockPanelAction(JPanel panel, String panelName) {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -156,9 +180,27 @@ public class WestPanelController {
                     YoloTrader.logger.warning("NullPointerException raised");
                 }
                 MainPanel.getMainPanel().add(CenterPanelController.getStockPanel(), BorderLayout.CENTER);
+                resetAllPanelColors();
+                panel.setBackground(active);
                 MainPanel.getMainPanel().updateUI();
-
+                currPanel = panelName;
             }
         };
+    }
+
+    public static void resetAllPanelColors() {
+        Home.getHomePanel().setBackground(westPanelColor);
+        Profile.getProfilePanel().setBackground(westPanelColor);
+        Stock.getStocksPanel().setBackground(westPanelColor);
+        Help.getHelpPanel().setBackground(westPanelColor);
+        About.getAboutPanel().setBackground(westPanelColor);
+    }
+
+    public static void setAllPanels() {
+        Home.setHomePanel();
+        Profile.setProfilePanel();
+        Stock.setStockPanel();
+        Help.setHelpPanel();
+        About.setAboutPanel();
     }
 }

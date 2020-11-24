@@ -6,21 +6,23 @@ import javax.swing.*;
 
 public class Profile {
 
-    public static String profilePanelLabel = "PROFILE";
+    public static String profilePanelLabel = "<html><span style=\"font-family:Arial;font-size:" +
+            WestPanelController.size + "px;\"><B>PROFILE</B>";
     public static JPanel profilePanel;
 
     public static JPanel getProfilePanel() {
-        profilePanel = WestPanelController.getEachWestSubPanel();
-
-        JLabel profileLabel = new JLabel(profilePanelLabel, JLabel.CENTER);
-        profileLabel.setFont(WestPanelController.panelLabelFonts);
-        profilePanel.add(profileLabel);
-        profilePanel.setBackground(WestPanelController.westPanelColor);
-        profilePanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(profilePanel));
-        profilePanel.addMouseListener(WestPanelController.getProfilePanelAction());
-
         return profilePanel;
     }
 
+    public static void setProfilePanel() {
+        profilePanel = WestPanelController.getEachWestSubPanel();
 
+        JLabel profileLabel = new JLabel(profilePanelLabel, JLabel.CENTER);
+
+        profilePanel.add(profileLabel);
+        profilePanel.setBackground(WestPanelController.westPanelColor);
+        profilePanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(profilePanel, profilePanelLabel));
+        profilePanel.addMouseListener(WestPanelController.getProfilePanelAction(profilePanel, profilePanelLabel));
+
+    }
 }

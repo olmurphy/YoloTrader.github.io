@@ -7,6 +7,7 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.AboutSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HelpSection;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HomeSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.ProfileSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.AddStock;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.CreateWatchList;
@@ -32,6 +33,9 @@ public class CenterPanelController {
     public static Color centerPanelColor = MainPanel.backGroundColor;
 
     public static int centerPanelHeight = MainPanel.frameHeight - NorthPanelController.northPanelHeight;
+
+    // FIXME: may need to return a JScrollPane depending on what is added in the home panel
+    public static JPanel getHomePanel(){ return HomeSection.getHomeMainPanel(); }
 
     public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
 
@@ -175,6 +179,7 @@ public class CenterPanelController {
         HelpSection.setHelpPanel();
         ProfileSection.setProfilePanel(profile);
         StocksSection.setStocksMainPanel(profile);
+        HomeSection.setHomeMainPanel();
 
         MainPanelController.stockWatchListController = new StockWatchListController();
         MainPanelController.stockWatchListController.loadStockLists(profile.getWatchLists());

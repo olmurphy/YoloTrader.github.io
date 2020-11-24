@@ -4,6 +4,7 @@ import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.presentation.UI.form.FormController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.WestPanelController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
@@ -34,9 +35,10 @@ public class MainPanelController {
         // initialize stock controller
         setStockController(new StockController());
 
-        // call panels to initialize themselves6
+        // call panels to initialize themselves
         NorthPanelController.setNorthPanel(FormController.getProfileController().getProfile().getUsername());
         CenterPanelController.setAllCenterPanels(FormController.getProfileController().getProfile());
+        WestPanelController.setAllPanels();
     }
 
     public static void setStockController(StockController stockController) {

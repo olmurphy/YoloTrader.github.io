@@ -7,19 +7,21 @@ import javax.swing.*;
 public class Help {
 
     public static JPanel helpPanel;
-    public static String helpButtonString = "HELP";
+    public static String helpPanelLabel = "<html><span style=\"font-family:Arial;font-size:" +
+            WestPanelController.size + "px;\"><B>HELP</B>";
 
     public static JPanel getHelpPanel() {
-        helpPanel = WestPanelController.getEachWestSubPanel();
-
-        JLabel helpLabel = new JLabel(helpButtonString, JLabel.CENTER);
-        helpLabel.setFont(WestPanelController.panelLabelFonts);
-        helpPanel.add(helpLabel);
-        helpPanel.setBackground(WestPanelController.westPanelColor);
-        helpPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(helpPanel));
-        helpPanel.addMouseListener(WestPanelController.getHelpPanelAction());
-
         return helpPanel;
     }
 
+    public static void setHelpPanel() {
+        helpPanel = WestPanelController.getEachWestSubPanel();
+
+        JLabel helpLabel = new JLabel(helpPanelLabel, JLabel.CENTER);
+        helpPanel.add(helpLabel);
+        helpPanel.setBackground(WestPanelController.westPanelColor);
+        helpPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(helpPanel, helpPanelLabel));
+        helpPanel.addMouseListener(WestPanelController.getHelpPanelAction(helpPanel, helpPanelLabel));
+
+    }
 }

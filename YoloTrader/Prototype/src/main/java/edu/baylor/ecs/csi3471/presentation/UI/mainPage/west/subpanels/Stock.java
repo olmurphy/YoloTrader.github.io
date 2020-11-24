@@ -6,18 +6,20 @@ import javax.swing.*;
 
 public class Stock {
 
-    public static String stocksButtonString = "STOCK";
+    public static String stockPanelLabel = "<html><span style=\"font-family:Arial;font-size:" +
+            WestPanelController.size + "px;\"><B>STOCK</B>";
     public static JPanel stockPanel;
 
     public static JPanel getStocksPanel() {
+        return stockPanel;
+    }
+
+    public static void setStockPanel() {
         stockPanel = WestPanelController.getEachWestSubPanel();
-        JLabel stockLabel = new JLabel(stocksButtonString, JLabel.CENTER);
-        stockLabel.setFont(WestPanelController.panelLabelFonts);
+        JLabel stockLabel = new JLabel(stockPanelLabel, JLabel.CENTER);
         stockPanel.add(stockLabel);
         stockPanel.setBackground(WestPanelController.westPanelColor);
-        stockPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(stockPanel));
-        stockPanel.addMouseListener(WestPanelController.getStockPanelAction());
-
-        return stockPanel;
+        stockPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(stockPanel, stockPanelLabel));
+        stockPanel.addMouseListener(WestPanelController.getStockPanelAction(stockPanel, stockPanelLabel));
     }
 }
