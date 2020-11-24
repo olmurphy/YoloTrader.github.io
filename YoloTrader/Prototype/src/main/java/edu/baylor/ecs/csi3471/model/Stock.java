@@ -94,9 +94,9 @@ public class Stock implements Comparable<Stock> {
     /**
      * @return the list of comments of the stock
      */
-    //public List<Comment> getComments() {
-    //    return comments;
-    //}
+    public List<Comment> getComments() {
+        return comments;
+    }
 
     /**
      * sets list of comments
@@ -117,6 +117,12 @@ public class Stock implements Comparable<Stock> {
         return this.ticker.compareTo(o.ticker);
     }
 
+    /**
+     * this function checks if two stock instances are the smae by
+     * comparing their name and ticker
+     * @param o instance of other stock to check if equal
+     * @return tru if stock objects are equal, false, o.w.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,11 +132,19 @@ public class Stock implements Comparable<Stock> {
                 Objects.equals(name, stock.name);
     }
 
+    /**
+     * generates a hash code for the instance based on the ticker and the name
+     * @return hash code to map instance into hash table
+     */
     @Override
     public int hashCode() {
         return Objects.hash(ticker, name);
     }
 
+    /**
+     * used for outputting the stock
+     * @return string representation of the stock instance
+     */
     @Override
     public String toString() {
         return "Stock{" +

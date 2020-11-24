@@ -16,23 +16,14 @@ public class StockWatchListDAO implements GenericDAO<StockWatchList> {
         this.stockWatchLists = new ArrayList<>();
     }
 
-    public StockWatchListDAO(List<StockWatchList> stockWatchLists) {
-        this.stockWatchLists = stockWatchLists;
-    }
-
     @Override
     public List<StockWatchList> getAll() {
         return this.stockWatchLists;
     }
 
     @Override
-    public void save(StockWatchList stockWatchList) {
-        // do nothing
-    }
-
-    @Override
-    public void update(int index, StockWatchList stockWatchList) {
-        // do nothing
+    public void setAll(List<StockWatchList> t) {
+        this.stockWatchLists = t;
     }
 
     @Override
@@ -46,17 +37,7 @@ public class StockWatchListDAO implements GenericDAO<StockWatchList> {
     }
 
     @Override
-    public void setAll(List<StockWatchList> t) {
-        this.stockWatchLists = t;
-    }
-
-    @Override
-    public void saveAll() {
-        // do nothing
-    }
-
-    @Override
-    public void loadAll() {
+    public void update(int index, StockWatchList stockWatchList) {
         // do nothing
     }
 }

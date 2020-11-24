@@ -20,7 +20,7 @@ public class StockWatchListController {
     }
 
     public void loadStockLists(List<StockWatchList> list) {
-        this.service.loadStockList(list);
+        this.service.setWatchList(list);
     }
 
     public StockWatchListController(StockWatchList stockWatchList, StockWatchListService service) {

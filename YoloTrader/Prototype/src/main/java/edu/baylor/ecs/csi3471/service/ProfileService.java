@@ -9,20 +9,29 @@ import edu.baylor.ecs.csi3471.presentation.UI.form.Email;
 import java.util.List;
 
 /**
+ * this class injects the functionality of the
+ * ${@link edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController}
+ *
  * @author owenmurphy
  */
 public class ProfileService {
 
+    /** Uses the dao to access the profile data */
     private GenericDAO<Profile> dao;
 
+    /**
+     * constructor initializes the dao
+     */
     public ProfileService() {
         this.dao = new ProfileDAO();
     }
 
-    public ProfileService(GenericDAO<Profile> dao) {
-        this.dao = dao;
-    }
-
+    /**
+     * iterates through all of the profiles checking that the profile passed in does
+     * not match a profile in the list of profiles
+     * @param profile profile to be added into the list of profiles
+     * @return true if the profile was added into the dao, o.w. false
+     */
     public boolean addProfile(Profile profile) {
 
         List<Profile> profiles = this.dao.getAll();
@@ -41,7 +50,16 @@ public class ProfileService {
         return isUnique;
     }
 
-    public Object[] getProfile(String email, String pass) {
+    /**
+     * travers through the list of profiles looking for the email and password passed
+     * in
+     * @param email email of user to find
+     * @param pass password of user to find
+     * @return Object is a two-tuple, first position is the index & 2nd position is the
+     * Profile instance, returns these two if the email & pass matched a profile in the
+     * list of profile, else returns null indicating email and pass do not match
+     */
+    public Object[] findProfile(String email, String pass) {
         Object[] objects = new Object[2];
 
         objects[0] = null;
@@ -60,11 +78,6 @@ public class ProfileService {
         return objects;
     }
 
-    public void saveProfiles() {
-        dao.saveAll(); }
-
-    public void save(int index, Profile profile) { ((ProfileDAO)this.dao).save(index, profile); }
-
     /**
      * @return GenericDAO of profiles for all profiles
      */
@@ -82,11 +95,12 @@ public class ProfileService {
     }
 
     /**
-     * this method calls dao to load all profiles upon the application starting
+     * calls ${@link ProfileDAO#update(int, Profile)} to save the profile in the dao
+     * at the specified index
+     * @param index index of profile in the list
+     * @param profile profile to save in the profile list
      */
-    public void loadProfiles() {
-        dao.loadAll();
-    }
+    public void save(int index, Profile profile) { this.dao.update(index, profile); }
 
     /**
      * this method takes in an email and sees if it exists in the database
@@ -117,4 +131,16 @@ public class ProfileService {
 
         return found;
     }
+
+    /**
+     * this method calls ${@link ProfileDAO#loadAll()} to load all profiles upon the application starting
+     */
+    public void loadProfiles() {
+        ((ProfileDAO)dao).loadAll();
+    }
+
+    /**
+     * calls ${@link ProfileDAO#saveAll()} to save all the profiles into the database
+     */
+    public void saveProfiles() { ((ProfileDAO)dao).saveAll(); }
 }

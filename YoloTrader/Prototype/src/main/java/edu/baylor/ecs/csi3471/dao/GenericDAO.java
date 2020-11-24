@@ -16,23 +16,10 @@ public interface GenericDAO<T> {
     List<T> getAll();
 
     /**
-     * save to parameter to the list
-     * @param t parameter to be saved
+     * sets the list of items to the parameter passed in
+     * @param t list of items
      */
-    void save(T t);
-
-    /**
-     * updates item t at index
-     * @param index index of item
-     * @param t item to be updated
-     */
-    void update(int index, T t);
-
-    /**
-     * deletes the item t from the list
-     * @param t item to be deleted
-     */
-    void delete (T t);
+    void setAll(List<T> t);
 
     /**
      * adds the item to to the list
@@ -41,18 +28,17 @@ public interface GenericDAO<T> {
     void add(T t);
 
     /**
-     * sets the list of items to the parameter passed in
-     * @param t list of items
+     * deletes the item t from the list
+     * @param t item to be deleted
      */
-    void setAll(List<T> t);
+    void delete (T t);
 
     /**
-     * saves all the items
+     * updates item t at index
+     * @param index index of item
+     * @param t item to be updated
      */
-    void saveAll();
+    void update(int index, T t);
 
-    /**
-     * lodes the items into the dao
-     */
-    void loadAll();
+
 }

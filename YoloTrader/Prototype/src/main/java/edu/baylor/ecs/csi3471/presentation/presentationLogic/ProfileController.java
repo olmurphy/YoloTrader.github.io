@@ -39,7 +39,7 @@ public class ProfileController {
 
     public boolean checkCredentials(String email, String pass) {
 
-        Object[] objects = service.getProfile(email, pass);
+        Object[] objects = service.findProfile(email, pass);
 
         if (objects[0] != null) {
             this.profileIndex = Integer.parseInt(objects[0].toString());

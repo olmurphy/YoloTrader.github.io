@@ -31,36 +31,30 @@ public class ProfileDAO implements GenericDAO<Profile> {
         return profiles;
     }
 
-    public void save(int index, Profile profile) {
-        profiles.set(index, profile);
-    }
-
     @Override
-    public void save(Profile profile) {
-        // do nothing
+    public void setAll(List<Profile> t) {
+        profiles = t;
     }
-
+    
     @Override
-    public void update(int index, Profile profile) {
-        // don't do anything
+    public void add(Profile profile) {
+        profiles.add(profile);
     }
-
+    
     @Override
     public void delete(Profile profile) {
         profiles.remove(profile);
     }
 
     @Override
-    public void add(Profile profile) {
-        profiles.add(profile);
+    public void update(int index, Profile profile) {
+        profiles.set(index, profile);
     }
 
-    @Override
-    public void setAll(List<Profile> t) {
-        profiles = t;
-    }
-
-    @Override
+    /**
+     * calls ${@link XMLProfileDAOUtil#load()} to load the items into the 
+     * this.dao
+     */
     public void loadAll() {
         profileDAOUtil = new XMLProfileDAOUtil();
 
@@ -71,9 +65,10 @@ public class ProfileDAO implements GenericDAO<Profile> {
         profiles = dao.getAll();
     }
 
-    @Override
+    /**
+     * calls the ${@link XMLProfileDAOUtil#doSave(GenericDAO)} to save all the profiles in the database
+     */
     public void saveAll() {
-        // FIXME: Bug, I don't know what is going on
         System.out.println("--------Inside DAO saving---------");
         profiles.forEach(System.out::println);
         System.out.println("----------------------------------\n\n");
@@ -90,6 +85,5 @@ public class ProfileDAO implements GenericDAO<Profile> {
      */
     public void changeProfilePassword(int index, String newPass) {
         profiles.get(index).setPassword(newPass);
-        // profiles.forEach(x -> System.out.println(x.toString()));
     }
 }
