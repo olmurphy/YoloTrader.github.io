@@ -176,8 +176,8 @@ public class StocksSection {
         setWatchListModel(new DefaultListModel<>());
         watchListList = new JList<>(getWatchListModel());
 
-        // FIXME: add listener
         watchListList.addListSelectionListener(CenterPanelController.getWatchJListListener(watchListList));
+        watchListList.addMouseListener(CenterPanelController.getWatchListRightClickMouseAction(watchListList));
 
         return new JScrollPane(watchListList);
     }
@@ -185,6 +185,8 @@ public class StocksSection {
     public static JScrollPane getStockJListWithScrolling() {
         setStockListModel(new DefaultListModel<>());
         stockList = new JList<>(getStockListModel());
+
+        stockList.addMouseListener(CenterPanelController.getStockListRightClickMouseAction(stockList));
 
         return new JScrollPane(stockList);
     }
@@ -222,8 +224,51 @@ public class StocksSection {
         List<StockWatchList> list = profile.getWatchLists();
 
         // add watch lists to the JList
-        for (int i = 0; i < list.size(); i++) {
-            ((DefaultListModel<String>)watchListModel).addElement(list.get(i).getName());
+        for (StockWatchList stockWatchList : list) {
+            ((DefaultListModel<String>) watchListModel).addElement(stockWatchList.getName());
         }
     }
+
+    /**
+     * @return menu with item menus 'open' and 'remove' for a watch list
+     */
+    public static JPopupMenu getWatchListPopupMenu() {
+        JPopupMenu menu = new JPopupMenu();
+
+        // setting the buttons
+        JMenuItem itemOpen = new JMenuItem("Open");
+        JMenuItem itemRemove = new JMenuItem("Delete");
+
+        // adding the listeners
+        itemOpen.addActionListener(CenterPanelController.getWatchListOpenItemListener());
+        itemRemove.addActionListener(CenterPanelController.getWatchListRemoveItemListener());
+
+        // add the buttons
+        menu.add(itemOpen);
+        menu.add(itemRemove);
+
+        return menu;
+    }
+
+    /**
+     * @return menu with item menus 'open' and 'remove' for a stock item
+     */
+    public static JPopupMenu getStockListPopupMenu() {
+        JPopupMenu menu = new JPopupMenu();
+
+        // setting the buttons
+        JMenuItem itemOpen = new JMenuItem("Open");
+        JMenuItem itemRemove = new JMenuItem("Delete");
+
+        // adding the listeners
+        itemOpen.addActionListener(CenterPanelController.getStockListOpenItemListener());
+        itemRemove.addActionListener(CenterPanelController.getStockListRemoveItemListener());
+
+        // add the buttons
+        menu.add(itemOpen);
+        menu.add(itemRemove);
+
+        return menu;
+    }
+
 }

@@ -5,15 +5,25 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelControl
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * UI class responsible for displays the results from the API query
+ * @author owenmurphy
+ */
 public class SearchResults {
 
+    /** panel holding the everything from teh results of the query */
     public static JPanel searchPanel;
 
     /** add stock button for stock selected */
     public static JButton addStockButton;
 
+    /** open graph and analysis of the selected stock */
+    public static JButton openStockButton;
+
+    /** displays the stock model */
     public static JList<String> stockList;
 
+    /** contains the names of the stocks */
     public static ListModel<String> stockModel;
 
     /**
@@ -31,6 +41,9 @@ public class SearchResults {
         dialog.setVisible(true);                // let the user see the frame once it is fully setup
     }
 
+    /**
+     * @return JScrollPane to scroll through the stocks returned from the query to API
+     */
     public static JScrollPane getScrollPane() {
 
         setStockList(new JList<>(getStockModel()));
@@ -38,6 +51,9 @@ public class SearchResults {
         return new JScrollPane(getStockList());
     }
 
+    /**
+     * @return the search results containing the results from the query
+     */
     public static JPanel getSearchPanel() {
         searchPanel = new JPanel(new BorderLayout());
 
@@ -48,25 +64,57 @@ public class SearchResults {
         // adding the scroll pane containing the list and model
         searchPanel.add(getScrollPane(), BorderLayout.CENTER);
 
-        // add 'add stock' button to the bottom of pane
-        setAddStockButton(new JButton("Add Stock"));
-        searchPanel.add(getAddStockButton(), BorderLayout.SOUTH);
+        // add button panel to the bottom of pane
+        searchPanel.add(getButtonPanel(), BorderLayout.SOUTH);
 
         return searchPanel;
     }
 
+    /**
+     * button panel holds the 'add' and 'open' stock buttons
+     * @return JPanel with the buttons
+     */
+    public static JPanel getButtonPanel() {
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 1));  // initialize the panel
+                                                                           // with gridlayout
+
+        // adding 'add stock' button
+        setAddStockButton(new JButton("Add Stock"));
+        buttonPanel.add(getAddStockButton());
+
+        // adding the 'open stock' button
+        setOpenStockButton(new JButton("Open Stock"));
+        buttonPanel.add(getOpenStockButton());
+
+        return buttonPanel;
+    }
+
+    /**
+     * set the stock JList
+     * @param stockList JList to be set to
+     */
     public static void setStockList(JList<String> stockList) {
         SearchResults.stockList = stockList;
     }
 
+    /**
+     * @return the sotck JList
+     */
     public static JList<String> getStockList() {
         return stockList;
     }
 
+    /**
+     * set the stock model
+     * @param stockModel stock model to be set to
+     */
     public static void setStockModel(ListModel<String> stockModel) {
         SearchResults.stockModel = stockModel;
     }
 
+    /**
+     * @return the stockModel containing the names of the stocks
+     */
     public static ListModel<String> getStockModel() {
         return stockModel;
     }
@@ -87,6 +135,24 @@ public class SearchResults {
      */
     public static JButton getAddStockButton() {
         return addStockButton;
+    }
+
+    /**
+     * @return the open stock JButton
+     */
+    public static JButton getOpenStockButton() {
+        return openStockButton;
+    }
+
+    /**
+     * sets the stock button to parameter passed in and adds the listener
+     * @param openStockButton stock button to be set to
+     */
+    public static void setOpenStockButton(JButton openStockButton) {
+        SearchResults.openStockButton = openStockButton;
+
+        // adding listener  for when button pressed
+        openStockButton.addActionListener(NorthPanelController.getOpenStockButtonListener());
     }
 
     /**

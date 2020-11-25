@@ -21,7 +21,13 @@
             <password>q</password>
             <first>q</first>
             <last>q</last>
-            <listOfWatchLists/>
+            <listOfWatchLists>
+                <watchListName>
+                    <name>apple</name>
+                    <dateCreated>2020-11-24T19:09:40.364-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+            </listOfWatchLists>
         </profile>
         <profile>
             <email>owen261@icloud.com</email>
@@ -32,6 +38,42 @@
             <listOfWatchLists>
                 <watchListName>
                     <dateCreated>2020-11-23T19:10:11.427-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+            </listOfWatchLists>
+        </profile>
+        <profile>
+            <email>l</email>
+            <username>l</username>
+            <password>l</password>
+            <first>l</first>
+            <last>l</last>
+            <listOfWatchLists>
+                <watchListName>
+                    <name>groceries</name>
+                    <dateCreated>2020-11-24T21:59:18.285-06:00</dateCreated>
+                    <stockList>
+                        <stock>
+                            <ticker>KR</ticker>
+                            <name>Kroger Co</name>
+                            <dateAdded>2020-11-24T22:00:37.167-06:00</dateAdded>
+                            <commentList/>
+                        </stock>
+                    </stockList>
+                </watchListName>
+                <watchListName>
+                    <name>new</name>
+                    <dateCreated>2020-11-24T21:59:47.434-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+                <watchListName>
+                    <name>new1</name>
+                    <dateCreated>2020-11-24T21:59:50.359-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+                <watchListName>
+                    <name>new3</name>
+                    <dateCreated>2020-11-24T22:00:03.629-06:00</dateCreated>
                     <stockList/>
                 </watchListName>
             </listOfWatchLists>

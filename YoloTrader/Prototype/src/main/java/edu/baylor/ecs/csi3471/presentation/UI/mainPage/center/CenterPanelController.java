@@ -19,6 +19,7 @@ import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListContr
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
@@ -128,9 +129,16 @@ public class CenterPanelController {
                 YoloTrader.logger.info("adding stock list a watchlist");
 
                 String watchListName = CreateWatchList.watchListNameWindow();
-                StockWatchList stockWatchList = new StockWatchList(watchListName, new Date());
 
-                if (MainPanelController.stockWatchListController.addWatchList(stockWatchList)) {
+                StockWatchList stockWatchList = null;
+                boolean nameEmpty = false;
+                if (watchListName.equals("")) {
+                    nameEmpty = true;
+                } else {
+                    stockWatchList = new StockWatchList(watchListName, new Date());
+                }
+
+                if (!nameEmpty && MainPanelController.stockWatchListController.addWatchList(stockWatchList)) {
                     ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
 
                     // saving changes to xml file
@@ -209,6 +217,67 @@ public class CenterPanelController {
     }
 
     /**
+     * this adds the functionality of the user right clicks an item in the watch list JList and it opens up a menu
+     * @return MouseAdapter that listens for a rick click button
+     */
+    public static MouseAdapter getWatchListRightClickMouseAction(JList<String> list) {
+        return new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+
+                    // set the index of the item that was clicked
+                    list.setSelectedIndex(list.locationToIndex(e.getPoint()));
+
+                    // get the menu item
+                    JPopupMenu menu = StocksSection.getWatchListPopupMenu();
+
+                    // show the menu
+                    menu.show(list, e.getPoint().x, e.getPoint().y);
+
+                    System.out.println("index: " + list.getSelectedIndex());
+                }
+            }
+            /*
+                    JPopupMenu menu = new JPopupMenu();
+                    JMenuItem itemRemove = new JMenuItem("Remove");
+                    itemRemove.addActionListener(e1 -> {
+                        System.out.println("Remove the element in position " + listbox.getSelectedValue());
+
+                    });
+                    menu.add(itemRemove);
+                    menu.show(listbox, e.getPoint().x, e.getPoint().y);
+                }
+             */
+        };
+    }
+
+    /**
+     * this adds the functionality of the user right clicks an item in the stock list JList and it opens up a menu
+     * @return MouseAdapter that listens for a rick click button
+     */
+    public static MouseAdapter getStockListRightClickMouseAction(JList<String> list) {
+        return new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+
+                    // set the index of the item that was clicked
+                    list.setSelectedIndex(list.locationToIndex(e.getPoint()));
+
+                    // get the menu item
+                    JPopupMenu menu = StocksSection.getStockListPopupMenu();
+
+                    // show the menu
+                    menu.show(list, e.getPoint().x, e.getPoint().y);
+
+                    System.out.println("index: " + list.getSelectedIndex());
+                }
+            }
+        };
+    }
+
+    /**
      * method is responsible for updating the stock list
      *
      * - if a watch list is selected and a stock was added or deleted, then this method is called to update the stock list
@@ -229,6 +298,65 @@ public class CenterPanelController {
      */
     public static JList<String> getWatchListJList() {
         return StocksSection.getWatchListList();
+    }
+
+    /**
+     * sets the action for the delete account button
+     * @return ActionListener to listen for when the delete account button is pressed
+     */
+    public static ActionListener getDeleteAccountListener() {
+        return e -> {
+            String pass = ProfileSection.getPassWordDialog();
+            if (MainPanelController.getProfileController().deleteAccount(pass)) {
+
+                MainPanelController.getProfileController().saveProfiles();
+
+                MainPanel.getHomeFrame().dispose();
+                MainPanel.getStartFrame();
+            } else {
+                ProfileSection.getPasswordNotCorrectWarning();
+            }
+        };
+    }
+
+    /**
+     * when the open button is clicked the information for a watch list opens
+     * @return ActionListener will perform action when the open button is clicked on watch list
+     */
+    public static ActionListener getWatchListOpenItemListener() {
+        return e -> {
+
+        };
+    }
+
+    /**
+     * when the remove button is clicked the watch list is removed
+     * @return ActionListener will perform action when the remove button is clicked on watch list
+     */
+    public static ActionListener getWatchListRemoveItemListener() {
+        return e -> {
+
+        };
+    }
+
+    /**
+     * when the open button is clicked the information for a stock  opens
+     * @return ActionListener will perform action when the open button is clicked on stock
+     */
+    public static ActionListener getStockListOpenItemListener() {
+        return e -> {
+
+        };
+    }
+
+    /**
+     * when the remove button is clicked the stock list is removed
+     * @return ActionListener will perform action when the remove button is clicked on stock
+     */
+    public static ActionListener getStockListRemoveItemListener() {
+        return e -> {
+
+        };
     }
 }
 

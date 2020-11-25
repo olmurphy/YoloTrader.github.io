@@ -189,8 +189,7 @@ public class ProfileSection {
         deleteAccountButton = new JButton("Delete Account");
         deleteAccountButton.setHorizontalAlignment(JButton.LEFT);
 
-        // FIXME: need to add action to this in the "Controller"
-        // deleteAccountButton.addActionListener();
+        deleteAccountButton.addActionListener(CenterPanelController.getDeleteAccountListener());
 
         return deleteAccountButton;
     }
@@ -239,5 +238,22 @@ public class ProfileSection {
         ProfileSection.setLastString(last);
         ProfileSection.setEmailString(email);
         ProfileSection.setUserString(user);
+    }
+
+    /**
+     * pops up an input dialog asking the user for the password of the account to delete
+     * @return user input for the password of the account
+     */
+    public static String getPassWordDialog() {
+        return JOptionPane.showInputDialog(null, "Enter Password",
+                "Confirm credential", JOptionPane.QUESTION_MESSAGE);
+    }
+
+    /**
+     * display to the user that the password passed in was incorrect
+     */
+    public static void getPasswordNotCorrectWarning() {
+        JOptionPane.showMessageDialog(null, "password was incorrect",
+                "Warning", JOptionPane.WARNING_MESSAGE);
     }
 }

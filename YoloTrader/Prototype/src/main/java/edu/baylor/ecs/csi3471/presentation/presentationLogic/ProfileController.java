@@ -4,6 +4,7 @@ import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.service.ProfileService;
 
 /**
+ * class defines the method that the user is able to user
  * @author owenmurphy
  */
 public class ProfileController {
@@ -17,26 +18,53 @@ public class ProfileController {
     /** Profile Service, the user is accessing the methods*/
     private ProfileService service;
 
+    /**
+     * public constructor to set the profile and initialize a new profile service
+     * @param profile profile to be set to
+     */
     public ProfileController(Profile profile) {
         this.profile = profile;
 
         this.service = new ProfileService();
     }
 
+    /**
+     * calls ${@link ProfileService#addProfile(Profile)} to add the profile to the profile list
+     * @param profile profile to add to the list
+     * @return true if the profile was added, false o.w.
+     */
     public boolean addProfile(Profile profile) {
         return service.addProfile(profile);
     }
 
+    /**
+     * calls ${@link ProfileService#loadProfiles()} to load all the profiles when the application
+     * start
+     */
     public void loadProfiles() { service.loadProfiles(); }
 
+    /**
+     * calls ${@link ProfileService#saveProfiles()} to save the profile to the database whenever a change is made
+     */
     public void saveProfiles() {
         service.saveProfiles();
     }
 
+    /**
+     * calls ${@link ProfileService#save(int, Profile)} to save the profile at the index
+     */
     public void save() {
         service.save(profileIndex, this.profile);
     }
 
+    /**
+     * calls the ${@link ProfileService#findProfile(String, String)} to get the profile and the index
+     * that it was found at. If the returned object is not null, then the profile is set
+     * to the 2nd pos of the object array and the index to the 1st pos
+     * @param email email of user input to check
+     * @param pass password of user input to check
+     * @return true if the user profile was set, false o.w.
+     */
     public boolean checkCredentials(String email, String pass) {
 
         Object[] objects = service.findProfile(email, pass);
@@ -92,9 +120,18 @@ public class ProfileController {
     }
 
     /**
-     * @return index that profile was found at
+     * checks that the password passed in is same as password of profile, if so it calls
+     * ${@link ProfileService#deleteProfile(Profile)} to delete this.profile
+     * @param pass password to check in the profile to confirm
+     * @return true if the profile was delete, false o.w.
      */
-    public Integer getProfileIndex() {
-        return profileIndex;
+    public boolean deleteAccount(String pass) {
+        if (profile.getPassword().equals(pass)) {
+            service.deleteProfile(this.profile);
+            this.saveProfiles();
+            return true;
+        } else {
+            return false;
+        }
     }
 }

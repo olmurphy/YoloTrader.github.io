@@ -51,6 +51,14 @@ public class ProfileService {
     }
 
     /**
+     * calls ${@link ProfileDAO#delete(Profile)} to delete the profile from the dao
+     * @param profile profile to delete the profile from
+     */
+    public void deleteProfile(Profile profile) {
+        this.dao.delete(profile);
+    }
+
+    /**
      * travers through the list of profiles looking for the email and password passed
      * in
      * @param email email of user to find
@@ -143,4 +151,6 @@ public class ProfileService {
      * calls ${@link ProfileDAO#saveAll()} to save all the profiles into the database
      */
     public void saveProfiles() { ((ProfileDAO)dao).saveAll(); }
+
+
 }

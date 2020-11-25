@@ -13,6 +13,7 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.SearchResu
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Map;
@@ -27,6 +28,10 @@ public class NorthPanelController {
     public static int northPanelHeight = 120;
     public static Color northPanelColor = MainPanel.backGroundColor;
     public static Map<String, String> results;
+
+    /** used in ${@link #getAddStockButtonListener()} to determine if the user wanted to add a stock
+     * directly to the selected watch list (rather than just look up stocks) */
+    public static boolean searchStock;
 
     /**
      * initialize the "Welcome, name" upon creating an account or logging in
@@ -74,6 +79,8 @@ public class NorthPanelController {
      */
     public static void launchSearch(String query, boolean addSingleStock) {
 
+        searchStock = addSingleStock; // indicates if add stock directly to watch list
+
         // results is  a mapping of company name -> ticker.
         results = StockUtil.pullUp(query);
 
@@ -87,10 +94,9 @@ public class NorthPanelController {
 
             // getting the only result found
             Map.Entry<String, String> entry = results.entrySet().iterator().next();
-            Stock stock = new Stock(entry.getKey(), entry.getValue(), new Date());
 
             // adding the stock to the list
-            MainPanelController.getStockController().addStock(stock, list);
+            MainPanelController.getStockController().addStock(new Stock(entry.getKey(), entry.getValue(), new Date()), list);
 
             // save to database
             MainPanelController.getProfileController().saveProfiles();
@@ -119,34 +125,60 @@ public class NorthPanelController {
             if (SearchResults.getStockList().isSelectionEmpty()) {
                 SearchResults.getNoStockSelectedWarning();
             } else {
-                String stockString = SearchResults.getStockList().getSelectedValue().toString();
-                listName = SearchResults.getInputWatchListNameToAdd();
+                String stockString = SearchResults.getStockList().getSelectedValue();
+                Stock stock = new Stock(stockString, results.get(stockString), new Date());
 
-                // find the watchList
-                StockWatchList watchList = MainPanelController.getStockWatchListController().findStockWatchList(listName);
+                if (searchStock) { // case that the user wants to add the stock directly to the watch list selected
 
-                if (watchList != null) {
-                    Stock stock = new Stock(stockString, results.get(stockString), new Date());
-                    System.out.println("name: " + stock.getName() + "\nticker: " + stock.getTicker());
+                    // logging the action
+                    YoloTrader.logger.info("directly adding stock to watch list");
 
-                    if (MainPanelController.getStockController().addStock(stock, watchList)) {
-                        // log action
-                        YoloTrader.logger.info("adding " + stockString + " to " + listName);
+                    // getting the selected watch list
+                    String listName1 = CenterPanelController.getWatchListJList().getSelectedValue();
 
-                        // save to database
-                        MainPanelController.getProfileController().saveProfiles();
+                    // getting the stock watch list selected
+                    StockWatchList watchList = MainPanelController.getStockWatchListController().findStockWatchList(listName1);
 
-                        // send successful message
-                        SearchResults.getStockAddedSuccessfullyMessage();
+                    // adding the stock to the stock watch list
+                    MainPanelController.getStockController().addStock(stock, watchList);
 
-                        // update the stock list model
-                        CenterPanelController.updateStockListModel();
-                    } else {
-                        SearchResults.getStockAlreadyAddedWarning();
-                    }
+                    // save to database
+                    MainPanelController.getProfileController().saveProfiles();
+
+                    // update the stock list model
+                    CenterPanelController.updateStockListModel();
+
+                    // send successful message
+                    SearchResults.getStockAddedSuccessfullyMessage();
                 } else {
-                    // display error that the list does not exist
-                    SearchResults.getListNotExistWarning();
+
+
+                    listName = SearchResults.getInputWatchListNameToAdd();
+
+                    // find the watchList
+                    StockWatchList watchList = MainPanelController.getStockWatchListController().findStockWatchList(listName);
+
+                    if (watchList != null) {
+
+                        if (MainPanelController.getStockController().addStock(stock, watchList)) {
+                            // log action
+                            YoloTrader.logger.info("adding " + stockString + " to " + listName);
+
+                            // save to database
+                            MainPanelController.getProfileController().saveProfiles();
+
+                            // update the stock list model
+                            CenterPanelController.updateStockListModel();
+
+                            // send successful message
+                            SearchResults.getStockAddedSuccessfullyMessage();
+                        } else {
+                            SearchResults.getStockAlreadyAddedWarning();
+                        }
+                    } else {
+                        // display error that the list does not exist
+                        SearchResults.getListNotExistWarning();
+                    }
                 }
             }
         };
@@ -163,6 +195,22 @@ public class NorthPanelController {
             MainPanel.getHomeFrame().dispose();
 
             MainPanel.getStartFrame();
+        };
+    }
+
+    /**
+     * adds the listener to the open stock button to display a panel
+     * @return ActionListner for when the open stock button is clicked
+     */
+    public static ActionListener getOpenStockButtonListener() {
+        return e -> {
+            if (SearchResults.getStockList().isSelectionEmpty()) {
+                // no stock selected, display warning
+                SearchResults.getNoStockSelectedWarning();
+            } else {
+                // open the stock panel FIXME: need to add open graph panel
+                System.out.println(SearchResults.getStockList().getSelectedValue());
+            }
         };
     }
 }
