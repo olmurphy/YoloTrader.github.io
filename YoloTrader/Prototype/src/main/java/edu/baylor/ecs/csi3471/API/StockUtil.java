@@ -1,8 +1,6 @@
 package edu.baylor.ecs.csi3471.API;
 
-import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
-import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
 import yahoofinance.Stock;
 
@@ -16,6 +14,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import static java.util.Map.entry;
 
 
 /**
@@ -89,9 +88,8 @@ public class StockUtil {
         begin= line.indexOf(start,begin);
         begin++;
         end = line.indexOf(start, begin);
-        String data = line.substring(begin, end);
-        
-        return data;
+
+		return line.substring(begin, end);
     }
     
     
@@ -114,11 +112,7 @@ public class StockUtil {
         begin++;
         end =  line.indexOf(stop, begin);
         String data = line.substring(begin, end);
-        
 
-        
-        
-        
         return Double.parseDouble(data);
     }
     
@@ -132,61 +126,15 @@ public class StockUtil {
      * @return	{@link Integer} 
      */
     private static int getPosition(String time) {
-    	int rtrn = -1;
-    	if(time.contains("09:30:00")) {
-    		rtrn = 0;
-    	}
-    	else if(time.contains("10:00:00")) {
-    		rtrn = 1;
-    	}
-    	else if(time.contains("10:30:00")) {
-    		rtrn = 2;
-    	}
-    	else if(time.contains("11:00:00")){
-    		rtrn = 3;
-    		
-    	}
-    	else if(time.contains("11:30:00")){
-    		rtrn = 4;
-    		
-    	}
-    	else if(time.contains("12:00:00")){
-    		rtrn = 5;
-    	}
-    	else if(time.contains("12:30:00")){
-    		rtrn = 6;
-    		
-    	}
-    	else if(time.contains("13:00:00")){
-    		rtrn = 7;
-    		
-    	}
-    	else if(time.contains("13:30:00")){
-    		rtrn = 8;
-    		
-    	}
-    	else if(time.contains("14:00:00")){
-    		rtrn = 9;
-    		
-    	}
-    	else if(time.contains("14:30:00")){
-    		rtrn = 10;
-    		
-    	}
-    	else if(time.contains("15:00:00")){
-    		rtrn = 11;
-    	}
-    	else if(time.contains("15:30:00")){
-    		rtrn = 12;
-    		
-    	}
-    	else if(time.contains("16:00:00")){
-    		rtrn = 13;
-    		
-    	}
-    	
-    	
-    	return rtrn;
+
+		Map<String,Integer> map = Map.ofEntries(
+				entry("09:30:00", 0), entry("10:00:00", 1), entry("10:30:00",2 ),
+				entry("11:00:00",3 ), entry("11:30:00",4 ), entry("12:00:00",5 ),
+				entry("12:30:00",6 ), entry("13:00:00",7 ), entry("13:30:00",8 ),
+				entry("14:00:00",9 ), entry("14:30:00",10 ), entry("15:00:00",11 ),
+				entry("15:30:00",12 ), entry("16:00:00",13 ));
+
+		return map.getOrDefault(time, -1);
     }
     
     
@@ -282,12 +230,9 @@ public class StockUtil {
     	try {
     	
 	    	URL url = new URL(query);
-	    	
-	    
+
 	    	//read and modify the data to double
 	    	try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-	    		
-	    	
 	    		  	
 	    	    for (String line; (line = reader.readLine()) != null;) {
 	    	    	
@@ -295,12 +240,10 @@ public class StockUtil {
 	    	    	 * 					- Only read entries from the current day.
 	    	    	 *						-only read the closing tags of these entries.
 	    	    	*/
-	    	    	
-	    	    	
+
 	    	    	//If API limit has been reached
 	    	    	if(line.contains("Error")) {
 	    	    		//Switch API Keys :).
-	    	    		
 	    	    	
 	    	    		//If P's API key is being used.
 	    	    		if(GRAPH_API_URL == GRAPH_API_URL_1) {
@@ -312,7 +255,7 @@ public class StockUtil {
 	    	    			line = check.readLine();
 	    	    			
 	    	    			//If O's API key is still good.
-	    	    			if(line.contains("ERROR") == false) {
+	    	    			if(!line.contains("ERROR")) {
 	    	    				//Change to O's API key.
 	    	    				GRAPH_API_URL = GRAPH_API_URL_2;
 	    	    				
@@ -323,9 +266,7 @@ public class StockUtil {
 	    	    			//Otherwise.
 	    	    			else {
 	    	    				System.out.println("BOTH API KEYS MAXED OUT. TRY AGAIN TOMMO.");
-	    	    				
 	    	    			}
-	    	    			
 	    	    		}
 	    	    		
 	    	    		//Otherwise O's API key is being used.
@@ -339,7 +280,7 @@ public class StockUtil {
 	    	    			line = check.readLine();
 	    	    			
 	    	    			//If P's API key is still good.
-	    	    			if(line.contains("ERROR") == false) {
+	    	    			if(!line.contains("ERROR")) {
 	    	    				//Change to P's API key.
 	    	    				GRAPH_API_URL = GRAPH_API_URL_1;
 	    	    				
@@ -350,22 +291,17 @@ public class StockUtil {
 	    	    			//Otherwise.
 	    	    			else {
 	    	    				System.out.println("BOTH API KEYS MAXED OUT. TRY AGAIN TOMMO.");
-	    	    				
 	    	    			}
-	    	    			
 	    	    		}
-	    	    		
-	    	    	}//End of if API limit has been reached.
-	    	    	
+	    	    	} //End of if API limit has been reached.
 	    	    	
 	    	    	//Otherwise API limit has not yet been reached.
 	    	    	else {
 	                    //Check the date.
 		    	    	if(line.contains(date)) {
-	                    	
 	                    
 	                        //If today's date has not been determined.
-	                    	if(today == false) {
+	                    	if(!today) {
 		                        
 	                    		//Get the date and time.
 		                        todaY = extractData(line);
@@ -382,41 +318,29 @@ public class StockUtil {
 			                        begin = 0;
 			                        end = todaY.indexOf(space, begin);
 			                        todaY = todaY.substring(begin, end);
-			                        
-			                       
-			                        
-			                        
+
 			                        //At this point todaY is now the string format of today.
 			                        today = true;
 			                        
 			                        //This also means that this entry is the most recent entry.
-			                        while(line.contains(close) == false) {
-			                        	
+			                        while(!line.contains(close)) {
 			                        	line = reader.readLine();
-			                        	
 			                        }
 			                        
 			                        //Now at close tag, get closing price.
 			                   
 			                        cls= extractPrice(line);
-			                       
-			                        
+
 			                        int pos = getPosition(time);
 			                        
 			                        //Save the data
 			                        data.set(pos,cls);
-			                        today = true;
-			                        
-		                        
 		                        }
-		                        
-		                        
 	                    	}
 	                    	
-	                    	//Otherwise, the date has been determined, implying that this entry is not the 
-	                    	//most recent entry.
+	                    	// Otherwise, the date has been determined, implying that this entry is not the
+	                    	// most recent entry.
 	                    	else {
-	                    	
 	                    	
 		                    	//If this entry is from today.
 		                    	if(line.contains(todaY)) {
@@ -427,13 +351,11 @@ public class StockUtil {
 			                        begin++;
 			                        time = line.substring(begin);
 			                        
-			                        
 			                        //if this is a desired time.
 			                        if(getPosition(time) != -1) {
 			                        	
 			                        	 	//Extract the closing price
-			                        		while(line.contains(close) == false) {
-			                        			
+			                        		while(!line.contains(close)) {
 					                        	line = reader.readLine();
 					                        }
 					                        
@@ -446,21 +368,15 @@ public class StockUtil {
 					                        //Save the data
 					                        data.set(pos, cls);
 					                        today = true;
-			                        	
 			                        }
-		                    		
 		                    	}
-		                    	
 	                    	}
-                    	
-                        
-		    	    	}//End of check date.
-	    	    	}//End of API limit not reached.
-	    	    
-	    	  }//End of for loop.
+		    	    	} //End of check date.
+	    	    	} //End of API limit not reached.
+	    	  	}//End of for loop.
 	    	}
-	    	
     	}
+
     	catch(UnsupportedEncodingException u) {
            YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
            YoloTrader.logger.warning(u.toString());
@@ -473,14 +389,9 @@ public class StockUtil {
         	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(e.toString());
         }
-    	
-    	
-    
-    	
-	    
+
 	    //return data
     	return data;
-    	
     }
     
 
@@ -494,7 +405,7 @@ public class StockUtil {
      */
     public static Map<String, String> pullUp(String query) {
 
-        Map<String, String> results = new HashMap<String, String>();
+        Map<String, String> results = new HashMap<>();
         String sanitizedQuery = "";
 
         //Shed query of any illegal characters.
@@ -518,20 +429,17 @@ public class StockUtil {
         int begin, end;
 
         try {
-            for(int x = 0; x < 2; x++) {
+
+        	Exchange exchange = Exchange.values()[Exchange.values().length - 1];
+            for(int x = 0; x < Exchange.values().length; x++) {
+            	exchange = exchange.next();
 
                 //Access FinancialModelingPrepAPI.
                 String search1 = SEARCH_URL + sanitizedQuery + EXCHANGE_URL;
 
-                if(x == 0) {
-                    search1 += Exchange.NASDAQ;
-                }
+                search1 += exchange;
 
-                else {
-                    search1 += Exchange.NYSE;
-                }
-
-                String search =  search1 + SEARCH_API_URL;
+                 String search =  search1 + SEARCH_API_URL;
 
 
                 URL url = new URL(search);
@@ -543,10 +451,9 @@ public class StockUtil {
                 	if(line.contains("ERROR")) {
                 		
                 		//Switch API Keys :).
-	    	    		
-    	    	    	
+
 	    	    		//If P's API key is being used.
-	    	    		if(SEARCH_API_URL == SEARCH_API_URL_1) {
+	    	    		if(SEARCH_API_URL.equals(SEARCH_API_URL_1)) {
 	    	    			
 	    	    			//Check if O's API key is still good.
 	    	    			search = search1 + SEARCH_API_URL_2;
@@ -556,7 +463,7 @@ public class StockUtil {
 	    	    			line = check.readLine();
 	    	    			
 	    	    			//If O's API key is still good.
-	    	    			if(line.contains("ERROR") == false) {
+	    	    			if(!line.contains("ERROR")) {
 	    	    				//Change to O's API key.
 	    	    				SEARCH_API_URL = SEARCH_API_URL_2;
 	    	    				
@@ -569,7 +476,6 @@ public class StockUtil {
 	    	    				System.out.println("BOTH API KEYS MAXED OUT. TRY AGAIN TOMMO.");
 	    	    				
 	    	    			}
-	    	    			
 	    	    		}
 	    	    		
 	    	    		//Otherwise O's API key is being used.
@@ -583,7 +489,7 @@ public class StockUtil {
 	    	    			line = check.readLine();
 	    	    			
 	    	    			//If P's API key is still good.
-	    	    			if(line.contains("ERROR") == false) {
+	    	    			if(!line.contains("ERROR")) {
 	    	    				//Change to P's API key.
 	    	    				SEARCH_API_URL = SEARCH_API_URL_1;
 	    	    				
@@ -596,16 +502,12 @@ public class StockUtil {
 	    	    				System.out.println("BOTH API KEYS MAXED OUT. TRY AGAIN TOMMO.");
 	    	    				
 	    	    			}
-	    	    			
 	    	    		}
-	    	    		
-                		
                 	}
                 	
                 	//Otherwise.
                 	else {
-                		
-                		
+
                 		 //Only be concerned with the symbol and name line.
                         if(line.contains(symbol)) {
 
@@ -627,27 +529,21 @@ public class StockUtil {
                             //Make mapping.
                             results.put(name, tick);
                         }
-                		
                 	}
-
-                   
-                }//End of reading JSON.
+                } //End of reading JSON.
             }
         }
         catch(UnsupportedEncodingException u) {
             YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(u.toString());
          } catch (MalformedURLException e) {
-             // TODO Auto-generated catch block
          	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
          	YoloTrader.logger.warning(e.toString());
          } catch (IOException e) {
-             // TODO Auto-generated catch block
          	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
-             YoloTrader.logger.warning(e.toString());
+         	YoloTrader.logger.warning(e.toString());
          }
 
         return results;
     }
-
 }
