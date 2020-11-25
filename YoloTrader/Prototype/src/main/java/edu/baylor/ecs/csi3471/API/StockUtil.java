@@ -3,7 +3,10 @@ package edu.baylor.ecs.csi3471.API;
 import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
+import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
+import yahoofinance.Stock;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
