@@ -4,7 +4,6 @@ import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
-import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -29,9 +28,6 @@ public class FormController {
 
     /** this is the color of the whole application interface the user will have */
     public static Color formColor = MainPanel.backGroundColor;
-
-    /** controller that the form controller uses to control the creating a new profile and logging into existing */
-    private static ProfileController profileController;
 
     /**
      * method to start the application, the application will start in the log-in page
@@ -87,7 +83,7 @@ public class FormController {
             // check for valid email format
             if (validateLogInFieldsNotEmpty()) {
 
-                if (profileController.checkCredentials(LogIn.getEmailField().getText(),
+                if (MainPanelController.getProfileController().checkCredentials(LogIn.getEmailField().getText(),
                         new String(LogIn.getPasswordField().getPassword()))) {
 
                     YoloTrader.logger.info("logging in");
@@ -130,9 +126,9 @@ public class FormController {
                     CreateAccount.getPassNotMatchWarning();
                 }
 
-                if (proceed && profileController.addProfile(profile) ) {
-                    profileController.setProfile(profile);
-                    profileController.saveProfiles();
+                if (proceed && MainPanelController.getProfileController().addProfile(profile) ) {
+                    MainPanelController.getProfileController().setProfile(profile);
+                    MainPanelController.getProfileController().saveProfiles();
                     CreateAccount.getFrame().dispose();
                     MainPanel.createUI();
                     YoloTrader.logger.info("creating account...");
@@ -218,16 +214,12 @@ public class FormController {
                 CreateAccount.getFirstField().getText(), CreateAccount.getLastField().getText());
     }
 
-    public static ProfileController getProfileController() {
-        return profileController;
-    }
-
     /**
-     * initializes the profile controller and all the profiles in YoloTrader Application
+     * calls ${@link MainPanelController#initializeProfileController()} to initialize the profile controller
+     * and all the profiles in YoloTrader Application
      */
     public static void initialize() {
-        profileController = new ProfileController(null);
-        profileController.loadProfiles();
+        MainPanelController.initializeProfileController();
     }
 
     public static boolean checkPassMatch() {
@@ -245,7 +237,7 @@ public class FormController {
             String email = Email.getEmailInputDialog();
 
             // check if password was changed given the email (email to recipient is also sent if condition is true)
-            if (profileController.recoverPassword(email)) {
+            if (MainPanelController.getProfileController().recoverPassword(email)) {
                 YoloTrader.logger.info("Changed password");
 
                 // save to database

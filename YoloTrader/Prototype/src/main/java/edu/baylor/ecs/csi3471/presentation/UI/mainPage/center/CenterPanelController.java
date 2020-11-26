@@ -14,7 +14,6 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.Crea
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.StocksSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
-import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
@@ -86,7 +85,7 @@ public class CenterPanelController {
     }
 
     /**
-     * logic for deleting a stock from a watchlist of user's specified watch list
+     * calls ${@link #deleteStockFromList()} to delete a stock from a watchlist of user's specified watch list
      * @return MouseAdapter to listen for when the button is clicked
      */
     public static MouseAdapter getDeleteStockButtonAction() {
@@ -94,25 +93,15 @@ public class CenterPanelController {
             @Override
             public void mouseClicked(MouseEvent e) {
 
+                // check if watch list is clicked
                 if (StocksSection.getStockList().isSelectionEmpty()) {
                     // no stock selected
                     AddStock.getNoStockSelectedWarning();
                 } else {
 
-                    String listName = StocksSection.getWatchListList().getSelectedValue();
-                    String stockName = StocksSection.getStockList().getSelectedValue();
-
-                    StockWatchList watchList = MainPanelController.stockWatchListController.findStockWatchList(listName);
-                    if(MainPanelController.getStockController().removeStock(stockName, watchList)) {
-
-                        ((DefaultListModel<String>)StocksSection.getStockListModel()).removeElement(stockName);
-
-                        YoloTrader.logger.info("stock deleted...");
-
-                        MainPanelController.getProfileController().saveProfiles();
-                    }
+                    // deleting stock from list
+                    deleteStockFromList();
                 }
-
             }
         };
     }
@@ -151,7 +140,7 @@ public class CenterPanelController {
     }
 
     /**
-     * logic for deleting a watchlist from a user's profile
+     * calls ${@link #deleteWatchList()} for deleting a watchlist from a user's profile
      * @return MouseAdapter to listen for when the button is clicked
      */
     public static MouseAdapter getDeleteWatchListAction() {
@@ -159,19 +148,13 @@ public class CenterPanelController {
             @Override
             public void mouseClicked(MouseEvent e) {
 
+                // check that a watch list is selected
                 if (StocksSection.getWatchListList().isSelectionEmpty()) {
                     // no watchlist selected
                     AddStock.getNoWatchListSelectedWarning();
                 } else {
-                    String listName = StocksSection.getWatchListList().getSelectedValue();
-
-                    if (MainPanelController.stockWatchListController.removeWatchList(listName)) {
-                        ((DefaultListModel<String>)StocksSection.watchListModel).removeElement(listName);
-                        YoloTrader.logger.info("deleting watchList");
-
-                        // saving changes to xml file
-                        MainPanelController.getProfileController().saveProfiles();
-                    }
+                    // watchlist is selected, delete it
+                    deleteWatchList();
                 }
             }
         };
@@ -188,9 +171,6 @@ public class CenterPanelController {
         ProfileSection.setProfilePanel(profile);
         StocksSection.setStocksMainPanel(profile);
         HomeSection.setHomeMainPanel();
-
-        MainPanelController.stockWatchListController = new StockWatchListController();
-        MainPanelController.stockWatchListController.loadStockLists(profile.getWatchLists());
     }
 
     /**
@@ -330,12 +310,36 @@ public class CenterPanelController {
     }
 
     /**
-     * when the remove button is clicked the watch list is removed
+     * when the remove button is clicked it calls ${@link #deleteWatchList()} to delete the
+     * selected watch list from the user's profile
      * @return ActionListener will perform action when the remove button is clicked on watch list
      */
     public static ActionListener getWatchListRemoveItemListener() {
-        return e -> {
+        return e -> deleteWatchList();
+    }
 
+    /**
+     * method calls ${@link CreateWatchList#watchListNameWindow()} to retrieve user's desire name
+     * for watch list. if name is not empty, it calls
+     * ${@link edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController#renameStockWatchList(String, String)}
+     * to rename the watch list to a new name
+     * @return ActionListener to list for a the mouse to press
+     */
+    public static ActionListener getWatchListRenameItemListener() {
+        return e -> {
+            String oldName = StocksSection.getWatchListList().getSelectedValue();
+            String newName = CreateWatchList.watchListNameWindow();
+
+            if (!newName.equals("")) {
+                MainPanelController.getStockWatchListController().renameStockWatchList(newName, oldName);
+
+                // saving profiles to database
+                MainPanelController.getProfileController().saveProfiles();
+
+                // updating the watch list names
+                ((DefaultListModel<String>)StocksSection.getWatchListModel()).removeElement(oldName);
+                ((DefaultListModel<String>)StocksSection.getWatchListModel()).addElement(newName);
+            }
         };
     }
 
@@ -350,13 +354,58 @@ public class CenterPanelController {
     }
 
     /**
-     * when the remove button is clicked the stock list is removed
+     * when the remove button is clicked it calls ${@link #deleteStockFromList()} to
+     * delete the stock from the list
      * @return ActionListener will perform action when the remove button is clicked on stock
      */
     public static ActionListener getStockListRemoveItemListener() {
         return e -> {
-
+            deleteStockFromList();
         };
     }
-}
 
+    /**
+     * the method deletes a watch list from the user's profile.
+     * This method was introduced to avoid duplication for deleting a watch list
+     * @return true if watch list was deleted, else false
+     */
+    public static boolean deleteWatchList() {
+        String listName = StocksSection.getWatchListList().getSelectedValue();
+
+        if (MainPanelController.stockWatchListController.removeWatchList(listName)) {
+            ((DefaultListModel<String>)StocksSection.watchListModel).removeElement(listName);
+            YoloTrader.logger.info("deleting watchList");
+
+            // saving changes to xml file
+            MainPanelController.getProfileController().saveProfiles();
+
+            return true;
+        }
+
+        return  false;
+    }
+
+    /**
+     * the method deletes a stock list from the user's watch list selected
+     * This method was introduced to avoid duplication for deleting a stock from stock list
+     * @return true if stock was deleted, else false
+     */
+    public static boolean deleteStockFromList() {
+        String listName = StocksSection.getWatchListList().getSelectedValue();
+        String stockName = StocksSection.getStockList().getSelectedValue();
+
+        StockWatchList watchList = MainPanelController.stockWatchListController.findStockWatchList(listName);
+        if(MainPanelController.getStockController().removeStock(stockName, watchList)) {
+
+            ((DefaultListModel<String>)StocksSection.getStockListModel()).removeElement(stockName);
+
+            YoloTrader.logger.info("stock deleted...");
+
+            MainPanelController.getProfileController().saveProfiles();
+
+            return true;
+        }
+
+        return false;
+    }
+}

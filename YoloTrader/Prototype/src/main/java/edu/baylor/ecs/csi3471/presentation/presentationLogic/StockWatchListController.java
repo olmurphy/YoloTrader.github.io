@@ -19,15 +19,6 @@ public class StockWatchListController {
         this.stockWatchList = new StockWatchList();
     }
 
-    public void loadStockLists(List<StockWatchList> list) {
-        this.service.setWatchList(list);
-    }
-
-    public StockWatchListController(StockWatchList stockWatchList, StockWatchListService service) {
-        this.stockWatchList = stockWatchList;
-        this.service = service;
-    }
-
     public boolean addWatchList(StockWatchList list) {
         return this.service.addWatchList(list);
     }
@@ -40,10 +31,6 @@ public class StockWatchListController {
         return stockWatchList;
     }
 
-    public StockWatchList findStockWatchList(String listName) {
-        return service.findStockWatchList(listName);
-    }
-
     public void setStockWatchList(StockWatchList stockWatchList) {
         this.stockWatchList = stockWatchList;
     }
@@ -54,5 +41,15 @@ public class StockWatchListController {
 
     public void setService(StockWatchListService service) {
         this.service = service;
+    }
+
+    public StockWatchList findStockWatchList(String listName) {
+        return service.findStockWatchList(listName);
+    }
+
+    public void renameStockWatchList(String newName, String oldName) { service.renameStockWatchList(newName, oldName); }
+
+    public void loadStockLists(List<StockWatchList> list) {
+        this.service.setWatchList(list);
     }
 }

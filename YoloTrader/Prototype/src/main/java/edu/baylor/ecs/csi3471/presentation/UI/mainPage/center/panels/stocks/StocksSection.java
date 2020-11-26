@@ -238,14 +238,17 @@ public class StocksSection {
         // setting the buttons
         JMenuItem itemOpen = new JMenuItem("Open");
         JMenuItem itemRemove = new JMenuItem("Delete");
+        JMenuItem itemRename = new JMenuItem("Rename");
 
         // adding the listeners
         itemOpen.addActionListener(CenterPanelController.getWatchListOpenItemListener());
         itemRemove.addActionListener(CenterPanelController.getWatchListRemoveItemListener());
+        itemRename.addActionListener(CenterPanelController.getWatchListRenameItemListener());
 
         // add the buttons
         menu.add(itemOpen);
         menu.add(itemRemove);
+        menu.add(itemRename);
 
         return menu;
     }

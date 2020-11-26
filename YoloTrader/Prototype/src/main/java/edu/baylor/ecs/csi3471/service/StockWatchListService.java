@@ -32,18 +32,15 @@ public class StockWatchListService {
 
         List<StockWatchList> stockWatchLists = this.dao.getAll();
 
-        boolean create = true;
-        for (int i = 0; i < stockWatchLists.size() && create; i++) {
-            if (stockWatchLists.get(i).getName().equals(watchList.getName())) {
-                create = false;
+        for (StockWatchList stockWatchList : stockWatchLists) {
+            if (stockWatchList.getName().equals(watchList.getName())) {
+                return false;
             }
         }
 
-        if (create) {
-            this.dao.add(watchList);
-        }
+        this.dao.add(watchList);
 
-        return create;
+        return true;
     }
 
     /**
@@ -56,15 +53,14 @@ public class StockWatchListService {
     public boolean removeWatchList(String name) {
         List<StockWatchList> list = this.dao.getAll();
 
-        boolean listExists = false;
-        for (int index = 0; index < list.size() && !listExists; index++) {
-            if (list.get(index).getName().equals(name)) {
-                this.dao.delete(list.get(index));
-                listExists = true;
+        for (StockWatchList stockWatchList : list) {
+            if (stockWatchList.getName().equals(name)) {
+                this.dao.delete(stockWatchList);
+                return true;
             }
         }
 
-        return listExists;
+        return false;
     }
 
     /**
@@ -99,16 +95,27 @@ public class StockWatchListService {
     public StockWatchList findStockWatchList(String listName) {
 
         List<StockWatchList> list = this.dao.getAll();
-        StockWatchList watchList = null;
+        StockWatchList watchList;
 
-        boolean found = false;
-        for (int i = 0; !found && i < list.size(); i++) { // short circuit the loop
+        for (int i = 0; i < list.size(); i++) { // short circuit the loop
             if (list.get(i).getName().equals(listName)) {
                 watchList = list.get(i);
-                found = true; // found the watch list, exit the loop
+                return watchList;
             }
         }
 
-        return watchList;
+        return null;
+    }
+
+    public void renameStockWatchList(String newName, String oldName) {
+        List<StockWatchList> list = this.dao.getAll();
+
+        // traverse the watch lists
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getName().equals(oldName)) {
+                list.get(i).setName(newName);
+                return; // short circuit the loop for performance
+            }
+        }
     }
 }

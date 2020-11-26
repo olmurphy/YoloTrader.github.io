@@ -57,7 +57,7 @@ public class StockUtil {
     private final static String SEARCH_URL ="https://financialmodelingprep.com/api/v3/search?query=";
     private final static String EXCHANGE_URL = "&limit=10&exchange=";
     
-    private static String SEARCH_API_URL = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+    private static String SEARCH_API_URL =         "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
     
     private final static String SEARCH_API_URL_1 = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
     private final static String SEARCH_API_URL_2 = "&apikey=9f2e6a54a66d7c7961207ce53c05e063";
@@ -67,10 +67,7 @@ public class StockUtil {
     
     private final static String GRAPH_API_URL_1 = "?apikey=4819ef0b5de9d90ed219e89c51f35d34";
     private final static String GRAPH_API_URL_2 = "?apikey=9f2e6a54a66d7c7961207ce53c05e063";
-    
-    
-    
-    
+
     /**
      * The extractData function is a helper function for the getGraphData function.
      * <p>
@@ -91,7 +88,6 @@ public class StockUtil {
 
 		return line.substring(begin, end);
     }
-    
     
     /**
      * The extractPrice function is a helper function for the getGraphData function.
@@ -115,8 +111,6 @@ public class StockUtil {
 
         return Double.parseDouble(data);
     }
-    
-    
     
     /**
      * The getPosition function is a helper function for the getGraphData function.
@@ -225,8 +219,7 @@ public class StockUtil {
         for(int x = 0; x < 14; x++) {
         	data.add(-1.0);
         }
-    	
-    	
+
     	try {
     	
 	    	URL url = new URL(query);
@@ -439,29 +432,28 @@ public class StockUtil {
 
                 search1 += exchange;
 
-                 String search =  search1 + SEARCH_API_URL;
-
+                String search =  search1 + SEARCH_API_URL;
 
                 URL url = new URL(search);
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
                 for (String line; (line = reader.readLine()) != null ;) {
                 	
-                	//If the current API key is maxed out.
+                	// If the current API key is maxed out.
                 	if(line.contains("ERROR")) {
-                		
+
                 		//Switch API Keys :).
 
 	    	    		//If P's API key is being used.
 	    	    		if(SEARCH_API_URL.equals(SEARCH_API_URL_1)) {
-	    	    			
+
 	    	    			//Check if O's API key is still good.
 	    	    			search = search1 + SEARCH_API_URL_2;
 	    	    			URL url2 = new URL(search);
 	    	    			BufferedReader check = new BufferedReader(new InputStreamReader(url2.openStream(), "UTF-8" ));
-	    	    			
+
 	    	    			line = check.readLine();
-	    	    			
+
 	    	    			//If O's API key is still good.
 	    	    			if(!line.contains("ERROR")) {
 	    	    				//Change to O's API key.
@@ -533,6 +525,7 @@ public class StockUtil {
                 } //End of reading JSON.
             }
         }
+
         catch(UnsupportedEncodingException u) {
             YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(u.toString());

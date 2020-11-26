@@ -1,6 +1,5 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage;
 
-import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.presentation.UI.form.FormController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
@@ -10,34 +9,32 @@ import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;
 
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-
-
 /**
  * @author owenmurphy
  */
 public class MainPanelController {
 
-    /** stock controller handles events to stock, like add, delete */
+    /** stock controller handles events to stock item */
     public static StockController stockController;
+
+    /** watch list controllers handles events to watch list */
     public static StockWatchListController stockWatchListController;
 
-    public static ProfileController getProfileController() {
-        return FormController.getProfileController();
-    }
+    /** controller that the form controller uses to control the creating a new profile and logging into existing */
+    private static ProfileController profileController;
 
     /**
      * initializing all everything needed for the application
      */
     public static void initializeAllPanels() {
-        // initialize stock controller
+        // initialize stock and watch list controllers
         setStockController(new StockController());
+        stockWatchListController = new StockWatchListController();
+        stockWatchListController.loadStockLists(profileController.getProfile().getWatchLists());
 
         // call panels to initialize themselves
-        NorthPanelController.setNorthPanel(FormController.getProfileController().getProfile().getUsername());
-        CenterPanelController.setAllCenterPanels(FormController.getProfileController().getProfile());
+        NorthPanelController.setNorthPanel(profileController.getProfile().getUsername());
+        CenterPanelController.setAllCenterPanels(profileController.getProfile());
         WestPanelController.setAllPanels();
     }
 
@@ -54,5 +51,12 @@ public class MainPanelController {
      */
     public static StockWatchListController getStockWatchListController() {
         return stockWatchListController;
+    }
+
+    public static ProfileController getProfileController() { return profileController; }
+
+    public static void initializeProfileController() {
+        profileController = new ProfileController(null);
+        profileController.loadProfiles();
     }
 }

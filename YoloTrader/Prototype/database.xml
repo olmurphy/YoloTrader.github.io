@@ -50,30 +50,30 @@
             <last>l</last>
             <listOfWatchLists>
                 <watchListName>
-                    <name>groceries</name>
+                    <name>ger</name>
                     <dateCreated>2020-11-24T21:59:18.285-06:00</dateCreated>
                     <stockList>
                         <stock>
-                            <ticker>KR</ticker>
-                            <name>Kroger Co</name>
-                            <dateAdded>2020-11-24T22:00:37.167-06:00</dateAdded>
+                            <ticker>WMT</ticker>
+                            <name>Walmart Inc</name>
+                            <dateAdded>2020-11-26T08:28:29.272-06:00</dateAdded>
                             <commentList/>
                         </stock>
                     </stockList>
                 </watchListName>
                 <watchListName>
-                    <name>new</name>
-                    <dateCreated>2020-11-24T21:59:47.434-06:00</dateCreated>
-                    <stockList/>
-                </watchListName>
-                <watchListName>
-                    <name>new1</name>
-                    <dateCreated>2020-11-24T21:59:50.359-06:00</dateCreated>
-                    <stockList/>
-                </watchListName>
-                <watchListName>
                     <name>new3</name>
                     <dateCreated>2020-11-24T22:00:03.629-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+                <watchListName>
+                    <name>get</name>
+                    <dateCreated>2020-11-26T08:01:05.763-06:00</dateCreated>
+                    <stockList/>
+                </watchListName>
+                <watchListName>
+                    <name>abc</name>
+                    <dateCreated>2020-11-26T08:01:10.585-06:00</dateCreated>
                     <stockList/>
                 </watchListName>
             </listOfWatchLists>
