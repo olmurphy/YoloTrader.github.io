@@ -30,6 +30,7 @@ public class CreateAccount {
         frame = new JFrame("Create Account");
 
         frame.add(CreateAccount.getCreateAccPanel());
+        frame.getRootPane().setDefaultButton(getCreateAccountButton());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

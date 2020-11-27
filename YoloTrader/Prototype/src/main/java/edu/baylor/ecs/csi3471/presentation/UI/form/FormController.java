@@ -4,6 +4,7 @@ import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -113,32 +114,44 @@ public class FormController {
     public static ActionListener getCreateAccountAction() {
         return e -> {
 
+            String email;
+
             // check that all fields are not empty
-            if (validCreateAccountFieldsNotEmpty()) {
-
-                boolean proceed = true;
-                YoloTrader.logger.info("check that email input is unique");
-
-                Profile profile = createNewProfile();
-
-                if (!checkPassMatch()) {
-                    proceed = false;
-                    CreateAccount.getPassNotMatchWarning();
-                }
-
-                if (proceed && MainPanelController.getProfileController().addProfile(profile) ) {
-                    MainPanelController.getProfileController().setProfile(profile);
-                    MainPanelController.getProfileController().saveProfiles();
-                    CreateAccount.getFrame().dispose();
-                    MainPanel.createUI();
-                    YoloTrader.logger.info("creating account...");
-
-                } else if (proceed){
-                    Email.getEmailWarning();
-                }
-
-            } else {
+            if (!validCreateAccountFieldsNotEmpty()) {
                 LogIn.getEmptyFieldWarning();
+            }
+
+            // check that the email used is a valid email
+            else if (!EmailValidator.getInstance().isValid(email = LogIn.getEmailField().getText())) {
+                Email.getEmailNotValidWarning();
+            }
+
+            // check that the passwords match
+            else if (!checkPassMatch()) {
+                CreateAccount.getPassNotMatchWarning();
+            }
+
+            // check that the email is unique
+            else if (!MainPanelController.getProfileController().isEmailUnique(email)) {
+
+                // display warning that email is not unique
+                Email.getEmailWarning();
+            }
+
+            // check that user's is inputting the correct verification code sent to their email
+            else if (!Email.getEmailSentCodeValidation(email)) {
+                Email.getEmailValidationCodeNotValid();
+            }
+
+            // all is good, start making account
+            else {
+                Profile profile = createNewProfile();
+                MainPanelController.getProfileController().addProfile(profile);
+                MainPanelController.getProfileController().setProfile(profile);
+                MainPanelController.getProfileController().saveProfiles();
+                CreateAccount.getFrame().dispose();
+                MainPanel.createUI();
+                YoloTrader.logger.info("creating account...");
             }
         };
     }

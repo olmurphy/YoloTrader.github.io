@@ -188,9 +188,7 @@ public class StockUtil {
     	return graph;
     	
     }
-    
-    
-    
+
     /**
      * The getGraphData function returns a list of equity's prices for the day.
      * <p>
@@ -201,7 +199,7 @@ public class StockUtil {
     public static Vector<Double> getGraphData(yahoofinance.Stock equity){
     	
     	String query = GRAPH_URL + equity.getSymbol() + GRAPH_API_URL;
-    	Vector<Double> data = new Vector<Double>();
+    	Vector<Double> data = new Vector<>();
     	String close = "close";
     	Double cls;
     	String date = "date";

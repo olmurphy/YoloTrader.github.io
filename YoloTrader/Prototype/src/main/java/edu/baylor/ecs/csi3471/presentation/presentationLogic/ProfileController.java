@@ -31,10 +31,9 @@ public class ProfileController {
     /**
      * calls ${@link ProfileService#addProfile(Profile)} to add the profile to the profile list
      * @param profile profile to add to the list
-     * @return true if the profile was added, false o.w.
      */
-    public boolean addProfile(Profile profile) {
-        return service.addProfile(profile);
+    public void addProfile(Profile profile) {
+        service.addProfile(profile);
     }
 
     /**
@@ -133,5 +132,9 @@ public class ProfileController {
         } else {
             return false;
         }
+    }
+
+    public boolean isEmailUnique(String email) {
+        return this.service.isEmailUnique(email);
     }
 }

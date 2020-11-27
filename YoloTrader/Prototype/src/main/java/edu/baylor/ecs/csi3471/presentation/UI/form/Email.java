@@ -6,6 +6,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.*;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Random;
 
@@ -34,8 +35,6 @@ public class Email {
      * @param text description of email
      */
     public static void sendEmail(String email, String subject, String text) {
-        // Recipient's email ID needs to be mentioned.
-        String to = email;
 
         // Sender's email ID needs to be mentioned
         String from = Email.companyEmail;
@@ -50,9 +49,8 @@ public class Email {
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
 
-
         // Get the default Session object.
-        Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
 
                 return new PasswordAuthentication(Email.companyEmail, "Hint@123");
@@ -68,7 +66,7 @@ public class Email {
             message.setFrom(new InternetAddress(from));
 
             // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 
             // Set Subject: header field
             message.setSubject(subject);
@@ -106,13 +104,24 @@ public class Email {
      * this method generates a random string of length 18 with A-Z chars and 0-9 integers
      * @return random string
      */
-    public static String getSaltString() {
-        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    public static String getRandomString() {
+        String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
         while (salt.length() < 18) { // length of the random string.
-            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
-            salt.append(SALTCHARS.charAt(index));
+            int index = (int) (rnd.nextFloat() * ALPHABET.length());
+            salt.append(ALPHABET.charAt(index));
+        }
+        return salt.toString();
+    }
+
+    public static String getRandomNumberString () {
+        String ALPHABET = "1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 18) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * ALPHABET.length());
+            salt.append(ALPHABET.charAt(index));
         }
         return salt.toString();
     }
@@ -124,5 +133,41 @@ public class Email {
     public static void getPasswordChangedSuccessful() {
         JOptionPane.showMessageDialog(null, "Password successfully changed, check your " +
                 "email inbox for it.");
+    }
+
+    public static void getEmailNotValidWarning() {
+        JOptionPane.showMessageDialog(null, "Email is not valid.",
+                "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+
+    public static boolean getEmailSentCodeValidation(String email) {
+        String actualCode = getRandomNumberString();
+
+        sendEmail(email, "Email Code to Validate", actualCode);
+
+        int count = 1;
+
+        do {
+
+            String code = JOptionPane.showInputDialog(null, "Email with code has been sent." +
+                            "\nInput code: (Attempt: " + count + " of 3)",
+                    "Email Validation", JOptionPane.QUESTION_MESSAGE);
+
+            if (code.equals(actualCode)) {
+                return true;
+            } else {
+                count++;
+            }
+
+        } while (count < 4);
+
+        JOptionPane.showMessageDialog(null, "Code is not valid: ");
+
+        return false;
+    }
+
+    public static void getEmailValidationCodeNotValid() {
+        JOptionPane.showMessageDialog(null, "Code is not valid",
+                "Warning", JOptionPane.WARNING_MESSAGE);
     }
 }

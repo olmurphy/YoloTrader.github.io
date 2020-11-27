@@ -30,24 +30,10 @@ public class ProfileService {
      * iterates through all of the profiles checking that the profile passed in does
      * not match a profile in the list of profiles
      * @param profile profile to be added into the list of profiles
-     * @return true if the profile was added into the dao, o.w. false
      */
-    public boolean addProfile(Profile profile) {
+    public void addProfile(Profile profile) {
 
-        List<Profile> profiles = this.dao.getAll();
-
-        boolean isUnique = true;
-        for (int i = 0; isUnique && i < profiles.size(); i++) { // short circuit the loop if found
-            if (profiles.get(i).equals(profile)) {
-                isUnique = false;
-            }
-        }
-
-        if (isUnique) {
-            this.dao.add(profile);
-        }
-
-        return isUnique;
+        this.dao.add(profile);
     }
 
     /**
@@ -128,7 +114,7 @@ public class ProfileService {
 
                 // changing password with a random password
                 YoloTrader.logger.info("Changing password");
-                String password = Email.getSaltString();
+                String password = Email.getRandomString();
                 ((ProfileDAO)this.dao).changeProfilePassword(index, password);
 
                 // sending client new password
@@ -152,5 +138,12 @@ public class ProfileService {
      */
     public void saveProfiles() { ((ProfileDAO)dao).saveAll(); }
 
-
+    public boolean isEmailUnique(String email) {
+        for (Profile profile : this.getDao().getAll()) {
+            if (profile.getEmail().equals(email)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

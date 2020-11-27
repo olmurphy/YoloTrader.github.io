@@ -34,6 +34,7 @@ public class LogIn {
         frame = new JFrame("Log-In");
 
         frame.add(getLogInPanel());
+        frame.getRootPane().setDefaultButton(getLogInButton());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
