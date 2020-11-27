@@ -97,9 +97,9 @@ public class StockWatchListService {
         List<StockWatchList> list = this.dao.getAll();
         StockWatchList watchList;
 
-        for (int i = 0; i < list.size(); i++) { // short circuit the loop
-            if (list.get(i).getName().equals(listName)) {
-                watchList = list.get(i);
+        for (StockWatchList stockWatchList : list) { // short circuit the loop
+            if (stockWatchList.getName().equals(listName)) {
+                watchList = stockWatchList;
                 return watchList;
             }
         }
@@ -107,13 +107,20 @@ public class StockWatchListService {
         return null;
     }
 
+    /**
+     * the method calls
+     * ${@link edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController#renameStockWatchList(String, String)}
+     * to rename the watchlist to the newName
+     * @param newName new name to be given to stock watch list
+     * @param oldName old name to find the stock watch list
+     */
     public void renameStockWatchList(String newName, String oldName) {
         List<StockWatchList> list = this.dao.getAll();
 
         // traverse the watch lists
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getName().equals(oldName)) {
-                list.get(i).setName(newName);
+        for (StockWatchList stockWatchList : list) {
+            if (stockWatchList.getName().equals(oldName)) {
+                stockWatchList.setName(newName);
                 return; // short circuit the loop for performance
             }
         }

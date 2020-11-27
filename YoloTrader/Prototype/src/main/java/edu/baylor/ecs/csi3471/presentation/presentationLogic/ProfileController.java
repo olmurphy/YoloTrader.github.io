@@ -37,16 +37,19 @@ public class ProfileController {
     }
 
     /**
-     * calls ${@link ProfileService#loadProfiles()} to load all the profiles when the application
-     * start
+     * checks that the password passed in is same as password of profile, if so it calls
+     * ${@link ProfileService#deleteProfile(Profile)} to delete this.profile
+     * @param pass password to check in the profile to confirm
+     * @return true if the profile was delete, false o.w.
      */
-    public void loadProfiles() { service.loadProfiles(); }
-
-    /**
-     * calls ${@link ProfileService#saveProfiles()} to save the profile to the database whenever a change is made
-     */
-    public void saveProfiles() {
-        service.saveProfiles();
+    public boolean deleteProfile(String pass) {
+        if (profile.getPassword().equals(pass)) {
+            service.deleteProfile(this.profile);
+            this.saveProfiles();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -119,22 +122,25 @@ public class ProfileController {
     }
 
     /**
-     * checks that the password passed in is same as password of profile, if so it calls
-     * ${@link ProfileService#deleteProfile(Profile)} to delete this.profile
-     * @param pass password to check in the profile to confirm
-     * @return true if the profile was delete, false o.w.
+     * calls ${@link ProfileService#isEmailUnique(String)} to check if the
+     * email passed in is indeed a unique email
+     * @param email email to be checked if unique
+     * @return true if email is unique, false o.w.
      */
-    public boolean deleteAccount(String pass) {
-        if (profile.getPassword().equals(pass)) {
-            service.deleteProfile(this.profile);
-            this.saveProfiles();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public boolean isEmailUnique(String email) {
         return this.service.isEmailUnique(email);
+    }
+
+    /**
+     * calls ${@link ProfileService#loadProfiles()} to load all the profiles when the application
+     * start
+     */
+    public void loadProfiles() { service.loadProfiles(); }
+
+    /**
+     * calls ${@link ProfileService#saveProfiles()} to save the profile to the database whenever a change is made
+     */
+    public void saveProfiles() {
+        service.saveProfiles();
     }
 }

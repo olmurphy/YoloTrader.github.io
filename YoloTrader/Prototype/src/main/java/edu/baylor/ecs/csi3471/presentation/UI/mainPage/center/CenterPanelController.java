@@ -287,7 +287,7 @@ public class CenterPanelController {
     public static ActionListener getDeleteAccountListener() {
         return e -> {
             String pass = ProfileSection.getPassWordDialog();
-            if (MainPanelController.getProfileController().deleteAccount(pass)) {
+            if (MainPanelController.getProfileController().deleteProfile(pass)) {
 
                 MainPanelController.getProfileController().saveProfiles();
 

@@ -130,8 +130,7 @@ public class StockUtil {
 
 		return map.getOrDefault(time, -1);
     }
-    
-    
+
     /*FIXME: TEST IF IT CAN HANDLE DRAWING DURING THE MARKET DAY!*/
     
     /**
