@@ -20,9 +20,9 @@ could add [link](https://kodejava.org/how-do-i-create-a-simple-mail-client-progr
 
 ## Form Images
 ##### Create Account
-![](Images/Create-Account.png)
+![](https://github.com/olmurphy/YoloTrader.github.io/tree/master/Images/UI/Create-Acount.png)
 <br/> <br/> <br/>
 ##### Log-In
-![](Images/Log-In.png)
+![](https://github.com/olmurphy/YoloTrader.github.io/tree/master/Images/UI/Log-In.png)
 
 

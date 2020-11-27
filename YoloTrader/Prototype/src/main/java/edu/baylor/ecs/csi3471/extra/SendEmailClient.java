@@ -14,6 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Properties;
 
+/**
+ * could possibly use
+ */
 public class SendEmailClient extends JFrame {
     private JTextField fromField = new JTextField();
     private JLabel toField = new JLabel(Email.companyEmail);

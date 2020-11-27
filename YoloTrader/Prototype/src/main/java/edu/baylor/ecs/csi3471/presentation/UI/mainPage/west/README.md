@@ -14,9 +14,9 @@ buttons.
 [Help](https://github.com/olmurphy/YoloTrader.github.io/tree/master/YoloTrader/Prototype/src/main/java/edu/baylor/ecs/csi3471/UI/form/Help.java)
 in the form directory are not the same. Better name suggestions are encouraged
 
-**To-Do-List or Notes:**
+#### To-Do-List or Notes:
 - Finish design for all pages
 
-### Panels Image
+#### Panels Image
 
-![](Images/panels.png)
+![](https://github.com/olmurphy/YoloTrader.github.io/tree/master/Images/UI/Home.png)

@@ -1,21 +1,21 @@
 # Center Panel Images
 
 #### Home
-![](Images/home.png)
+![](https://github.com/olmurphy/YoloTrader.github.io/tree/master/Images/UI/Home.png)
 <br/> <br/> <br/>
 
 #### Profile
-![](Images/profile.png)
+![](https://github.com/olmurphy/YoloTrader.github.io/tree/master/Images/UI/Profile.png)
 <br/> <br/> <br/>
 
 #### Stock
-![](Images/stock.png)
+![](https://github.com/olmurphy/YoloTrader.github.io/tree/master/Images/UI/Stock.png)
 <br/> <br/> <br/>
 
 #### Help
-![](Images/help.png)
+![](https://github.com/olmurphy/YoloTrader.github.io/tree/master/Images/UI/help.png)
 <br/> <br/> <br/>
 
 #### About
-![](Images/about.png)
+![](https://github.com/olmurphy/YoloTrader.github.io/tree/master/Images/UI/About.png)
 <br/> <br/> <br/>
