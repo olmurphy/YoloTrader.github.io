@@ -1,19 +1,36 @@
 package edu.baylor.ecs.csi3471.API;
 
+import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
+import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
-import yahoofinance.Stock;
+import edu.baylor.ecs.csi3471.presentation.UI.stockPage.NewsPanel;
+import yahoofinance.*;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import static java.util.Map.entry;
 
 
@@ -57,7 +74,7 @@ public class StockUtil {
     private final static String SEARCH_URL ="https://financialmodelingprep.com/api/v3/search?query=";
     private final static String EXCHANGE_URL = "&limit=10&exchange=";
     
-    private static String SEARCH_API_URL =         "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+    private static String SEARCH_API_URL = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
     
     private final static String SEARCH_API_URL_1 = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
     private final static String SEARCH_API_URL_2 = "&apikey=9f2e6a54a66d7c7961207ce53c05e063";
@@ -67,9 +84,36 @@ public class StockUtil {
     
     private final static String GRAPH_API_URL_1 = "?apikey=4819ef0b5de9d90ed219e89c51f35d34";
     private final static String GRAPH_API_URL_2 = "?apikey=9f2e6a54a66d7c7961207ce53c05e063";
-
+    
+    
+    
+    private static String NEWS_URL = "https://financialmodelingprep.com/api/v3/stock_news?tickers=";
+    private static String GENERAL_NEWS_URL = "https://financialmodelingprep.com/api/v3/stock_news?limit=80";
+	
+	private static String NEWS_API = "&limit=50&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+	private static String GENERAL_NEWS_API = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+	
+	
+	private final static String NEWS_API_1 = "&limit=50&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+	private final static String NEWS_API_2 = "&limit=50&apikey=9f2e6a54a66d7c7961207ce53c05e063";
+	
+	private final static String GENERAL_NEWS_API_1 = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+	private final static String GENERAL_NEWS_API_2 = "&apikey=9f2e6a54a66d7c7961207ce53c05e063";
+	
+	private final static String P_KEY = "4819ef0b5de9d90ed219e89c51f35d34";
+	private final static String O_KEY = "9f2e6a54a66d7c7961207ce53c05e063";
+	
+	
+    
+	
+	
+	
+    
+    
+    
     /**
-     * The extractData function is a helper function for the getGraphData function.
+     * The extractData function is a helper function for parsing data from the 
+     * API.
      * <p>
      * @param line	${@link String}
      * <p>
@@ -85,12 +129,432 @@ public class StockUtil {
         begin= line.indexOf(start,begin);
         begin++;
         end = line.indexOf(start, begin);
-
-		return line.substring(begin, end);
+        String data = line.substring(begin, end);
+        
+        return data;
     }
     
     /**
-     * The extractPrice function is a helper function for the getGraphData function.
+     * The getWorkingKey function returns a working API key. 
+     * <p>
+     * @param Key	The key that is currently being used.
+     * <p>
+     * @return${@link String} a working API key, or null(if none are working)
+     */
+    private static String getWorkingKey(String Key) {
+    	String rtrn = null;
+    	
+    	try {
+    		//If P's API key is being used.
+    		if(Key.contains(P_KEY)) {
+    			//Check if O's API key is still good.
+    			String pull = GENERAL_NEWS_URL +  GENERAL_NEWS_API_2;
+    			URL url2 = new URL(pull);
+    			BufferedReader check = new BufferedReader(new InputStreamReader(url2.openStream(), "UTF-8" ));
+    			
+    			String line = check.readLine();
+    			
+    			//If O's API key is still good.
+    			if(line.contains("ERROR") == false) {
+    				//Change to O's API key.
+    				rtrn = Key.replace(P_KEY, O_KEY);
+    				
+    			}
+    			
+    			check.close();
+    		}
+    		
+    		//Otherwise O's API key is being used.
+    		else {
+    			
+    			//Check if P's API key is still good.
+    			String pull = GENERAL_NEWS_URL  + GENERAL_NEWS_API_1;
+    			URL url2 = new URL(pull);
+    			BufferedReader check = new BufferedReader(new InputStreamReader(url2.openStream(), "UTF-8" ));
+    			
+    			String line = check.readLine();
+    			
+    			//If P's API key is still good.
+    			if(line.contains("ERROR") == false) {
+    				//Change to P's API key.
+    				rtrn = Key.replace(O_KEY, P_KEY);
+    				
+    			}
+    			
+    			check.close();
+    			
+    		}
+    		
+    		
+    	
+		}catch(UnsupportedEncodingException u) {
+	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+	           YoloTrader.logger.warning(u.toString());
+	        } catch (MalformedURLException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+	        	YoloTrader.logger.warning(e.toString());
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+	            YoloTrader.logger.warning(e.toString());
+	        }
+		
+		return rtrn;
+    	
+    }
+    
+    
+    
+    /**
+     * The getGeneralNews function returns a NewsPanel containing general news.
+     * <p>
+     */
+	public static NewsPanel getGeneralNews() {
+		NewsPanel feed = null;
+		//First get news info.
+		Vector<String> imageURLS = new Vector<String>();
+		Vector<String> titles = new Vector<String>();
+		Vector<String> links = new Vector<String>();
+		
+		int pos = 0;
+		
+		String pull = GENERAL_NEWS_URL  + GENERAL_NEWS_API;
+		String img = "image";
+		String title = "title";
+		String link = "url";
+		
+		try {
+			URL url = new URL(pull);
+	
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+				
+			    for (String line; (line = reader.readLine()) != null;) {
+			    	
+			    	
+			    	//If API limit reached.
+			    	if(line.contains("ERROR")) {
+			    		String plausibleKey = getWorkingKey(GENERAL_NEWS_API);
+			    		
+			    		//If there is a working key.
+			    		if(plausibleKey != null) {
+			    			GENERAL_NEWS_API = plausibleKey;
+			    			
+			    			//call func again
+			    			feed = getGeneralNews();
+			    		}
+			    		
+			    		//Otherwise.
+			    		else {
+			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
+			    		}
+			    		
+			    
+			    	}
+			    	
+			    	//Otherwise, API limit hasn't been reached.
+			    	else {
+			    		
+			    		//If image data.
+			    		if(line.contains(img)) {
+			    			//add to image vector
+			    			imageURLS.add(extractData(line));
+			    			
+			    		}
+			    		
+			    		//else if title data.
+			    		else if(line.contains(title)) {
+			    			//add to data vector
+			    			titles.add(extractData(line));
+			    			
+			    		}
+			    		
+			    		//else if article link data.
+			    		else if(line.contains(link)) {
+			    			links.add(extractData(line));
+			    			
+			    		}
+			    		
+			    		
+			    	}
+			  }//End of for loop.
+			  reader.close();
+			    
+			    
+			}//out of inner try block.
+			
+			
+			//At this point the vectors have the required data to construct the NewsPane.
+			feed = constructNewsPanel(imageURLS, titles, links);
+			
+			
+		}//End of outer try block.
+		catch(UnsupportedEncodingException u) {
+	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+	           YoloTrader.logger.warning(u.toString());
+	        } catch (MalformedURLException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+	        	YoloTrader.logger.warning(e.toString());
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+	            YoloTrader.logger.warning(e.toString());
+	        }
+		
+		//Want a scrollViewPane that has multiple panels, each panel
+		//contains a image, and title(that is a hyperlink to the news article).
+		
+				
+		
+		return feed;
+	}
+    
+    
+    
+    
+    
+    /**
+     * The constructNewsPanel function is a helper function for
+     * the getNewsPanel function.
+     * <p>
+     * @param images	${@link Vector} 
+     * @param titles	${@link Vector} 
+     * @param links		${@link Vector} 
+     */
+    private static NewsPanel constructNewsPanel( Vector<String> images,  Vector<String> titles,  Vector<String> links) {
+    
+    	NewsPanel feed = new NewsPanel();
+    	
+    	
+    	//Make a map of titles to links.
+    	Map<String, String> hyperLink = new HashMap<String,String>();
+    	for(int x = 0; x < titles.size(); x++) {
+    		hyperLink.put(titles.elementAt(x), links.elementAt(x));
+    	}
+    	
+    	try {
+    		final int run = images.size();
+	    	for(int x = 0; x < run; x++) {
+	    		JPanel article = new JPanel();
+	    		
+	    		//Prepare the title
+	    		JLabel title = new JLabel(titles.firstElement());
+	    		title.setForeground(Color.WHITE);
+	    	
+	    		//title.setFont(new Font("Serif", Font.PLAIN, 16));
+	    		
+	    		title.addMouseListener(new MouseAdapter() {
+	    			
+	    		   @Override
+	    		   public void mouseClicked(MouseEvent e) {
+	    		    	
+	    		    	try {
+	    		    		
+	    		    		
+	    		    		URL link = new URL(hyperLink.get(title.getText()));
+	    		    		
+	    		    		
+	    		    		
+							Desktop.getDesktop().browse(link.toURI());
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (URISyntaxException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+	    		    }
+	    		 
+	    		    @Override
+	    		    public void mouseEntered(MouseEvent e) {
+	    		        // the mouse has entered the label, the title should change to blue.
+	    		    	
+	    		    	
+	    		    	title.setForeground(Color.BLUE);
+	    		    	title.validate();
+	    		    	
+
+	    		    }
+	    		 
+	    		    @Override
+	    		    public void mouseExited(MouseEvent e) {
+	    		        // the mouse has exited the label, title should turn back to black.
+	    		    	
+	    		    	title.setForeground(Color.WHITE);
+	    		    	title.validate();
+	    		    }
+	    		});
+	    		
+	    		
+	    		//Prepare the image icon.
+	    		URL url = new URL(images.firstElement());
+	            BufferedImage image = ImageIO.read(url);
+	            
+	    		ImageIcon picture = new ImageIcon(image);
+	    	
+	    		JLabel pic = new JLabel(picture);
+	    		
+	    		
+	    		//Add to panel.
+	    		//article.setSize(100, 100);
+	    		JPanel slot = new JPanel();
+	    		slot.setLayout(new BorderLayout());
+	    		slot.setBackground(Color.BLACK);
+	    		slot.add(pic, BorderLayout.LINE_START);
+	    		slot.add(title, BorderLayout.CENTER);
+	    		
+	    		//article.setBackground(Color.BLACK);
+	    		
+	    		//Add to NewsPanel.
+	    		feed.addToScroll(slot);
+	    		
+	    		if(titles.size() > 0) {
+		    		titles.remove(0);
+		    		images.remove(0);
+		    		links.remove(0);
+	    		}
+	    		
+	    		
+	    		
+	    		
+	    		
+	    		
+	    	}//End of for loop.
+    	}catch(UnsupportedEncodingException u) {
+	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+	           YoloTrader.logger.warning(u.toString());
+	        } catch (MalformedURLException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+	        	YoloTrader.logger.warning(e.toString());
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+	            YoloTrader.logger.warning(e.toString());
+	        }
+    	
+    	
+    	
+    	
+    	
+		
+    	
+    	return feed;
+    }
+    
+    
+    
+    /**
+     * The getNewsPanel function returns the NewsPanel for equity.
+     * <p>
+     * @param equity	${@link yahoofinance.Stock} 
+     */
+	public static NewsPanel getNewsPanel(yahoofinance.Stock equity) {
+		NewsPanel feed = null;
+		//First get news info.
+		Vector<String> imageURLS = new Vector<String>();
+		Vector<String> titles = new Vector<String>();
+		Vector<String> links = new Vector<String>();
+		
+		int pos = 0;
+		
+		String pull = NEWS_URL + equity.getSymbol() + NEWS_API;
+		String img = "image";
+		String title = "title";
+		String link = "url";
+		
+		try {
+			URL url = new URL(pull);
+	
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+				
+			    for (String line; (line = reader.readLine()) != null;) {
+			    	
+			    	
+			    	//If API limit reached.
+			    	if(line.contains("ERROR")) {
+			    		
+			    		String plausibleKey = getWorkingKey(NEWS_API);
+			    		
+			    		//If there is a working key.
+			    		if(plausibleKey != null) {
+			    			NEWS_API = plausibleKey;
+			    			
+			    			//call func again
+			    			feed = getNewsPanel(equity);
+			    		}
+			    		
+			    		//Otherwise.
+			    		else {
+			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
+			    		}
+			    		
+			    		
+			    	}
+	    	    	
+			    	
+			    	//Otherwise, API limit hasn't been reached.
+			    	else {
+			    		
+			    		//If image data.
+			    		if(line.contains(img)) {
+			    			//add to image vector
+			    			imageURLS.add(extractData(line));
+			    			
+			    		}
+			    		
+			    		//else if title data.
+			    		else if(line.contains(title)) {
+			    			//add to data vector
+			    			titles.add(extractData(line));
+			    			
+			    		}
+			    		
+			    		//else if article link data.
+			    		else if(line.contains(link)) {
+			    			links.add(extractData(line));
+			    			
+			    		}
+			    		
+			    		
+			    	}
+			  }//End of for loop.
+			  reader.close();
+			    
+			    
+			}//out of inner try block.
+			
+			
+			//At this point the vectors have the required data to construct the NewsPane.
+			feed = constructNewsPanel(imageURLS, titles, links);
+			
+			
+		}//End of outer try block.
+		catch(UnsupportedEncodingException u) {
+	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+	           YoloTrader.logger.warning(u.toString());
+	        } catch (MalformedURLException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+	        	YoloTrader.logger.warning(e.toString());
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+	            YoloTrader.logger.warning(e.toString());
+	        }
+		
+		//Want a scrollViewPane that has multiple panels, each panel
+		//contains a image, and title(that is a hyperlink to the news article).
+		
+				
+		
+		return feed;
+	}
+    
+    
+    /**
+     * The extractPrice function is used to parse price data from the API.
      * <p>
      * @param line	${@link String}
      * <p>
@@ -108,9 +572,18 @@ public class StockUtil {
         begin++;
         end =  line.indexOf(stop, begin);
         String data = line.substring(begin, end);
+        
 
+        
+        
+        
         return Double.parseDouble(data);
+        
+        
+        
     }
+    
+    
     
     /**
      * The getPosition function is a helper function for the getGraphData function.
@@ -120,6 +593,8 @@ public class StockUtil {
      * @return	{@link Integer} 
      */
     private static int getPosition(String time) {
+    	
+    		
 
 		Map<String,Integer> map = Map.ofEntries(
 				entry("09:30:00", 0), entry("10:00:00", 1), entry("10:30:00",2 ),
@@ -129,9 +604,13 @@ public class StockUtil {
 				entry("15:30:00",12 ), entry("16:00:00",13 ));
 
 		return map.getOrDefault(time, -1);
+    	
+    	
+    
     }
-
-    /*FIXME: TEST IF IT CAN HANDLE DRAWING DURING THE MARKET DAY!*/
+    
+    
+   
     
     /**
      * The getGraph function returns a GraphPanel object
@@ -187,7 +666,9 @@ public class StockUtil {
     	return graph;
     	
     }
-
+    
+    
+    
     /**
      * The getGraphData function returns a list of equity's prices for the day.
      * <p>
@@ -198,7 +679,7 @@ public class StockUtil {
     public static Vector<Double> getGraphData(yahoofinance.Stock equity){
     	
     	String query = GRAPH_URL + equity.getSymbol() + GRAPH_API_URL;
-    	Vector<Double> data = new Vector<>();
+    	Vector<Double> data = new Vector<Double>();
     	String close = "close";
     	Double cls;
     	String date = "date";
@@ -216,13 +697,17 @@ public class StockUtil {
         for(int x = 0; x < 14; x++) {
         	data.add(-1.0);
         }
-
+    	
+    	
     	try {
     	
 	    	URL url = new URL(query);
-
+	    	
+	    
 	    	//read and modify the data to double
 	    	try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+	    		
+	    	
 	    		  	
 	    	    for (String line; (line = reader.readLine()) != null;) {
 	    	    	
@@ -230,68 +715,37 @@ public class StockUtil {
 	    	    	 * 					- Only read entries from the current day.
 	    	    	 *						-only read the closing tags of these entries.
 	    	    	*/
-
+	    	    	
+	    	    	
 	    	    	//If API limit has been reached
 	    	    	if(line.contains("Error")) {
-	    	    		//Switch API Keys :).
-	    	    	
-	    	    		//If P's API key is being used.
-	    	    		if(GRAPH_API_URL == GRAPH_API_URL_1) {
-	    	    			//Check if O's API key is still good.
-	    	    			query = GRAPH_URL + equity.getSymbol() + GRAPH_API_URL_2;
-	    	    			URL url2 = new URL(query);
-	    	    			BufferedReader check = new BufferedReader(new InputStreamReader(url2.openStream(), "UTF-8" ));
-	    	    			
-	    	    			line = check.readLine();
-	    	    			
-	    	    			//If O's API key is still good.
-	    	    			if(!line.contains("ERROR")) {
-	    	    				//Change to O's API key.
-	    	    				GRAPH_API_URL = GRAPH_API_URL_2;
-	    	    				
-	    	    				//Call function again
-	    	    				data = getGraphData(equity);
-	    	    			}
-	    	    			
-	    	    			//Otherwise.
-	    	    			else {
-	    	    				System.out.println("BOTH API KEYS MAXED OUT. TRY AGAIN TOMMO.");
-	    	    			}
-	    	    		}
+	    	    		String plausibleKey = getWorkingKey(GRAPH_API_URL);
+			    		
+			    		//If there is a working key.
+			    		if(plausibleKey != null) {
+			    			GRAPH_API_URL = plausibleKey;
+			    			
+			    			//call func again
+			    			data = getGraphData(equity);
+			    		}
+			    		
+			    		//Otherwise.
+			    		else {
+			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
+			    		}
+			    		
 	    	    		
-	    	    		//Otherwise O's API key is being used.
-	    	    		else {
-	    	    			
-	    	    			//Check if P's API key is still good.
-	    	    			query = GRAPH_URL + equity.getSymbol() + GRAPH_API_URL_1;
-	    	    			URL url2 = new URL(query);
-	    	    			BufferedReader check = new BufferedReader(new InputStreamReader(url2.openStream(), "UTF-8" ));
-	    	    			
-	    	    			line = check.readLine();
-	    	    			
-	    	    			//If P's API key is still good.
-	    	    			if(!line.contains("ERROR")) {
-	    	    				//Change to P's API key.
-	    	    				GRAPH_API_URL = GRAPH_API_URL_1;
-	    	    				
-	    	    				//Call function again
-	    	    				data = getGraphData(equity);
-	    	    			}
-	    	    			
-	    	    			//Otherwise.
-	    	    			else {
-	    	    				System.out.println("BOTH API KEYS MAXED OUT. TRY AGAIN TOMMO.");
-	    	    			}
-	    	    		}
-	    	    	} //End of if API limit has been reached.
+	    	    	}//End of if API limit has been reached.
+	    	    	
 	    	    	
 	    	    	//Otherwise API limit has not yet been reached.
 	    	    	else {
 	                    //Check the date.
 		    	    	if(line.contains(date)) {
+	                    	
 	                    
 	                        //If today's date has not been determined.
-	                    	if(!today) {
+	                    	if(today == false) {
 		                        
 	                    		//Get the date and time.
 		                        todaY = extractData(line);
@@ -308,29 +762,41 @@ public class StockUtil {
 			                        begin = 0;
 			                        end = todaY.indexOf(space, begin);
 			                        todaY = todaY.substring(begin, end);
-
+			                        
+			                       
+			                        
+			                        
 			                        //At this point todaY is now the string format of today.
 			                        today = true;
 			                        
 			                        //This also means that this entry is the most recent entry.
-			                        while(!line.contains(close)) {
+			                        while(line.contains(close) == false) {
+			                        	
 			                        	line = reader.readLine();
+			                        	
 			                        }
 			                        
 			                        //Now at close tag, get closing price.
 			                   
 			                        cls= extractPrice(line);
-
+			                       
+			                        
 			                        int pos = getPosition(time);
 			                        
 			                        //Save the data
 			                        data.set(pos,cls);
+			                        today = true;
+			                        
+		                        
 		                        }
+		                        
+		                        
 	                    	}
 	                    	
-	                    	// Otherwise, the date has been determined, implying that this entry is not the
-	                    	// most recent entry.
+	                    	//Otherwise, the date has been determined, implying that this entry is not the 
+	                    	//most recent entry.
 	                    	else {
+	                    	
 	                    	
 		                    	//If this entry is from today.
 		                    	if(line.contains(todaY)) {
@@ -341,11 +807,13 @@ public class StockUtil {
 			                        begin++;
 			                        time = line.substring(begin);
 			                        
+			                        
 			                        //if this is a desired time.
 			                        if(getPosition(time) != -1) {
 			                        	
 			                        	 	//Extract the closing price
-			                        		while(!line.contains(close)) {
+			                        		while(line.contains(close) == false) {
+			                        			
 					                        	line = reader.readLine();
 					                        }
 					                        
@@ -358,15 +826,24 @@ public class StockUtil {
 					                        //Save the data
 					                        data.set(pos, cls);
 					                        today = true;
+			                        	
 			                        }
+		                    		
 		                    	}
+		                    	
 	                    	}
-		    	    	} //End of check date.
-	    	    	} //End of API limit not reached.
-	    	  	}//End of for loop.
+                    	
+                        
+		    	    	}//End of check date.
+		    	    	
+	    	    	}//End of API limit not reached.
+	    	    
+	    	    	
+	    	  }//End of for loop.
+	    	    reader.close();
 	    	}
+	    	
     	}
-
     	catch(UnsupportedEncodingException u) {
            YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
            YoloTrader.logger.warning(u.toString());
@@ -379,9 +856,14 @@ public class StockUtil {
         	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(e.toString());
         }
-
+    	
+    	
+    
+    	
+	    
 	    //return data
     	return data;
+    	
     }
     
 
@@ -395,7 +877,7 @@ public class StockUtil {
      */
     public static Map<String, String> pullUp(String query) {
 
-        Map<String, String> results = new HashMap<>();
+        Map<String, String> results = new HashMap<String, String>();
         String sanitizedQuery = "";
 
         //Shed query of any illegal characters.
@@ -407,7 +889,7 @@ public class StockUtil {
             }
         }
 
-        Stock stock = null;
+        yahoofinance.Stock stock = null;
 
         String guess;
         String symbol = "symbol";
@@ -419,84 +901,52 @@ public class StockUtil {
         int begin, end;
 
         try {
-
-        	Exchange exchange = Exchange.values()[Exchange.values().length - 1];
-            for(int x = 0; x < Exchange.values().length; x++) {
-            	exchange = exchange.next();
+            for(int x = 0; x < 2; x++) {
 
                 //Access FinancialModelingPrepAPI.
                 String search1 = SEARCH_URL + sanitizedQuery + EXCHANGE_URL;
 
-                search1 += exchange;
+                if(x == 0) {
+                    search1 += Exchange.NASDAQ;
+                }
+
+                else {
+                    search1 += Exchange.NYSE;
+                }
 
                 String search =  search1 + SEARCH_API_URL;
+
 
                 URL url = new URL(search);
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
                 for (String line; (line = reader.readLine()) != null ;) {
                 	
-                	// If the current API key is maxed out.
+                	//If the current API key is maxed out.
                 	if(line.contains("ERROR")) {
-
-                		//Switch API Keys :).
-
-	    	    		//If P's API key is being used.
-	    	    		if(SEARCH_API_URL.equals(SEARCH_API_URL_1)) {
-
-	    	    			//Check if O's API key is still good.
-	    	    			search = search1 + SEARCH_API_URL_2;
-	    	    			URL url2 = new URL(search);
-	    	    			BufferedReader check = new BufferedReader(new InputStreamReader(url2.openStream(), "UTF-8" ));
-
-	    	    			line = check.readLine();
-
-	    	    			//If O's API key is still good.
-	    	    			if(!line.contains("ERROR")) {
-	    	    				//Change to O's API key.
-	    	    				SEARCH_API_URL = SEARCH_API_URL_2;
-	    	    				
-	    	    				//Call function again
-	    	    				results = pullUp(query);
-	    	    			}
-	    	    			
-	    	    			//Otherwise.
-	    	    			else {
-	    	    				System.out.println("BOTH API KEYS MAXED OUT. TRY AGAIN TOMMO.");
-	    	    				
-	    	    			}
-	    	    		}
-	    	    		
-	    	    		//Otherwise O's API key is being used.
-	    	    		else {
-	    	    			
-	    	    			//Check if P's API key is still good.
-	    	    			search = search1 + SEARCH_API_URL_1;
-	    	    			URL url2 = new URL(search);
-	    	    			BufferedReader check = new BufferedReader(new InputStreamReader(url2.openStream(), "UTF-8" ));
-	    	    			
-	    	    			line = check.readLine();
-	    	    			
-	    	    			//If P's API key is still good.
-	    	    			if(!line.contains("ERROR")) {
-	    	    				//Change to P's API key.
-	    	    				SEARCH_API_URL = SEARCH_API_URL_1;
-	    	    				
-	    	    				//Call function again
-	    	    				results = pullUp(query);
-	    	    			}
-	    	    			
-	    	    			//Otherwise.
-	    	    			else {
-	    	    				System.out.println("BOTH API KEYS MAXED OUT. TRY AGAIN TOMMO.");
-	    	    				
-	    	    			}
-	    	    		}
+                		String plausibleKey = getWorkingKey(SEARCH_API_URL);
+			    		
+			    		//If there is a working key.
+			    		if(plausibleKey != null) {
+			    			SEARCH_API_URL = plausibleKey;
+			    			
+			    			//call func again
+			    			results = pullUp(query);
+			    		}
+			    		
+			    		//Otherwise.
+			    		else {
+			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
+			    		}
+			    		
+                		
+                		
                 	}
                 	
                 	//Otherwise.
                 	else {
-
+                		
+                		
                 		 //Only be concerned with the symbol and name line.
                         if(line.contains(symbol)) {
 
@@ -518,22 +968,28 @@ public class StockUtil {
                             //Make mapping.
                             results.put(name, tick);
                         }
+                		
                 	}
-                } //End of reading JSON.
+
+                   
+                }//End of reading JSON.
+                reader.close();
             }
         }
-
         catch(UnsupportedEncodingException u) {
             YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(u.toString());
          } catch (MalformedURLException e) {
+             // TODO Auto-generated catch block
          	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
          	YoloTrader.logger.warning(e.toString());
          } catch (IOException e) {
+             // TODO Auto-generated catch block
          	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
-         	YoloTrader.logger.warning(e.toString());
+             YoloTrader.logger.warning(e.toString());
          }
 
         return results;
     }
+
 }
