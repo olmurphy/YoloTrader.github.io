@@ -102,14 +102,6 @@ public class StockUtil {
 	
 	private final static String P_KEY = "4819ef0b5de9d90ed219e89c51f35d34";
 	private final static String O_KEY = "9f2e6a54a66d7c7961207ce53c05e063";
-	
-	
-    
-	
-	
-	
-    
-    
     
     /**
      * The extractData function is a helper function for parsing data from the 
@@ -182,10 +174,7 @@ public class StockUtil {
     			}
     			
     			check.close();
-    			
     		}
-    		
-    		
     	
 		}catch(UnsupportedEncodingException u) {
 	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
@@ -201,10 +190,7 @@ public class StockUtil {
 	        }
 		
 		return rtrn;
-    	
     }
-    
-    
     
     /**
      * The getGeneralNews function returns a NewsPanel containing general news.
@@ -248,8 +234,6 @@ public class StockUtil {
 			    		else {
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
 			    		}
-			    		
-			    
 			    	}
 			    	
 			    	//Otherwise, API limit hasn't been reached.
@@ -274,20 +258,13 @@ public class StockUtil {
 			    			links.add(extractData(line));
 			    			
 			    		}
-			    		
-			    		
 			    	}
 			  }//End of for loop.
 			  reader.close();
-			    
-			    
 			}//out of inner try block.
-			
 			
 			//At this point the vectors have the required data to construct the NewsPane.
 			feed = constructNewsPanel(imageURLS, titles, links);
-			
-			
 		}//End of outer try block.
 		catch(UnsupportedEncodingException u) {
 	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
@@ -304,15 +281,8 @@ public class StockUtil {
 		
 		//Want a scrollViewPane that has multiple panels, each panel
 		//contains a image, and title(that is a hyperlink to the news article).
-		
-				
-		
 		return feed;
 	}
-    
-    
-    
-    
     
     /**
      * The constructNewsPanel function is a helper function for
@@ -325,7 +295,6 @@ public class StockUtil {
     private static NewsPanel constructNewsPanel( Vector<String> images,  Vector<String> titles,  Vector<String> links) {
     
     	NewsPanel feed = new NewsPanel();
-    	
     	
     	//Make a map of titles to links.
     	Map<String, String> hyperLink = new HashMap<String,String>();
@@ -350,12 +319,9 @@ public class StockUtil {
 	    		   public void mouseClicked(MouseEvent e) {
 	    		    	
 	    		    	try {
-	    		    		
-	    		    		
+	    		    
 	    		    		URL link = new URL(hyperLink.get(title.getText()));
-	    		    		
-	    		    		
-	    		    		
+	    		    
 							Desktop.getDesktop().browse(link.toURI());
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
@@ -369,12 +335,9 @@ public class StockUtil {
 	    		    @Override
 	    		    public void mouseEntered(MouseEvent e) {
 	    		        // the mouse has entered the label, the title should change to blue.
-	    		    	
-	    		    	
 	    		    	title.setForeground(Color.BLUE);
 	    		    	title.validate();
 	    		    	
-
 	    		    }
 	    		 
 	    		    @Override
