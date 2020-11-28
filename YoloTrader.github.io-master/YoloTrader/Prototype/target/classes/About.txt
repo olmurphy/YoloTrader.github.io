@@ -1,6 +1,0 @@
-YoloTrader was inspired by the ability to day trade stocks and make a lot of money.
-However, how do we keep track of the stocks that we are wanting to invest in? Well,
-YoloTrader solves that problem. It allows for its users to search up a stock they
-want to view, given a ticker and returns that stock. The user can add to a watchlist
-of stocks and in addition have the application analyze that stock letting the user
-know if it is a good idea to invest.
