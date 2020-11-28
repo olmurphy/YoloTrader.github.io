@@ -8,10 +8,10 @@ import java.awt.*;
  */
 public class CreateAccount {
 
-    public static String userString = "Username";
-    public static String firstString = "First";
-    public static String lastString = "Last";
-    public static String passwordAgainStr = "Re-enter Password: ";
+    public static String userString = FormController.leftLabelSide + "Username" + FormController.rightLabelSide;
+    public static String firstString = FormController.leftLabelSide + "First" + FormController.rightLabelSide;
+    public static String lastString = FormController.leftLabelSide + "Last" + FormController.rightLabelSide;
+    public static String passwordAgainStr = FormController.leftLabelSide + "Re-Password" + FormController.rightLabelSide;
 
     public static JPanel createAccPanel;
     public static JPanel firstLastPanel;

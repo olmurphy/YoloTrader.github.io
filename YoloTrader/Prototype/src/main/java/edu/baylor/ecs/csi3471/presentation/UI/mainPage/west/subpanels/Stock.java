@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class Stock {
 
-    public static String stockPanelLabel = "<html><span style=\"font-family:Arial;font-size:" +
-            WestPanelController.size + "px;\"><B>STOCK</B>";
+    public static String stockPanelLabel = "<html><span style=\"font-family:Futura;font-size:" +
+            WestPanelController.size + "px;color:white;\"><B>STOCK</B>";
     public static JPanel stockPanel;
 
     public static JPanel getStocksPanel() {

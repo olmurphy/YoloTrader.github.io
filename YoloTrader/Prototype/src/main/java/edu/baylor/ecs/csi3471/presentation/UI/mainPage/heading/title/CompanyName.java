@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.title;
 
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 
 import javax.swing.*;
@@ -10,14 +11,15 @@ import java.awt.*;
  */
 public class CompanyName {
 
-    public static String companyNameString = "YoloTrader";
+    public static String companyNameString = "<html><span style=\"font-family:Futura;color:white;font-size:30px\">" +
+            "YoloTrader" + "</span></html>";
     public static JLabel companyNameTitle;
     public static JPanel titlePanel;
 
     public static JPanel getTitlePanel() {
         titlePanel = new JPanel(new GridLayout(1, 1));
         titlePanel.setPreferredSize(new Dimension((int)(NorthPanelController.northPanelWidth / 2.25), NorthPanelController.northPanelHeight));
-        titlePanel.setBackground(Color.WHITE);
+        titlePanel.setBackground(NorthPanelController.northPanelColor);
 
         titlePanel.add(getTitleLabel());
 
@@ -27,8 +29,6 @@ public class CompanyName {
     public static JLabel getTitleLabel() {
         companyNameTitle = new JLabel(companyNameString);
         companyNameTitle.setHorizontalAlignment(JLabel.LEFT);
-        Font font = new Font("Futura", Font.BOLD, 30);
-        companyNameTitle.setFont(font);
 
         return companyNameTitle;
     }

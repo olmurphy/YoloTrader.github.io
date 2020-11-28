@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search;
 
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 
 import javax.swing.*;
@@ -30,8 +31,8 @@ public class Name {
 
         labelPanel.add(getLabel(name), BorderLayout.WEST);
 
-        // adding logout button
-        setLogoutButton(new JButton("Logout"));
+        setLogoutButton(new JButton(NorthPanelController.leftLabelSide + "Logout" +
+                NorthPanelController.rightLabelSide));
         labelPanel.add(getLogoutButton(), BorderLayout.EAST);
 
         return labelPanel;
@@ -39,9 +40,8 @@ public class Name {
 
     public static JLabel getLabel(String name) {
         Name.name = name;
-
-        JLabel welcomeLabel = new JLabel("Welcome, " + Name.name + "!", JLabel.LEFT);
-        welcomeLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 15));
+        JLabel welcomeLabel = new JLabel(NorthPanelController.leftLabelSide + "Welcome, "
+                + Name.name + "!" + NorthPanelController.rightLabelSide, JLabel.LEFT);
         welcomeLabel.setBackground(NorthPanelController.northPanelColor);
 
         return welcomeLabel;
@@ -59,7 +59,13 @@ public class Name {
         Name.logoutButton = logoutButton;
         Name.logoutButton.setHorizontalAlignment(JButton.RIGHT);
 
+        Name.logoutButton.setBackground(NorthPanelController.northPanelColor);
+        Name.logoutButton.setBorder(NorthPanelController.emptyButtonBorder);
+        Name.logoutButton.setOpaque(true);
+
+        // adding listeners
         Name.logoutButton.addActionListener(NorthPanelController.getLogoutButtonListener());
+        Name.logoutButton.addMouseListener(NorthPanelController.getGeneralButtonListener(logoutButton));
     }
 
     public static JButton getLogoutButton() {

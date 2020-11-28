@@ -16,11 +16,10 @@ public class MainPanel {
     public static int frameWidth = 800;
     public static int frameHeight = 600;
     public static JPanel mainPanel;
-    public static Color backGroundColor = Color.WHITE;
+    public static Color backGroundColor = Color.BLACK;
 
     public static void createUI () {
         homeFrame = new JFrame();
-        
 
         homeFrame.setSize(new Dimension(frameWidth, frameHeight));
         mainPanel = new JPanel(new BorderLayout());

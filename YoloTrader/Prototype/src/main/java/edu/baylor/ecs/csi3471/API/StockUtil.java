@@ -59,7 +59,6 @@ public class StockUtil {
         NASDAQ,
         NYSE;
         
-        
         /**
          * this a method for an instance of the enum that is called to increment the
          * value of enum to the next & length of # of enums.
@@ -1187,14 +1186,11 @@ public class StockUtil {
 
                 if(x == 0) {
                     search1 += Exchange.NASDAQ;
-                }
-
-                else {
+                } else {
                     search1 += Exchange.NYSE;
                 }
 
                 String search =  search1 + SEARCH_API_URL;
-
 
                 URL url = new URL(search);
 
@@ -1211,21 +1207,11 @@ public class StockUtil {
 			    			
 			    			//call func again
 			    			results = pullUp(query);
-			    		}
-			    		
-			    		//Otherwise.
-			    		else {
+			    		} else {
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
 			    		}
-			    		
-                		
-                		
-                	}
-                	
-                	//Otherwise.
-                	else {
-                		
-                		
+                	} else {
+
                 		 //Only be concerned with the symbol and name line.
                         if(line.contains(symbol)) {
 
@@ -1247,15 +1233,11 @@ public class StockUtil {
                             //Make mapping.
                             results.put(name, tick);
                         }
-                		
                 	}
-
-                   
                 }//End of reading JSON.
                 reader.close();
             }
-        }
-        catch(UnsupportedEncodingException u) {
+        } catch(UnsupportedEncodingException u) {
             YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(u.toString());
          } catch (MalformedURLException e) {
@@ -1263,12 +1245,10 @@ public class StockUtil {
          	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
          	YoloTrader.logger.warning(e.toString());
          } catch (IOException e) {
-             // TODO Auto-generated catch block
          	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
-             YoloTrader.logger.warning(e.toString());
+         	YoloTrader.logger.warning(e.toString());
          }
 
         return results;
     }
-
 }

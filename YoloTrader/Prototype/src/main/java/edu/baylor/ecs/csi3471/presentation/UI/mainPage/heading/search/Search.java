@@ -35,15 +35,23 @@ public class Search {
     }
 
     public static JButton getSearchButton() {
-        searchButton = new JButton("Search");
+        searchButton = new JButton(NorthPanelController.leftButtonSide + "Search " +
+                NorthPanelController.rightButtonSide);
 
-        searchButton.addActionListener(NorthPanelController.getSearchButtonAction(getSearchTextField()));
+        searchButton.setBackground(NorthPanelController.northPanelColor);
+        searchButton.setBorder(NorthPanelController.emptyButtonBorder);
+        searchButton.setOpaque(true);
+
+        searchButton.addActionListener(NorthPanelController.getSearchButtonListener(getSearchTextField()));
+        searchButton.addMouseListener(NorthPanelController.getGeneralButtonListener(searchButton));
 
         return searchButton;
     }
 
     public static JLabel getSearchLabel() {
-        return new JLabel("Enter stock name to search", JLabel.LEFT);
+        return new JLabel(NorthPanelController.leftLabelSide + "Enter stock name to search" +
+                NorthPanelController.rightLabelSide,
+                JLabel.LEFT);
     }
 
     public static void setSearchTextField() {

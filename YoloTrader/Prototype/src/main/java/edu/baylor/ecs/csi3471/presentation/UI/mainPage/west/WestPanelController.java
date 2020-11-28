@@ -13,10 +13,13 @@ import java.awt.event.MouseEvent;
 
 public class WestPanelController {
 
-    public static Border emptyBorder;
-    public static Color active = Color.GRAY;
+    public static Border emptyBorder = BorderFactory.createEmptyBorder();
     public static Color westPanelColor = MainPanel.backGroundColor;
-    public static int size = 14;
+
+    /** size of the west panel labels */
+    public static int size = 18;
+
+    public static Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
 
     public static String currPanel = "HOME";
 
@@ -24,11 +27,8 @@ public class WestPanelController {
      * initialize the look and feel of all JPanels in the ${@link WestPanel} area
      */
     public static void initializePublicStaticVariables() {
-        emptyBorder = BorderFactory.createEmptyBorder();
-
         // setting home panel as initial panel
         MainPanel.getMainPanel().add(CenterPanelController.getHomePanel(), BorderLayout.CENTER);
-        Home.getHomePanel().setBackground(active);
     }
 
     /**
@@ -48,12 +48,12 @@ public class WestPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!panelName.equals(currPanel)) { panel.setBackground(active); }
+                if (!panelName.equals(currPanel)) { panel.setBorder(whiteBorder); }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                if (!panelName.equals(currPanel)) { panel.setBackground(westPanelColor); }
+                if (!panelName.equals(currPanel)) { panel.setBorder(emptyBorder); }
             }
         };
     }
@@ -78,7 +78,7 @@ public class WestPanelController {
 
                 MainPanel.getMainPanel().add(CenterPanelController.getProfilePanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
-                panel.setBackground(active);
+                panel.setBorder(whiteBorder);
                 MainPanel.getMainPanel().updateUI();
                 currPanel = panelName;
             }
@@ -105,7 +105,7 @@ public class WestPanelController {
 
                 MainPanel.getMainPanel().add(CenterPanelController.getAboutPanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
-                panel.setBackground(active);
+                panel.setBorder(whiteBorder);
                 MainPanel.getMainPanel().updateUI();
                 currPanel = panelName;
             }
@@ -131,7 +131,7 @@ public class WestPanelController {
 
                 MainPanel.getMainPanel().add(CenterPanelController.getHelpPanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
-                panel.setBackground(active);
+                panel.setBorder(whiteBorder);
                 MainPanel.getMainPanel().updateUI();
                 currPanel = panelName;
             }
@@ -156,7 +156,7 @@ public class WestPanelController {
                 }
                 MainPanel.getMainPanel().add(CenterPanelController.getHomePanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
-                panel.setBackground(active);
+                panel.setBorder(whiteBorder);
                 MainPanel.getMainPanel().updateUI();
                 currPanel = panelName;
             }
@@ -181,7 +181,7 @@ public class WestPanelController {
                 }
                 MainPanel.getMainPanel().add(CenterPanelController.getStockPanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
-                panel.setBackground(active);
+                panel.setBorder(whiteBorder);
                 MainPanel.getMainPanel().updateUI();
                 currPanel = panelName;
             }
@@ -189,11 +189,11 @@ public class WestPanelController {
     }
 
     public static void resetAllPanelColors() {
-        Home.getHomePanel().setBackground(westPanelColor);
-        Profile.getProfilePanel().setBackground(westPanelColor);
-        Stock.getStocksPanel().setBackground(westPanelColor);
-        Help.getHelpPanel().setBackground(westPanelColor);
-        About.getAboutPanel().setBackground(westPanelColor);
+        Home.getHomePanel().setBorder(emptyBorder);
+        Profile.getProfilePanel().setBorder(emptyBorder);
+        Stock.getStocksPanel().setBorder(emptyBorder);
+        Help.getHelpPanel().setBorder(emptyBorder);
+        About.getAboutPanel().setBorder(emptyBorder);
     }
 
     public static void setAllPanels() {

@@ -2,9 +2,6 @@ package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels;
 
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import javax.swing.*;
 
 /**
@@ -17,10 +14,18 @@ public class HelpSection {
     public static JPanel contact_Panel;
     public static JPanel whatAreStocksPanel;
 
-    public static String helpString = "<html><span style=\"font-family:Arial;font-size:20px;\"><B>NEED HELP?</B>";
-    public static String FAQ_String = "<html><span style=\"font-family:Arial;font-size:16px;\"><B>FAQ</B>";
-    public static String whatAreStockString = "<html><span style=\"font-family:Arial;font-size:16px;\"><B>What Are Stocks?</B>";
-    public static String contactString = "<html><span style=\"font-family:Arial;font-size:16px;\"><B>Contact</B>";
+    public static String leftHeaderLabel = "<html><span style=\"font-family:Futura;font-size:16px;color:white;\"><B>";
+    public static String rightHeaderLabel = "</B></span></html>";
+
+    public static String helpString = "<html><span style=\"" +
+            "font-family:Futura;" +
+            "font-size:20px;" +
+            "color:white\">" +
+            "<B>NEED HELP?</B>";
+
+    public static String FAQ_String = leftHeaderLabel + "FAQ" + rightHeaderLabel;
+    public static String whatAreStockString = leftHeaderLabel + "What Are Stocks?" + rightHeaderLabel;
+    public static String contactString = leftHeaderLabel + "Contact" + rightHeaderLabel;
 
     public static JPanel getHelpPanel() {
         return helpPanel;
@@ -39,11 +44,7 @@ public class HelpSection {
     }
 
     public static JLabel getHelpLabel() {
-        JLabel rtrn = new JLabel(helpString);
-        rtrn.setForeground(Color.WHITE);
-        rtrn.setFont(new Font("Futura", Font.PLAIN, 22));
-        return rtrn;
-        
+        return new JLabel(helpString);
     }
 
     public static JPanel getFAQ_Panel() {
@@ -57,10 +58,7 @@ public class HelpSection {
     }
 
     public static JLabel getFAQLabel() {
-    	JLabel rtrn = new JLabel(FAQ_String);
-        rtrn.setForeground(Color.WHITE);
-        rtrn.setFont(new Font("Futura", Font.PLAIN, 22));
-        return rtrn;
+    	return new JLabel(FAQ_String);
     }
 
     public static JPanel getContact_Panel() {
@@ -74,10 +72,7 @@ public class HelpSection {
     }
 
     public static JLabel getContactLabel() {
-    	JLabel rtrn = new JLabel(contactString);
-        rtrn.setForeground(Color.WHITE);
-        rtrn.setFont(new Font("Futura", Font.PLAIN, 22));
-        return rtrn;
+    	return new JLabel(contactString);
     }
 
     public static JPanel getWhatAreStocksPanel() {
@@ -91,9 +86,6 @@ public class HelpSection {
     }
 
     public static JLabel getWhatAreStockLabel() {
-    	JLabel rtrn = new JLabel(whatAreStockString);
-        rtrn.setForeground(Color.WHITE);
-        rtrn.setFont(new Font("Futura", Font.PLAIN, 22));
-        return rtrn;
+    	return new JLabel(whatAreStockString);
     }
 }

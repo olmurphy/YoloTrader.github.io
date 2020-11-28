@@ -18,23 +18,24 @@ public class AboutSection {
     public static JLabel aboutLabelText;
     public static JLabel developerLabelText;
 
-    public static String aboutString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>ABOUT</B>";
-    public static String developerString = "<html><span style=\"font-family:Arial;font-size:14px;\"><B>DEVELOPERS</B>";
+    public static String aboutString = "<html><span style=\"font-family:Futura;font-size:16px;color:white\"><B>ABOUT</B>";
+    public static String developerString = "<html><span style=\"font-family:Futura;font-size:16px;color:white\"><B>DEVELOPERS</B>";
 
-     public static String developerLabelString = "<html><ul>" +
-            "<li>Owen Murphy [Leader] (responsibilities):</li>" +
+     public static String developerLabelString = "<html>" +
+             "<ul>" +
+            "<li style=color:white;font-family:Futura>Owen Murphy [Leader] (responsibilities):</li>" +
                 "<ul>" +
-                    "<li>User Interface</li>" +
-                    "<li>Analysis and Design</li>" +
-                    "<li>Database Configuration</li>" +
+                    "<li style=color:white;font-family:Futura>User Interface</li>" +
+                    "<li style=color:white;font-family:Futura>Analysis and Design</li>" +
+                    "<li style=color:white;font-family:Futura>Database Configuration</li>" +
                 "</ul>" +
-            "<li>Prince Kalu (responsibilities):</li>" +
+            "<li style=color:white;font-family:Futura>Prince Kalu (responsibilities):</li>" +
                 "<ul>" +
-                    "<li>Analysis and Design</li>" +
-                    "<li>Backend Development</li>"+
-                    "<li>Middleware Development</li>"+
+                    "<li style=color:white;font-family:Futura>Analysis and Design</li>" +
+                    "<li style=color:white;font-family:Futura>Backend Development</li>"+
+                    "<li style=color:white;font-family:Futura>Middleware Development</li>"+
                 "</ul>" +
-            "</html";
+        "</html";
 
     public static JPanel getMainAboutPanel() {
         return mainAboutPanel;
@@ -81,26 +82,19 @@ public class AboutSection {
     }
 
     public static JLabel getAboutLabel() {
-    	JLabel rtrn = new JLabel(aboutString);
-        rtrn.setForeground(Color.WHITE);
-        rtrn.setFont(new Font("Futura", Font.PLAIN, 16));
-        return rtrn;
+    	return new JLabel(aboutString);
     }
 
     public static JLabel getDeveloperLabel() {
-    	JLabel rtrn = new JLabel(developerString);
-        return rtrn;
+    	return new JLabel(developerString);
     }
 
     public static void setAboutLabelText(JLabel aboutLabelText) {
         AboutSection.aboutLabelText = aboutLabelText;
-        AboutSection.aboutLabelText.setForeground(Color.WHITE);
-    	AboutSection.aboutLabelText.setFont(new Font("Futura", Font.PLAIN, 14));
     }
 
     public static JLabel getAboutLabelText() {
         return aboutLabelText;
-        
     }
 
     public static JLabel loadAboutLabelText() {
@@ -108,13 +102,13 @@ public class AboutSection {
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("src/main/resources/About.txt")))))
         {
-            StringBuilder str = new StringBuilder("<html>");
-            String line = null;
+            StringBuilder str = new StringBuilder("<html><span style=\"font-family:Futura;color:white\">");
+            String line;
 
             while ((line = br.readLine()) != null) {
                 str.append(line).append(" ");
             }
-            str.append("</html>");
+            str.append("</span></html>");
 
             label.setText(str.toString());
 
@@ -127,13 +121,9 @@ public class AboutSection {
 
     public static void setDeveloperLabelText(JLabel developerLabelText) {
         AboutSection.developerLabelText = developerLabelText;
-        AboutSection.developerLabelText.setForeground(Color.WHITE);
-    	AboutSection.developerLabelText.setFont(new Font("Futura", Font.PLAIN, 14));
     }
 
     public static JLabel getDeveloperLabelText() {
-    	developerLabelText.setForeground(Color.WHITE);
-        developerLabelText.setFont(new Font("Futura", Font.PLAIN, 16));
         return developerLabelText;
     }
 }

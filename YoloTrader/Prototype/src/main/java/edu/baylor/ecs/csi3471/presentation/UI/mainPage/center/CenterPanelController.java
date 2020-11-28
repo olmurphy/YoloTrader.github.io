@@ -16,8 +16,10 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelControl
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,10 +31,18 @@ import java.util.List;
  */
 public class CenterPanelController {
 
-    public static Color buttonColorActive = Color.GRAY.darker().darker();
-    public static Color centerPanelColor = Color.BLACK;
+    public static Color centerPanelColor = MainPanel.backGroundColor;
 
     public static int centerPanelHeight = MainPanel.frameHeight - NorthPanelController.northPanelHeight;
+
+    public static Border emptyButtonBorder = BorderFactory.createEmptyBorder();
+    public static Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
+
+    public static String leftLabelSide = "<html><span style=\"font-family:Futura;color:white;font-size:14px;\">";
+    public static String rightLabelSide = "</span></html>";
+
+    public static String leftButtonSide = "<html><span style=\\\"font-family:Futura;color:white;font-size:14px;\">";
+    public static String rightButtonSide = "</span></html>";
 
     // FIXME: may need to return a JScrollPane depending on what is added in the home panel
     public static JPanel getHomePanel(){ return HomeSection.getHomeMainPanel(); }
@@ -45,16 +55,16 @@ public class CenterPanelController {
 
     public static JPanel getAboutPanel() { return AboutSection.getMainAboutPanel(); }
 
-    public static MouseAdapter getGeneralStockButtonAction(JButton button) {
+    public static MouseAdapter getGeneralButtonAction(JButton button) {
         return new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                button.setBackground(buttonColorActive);
+                button.setBorder(whiteBorder);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                button.setBackground(centerPanelColor);
+                button.setBorder(emptyButtonBorder);
             }
         };
     }
@@ -79,7 +89,6 @@ public class CenterPanelController {
                     // trying to add a single stock, else display the result from query using dialog from Result class
                     NorthPanelController.launchSearch(stockName, true);
                 }
-
             }
         };
     }
@@ -281,6 +290,16 @@ public class CenterPanelController {
             } else {
                 ProfileSection.getPasswordNotCorrectWarning();
             }
+        };
+    }
+
+    /**
+     * sets the action for the change password button action
+     * @return ActionListener to listen for when the button is pressed
+     */
+    public static ActionListener getChangePasswordListener() {
+        return e -> {
+
         };
     }
 

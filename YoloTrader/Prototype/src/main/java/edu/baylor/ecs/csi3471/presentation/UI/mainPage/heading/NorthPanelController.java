@@ -12,8 +12,11 @@ import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.SearchResults;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -27,6 +30,15 @@ public class NorthPanelController {
     public static int northPanelHeight = 120;
     public static Color northPanelColor = MainPanel.backGroundColor;
     public static Map<String, String> results;
+
+    public static Border emptyButtonBorder = BorderFactory.createEmptyBorder();
+    public static Border whiteBorder = BorderFactory.createLineBorder(Color.WHITE);
+
+    public static String leftLabelSide = "<html><span style=\"font-family:Futura;color:white;font-size:16px;\">";
+    public static String rightLabelSide = "</span></html>";
+
+    public static String leftButtonSide = "<html><span style=\\\"font-family:Futura;color:white;font-size:16px;\">";
+    public static String rightButtonSide = "</span></html>";
 
     /** used in ${@link #getAddStockButtonListener()} to determine if the user wanted to add a stock
      * directly to the selected watch list (rather than just look up stocks) */
@@ -45,7 +57,7 @@ public class NorthPanelController {
      * @param search the company name or ticker to search for
      * @return ActionListener to listen for when the button is pressed
      */
-    public static ActionListener getSearchButtonAction(JTextField search) {
+    public static ActionListener getSearchButtonListener(JTextField search) {
         return e -> {
             if (search.getText().equals("")) {
                 Search.getSearchWarning();
@@ -56,6 +68,21 @@ public class NorthPanelController {
                 // not adding anything, refer to lauchSearch() description
                 launchSearch(Search.getSearchTextField().getText(), false);
             }
+        };
+    }
+
+    /**
+     * upon entering the border of button, it creates a white border, when existed, the border goes away
+     * @param button button to change the border
+     * @return MouseAdapter to listen for when the mouse enters and exits the button
+     */
+    public static MouseAdapter getGeneralButtonListener(JButton button) {
+        return new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) { button.setBorder(whiteBorder); }
+
+            @Override
+            public void mouseExited(MouseEvent e) { button.setBorder(emptyButtonBorder); }
         };
     }
 

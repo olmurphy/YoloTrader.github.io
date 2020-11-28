@@ -30,6 +30,12 @@ public class FormController {
     /** this is the color of the whole application interface the user will have */
     public static Color formColor = MainPanel.backGroundColor;
 
+    public static String leftLabelSide = "<html><span style=\"font-family:Futura;color:white;font-size:16px;\">";
+    public static String rightLabelSide = "</span></html>";
+
+    public static String leftButtonSide = "<html><span style=\\\"font-family:Futura;color:white;font-size:16px;\">";
+    public static String rightButtonSide = "</span></html>";
+
     /**
      * method to start the application, the application will start in the log-in page
      *

@@ -42,11 +42,11 @@ public class HomeSection {
         
         green.add(todaysWins, BorderLayout.NORTH);
         green.add(winners, BorderLayout.SOUTH);
-        
-        
-        
-        
-        
+
+
+
+
+
         //Set up the top losers
         JLabel todaysloss = new JLabel();
         todaysloss.setForeground(Color.WHITE);
@@ -59,8 +59,8 @@ public class HomeSection {
         temp.setLayout(new FlowLayout(FlowLayout.RIGHT));
         temp.add(todaysloss);
         temp.setBackground(Color.BLACK);
-        
-        
+
+
         JPanel red = new JPanel();
         red.setLayout(new BoxLayout(red, BoxLayout.PAGE_AXIS));
         red.setBackground(Color.BLACK);
@@ -68,25 +68,25 @@ public class HomeSection {
         red.add(temp);
         red.add(losers);
         red.setBorder(new EmptyBorder(15,0,15,0));
-        
-        
+
+
         
         //Set up the newsFeed.
-       
+
 		NewsPanel news = StockUtil.getGeneralNews();
 		
 		HomeSection.homeMainPanel.add(green, BorderLayout.NORTH);
 		HomeSection.homeMainPanel.add(red, BorderLayout.CENTER);
       HomeSection.homeMainPanel.add(news.getJPanel(), BorderLayout.SOUTH);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
+
+
+
+
+
+
+
+
+
+
     }
 }

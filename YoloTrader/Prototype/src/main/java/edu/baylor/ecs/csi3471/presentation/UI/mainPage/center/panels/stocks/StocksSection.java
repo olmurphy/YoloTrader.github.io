@@ -5,7 +5,6 @@ import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.List;
 
@@ -17,16 +16,11 @@ public class StocksSection {
     public static JPanel stocksMainPanel;
     public static JPanel stockButtonPanel;
 
-    public static Font stockButtonFont;
-    public static Font stockLabelFont;
-
     public static JList<String> watchListList;
     public static JList<String> stockList;
 
     public static ListModel<String> watchListModel; // need these
     public static ListModel<String> stockListModel; // need these
-
-    public static Border buttonBorder;
 
     /**
      * @return the stocks panel
@@ -37,9 +31,6 @@ public class StocksSection {
 
     public static void setStocksMainPanel(Profile profile) {
         stocksMainPanel = new JPanel(new BorderLayout());
-        stockButtonFont = new Font("Sans-Serif", Font.PLAIN, 16);
-        stockLabelFont = new Font("Sans-Serif", Font.PLAIN, 16);
-        buttonBorder = BorderFactory.createEmptyBorder();
         stocksMainPanel.add(getStockButtonPanel(), BorderLayout.NORTH);
         stocksMainPanel.add(getStockListPanel(), BorderLayout.CENTER);
 
@@ -67,60 +58,60 @@ public class StocksSection {
      * @return JButton
      */
     public static JButton getAddWatchListButton() {
-        JButton addWatchListButton = new JButton("Add List");
+        JButton addWatchListButton = new JButton(CenterPanelController.leftButtonSide + "Add List" +
+                CenterPanelController.rightButtonSide);
         addWatchListButton.setHorizontalAlignment(JButton.CENTER);
 
-        addWatchListButton.setFont(stockButtonFont);
         addWatchListButton.setBackground(CenterPanelController.centerPanelColor);
-        addWatchListButton.setBorder(buttonBorder);
+        addWatchListButton.setBorder(CenterPanelController.emptyButtonBorder);
         addWatchListButton.setOpaque(true);
 
-        addWatchListButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(addWatchListButton));
+        addWatchListButton.addMouseListener(CenterPanelController.getGeneralButtonAction(addWatchListButton));
         addWatchListButton.addMouseListener(CenterPanelController.getAddWatchListButton());
 
         return addWatchListButton;
     }
 
     public static JButton getDeleteWatchListButton() {
-        JButton deleteWatchListButton = new JButton("Delete List");
+        JButton deleteWatchListButton = new JButton(CenterPanelController.leftButtonSide + "Delete List" +
+                CenterPanelController.rightButtonSide);
         deleteWatchListButton.setHorizontalAlignment(JButton.CENTER);
 
-        deleteWatchListButton.setFont(stockButtonFont);
         deleteWatchListButton.setBackground(CenterPanelController.centerPanelColor);
-        deleteWatchListButton.setBorder(buttonBorder);
+        deleteWatchListButton.setBorder(CenterPanelController.emptyButtonBorder);
         deleteWatchListButton.setOpaque(true);
 
-        deleteWatchListButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(deleteWatchListButton));
+        deleteWatchListButton.addMouseListener(CenterPanelController.getGeneralButtonAction(deleteWatchListButton));
         deleteWatchListButton.addMouseListener(CenterPanelController.getDeleteWatchListAction());
 
         return deleteWatchListButton;
     }
 
     public static JButton getAddStockButton() {
-        JButton addStockButton = new JButton("Add Stock");
+        JButton addStockButton = new JButton(CenterPanelController.leftButtonSide + "Add Stock" +
+                CenterPanelController.rightButtonSide);
         addStockButton.setHorizontalAlignment(JButton.CENTER);
 
-        addStockButton.setFont(stockButtonFont);
         addStockButton.setBackground(CenterPanelController.centerPanelColor);
-        addStockButton.setBorder(buttonBorder);
+        addStockButton.setBorder(CenterPanelController.emptyButtonBorder);
         addStockButton.setOpaque(true);
 
-        addStockButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(addStockButton));
+        addStockButton.addMouseListener(CenterPanelController.getGeneralButtonAction(addStockButton));
         addStockButton.addMouseListener(CenterPanelController.getAddStockButtonAction());
 
         return addStockButton;
     }
 
     public static JButton getDeleteStockButton() {
-        JButton deleteStockButton = new JButton("Delete Stock");
+        JButton deleteStockButton = new JButton(CenterPanelController.leftButtonSide + "Delete Stock" +
+                CenterPanelController.rightButtonSide);
         deleteStockButton.setHorizontalAlignment(JButton.CENTER);
 
-        deleteStockButton.setFont(stockButtonFont);
         deleteStockButton.setBackground(CenterPanelController.centerPanelColor);
-        deleteStockButton.setBorder(buttonBorder);
+        deleteStockButton.setBorder(CenterPanelController.emptyButtonBorder);
         deleteStockButton.setOpaque(true);
 
-        deleteStockButton.addMouseListener(CenterPanelController.getGeneralStockButtonAction(deleteStockButton));
+        deleteStockButton.addMouseListener(CenterPanelController.getGeneralButtonAction(deleteStockButton));
         deleteStockButton.addMouseListener(CenterPanelController.getDeleteStockButtonAction());
 
         return deleteStockButton;
@@ -147,19 +138,13 @@ public class StocksSection {
     }
 
     public static JLabel getStockWatchListLabel() {
-        JLabel stockWatchListLabel = new JLabel("WatchLists", JLabel.CENTER);
-
-        stockWatchListLabel.setFont(stockLabelFont);
-
-        return stockWatchListLabel;
+        return new JLabel(CenterPanelController.leftLabelSide + "WATCHLIST" + CenterPanelController.rightLabelSide,
+                JLabel.CENTER);
     }
 
     public static JLabel getStocksLabel() {
-        JLabel stocksLabel = new JLabel("Stocks", JLabel.CENTER);
-
-        stocksLabel.setFont(stockLabelFont);
-
-        return stocksLabel;
+        return new JLabel(CenterPanelController.leftLabelSide + "STOCKS" + CenterPanelController.rightLabelSide,
+                JLabel.CENTER);
     }
 
     public static JPanel getStockJListsPanel() {

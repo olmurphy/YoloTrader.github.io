@@ -1,5 +1,7 @@
 package edu.baylor.ecs.csi3471.presentation.UI.form;
 
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,8 +18,8 @@ public class LogIn {
     public static JButton createAccountButton;
     public static JButton helpButton;
 
-    public static String emailString = "Email";
-    public static String passString = "Password";
+    public static String emailString = FormController.leftLabelSide + "Email" + FormController.rightLabelSide;
+    public static String passString = FormController.leftLabelSide + "Password" + FormController.rightLabelSide;
 
     public static JTextField emailField;
     public static JPasswordField passwordField;
@@ -27,6 +29,7 @@ public class LogIn {
     public static String companyString = "<html><span style=\"" +
             "font-family:Arial;" +
             "font-size:20px;" +
+            "color:white;" +
             "\"><B>" + FormController.title +
             "</B>";
 
@@ -153,17 +156,30 @@ public class LogIn {
     }
 
     public static void initializeButtons() {
+
+        FormController.login = FormController.leftButtonSide +  FormController.login + FormController.rightButtonSide;
         loginButton = new JButton(FormController.login);
         loginButton.setHorizontalAlignment(JButton.CENTER);
         loginButton.setVerticalAlignment(JButton.CENTER);
+        loginButton.addMouseListener(CenterPanelController.getGeneralButtonAction(loginButton));
+        loginButton.setBackground(FormController.formColor);
+        loginButton.setBorder(BorderFactory.createEmptyBorder());
 
+        FormController.createAcc = FormController.leftButtonSide +  FormController.createAcc + FormController.rightButtonSide;
         createAccountButton = new JButton(FormController.createAcc);
         createAccountButton.setHorizontalAlignment(JButton.CENTER);
         createAccountButton.setVerticalAlignment(JButton.CENTER);
+        createAccountButton.addMouseListener(CenterPanelController.getGeneralButtonAction(createAccountButton));
+        createAccountButton.setBackground(FormController.formColor);
+        createAccountButton.setBorder(BorderFactory.createEmptyBorder());
 
+        FormController.help = FormController.leftButtonSide +  FormController.help + FormController.rightButtonSide;
         helpButton = new JButton(FormController.help);
         helpButton.setHorizontalAlignment(JButton.CENTER);
         helpButton.setVerticalAlignment(JButton.CENTER);
+        helpButton.addMouseListener(CenterPanelController.getGeneralButtonAction(helpButton));
+        helpButton.setBackground(FormController.formColor);
+        helpButton.setBorder(BorderFactory.createEmptyBorder());
     }
 
     public static JFrame getFrame() {

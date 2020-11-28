@@ -16,7 +16,7 @@ import java.util.Random;
 public class Email {
 
     public static String companyEmail = "volatiles.stocks@gmail.com";
-    public static String host = "localhost";
+
 
     /**
      * dialog responsible for letting the user know that the email was not unique upond creating

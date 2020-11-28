@@ -11,10 +11,6 @@ import java.awt.*;
  */
 public class ProfileSection {
 
-    /*
-    FIXME: NEED TO FINISH DESIGNING THE PROFILE PANEL, UNFINISHED
-     */
-
     public static JPanel profilePanel;
     public static JPanel picturePanel;
     public static JPanel descriptionPanel;
@@ -38,15 +34,12 @@ public class ProfileSection {
     public static JLabel userLabel;
 
     public static JButton changePasswordButton;
-    public static JButton changeUsernameButton;
     public static JButton deleteAccountButton;
 
     public static JLabel picture;
 
     public static int verticalLabelValueSpace = 30;
     public static int verticalButtonSpace = 20;
-    
-    public static Color profileTextColor = Color.white;
 
     public static JScrollPane getProfilePanel() {
         return descriptionScrollPanel;
@@ -112,22 +105,22 @@ public class ProfileSection {
 
         // adding first name
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
-        setFirstLabel(new JLabel(firstLabelString + firstString));
+        setFirstLabel(new JLabel(CenterPanelController.leftLabelSide + firstLabelString + firstString + CenterPanelController.rightLabelSide));
         labelValuePanel.add(getFirstLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
 
         // adding last name
-        setLastLabel(new JLabel(lastLabelString + lastString));
+        setLastLabel(new JLabel(CenterPanelController.leftLabelSide + lastLabelString + lastString + CenterPanelController.rightLabelSide));
         labelValuePanel.add(getLastLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
 
         // adding username
-        setUserLabel(new JLabel(userLabelString + userString));
+        setUserLabel(new JLabel(CenterPanelController.leftLabelSide + userLabelString + userString + CenterPanelController.rightLabelSide));
         labelValuePanel.add(getUserLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
 
         // adding email
-        setEmailLabel(new JLabel(emailLabelString + emailString));
+        setEmailLabel(new JLabel(CenterPanelController.leftLabelSide + emailLabelString + emailString + CenterPanelController.rightLabelSide));
         labelValuePanel.add(getEmailLabel());
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
         labelValuePanel.setBackground(CenterPanelController.centerPanelColor);
@@ -139,8 +132,6 @@ public class ProfileSection {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, verticalButtonSpace)));
-        buttonPanel.add(getChangeUsernameButton());
         buttonPanel.add(Box.createRigidArea(new Dimension(0, verticalButtonSpace)));
         buttonPanel.add(getChangePasswordButton());
         buttonPanel.add(Box.createRigidArea(new Dimension(0, verticalButtonSpace)));
@@ -168,57 +159,46 @@ public class ProfileSection {
         return userLabel;
     }
 
-    public static JButton getChangeUsernameButton() {
-        changeUsernameButton = new JButton("Change Username");
-        changeUsernameButton.setHorizontalAlignment(JButton.LEFT);
-
-        // FIXME: need to add action to this in the "Controller"
-        // changeUsernameButton.addActionListener();
-
-        return changeUsernameButton;
-    }
-
     public static JButton getChangePasswordButton() {
-        changePasswordButton = new JButton("Change Password");
+        changePasswordButton = new JButton(CenterPanelController.leftButtonSide + "Change Password" +
+                CenterPanelController.rightButtonSide);
         changePasswordButton.setHorizontalAlignment(JButton.LEFT);
+        changePasswordButton.setBackground(CenterPanelController.centerPanelColor);
+        changePasswordButton.setBorder(CenterPanelController.emptyButtonBorder);
 
-        // FIXME: need to add action to this in the "Controller"
-        // changePasswordButton.addActionListener();
+        changePasswordButton.addActionListener(CenterPanelController.getChangePasswordListener());
+        changePasswordButton.addMouseListener(CenterPanelController.getGeneralButtonAction(changePasswordButton));
 
         return changePasswordButton;
     }
 
     public static JButton getDeleteAccountButton() {
-        deleteAccountButton = new JButton("Delete Account");
+        deleteAccountButton = new JButton(CenterPanelController.leftButtonSide + "Delete Account" +
+                CenterPanelController.rightButtonSide);
         deleteAccountButton.setHorizontalAlignment(JButton.LEFT);
+        deleteAccountButton.setBackground(CenterPanelController.centerPanelColor);
+        deleteAccountButton.setBorder(CenterPanelController.emptyButtonBorder);
 
         deleteAccountButton.addActionListener(CenterPanelController.getDeleteAccountListener());
+        deleteAccountButton.addMouseListener(CenterPanelController.getGeneralButtonAction(deleteAccountButton));
 
         return deleteAccountButton;
     }
 
     public static void setEmailLabel(JLabel emailLabel) {
         ProfileSection.emailLabel = emailLabel;
-        ProfileSection.emailLabel.setForeground(profileTextColor);
-        emailLabel.setFont(new Font("Futura", Font.PLAIN, 22));
     }
 
     public static void setFirstLabel(JLabel firstLabel) {
         ProfileSection.firstLabel = firstLabel;
-        ProfileSection.firstLabel.setForeground(profileTextColor);
-        firstLabel.setFont(new Font("Futura", Font.PLAIN, 22));
     }
 
     public static void setLastLabel(JLabel lastLabel) {
         ProfileSection.lastLabel = lastLabel;
-        ProfileSection.lastLabel.setForeground(profileTextColor);
-        lastLabel.setFont(new Font("Futura", Font.PLAIN, 22));
     }
 
     public static void setUserLabel(JLabel userLabel) {
         ProfileSection.userLabel = userLabel;
-        ProfileSection.userLabel.setForeground(profileTextColor);
-        userLabel.setFont(new Font("Futura", Font.PLAIN, 22));
     }
 
     public static void setFirstString(String firstString) {
