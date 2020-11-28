@@ -19,7 +19,6 @@ public class HelpSection {
     public static String whatAreStockString = "<html><span style=\"font-family:Arial;font-size:16px;\"><B>What Are Stocks?</B>";
     public static String contactString = "<html><span style=\"font-family:Arial;font-size:16px;\"><B>Contact</B>";
 
-
     public static JPanel getHelpPanel() {
         return helpPanel;
     }

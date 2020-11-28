@@ -18,7 +18,6 @@ public class MainPanel {
     public static JPanel mainPanel;
     public static Color backGroundColor = Color.lightGray;
 
-
     public static void createUI () {
         homeFrame = new JFrame();
 

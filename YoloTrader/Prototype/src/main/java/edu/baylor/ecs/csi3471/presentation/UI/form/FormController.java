@@ -94,12 +94,9 @@ public class FormController {
                 } else {
                     LogIn.getInvalidCredentialsWarning();
                 }
-
             } else {
                 LogIn.getEmptyFieldWarning();
             }
-
-
         };
     }
 
@@ -173,16 +170,9 @@ public class FormController {
      * @return true if the fields are not empty, false otherwise
      */
     public static boolean validCreateAccountFieldsNotEmpty() {
-        boolean allField = true;
-
-        // check that all fields are filled in
-        if (!validateLogInFieldsNotEmpty() || CreateAccount.getFirstField().getText().equals("")
-        || CreateAccount.getLastField().getText().equals("") || CreateAccount.getUserField().getText().equals("")
-        || CreateAccount.getRe_passwordField().getPassword().length == 0) {
-            allField = false;
-        }
-
-        return allField;
+        return (validateLogInFieldsNotEmpty() && !CreateAccount.getFirstField().getText().equals("")
+        && !CreateAccount.getLastField().getText().equals("") && !CreateAccount.getUserField().getText().equals("")
+        && CreateAccount.getRe_passwordField().getPassword().length != 0);
     }
 
     /**
@@ -203,6 +193,9 @@ public class FormController {
         MainPanelController.initializeProfileController();
     }
 
+    /**
+     * @return true if the two passwords entered match, false o.w.
+     */
     public static boolean checkPassMatch() {
         return Arrays.equals(LogIn.getPasswordField().getPassword(), CreateAccount.getRe_passwordField().getPassword());
     }

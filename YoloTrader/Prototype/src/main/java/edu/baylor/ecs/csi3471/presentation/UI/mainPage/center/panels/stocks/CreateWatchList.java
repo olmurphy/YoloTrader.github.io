@@ -15,6 +15,4 @@ public class CreateWatchList {
         JOptionPane.showMessageDialog(null, "Name Taken",
                 "Warning", JOptionPane.WARNING_MESSAGE);
     }
-
-
 }

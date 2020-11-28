@@ -3,8 +3,6 @@ package edu.baylor.ecs.csi3471.service;
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 
-import java.util.List;
-
 /**
  * this class
  * @author owenmurphy
@@ -20,23 +18,16 @@ public class StockService {
      * @return true if stock added, false o.w.
      */
     public boolean addStock(Stock stock, StockWatchList stockWatchList) {
-        List<Stock> stocks = stockWatchList.getStockList(); // get stock from the dao
-
-        boolean isUnique = true;
 
         // check if the stock is unique
-        for (Stock value : stocks) {
+        for (Stock value : stockWatchList.getStockList()) {
             if (value.equals(stock)) {
-                isUnique = false;
-                break;
+                return false;
             }
         }
 
-        if (isUnique) {
-            stocks.add(stock);
-        }
-
-        return isUnique;
+        stockWatchList.getStockList().add(stock);
+        return true;
     }
 
     /**
@@ -46,16 +37,6 @@ public class StockService {
      * @return true if stock was deleted, o.w. false
      */
     public boolean removeStock(String name, StockWatchList list) {
-        boolean stockRemoved = false;
-        List<Stock> stocks = list.getStockList();
-
-        for (int i = 0; i < stocks.size() && (!stockRemoved); i++) {
-            if (stocks.get(i).getName().equals(name)) {
-                stocks.remove(stocks.get(i));
-                stockRemoved = true;
-            }
-        }
-
-        return stockRemoved;
+        return list.getStockList().removeIf(stock -> stock.getName().equals(name));
     }
 }

@@ -33,10 +33,6 @@ public class NewsPanel {
 	private JScrollPane newsFeed;
 	private JPanel view;
 	
-	
-	
-	
-	
 	/**
      * Constructor.
      */
@@ -48,20 +44,14 @@ public class NewsPanel {
 		//newsFeed.setBackground(Color.BLACK);
 		//newsFeed.setPreferredSize(new Dimension(400, 600));
 		newsFeed.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		newsFeed.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
-		
-		
+		newsFeed.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 	}
-	
-	
 	
 	public JScrollPane getNewsScrollPane() {
 		return newsFeed;
 	}
-	
-	
+
 	public void addToScroll(Component x) {
 		view.add(x);
 	}
-	
 }

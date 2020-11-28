@@ -157,7 +157,6 @@ public class LogIn {
         loginButton.setHorizontalAlignment(JButton.CENTER);
         loginButton.setVerticalAlignment(JButton.CENTER);
 
-
         createAccountButton = new JButton(FormController.createAcc);
         createAccountButton.setHorizontalAlignment(JButton.CENTER);
         createAccountButton.setVerticalAlignment(JButton.CENTER);

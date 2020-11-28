@@ -214,21 +214,8 @@ public class CenterPanelController {
 
                     // show the menu
                     menu.show(list, e.getPoint().x, e.getPoint().y);
-
-                    System.out.println("index: " + list.getSelectedIndex());
                 }
             }
-            /*
-                    JPopupMenu menu = new JPopupMenu();
-                    JMenuItem itemRemove = new JMenuItem("Remove");
-                    itemRemove.addActionListener(e1 -> {
-                        System.out.println("Remove the element in position " + listbox.getSelectedValue());
-
-                    });
-                    menu.add(itemRemove);
-                    menu.show(listbox, e.getPoint().x, e.getPoint().y);
-                }
-             */
         };
     }
 
@@ -250,8 +237,6 @@ public class CenterPanelController {
 
                     // show the menu
                     menu.show(list, e.getPoint().x, e.getPoint().y);
-
-                    System.out.println("index: " + list.getSelectedIndex());
                 }
             }
         };
@@ -305,7 +290,7 @@ public class CenterPanelController {
      */
     public static ActionListener getWatchListOpenItemListener() {
         return e -> {
-
+            // FIXME: add action here
         };
     }
 
@@ -349,7 +334,7 @@ public class CenterPanelController {
      */
     public static ActionListener getStockListOpenItemListener() {
         return e -> {
-
+            // FIXME: add action here
         };
     }
 

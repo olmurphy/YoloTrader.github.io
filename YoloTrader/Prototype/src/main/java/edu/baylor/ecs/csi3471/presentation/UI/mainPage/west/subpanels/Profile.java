@@ -23,6 +23,5 @@ public class Profile {
         profilePanel.setBackground(WestPanelController.westPanelColor);
         profilePanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(profilePanel, profilePanelLabel));
         profilePanel.addMouseListener(WestPanelController.getProfilePanelAction(profilePanel, profilePanelLabel));
-
     }
 }

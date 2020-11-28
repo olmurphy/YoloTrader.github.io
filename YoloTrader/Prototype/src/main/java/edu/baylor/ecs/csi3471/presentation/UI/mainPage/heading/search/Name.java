@@ -30,7 +30,6 @@ public class Name {
 
         labelPanel.add(getLabel(name), BorderLayout.WEST);
 
-
         // adding logout button
         setLogoutButton(new JButton("Logout"));
         labelPanel.add(getLogoutButton(), BorderLayout.EAST);

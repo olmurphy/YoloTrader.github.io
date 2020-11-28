@@ -30,16 +30,13 @@ public class StockWatchListService {
      */
     public boolean addWatchList(StockWatchList watchList) {
 
-        List<StockWatchList> stockWatchLists = this.dao.getAll();
-
-        for (StockWatchList stockWatchList : stockWatchLists) {
+        for (StockWatchList stockWatchList : this.dao.getAll()) {
             if (stockWatchList.getName().equals(watchList.getName())) {
                 return false;
             }
         }
 
         this.dao.add(watchList);
-
         return true;
     }
 
@@ -51,16 +48,7 @@ public class StockWatchListService {
      * @return true if watch list was delete, false o.w.
      */
     public boolean removeWatchList(String name) {
-        List<StockWatchList> list = this.dao.getAll();
-
-        for (StockWatchList stockWatchList : list) {
-            if (stockWatchList.getName().equals(name)) {
-                this.dao.delete(stockWatchList);
-                return true;
-            }
-        }
-
-        return false;
+        return this.dao.getAll().removeIf(x -> x.getName().equals(name));
     }
 
     /**
@@ -94,13 +82,9 @@ public class StockWatchListService {
      */
     public StockWatchList findStockWatchList(String listName) {
 
-        List<StockWatchList> list = this.dao.getAll();
-        StockWatchList watchList;
-
-        for (StockWatchList stockWatchList : list) { // short circuit the loop
+        for (StockWatchList stockWatchList : this.dao.getAll()) {
             if (stockWatchList.getName().equals(listName)) {
-                watchList = stockWatchList;
-                return watchList;
+                return stockWatchList; // short circuit the loop
             }
         }
 
@@ -115,10 +99,9 @@ public class StockWatchListService {
      * @param oldName old name to find the stock watch list
      */
     public void renameStockWatchList(String newName, String oldName) {
-        List<StockWatchList> list = this.dao.getAll();
 
         // traverse the watch lists
-        for (StockWatchList stockWatchList : list) {
+        for (StockWatchList stockWatchList : this.dao.getAll()) {
             if (stockWatchList.getName().equals(oldName)) {
                 stockWatchList.setName(newName);
                 return; // short circuit the loop for performance

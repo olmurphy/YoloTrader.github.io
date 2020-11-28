@@ -42,9 +42,7 @@ public class GraphPanel extends JPanel {
     private int pointWidth = 4;
     private int numberYDivisions = 5;
     private Vector<Double> prices;
-    
-    
-    
+
     /**
      * Constructor.
      * <p>
@@ -57,7 +55,6 @@ public class GraphPanel extends JPanel {
         frame.setPreferredSize(new Dimension(900, 700));
         this.setBackground(Color.BLACK);
     }
-
     
     /**
      * the setLineColor function changes the preset line color to paint.
@@ -67,7 +64,6 @@ public class GraphPanel extends JPanel {
     public void setLineColor(Color paint) {
     	lineColor = paint;
     }
-    
     
     /**
      * the changeLineColor function changes the preset line color to paint,
@@ -82,9 +78,7 @@ public class GraphPanel extends JPanel {
     	frame.validate();
     	frame.repaint();
     }
-    
-    
-    
+
     /**
      * the paintComponent function draws the graph onto g.
      * <p>
@@ -109,7 +103,6 @@ public class GraphPanel extends JPanel {
         // draw black background
         g2.setColor(Color.BLACK);
         g2.fillRect(padding + labelPadding, padding, getWidth() - (2 * padding) - labelPadding, getHeight() - 2 * padding - labelPadding);
-        
 
         // create hatch marks and grid lines for y axis.
         for (int i = 0; i < numberYDivisions + 1; i++) {
@@ -135,36 +128,28 @@ public class GraphPanel extends JPanel {
         for (int i = 0; i < prices.size(); i++) {
             if (prices.size() > 1) {
                 int x0 = i * (getWidth() - padding * 2 - labelPadding) / (prices.size() - 1) + padding + labelPadding;
-                int x1 = x0;
                 int y0 = getHeight() - padding ;
                 int y1 = y0 - pointWidth;
                 if ((i % ((int) ((prices.size() / 20.0)) + 1)) == 0) {
                     g2.setColor(gridColor);
-                    g2.drawLine(x0, getHeight() - padding - labelPadding - 1 - pointWidth, x1, padding);
+                    g2.drawLine(x0, getHeight() - padding - labelPadding - 1 - pointWidth, x0, padding);
                     g2.setColor(Color.CYAN);
                     String xLabel = time + ":30";
                     FontMetrics metrics = g2.getFontMetrics();
                     int labelWidth = metrics.stringWidth(xLabel);
                     if(time < 23) {
-                    	if(everyother == true) {
+                    	if(everyother) {
                     		g2.drawString(xLabel, x0 - labelWidth / 2, y0 + metrics.getHeight() + 3);
                     		everyother = false;
                     		time++;
                     		
                     	}
                     	else {
-                    		
-                    		
-                    	
                     		everyother = true;
-                    		
                     	}
                     }
-                    
-                    
-                     }
-                
-                g2.drawLine(x0, y0, x1, y1);
+                }
+                g2.drawLine(x0, y0, x0, y1);
             }
         }
 
@@ -180,23 +165,20 @@ public class GraphPanel extends JPanel {
             int y1 = graphPoints.get(i).y + padding;
             int x2 = graphPoints.get(i + 1).x;
             int y2 = graphPoints.get(i + 1).y + padding;
-            
-            	
-            
+
             g2.drawLine(x1, y1, x2, y2);
         }
 
         g2.setStroke(oldStroke);
         g2.setColor(pointColor);
-        for (int i = 0; i < graphPoints.size(); i++) {
-            int x = graphPoints.get(i).x - pointWidth / 2;
-            int y = graphPoints.get(i).y - pointWidth / 2 + padding;
+        for (Point graphPoint : graphPoints) {
+            int x = graphPoint.x - pointWidth / 2;
+            int y = graphPoint.y - pointWidth / 2 + padding;
             int ovalW = pointWidth;
             int ovalH = pointWidth;
             g2.fillOval(x, y, ovalW, ovalH);
         }
     }
-
 
     /**
      * the getMinPrice function returns the lowest price of the day.
@@ -211,7 +193,6 @@ public class GraphPanel extends JPanel {
         return minPrice;
     }
 
-    
     /**
      * the getMaxPrice function returns the highest price of the day.
      * <p>
@@ -225,7 +206,6 @@ public class GraphPanel extends JPanel {
         return maxPrice;
     }
 
-    
     /**
      * the setPrices function sets the values for the y values to costs.
      * <p>
@@ -237,8 +217,6 @@ public class GraphPanel extends JPanel {
         this.repaint();
     }
 
-    
-    
     /**
      * the getPrices function sets the y values to costs.
      * <p>
@@ -246,8 +224,7 @@ public class GraphPanel extends JPanel {
     public Vector<Double> getPrices() {
         return prices;
     }
-    
-    
+
     /**
      * the getJrame function returns the JFrame object housing the 
      * GraphPanel.
@@ -271,7 +248,6 @@ public class GraphPanel extends JPanel {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        
     }
 }
     

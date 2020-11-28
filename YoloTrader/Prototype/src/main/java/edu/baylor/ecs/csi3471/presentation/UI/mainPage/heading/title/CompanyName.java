@@ -14,7 +14,6 @@ public class CompanyName {
     public static JLabel companyNameTitle;
     public static JPanel titlePanel;
 
-
     public static JPanel getTitlePanel() {
         titlePanel = new JPanel(new GridLayout(1, 1));
         titlePanel.setPreferredSize(new Dimension((int)(NorthPanelController.northPanelWidth / 2.25), NorthPanelController.northPanelHeight));
@@ -33,6 +32,4 @@ public class CompanyName {
 
         return companyNameTitle;
     }
-
-
 }

@@ -22,6 +22,5 @@ public class Help {
         helpPanel.setBackground(WestPanelController.westPanelColor);
         helpPanel.addMouseListener(WestPanelController.getGeneralWestPanelActions(helpPanel, helpPanelLabel));
         helpPanel.addMouseListener(WestPanelController.getHelpPanelAction(helpPanel, helpPanelLabel));
-
     }
 }

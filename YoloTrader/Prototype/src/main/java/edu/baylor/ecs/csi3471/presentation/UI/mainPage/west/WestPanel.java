@@ -12,7 +12,6 @@ import java.awt.*;
 
 public class WestPanel {
 
-
     public static int westPanelWidth = 150;
     public static int westPanelHeight = MainPanel.frameHeight;
     public static JPanel westPanel;
