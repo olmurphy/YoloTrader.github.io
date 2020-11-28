@@ -20,7 +20,6 @@ import javax.swing.JTextArea;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import yahoofinance.Stock;
 
-//UPDATE STOCKUTIL TOO, U MADE SURE TO CLOSE THE BUFFERED READER!! IMPORTANT UPDATE!!!!!
 
 /**
  * The NewsPanel class is responsible for displaying
@@ -33,6 +32,10 @@ public class NewsPanel {
 	private JScrollPane newsFeed;
 	private JPanel view;
 	
+	
+	
+	
+	
 	/**
      * Constructor.
      */
@@ -44,14 +47,30 @@ public class NewsPanel {
 		//newsFeed.setBackground(Color.BLACK);
 		//newsFeed.setPreferredSize(new Dimension(400, 600));
 		newsFeed.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		newsFeed.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		newsFeed.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+		
+		
 	}
 	
+	
+	/**
+     * The getNewsScrollPane function returns a JPanel containing the news feed.
+     * <p>
+     * @return ${@link JPanel}
+     */
 	public JScrollPane getNewsScrollPane() {
 		return newsFeed;
 	}
-
+	
+	
+	
+	/**
+     * The addToScroll function adds x to the scrollView.
+     * <p>
+     * @param x ${@link Component}
+     */
 	public void addToScroll(Component x) {
 		view.add(x);
 	}
+	
 }
