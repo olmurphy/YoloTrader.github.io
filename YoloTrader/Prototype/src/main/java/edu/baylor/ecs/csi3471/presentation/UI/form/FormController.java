@@ -162,20 +162,7 @@ public class FormController {
      * @return true if no fields are empty
      */
     public static boolean validateLogInFieldsNotEmpty() {
-        boolean allField = true;
-
-        if (LogIn.getEmailField().getText().equals("")) {
-            System.out.println("email: " + LogIn.getEmailField().getText());
-            allField = false;
-        }
-
-        if (LogIn.getPasswordField().getPassword().length == 0) {
-            System.out.println("pass length: " + LogIn.getPasswordField().getPassword().length);
-
-            allField = false;
-        }
-
-        return allField;
+        return !LogIn.getEmailField().getText().equals("") && LogIn.getPasswordField().getPassword().length != 0;
     }
 
     /**
@@ -188,28 +175,10 @@ public class FormController {
     public static boolean validCreateAccountFieldsNotEmpty() {
         boolean allField = true;
 
-        if (!validateLogInFieldsNotEmpty()) {
-            System.out.println("email and pass are not valid");
-            allField = false;
-        }
-
-        if (CreateAccount.getFirstField().getText().equals("")) {
-            System.out.println("first name: " + CreateAccount.getFirstField().getText());
-            allField = false;
-        }
-
-        if (CreateAccount.getLastField().getText().equals("")) {
-            System.out.println("last name: " + CreateAccount.getLastField().getText());
-            allField = false;
-        }
-
-        if (CreateAccount.getUserField().getText().equals("")) {
-            System.out.println("user: " + CreateAccount.getUserField().getText());
-            allField = false;
-        }
-
-        if (CreateAccount.getRe_passwordField().getPassword().length == 0) {
-            System.out.println("re-pass length: " + CreateAccount.getRe_passwordField().getPassword().length);
+        // check that all fields are filled in
+        if (!validateLogInFieldsNotEmpty() || CreateAccount.getFirstField().getText().equals("")
+        || CreateAccount.getLastField().getText().equals("") || CreateAccount.getUserField().getText().equals("")
+        || CreateAccount.getRe_passwordField().getPassword().length == 0) {
             allField = false;
         }
 
@@ -221,8 +190,7 @@ public class FormController {
      * @return a new profile instance
      */
     public static Profile createNewProfile() {
-        return new Profile(LogIn.getEmailField().getText(),
-                CreateAccount.getUserField().getText(),
+        return new Profile(LogIn.getEmailField().getText(), CreateAccount.getUserField().getText(),
                 new String(LogIn.getPasswordField().getPassword()),
                 CreateAccount.getFirstField().getText(), CreateAccount.getLastField().getText());
     }
