@@ -43,9 +43,6 @@ public class NewsPanel {
 		view = new JPanel();
 		view.setLayout(new BoxLayout(view, BoxLayout.PAGE_AXIS));
 		newsFeed = new JScrollPane(view);
-		//view.setBackground(Color.BLACK);
-		//newsFeed.setBackground(Color.BLACK);
-		//newsFeed.setPreferredSize(new Dimension(400, 600));
 		newsFeed.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		newsFeed.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 		
@@ -56,10 +53,22 @@ public class NewsPanel {
 	/**
      * The getNewsScrollPane function returns a JPanel containing the news feed.
      * <p>
-     * @return ${@link JPanel}
+     * @return ${@link JScrollPane}
      */
 	public JScrollPane getNewsScrollPane() {
 		return newsFeed;
+	}
+	
+	
+	/**
+     * The getJPanel function returns a JPanel containing newsFeed.
+     * <p>
+     * @return ${@link JPanel}
+     */
+	public JPanel getJPanel() {
+		JPanel window = new JPanel();
+		window.add(newsFeed);
+		return window;
 	}
 	
 	
@@ -70,7 +79,8 @@ public class NewsPanel {
      * @param x ${@link Component}
      */
 	public void addToScroll(Component x) {
-		view.add(x);
+		view.add(x); 
+		
 	}
 	
 }

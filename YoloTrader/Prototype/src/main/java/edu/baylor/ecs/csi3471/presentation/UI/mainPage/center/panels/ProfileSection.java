@@ -45,6 +45,8 @@ public class ProfileSection {
 
     public static int verticalLabelValueSpace = 30;
     public static int verticalButtonSpace = 20;
+    
+    public static Color profileTextColor = Color.white;
 
     public static JScrollPane getProfilePanel() {
         return descriptionScrollPanel;
@@ -61,6 +63,7 @@ public class ProfileSection {
         profilePanel = new JPanel(new BorderLayout());
         profilePanel.add(getPicturePanel(), BorderLayout.WEST);
         profilePanel.add(getDescriptionPanel(), BorderLayout.CENTER);
+        
 
         descriptionScrollPanel = new JScrollPane(profilePanel);
         descriptionScrollPanel.setBorder(BorderFactory.createEmptyBorder());
@@ -196,18 +199,26 @@ public class ProfileSection {
 
     public static void setEmailLabel(JLabel emailLabel) {
         ProfileSection.emailLabel = emailLabel;
+        ProfileSection.emailLabel.setForeground(profileTextColor);
+        emailLabel.setFont(new Font("Futura", Font.PLAIN, 22));
     }
 
     public static void setFirstLabel(JLabel firstLabel) {
         ProfileSection.firstLabel = firstLabel;
+        ProfileSection.firstLabel.setForeground(profileTextColor);
+        firstLabel.setFont(new Font("Futura", Font.PLAIN, 22));
     }
 
     public static void setLastLabel(JLabel lastLabel) {
         ProfileSection.lastLabel = lastLabel;
+        ProfileSection.lastLabel.setForeground(profileTextColor);
+        lastLabel.setFont(new Font("Futura", Font.PLAIN, 22));
     }
 
     public static void setUserLabel(JLabel userLabel) {
         ProfileSection.userLabel = userLabel;
+        ProfileSection.userLabel.setForeground(profileTextColor);
+        userLabel.setFont(new Font("Futura", Font.PLAIN, 22));
     }
 
     public static void setFirstString(String firstString) {

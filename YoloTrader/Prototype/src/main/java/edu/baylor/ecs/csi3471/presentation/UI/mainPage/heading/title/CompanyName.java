@@ -17,7 +17,7 @@ public class CompanyName {
     public static JPanel getTitlePanel() {
         titlePanel = new JPanel(new GridLayout(1, 1));
         titlePanel.setPreferredSize(new Dimension((int)(NorthPanelController.northPanelWidth / 2.25), NorthPanelController.northPanelHeight));
-        titlePanel.setBackground(Color.red);
+        titlePanel.setBackground(Color.WHITE);
 
         titlePanel.add(getTitleLabel());
 
@@ -27,7 +27,7 @@ public class CompanyName {
     public static JLabel getTitleLabel() {
         companyNameTitle = new JLabel(companyNameString);
         companyNameTitle.setHorizontalAlignment(JLabel.LEFT);
-        Font font = new Font("Sans-Serif", Font.BOLD, 30);
+        Font font = new Font("Futura", Font.BOLD, 30);
         companyNameTitle.setFont(font);
 
         return companyNameTitle;

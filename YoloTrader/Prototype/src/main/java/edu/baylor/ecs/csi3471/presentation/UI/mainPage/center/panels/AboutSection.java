@@ -81,19 +81,26 @@ public class AboutSection {
     }
 
     public static JLabel getAboutLabel() {
-        return new JLabel(aboutString);
+    	JLabel rtrn = new JLabel(aboutString);
+        rtrn.setForeground(Color.WHITE);
+        rtrn.setFont(new Font("Futura", Font.PLAIN, 16));
+        return rtrn;
     }
 
     public static JLabel getDeveloperLabel() {
-        return new JLabel(developerString);
+    	JLabel rtrn = new JLabel(developerString);
+        return rtrn;
     }
 
     public static void setAboutLabelText(JLabel aboutLabelText) {
         AboutSection.aboutLabelText = aboutLabelText;
+        AboutSection.aboutLabelText.setForeground(Color.WHITE);
+    	AboutSection.aboutLabelText.setFont(new Font("Futura", Font.PLAIN, 14));
     }
 
     public static JLabel getAboutLabelText() {
         return aboutLabelText;
+        
     }
 
     public static JLabel loadAboutLabelText() {
@@ -120,9 +127,13 @@ public class AboutSection {
 
     public static void setDeveloperLabelText(JLabel developerLabelText) {
         AboutSection.developerLabelText = developerLabelText;
+        AboutSection.developerLabelText.setForeground(Color.WHITE);
+    	AboutSection.developerLabelText.setFont(new Font("Futura", Font.PLAIN, 14));
     }
 
     public static JLabel getDeveloperLabelText() {
+    	developerLabelText.setForeground(Color.WHITE);
+        developerLabelText.setFont(new Font("Futura", Font.PLAIN, 16));
         return developerLabelText;
     }
 }

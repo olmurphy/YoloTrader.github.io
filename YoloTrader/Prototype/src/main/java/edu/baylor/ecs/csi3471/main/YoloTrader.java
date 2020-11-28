@@ -1,11 +1,14 @@
 package edu.baylor.ecs.csi3471.main;
 
+import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
+import javax.swing.JFrame;
 
 /**
  * This is the main application starter87
@@ -31,5 +34,7 @@ public class YoloTrader {
 
     public static void main(String[] args) {
         MainPanel.getStartFrame();
+    	
+    	
     }
 }

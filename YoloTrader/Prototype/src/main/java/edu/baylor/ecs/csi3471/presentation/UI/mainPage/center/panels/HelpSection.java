@@ -2,6 +2,9 @@ package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels;
 
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.*;
 
 /**
@@ -36,7 +39,11 @@ public class HelpSection {
     }
 
     public static JLabel getHelpLabel() {
-        return new JLabel(helpString);
+        JLabel rtrn = new JLabel(helpString);
+        rtrn.setForeground(Color.WHITE);
+        rtrn.setFont(new Font("Futura", Font.PLAIN, 22));
+        return rtrn;
+        
     }
 
     public static JPanel getFAQ_Panel() {
@@ -50,7 +57,10 @@ public class HelpSection {
     }
 
     public static JLabel getFAQLabel() {
-        return new JLabel(FAQ_String);
+    	JLabel rtrn = new JLabel(FAQ_String);
+        rtrn.setForeground(Color.WHITE);
+        rtrn.setFont(new Font("Futura", Font.PLAIN, 22));
+        return rtrn;
     }
 
     public static JPanel getContact_Panel() {
@@ -64,7 +74,10 @@ public class HelpSection {
     }
 
     public static JLabel getContactLabel() {
-        return new JLabel(contactString);
+    	JLabel rtrn = new JLabel(contactString);
+        rtrn.setForeground(Color.WHITE);
+        rtrn.setFont(new Font("Futura", Font.PLAIN, 22));
+        return rtrn;
     }
 
     public static JPanel getWhatAreStocksPanel() {
@@ -78,6 +91,9 @@ public class HelpSection {
     }
 
     public static JLabel getWhatAreStockLabel() {
-        return new JLabel(whatAreStockString);
+    	JLabel rtrn = new JLabel(whatAreStockString);
+        rtrn.setForeground(Color.WHITE);
+        rtrn.setFont(new Font("Futura", Font.PLAIN, 22));
+        return rtrn;
     }
 }

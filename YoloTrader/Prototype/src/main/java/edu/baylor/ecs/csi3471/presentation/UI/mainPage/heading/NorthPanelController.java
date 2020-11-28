@@ -14,7 +14,6 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.SearchResu
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -55,11 +54,7 @@ public class NorthPanelController {
 
                 // 2nd parameter is false because all we want is to display the results from the query,
                 // not adding anything, refer to lauchSearch() description
-                try {
-                    launchSearch(Search.getSearchTextField().getText(), false);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+                launchSearch(Search.getSearchTextField().getText(), false);
             }
         };
     }
@@ -81,7 +76,7 @@ public class NorthPanelController {
      * @param addSingleStock true if the action came from 'Add Stock' ${@link CenterPanelController}
      *                       else false
      */
-    public static void launchSearch(String query, boolean addSingleStock) throws IOException {
+    public static void launchSearch(String query, boolean addSingleStock) {
 
         searchStock = addSingleStock; // indicates if add stock directly to watch list
 

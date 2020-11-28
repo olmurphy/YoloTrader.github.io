@@ -29,8 +29,8 @@ import java.util.List;
  */
 public class CenterPanelController {
 
-    public static Color buttonColorActive = Color.GRAY;
-    public static Color centerPanelColor = MainPanel.backGroundColor;
+    public static Color buttonColorActive = Color.GRAY.darker().darker();
+    public static Color centerPanelColor = Color.BLACK;
 
     public static int centerPanelHeight = MainPanel.frameHeight - NorthPanelController.northPanelHeight;
 
