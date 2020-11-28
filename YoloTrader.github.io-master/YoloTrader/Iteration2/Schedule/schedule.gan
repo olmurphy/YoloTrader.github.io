@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Software I project " company="" webLink="http://" view-date="2020-10-22" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.11" locale="en_US">
+    <description/>
+    <view zooming-state="default:1" id="gantt-chart">
+        <field id="tpd3" name="Name" width="157" order="0"/>
+        <field id="tpd4" name="Begin date" width="61" order="1"/>
+        <field id="tpd5" name="End date" width="61" order="2"/>
+        <option id="taskLabelUp" value="id"/>
+        <option id="taskLabelDown" value="taskDates"/>
+        <option id="taskLabelLeft" value="name"/>
+        <option id="taskLabelRight" value="length"/>
+        <timeline>
+            <![CDATA[2]]>
+        </timeline>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="209" order="0"/>
+        <field id="1" name="Default role" width="85" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="0" mon="0" tue="0" wed="0" thu="0" fri="0" sat="0"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="6" name="Iteration 1" color="#8cb6ce" meeting="false" start="2020-09-09" duration="19" complete="0" thirdDate="2020-08-27" thirdDate-constraint="0" priority="2" expand="true">
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+            <task id="0" name="Project Vision" color="#8cb6ce" meeting="false" start="2020-09-09" duration="6" complete="0" thirdDate="2020-09-15" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Stocks]]>
+                </notes>
+                <depend id="8" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="8" name="Requirements" color="#8cb6ce" meeting="false" start="2020-09-18" duration="2" complete="0" thirdDate="2020-09-18" thirdDate-constraint="1" expand="true">
+                <notes>
+                    <![CDATA[All contribute to creating requirements.
+
+Ty is in charge of finalizing and making the requirements on:
+
+***Visual Paradigm*** (hopefully have it done by the Sept. 20) 
+
+That way we can start drafting use cases
+]]>
+                </notes>
+                <depend id="10" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="10" name="Use Case" color="#8cb6ce" meeting="false" start="2020-09-20" duration="5" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Ideally try and and have all 3 Use Cases (per member) by the date specified so we can start working on the other aspects (i.e. SSDs, Domain Mode, etc.)
+
+This will be implemented in Visual Paradigm and should include UML Use Case Diagram.]]>
+                </notes>
+            </task>
+            <task id="15" name="Domain Model" color="#8cb6ce" meeting="false" start="2020-09-24" duration="4" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Implemented in ***Visual Paradigm***
+
+
+Ty will be in charge of this and as always Kalu and Owen are here to help!]]>
+                </notes>
+            </task>
+            <task id="19" name="SSD" color="#8cb6ce" meeting="false" start="2020-09-24" duration="4" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Kalu is main guy responsible for this part as he his the brains behind the idea. However, Ty and Owen will help him along the way as Kalu needs it.]]>
+                </notes>
+            </task>
+            <task id="20" name="System Ops &amp; Contracts" color="#8cb6ce" meeting="false" start="2020-09-24" duration="4" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Owen is in charge of creating system uml class diagrams and drafting the system operations contracts]]>
+                </notes>
+            </task>
+            <task id="22" name="Wireframes" color="#8cb6ce" meeting="false" start="2020-09-24" duration="4" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[This is more of a group effort as the design is important to all members and should have the feedback of all members in the group.
+
+Owen will initialize the first iteration of the wireframe.]]>
+                </notes>
+            </task>
+        </task>
+        <task id="2" name="Iteration 2" color="#8cb6ce" meeting="false" start="2020-10-05" duration="25" complete="0" thirdDate="2020-09-07" thirdDate-constraint="0" expand="true">
+            <depend id="33" type="2" difference="0" hardness="Strong"/>
+            <task id="24" name="Sequence Diagram" color="#8cb6ce" meeting="false" start="2020-10-18" duration="10" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true"/>
+            <task id="25" name="Design Model" color="#8cb6ce" meeting="false" start="2020-10-22" duration="7" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true"/>
+            <task id="27" name="Package Diagram &amp; Arch." color="#8cb6ce" meeting="false" start="2020-10-22" duration="5" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true"/>
+            <task id="28" name="Prototype" color="#8cb6ce" meeting="false" start="2020-10-05" duration="25" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true"/>
+            <task id="29" name="GRASP patterns" color="#8cb6ce" meeting="false" start="2020-10-19" duration="9" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true"/>
+            <task id="30" name="Revised Analysis" color="#8cb6ce" meeting="false" start="2020-10-05" duration="7" complete="0" thirdDate="2020-08-30" thirdDate-constraint="0" expand="true"/>
+            <task id="40" name="Testing" color="#8cb6ce" meeting="false" start="2020-10-19" duration="11" complete="0" thirdDate="2020-09-27" thirdDate-constraint="0" expand="true"/>
+            <task id="51" name="GUI" color="#8cb6ce" meeting="false" start="2020-10-21" duration="9" complete="0" thirdDate="2020-09-28" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="33" name="Iteration 3" color="#8cb6ce" meeting="false" start="2020-10-30" duration="23" complete="0" thirdDate="2020-09-11" thirdDate-constraint="0" expand="true">
+            <task id="66" name="Diagram" color="#8cb6ce" meeting="false" start="2020-10-30" duration="7" complete="0" thirdDate="2020-10-15" thirdDate-constraint="0" expand="true"/>
+            <task id="65" name="Prototype" color="#8cb6ce" meeting="false" start="2020-10-30" duration="20" complete="0" thirdDate="2020-10-15" thirdDate-constraint="0" expand="true"/>
+            <task id="64" name="GUI" color="#8cb6ce" meeting="false" start="2020-10-30" duration="14" complete="0" thirdDate="2020-10-25" thirdDate-constraint="0" expand="true"/>
+            <task id="63" name="Testing" color="#8cb6ce" meeting="false" start="2020-10-30" duration="23" complete="0" thirdDate="2020-10-25" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Kalu Prince" function="2" contacts="" phone="(832) 836 - 8948"/>
+        <resource id="1" name="Owen Murphy" function="1" contacts="" phone="(214) 600 - 1677"/>
+        <resource id="2" name="Ty Wicks " function="3" contacts="" phone="(515) 528 - 1112"/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="SoftwareDevelopment:8" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="0" function="SoftwareDevelopment:8" responsible="false" load="33.3"/>
+        <allocation task-id="19" resource-id="0" function="SoftwareDevelopment:8" responsible="true" load="60.0"/>
+        <allocation task-id="8" resource-id="0" function="SoftwareDevelopment:8" responsible="false" load="30.0"/>
+        <allocation task-id="15" resource-id="0" function="SoftwareDevelopment:8" responsible="false" load="20.0"/>
+        <allocation task-id="20" resource-id="0" function="SoftwareDevelopment:8" responsible="false" load="25.0"/>
+        <allocation task-id="22" resource-id="0" function="SoftwareDevelopment:8" responsible="false" load="30.0"/>
+        <allocation task-id="24" resource-id="0" function="2" responsible="false" load="40.0"/>
+        <allocation task-id="27" resource-id="0" function="2" responsible="true" load="80.0"/>
+        <allocation task-id="29" resource-id="0" function="2" responsible="false" load="30.0"/>
+        <allocation task-id="30" resource-id="0" function="2" responsible="false" load="50.0"/>
+        <allocation task-id="51" resource-id="0" function="2" responsible="true" load="40.0"/>
+        <allocation task-id="66" resource-id="0" function="2" responsible="false" load="20.0"/>
+        <allocation task-id="64" resource-id="0" function="2" responsible="true" load="33.3"/>
+        <allocation task-id="63" resource-id="0" function="2" responsible="true" load="33.3"/>
+        <allocation task-id="25" resource-id="0" function="2" responsible="false" load="50.0"/>
+        <allocation task-id="28" resource-id="0" function="2" responsible="true" load="60.0"/>
+        <allocation task-id="40" resource-id="0" function="2" responsible="false" load="60.0"/>
+        <allocation task-id="0" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="1" function="Default:1" responsible="false" load="33.3"/>
+        <allocation task-id="22" resource-id="1" function="Default:1" responsible="true" load="40.0"/>
+        <allocation task-id="8" resource-id="1" function="Default:1" responsible="false" load="30.0"/>
+        <allocation task-id="15" resource-id="1" function="Default:1" responsible="false" load="20.0"/>
+        <allocation task-id="19" resource-id="1" function="Default:1" responsible="false" load="20.0"/>
+        <allocation task-id="20" resource-id="1" function="1" responsible="true" load="50.0"/>
+        <allocation task-id="24" resource-id="1" function="1" responsible="true" load="60.0"/>
+        <allocation task-id="25" resource-id="1" function="1" responsible="false" load="50.0"/>
+        <allocation task-id="27" resource-id="1" function="1" responsible="false" load="10.0"/>
+        <allocation task-id="29" resource-id="1" function="1" responsible="true" load="70.0"/>
+        <allocation task-id="30" resource-id="1" function="1" responsible="true" load="50.0"/>
+        <allocation task-id="40" resource-id="1" function="1" responsible="false" load="40.0"/>
+        <allocation task-id="66" resource-id="1" function="1" responsible="true" load="60.0"/>
+        <allocation task-id="64" resource-id="1" function="1" responsible="false" load="33.3"/>
+        <allocation task-id="63" resource-id="1" function="1" responsible="false" load="33.3"/>
+        <allocation task-id="65" resource-id="1" function="1" responsible="false" load="25.0"/>
+        <allocation task-id="28" resource-id="1" function="1" responsible="false" load="40.0"/>
+        <allocation task-id="51" resource-id="1" function="1" responsible="false" load="60.0"/>
+        <allocation task-id="0" resource-id="2" function="SoftwareDevelopment:4" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="2" function="SoftwareDevelopment:4" responsible="false" load="33.4"/>
+        <allocation task-id="8" resource-id="2" function="SoftwareDevelopment:4" responsible="true" load="40.0"/>
+        <allocation task-id="15" resource-id="2" function="SoftwareDevelopment:4" responsible="true" load="60.0"/>
+        <allocation task-id="19" resource-id="2" function="SoftwareDevelopment:4" responsible="false" load="20.0"/>
+        <allocation task-id="20" resource-id="2" function="SoftwareDevelopment:4" responsible="false" load="25.0"/>
+        <allocation task-id="22" resource-id="2" function="SoftwareDevelopment:4" responsible="false" load="30.0"/>
+        <allocation task-id="66" resource-id="2" function="3" responsible="false" load="20.0"/>
+        <allocation task-id="64" resource-id="2" function="3" responsible="false" load="33.3"/>
+        <allocation task-id="63" resource-id="2" function="3" responsible="false" load="33.3"/>
+        <allocation task-id="65" resource-id="2" function="3" responsible="false" load="25.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+    <roles>
+        <role id="1" name="Project Manager &amp; Designer"/>
+        <role id="2" name="Software Analyst, Designer, &amp; Technical Specialist"/>
+        <role id="3" name="Tester, Designer &amp; Business Anlyst"/>
+    </roles>
+</project>
