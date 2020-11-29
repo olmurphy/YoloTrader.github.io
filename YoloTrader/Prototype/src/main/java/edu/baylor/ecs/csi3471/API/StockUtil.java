@@ -95,14 +95,14 @@ public class StockUtil {
     
     
     private static String NEWS_URL = "https://financialmodelingprep.com/api/v3/stock_news?tickers=";
-    private static String GENERAL_NEWS_URL = "https://financialmodelingprep.com/api/v3/stock_news?limit=50";
+    private static String GENERAL_NEWS_URL = "https://financialmodelingprep.com/api/v3/stock_news?limit=10";
 	
-	private static String NEWS_API = "&limit=50&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+	private static String NEWS_API = "&limit=10&apikey=4819ef0b5de9d90ed219e89c51f35d34";
 	private static String GENERAL_NEWS_API = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
 	
 	
-	private final static String NEWS_API_1 = "&limit=50&apikey=4819ef0b5de9d90ed219e89c51f35d34";
-	private final static String NEWS_API_2 = "&limit=50&apikey=9f2e6a54a66d7c7961207ce53c05e063";
+	private final static String NEWS_API_1 = "&limit=10&apikey=4819ef0b5de9d90ed219e89c51f35d34";
+	private final static String NEWS_API_2 = "&limit=10&apikey=9f2e6a54a66d7c7961207ce53c05e063";
 	
 	private final static String GENERAL_NEWS_API_1 = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
 	private final static String GENERAL_NEWS_API_2 = "&apikey=9f2e6a54a66d7c7961207ce53c05e063";
@@ -117,6 +117,8 @@ public class StockUtil {
 	private static String LOSERS_API =  P_KEY;
 
     
+	
+	
 	
 	
     
@@ -165,7 +167,7 @@ public class StockUtil {
     			String line = check.readLine();
     			
     			//If O's API key is still good.
-    			if(line.contains("ERROR") == false) {
+    			if(line.contains("Error") == false) {
     				//Change to O's API key.
     				rtrn = Key.replace(P_KEY, O_KEY);
     				
@@ -185,7 +187,7 @@ public class StockUtil {
     			String line = check.readLine();
     			
     			//If P's API key is still good.
-    			if(line.contains("ERROR") == false) {
+    			if(line.contains("Error") == false) {
     				//Change to P's API key.
     				rtrn = Key.replace(O_KEY, P_KEY);
     				
@@ -217,12 +219,72 @@ public class StockUtil {
     
     
     /**
+     * The getAnalysis function returns the analysis conclusion for equity.
+     * <p>
+     * @param equity	${@link yahoofinance.Stock}
+     * 
+     */
+    public static String getAnalysis(yahoofinance.Stock equity) {
+    	String analysis = "";
+    	
+    	//Get the moving average and volume for the past week, so a position
+    	//cost distribution can be mentally constructed.
+    	
+    	
+    	
+    	//Get the current price
+    	
+    	//compute & discern the imbalance(x) is, is there greater(+140% < x) volume below the current price
+    	//or above? If insufficient imbalance(+100% < x < +140% \), assume that there is more volume below the current price.
+    	
+    	//If insufficient imbalance, hold/watch.
+    	
+    	
+    	//else
+	    	//If the imbalance lies below the current price, then its a buy.
+	    	
+	    	
+	    	//otherwise, the imbalance nests above the current price, so its a sell.
+	    	
+    	
+    	
+    	//finally, check the current accuracy percentage.
+    		
+    		//If the accuracy is below 51%, negate the conclusion.
+    	
+    		
+    	
+    	
+    	//record this prediction in the prediction file.
+    	
+    	
+    	
+    	
+    	
+    	return analysis;
+    }
+    
+    
+    /**
+     * The getQuote function returns the price data for equity.
+     * <p>
+     * @param equity	${@link yahoofinance.Stock}
+     * <p>
+     * @return ${@link String}
+     */
+    public static String getQuote(yahoofinance.Stock equity) {
+    	return equity.getQuote().toString();
+    }
+    
+    
+    /**
      * The getTopWinners function returns a FlowPanel containing
      * the day's worst performing stocks.
      * <p>
      * @return {@link FlowPanel}
      */
     public static FlowPanel getTopLosers() {
+    	YoloTrader.logger.info("Fetching Top Losers..");
     	FlowPanel feed = new FlowPanel();
     	
 		//First get movers info.
@@ -261,7 +323,7 @@ public class StockUtil {
 			    		
 			    		//Otherwise.
 			    		else {
-			    			System.out.println("limit reached");
+			    			
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
 			    			return null;
 			    		}
@@ -311,7 +373,7 @@ public class StockUtil {
 			for(int x = 0; x < tickers.size(); x++) {
 				JPanel slot = new JPanel();
 				slot.setBackground(Color.BLACK);
-				slot.setPreferredSize(new Dimension(100,100));
+				slot.setPreferredSize(new Dimension(100,80));
 				slot.setLayout(new BoxLayout(slot, BoxLayout.PAGE_AXIS));
 				JLabel title = new JLabel();
 				title.setBorder(new EmptyBorder(5,0,5,0));
@@ -347,7 +409,7 @@ public class StockUtil {
 		
 		
 				
-		
+		YoloTrader.logger.info("Done.");
 		return feed;
     	
     }
@@ -360,6 +422,7 @@ public class StockUtil {
      * @return {@link FlowPanel}
      */
     public static FlowPanel getTopWinners() {
+    	YoloTrader.logger.info("Fetching Top Winners..");
     	FlowPanel feed = new FlowPanel();
     	
 		//First get movers info.
@@ -385,11 +448,12 @@ public class StockUtil {
 			    	
 			    	//If API limit reached.
 			    	if(line.contains("Error")) {
-			    		System.out.println("error encountered");
+			    		
 			    		String plausibleKey = getWorkingKey(MOVERS_API);
 			    		
 			    		//If there is a working key.
 			    		if(plausibleKey != null) {
+			    		
 			    			MOVERS_API = plausibleKey;
 			    			
 			    			//call func again
@@ -398,7 +462,7 @@ public class StockUtil {
 			    		
 			    		//Otherwise.
 			    		else {
-			    			System.out.println("limit reached");
+			    			
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
 			    			return null;
 			    		}
@@ -449,10 +513,10 @@ public class StockUtil {
 			for(int x = 0; x < tickers.size(); x++) {
 				JPanel slot = new JPanel();
 				slot.setBackground(Color.BLACK);
-				slot.setPreferredSize(new Dimension(100,100));
+				slot.setPreferredSize(new Dimension(100,80));
 				slot.setLayout(new BoxLayout(slot, BoxLayout.PAGE_AXIS));
 				JLabel title = new JLabel();
-				title.setBorder(new EmptyBorder(5,0,5,0));
+				title.setBorder(new EmptyBorder(5,0,10,0));
 				title.setText(tickers.elementAt(x));
 				title.setForeground(Color.GREEN.darker().darker());
 				title.setFont(new Font("Futura", Font.PLAIN, 22));
@@ -486,7 +550,7 @@ public class StockUtil {
 		
 		
 				
-		
+		YoloTrader.logger.info("Done.");
 		return feed;
     	
     }
@@ -498,6 +562,7 @@ public class StockUtil {
      * <p>
      */
 	public static NewsPanel getGeneralNews() {
+		YoloTrader.logger.info("Fetching general news..");
 		NewsPanel feed = null;
 		//First get news info.
 		Vector<String> imageURLS = new Vector<String>();
@@ -507,10 +572,11 @@ public class StockUtil {
 		int pos = 0;
 		
 		String pull = GENERAL_NEWS_URL  + GENERAL_NEWS_API;
+	
 		String img = "image";
 		String title = "title";
 		String link = "url";
-		
+		boolean switched = false;
 		try {
 			URL url = new URL(pull);
 	
@@ -521,14 +587,17 @@ public class StockUtil {
 			    	
 			    	//If API limit reached.
 			    	if(line.contains("Error")) {
+			    		
 			    		String plausibleKey = getWorkingKey(GENERAL_NEWS_API);
 			    		
 			    		//If there is a working key.
 			    		if(plausibleKey != null) {
+			    		
 			    			GENERAL_NEWS_API = plausibleKey;
 			    			
 			    			//call func again
 			    			feed = getGeneralNews();
+			    			switched = true;
 			    		}
 			    		
 			    		//Otherwise.
@@ -542,7 +611,7 @@ public class StockUtil {
 			    	//Otherwise, API limit hasn't been reached.
 			    	else {
 			    		
-			    		
+			    	
 			    		
 			    		//If image data.
 			    		if(line.contains(img)) {
@@ -570,11 +639,13 @@ public class StockUtil {
 			  reader.close();
 			    
 			    
+			
 			}//out of inner try block.
 			
-			
-			//At this point the vectors have the required data to construct the NewsPane.
-			feed = constructNewsPanel(imageURLS, titles, links);
+			if(switched == false) {
+				//At this point the vectors have the required data to construct the NewsPane.
+				feed = constructNewsPanel(imageURLS, titles, links);
+			}
 			
 			
 		}//End of outer try block.
@@ -593,7 +664,7 @@ public class StockUtil {
 		
 		
 				
-		
+		YoloTrader.logger.info("Done.");
 		return feed;
 	}
     
@@ -610,13 +681,13 @@ public class StockUtil {
      * @param links		${@link Vector} 
      */
     private static NewsPanel constructNewsPanel( Vector<String> images,  Vector<String> titles,  Vector<String> links) {
-    
+    	YoloTrader.logger.info("Constructing NewsPanel");
     	NewsPanel feed = new NewsPanel();
     	
     	
     	//Make a map of titles to links.
     	Map<String, String> hyperLink = new HashMap<String,String>();
-    	for(int x = 0; x < titles.size(); x++) {
+    	for(int x = 0; x < titles.size() && x < links.size(); x++) {
     		hyperLink.put(titles.elementAt(x), links.elementAt(x));
     	}
     	
@@ -634,7 +705,8 @@ public class StockUtil {
 	    		//Prepare the title
 	    		JLabel title = new JLabel(titles.firstElement());
 	    		title.setForeground(Color.WHITE);
-	    	
+	    		title.setPreferredSize(new Dimension(400, 300));
+	    		title.setBorder(new EmptyBorder(0,5,0,0));
 	    		title.setFont(new Font("Futura", Font.BOLD, 12));
 	    		
 	    		
@@ -689,15 +761,20 @@ public class StockUtil {
 	    		ImageIcon picture = new ImageIcon(image);
 	    	
 	    		JLabel pic = new JLabel(picture);
+	    		pic.setPreferredSize((new Dimension(550, 300)));
 	    		
 	    		
 	    		
-	    		Border border = new LineBorder(Color.WHITE, 2, true);
+	    		Border border = new LineBorder(Color.WHITE, 4, true);
 	    		article.setBorder(border);
 	    		article.setBackground(Color.BLACK);
+	    		JPanel articleTitle = new JPanel();
+	    		articleTitle.setBackground(Color.BLACK.brighter().brighter().brighter().brighter().brighter().brighter());
+	    		articleTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
+	    		articleTitle.setPreferredSize(new Dimension(650, 300));
+	    		articleTitle.add(title);
 	    		
-	    		
-	    		article.add(title);
+	    		article.add(articleTitle);
 			    article.add(pic);
 			    
 	    		
@@ -742,7 +819,7 @@ public class StockUtil {
     	
     	
 		
-    	
+    	YoloTrader.logger.info("Done.");
     	return feed;
     }
     
@@ -754,6 +831,7 @@ public class StockUtil {
      * @param equity	${@link yahoofinance.Stock} 
      */
 	public static NewsPanel getNewsPanel(yahoofinance.Stock equity) {
+		YoloTrader.logger.info("Fetching NewsPanel for " + equity.getName() +"..");
 		NewsPanel feed = null;
 		//First get news info.
 		Vector<String> imageURLS = new Vector<String>();
@@ -766,7 +844,7 @@ public class StockUtil {
 		String img = "image";
 		String title = "title";
 		String link = "url";
-		
+		boolean switched = false;
 		try {
 			URL url = new URL(pull);
 	
@@ -786,6 +864,7 @@ public class StockUtil {
 			    			
 			    			//call func again
 			    			feed = getNewsPanel(equity);
+			    			switched = true;
 			    		}
 			    		
 			    		//Otherwise.
@@ -828,9 +907,10 @@ public class StockUtil {
 			    
 			}//out of inner try block.
 			
-			
-			//At this point the vectors have the required data to construct the NewsPane.
-			feed = constructNewsPanel(imageURLS, titles, links);
+			if(switched == false) {
+				//At this point the vectors have the required data to construct the NewsPane.
+				feed = constructNewsPanel(imageURLS, titles, links);
+			}
 			
 			
 		}//End of outer try block.
@@ -851,7 +931,7 @@ public class StockUtil {
 		//contains a image, and title(that is a hyperlink to the news article).
 		
 				
-		
+		YoloTrader.logger.info("Done.");
 		return feed;
 	}
     
@@ -897,16 +977,26 @@ public class StockUtil {
      */
     private static int getPosition(String time) {
     	
-    		
-
+    	int rtrn = -1;
+    	final Vector<Integer> result = new Vector<Integer>();
+    	
 		Map<String,Integer> map = Map.ofEntries(
 				entry("09:30:00", 0), entry("10:00:00", 1), entry("10:30:00",2 ),
 				entry("11:00:00",3 ), entry("11:30:00",4 ), entry("12:00:00",5 ),
 				entry("12:30:00",6 ), entry("13:00:00",7 ), entry("13:30:00",8 ),
 				entry("14:00:00",9 ), entry("14:30:00",10 ), entry("15:00:00",11 ),
 				entry("15:30:00",12 ), entry("16:00:00",13 ));
+		
+		map.forEach((x,v) -> {
+			if(time.contains(x)) {
+				result.add(v);
+			}
+		});
 
-		return map.getOrDefault(time, -1);
+		if(result.size() == 1) {
+			rtrn = result.elementAt(0);
+		}
+		return rtrn;
     	
     	
     
@@ -925,6 +1015,7 @@ public class StockUtil {
      * @return	{@link GraphPanel} 
      */
     public static GraphPanel getGraph(yahoofinance.Stock equity ) {
+    	YoloTrader.logger.info("Constructing GraphPanel for " + equity.getName() +"..");
     	//create graph.
     	Vector<Double> values = getGraphData(equity);
     
@@ -966,6 +1057,7 @@ public class StockUtil {
     		graph.setLineColor(Color.RED);
     	}
     	
+    	YoloTrader.logger.info("Done.");
     	return graph;
     	
     }
@@ -980,6 +1072,7 @@ public class StockUtil {
      * @return	{@link Vector<Double>} 
      */
     public static Vector<Double> getGraphData(yahoofinance.Stock equity){
+    	YoloTrader.logger.info("Fetching graph data..");
     	
     	String query = GRAPH_URL + equity.getSymbol() + GRAPH_API_URL;
     	Vector<Double> data = new Vector<Double>();
@@ -995,6 +1088,7 @@ public class StockUtil {
         String start = "\"";
         String space = " ";
         boolean today = false;
+        boolean switched = false;
         
         //Set all  14 values in vector to -1;
         for(int x = 0; x < 14; x++) {
@@ -1012,7 +1106,7 @@ public class StockUtil {
 	    		
 	    	
 	    		  	
-	    	    for (String line; (line = reader.readLine()) != null;) {
+	    	    for (String line; (line = reader.readLine()) != null && switched == false;) {
 	    	    	
 	    	    	/*INTERPRETATION : 	- Only get the last 8 entries!!
 	    	    	 * 					- Only read entries from the current day.
@@ -1023,13 +1117,14 @@ public class StockUtil {
 	    	    	//If API limit has been reached
 	    	    	if(line.contains("Error")) {
 	    	    		String plausibleKey = getWorkingKey(GRAPH_API_URL);
-			    		
+	    	    		
 			    		//If there is a working key.
 			    		if(plausibleKey != null) {
 			    			GRAPH_API_URL = plausibleKey;
 			    			
 			    			//call func again
 			    			data = getGraphData(equity);
+			    			switched = true;
 			    		}
 			    		
 			    		//Otherwise.
@@ -1043,6 +1138,10 @@ public class StockUtil {
 	    	    	
 	    	    	//Otherwise API limit has not yet been reached.
 	    	    	else {
+	    	    		
+	    	    		
+	    	    		
+	    	    		
 	                    //Check the date.
 		    	    	if(line.contains(date)) {
 	                    	
@@ -1100,7 +1199,8 @@ public class StockUtil {
 	                    	//most recent entry.
 	                    	else {
 	                    	
-	                    	
+	                    		
+	                    		
 		                    	//If this entry is from today.
 		                    	if(line.contains(todaY)) {
 		                    		
@@ -1163,7 +1263,8 @@ public class StockUtil {
     	
     
     	
-	    
+    	YoloTrader.logger.info("Done.");
+    	
 	    //return data
     	return data;
     	
@@ -1179,6 +1280,7 @@ public class StockUtil {
      * @return	returns a list, in the form of a map, of all plausible matches.
      */
     public static Map<String, String> pullUp(String query) {
+    	YoloTrader.logger.info("Searching for "+ query  +"..");
 
         Map<String, String> results = new HashMap<String, String>();
         String sanitizedQuery = "";
@@ -1292,6 +1394,7 @@ public class StockUtil {
              YoloTrader.logger.warning(e.toString());
          }
 
+        YoloTrader.logger.info("Done.");
         return results;
     }
 

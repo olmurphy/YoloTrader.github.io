@@ -36,7 +36,7 @@ public class GraphPanel extends JPanel {
     private int labelPadding = 30;
     private JFrame frame;
     private Color lineColor = new Color(44, 102, 230, 180);
-    private Color pointColor = Color.CYAN;
+    private Color pointColor = Color.MAGENTA.darker().darker();
     private Color gridColor = Color.BLACK;
     private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
     private int pointWidth = 4;
@@ -63,6 +63,17 @@ public class GraphPanel extends JPanel {
      */
     public void setLineColor(Color paint) {
     	lineColor = paint;
+    }
+    
+    
+    
+    /**
+     * the getLineColor function returns the current line color.
+     * <p>
+     * @param paint		${@link Color} 
+     */
+    public Color getLineColor() {
+    	return lineColor;
     }
     
     /**
@@ -113,7 +124,7 @@ public class GraphPanel extends JPanel {
             if (prices.size() > 0) {
                 g2.setColor(gridColor);
                 g2.drawLine(padding + labelPadding + 1 + pointWidth, y0, getWidth() - padding, y1);
-                g2.setColor(Color.CYAN);
+                g2.setColor(Color.WHITE);
                 String yLabel = ((int) ((getMinPrice() + (getMaxPrice() - getMinPrice()) * ((i * 1.0) / numberYDivisions)) * 100)) / 100.0 + "";
                 FontMetrics metrics = g2.getFontMetrics();
                 int labelWidth = metrics.stringWidth(yLabel);
@@ -133,7 +144,7 @@ public class GraphPanel extends JPanel {
                 if ((i % ((int) ((prices.size() / 20.0)) + 1)) == 0) {
                     g2.setColor(gridColor);
                     g2.drawLine(x0, getHeight() - padding - labelPadding - 1 - pointWidth, x0, padding);
-                    g2.setColor(Color.CYAN);
+                    g2.setColor(Color.WHITE);
                     String xLabel = time + ":30";
                     FontMetrics metrics = g2.getFontMetrics();
                     int labelWidth = metrics.stringWidth(xLabel);
@@ -169,15 +180,15 @@ public class GraphPanel extends JPanel {
             g2.drawLine(x1, y1, x2, y2);
         }
 
-        g2.setStroke(oldStroke);
-        g2.setColor(pointColor);
+       /* g2.setStroke(oldStroke);
+        g2.setColor(lineColor);
         for (Point graphPoint : graphPoints) {
             int x = graphPoint.x - pointWidth / 2;
             int y = graphPoint.y - pointWidth / 2 + padding;
             int ovalW = pointWidth;
             int ovalH = pointWidth;
             g2.fillOval(x, y, ovalW, ovalH);
-        }
+        }*/
     }
 
     /**

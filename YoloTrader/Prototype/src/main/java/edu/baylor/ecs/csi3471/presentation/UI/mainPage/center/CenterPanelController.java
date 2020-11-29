@@ -45,7 +45,7 @@ public class CenterPanelController {
     public static String rightButtonSide = "</span></html>";
 
     // FIXME: may need to return a JScrollPane depending on what is added in the home panel
-    public static JPanel getHomePanel(){ return HomeSection.getHomeMainPanel(); }
+    public static JScrollPane getHomePanel(){ return HomeSection.getHomeMainPanel(); }
 
     public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
 
