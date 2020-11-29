@@ -1,5 +1,4 @@
 package edu.baylor.ecs.csi3471.API;
-
 import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
@@ -12,6 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,7 +34,9 @@ import javax.swing.ImageIcon;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import static java.util.Map.entry;
 
@@ -58,6 +60,7 @@ public class StockUtil {
     enum Exchange {
         NASDAQ,
         NYSE;
+        
         
         /**
          * this a method for an instance of the enum that is called to increment the
@@ -221,6 +224,7 @@ public class StockUtil {
      */
     public static FlowPanel getTopLosers() {
     	FlowPanel feed = new FlowPanel();
+    	
 		//First get movers info.
 		Vector<String> tickers = new Vector<String>();
 		Vector<String> percentage = new Vector<String>();
@@ -257,7 +261,9 @@ public class StockUtil {
 			    		
 			    		//Otherwise.
 			    		else {
+			    			System.out.println("limit reached");
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
+			    			return null;
 			    		}
 			    		
 			    
@@ -355,6 +361,7 @@ public class StockUtil {
      */
     public static FlowPanel getTopWinners() {
     	FlowPanel feed = new FlowPanel();
+    	
 		//First get movers info.
 		Vector<String> tickers = new Vector<String>();
 		Vector<String> percentage = new Vector<String>();
@@ -378,6 +385,7 @@ public class StockUtil {
 			    	
 			    	//If API limit reached.
 			    	if(line.contains("Error")) {
+			    		System.out.println("error encountered");
 			    		String plausibleKey = getWorkingKey(MOVERS_API);
 			    		
 			    		//If there is a working key.
@@ -390,7 +398,9 @@ public class StockUtil {
 			    		
 			    		//Otherwise.
 			    		else {
+			    			System.out.println("limit reached");
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
+			    			return null;
 			    		}
 			    		
 			    
@@ -614,12 +624,19 @@ public class StockUtil {
     		final int run = images.size();
 	    	for(int x = 0; x < run; x++) {
 	    		JPanel article = new JPanel();
+	    	
+	    	
+	    		article.setLayout(new FlowLayout(FlowLayout.RIGHT));
+	    		
+	    		
+	    	
 	    		
 	    		//Prepare the title
 	    		JLabel title = new JLabel(titles.firstElement());
 	    		title.setForeground(Color.WHITE);
 	    	
-	    		title.setFont(new Font("Futura", Font.PLAIN, 16));
+	    		title.setFont(new Font("Futura", Font.BOLD, 12));
+	    		
 	    		
 	    		title.addMouseListener(new MouseAdapter() {
 	    			
@@ -665,6 +682,7 @@ public class StockUtil {
 	    		
 	    		
 	    		//Prepare the image icon.
+	    		
 	    		URL url = new URL(images.firstElement());
 	            BufferedImage image = ImageIO.read(url);
 	            
@@ -673,18 +691,25 @@ public class StockUtil {
 	    		JLabel pic = new JLabel(picture);
 	    		
 	    		
-	    		//Add to panel.
-	    		//article.setSize(100, 100);
-	    		JPanel slot = new JPanel();
-	    		//slot.setLayout();
-	    		slot.setBackground(Color.BLACK);
-	    		slot.add(pic, BorderLayout.LINE_START);
-	    		//slot.add(title, BorderLayout.CENTER);
+	    		
+	    		Border border = new LineBorder(Color.WHITE, 2, true);
+	    		article.setBorder(border);
+	    		article.setBackground(Color.BLACK);
+	    		
+	    		
+	    		article.add(title);
+			    article.add(pic);
+			    
+	    		
+	    		
+	    		
+	    		
 	    		
 	    		//article.setBackground(Color.BLACK);
 	    		
 	    		//Add to NewsPanel.
-	    		feed.addToScroll(slot);
+	    		feed.addToScroll(article);
+	    		
 	    		
 	    		if(titles.size() > 0) {
 		    		titles.remove(0);
@@ -1186,11 +1211,14 @@ public class StockUtil {
 
                 if(x == 0) {
                     search1 += Exchange.NASDAQ;
-                } else {
+                }
+
+                else {
                     search1 += Exchange.NYSE;
                 }
 
                 String search =  search1 + SEARCH_API_URL;
+
 
                 URL url = new URL(search);
 
@@ -1207,11 +1235,21 @@ public class StockUtil {
 			    			
 			    			//call func again
 			    			results = pullUp(query);
-			    		} else {
+			    		}
+			    		
+			    		//Otherwise.
+			    		else {
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
 			    		}
-                	} else {
-
+			    		
+                		
+                		
+                	}
+                	
+                	//Otherwise.
+                	else {
+                		
+                		
                 		 //Only be concerned with the symbol and name line.
                         if(line.contains(symbol)) {
 
@@ -1233,11 +1271,15 @@ public class StockUtil {
                             //Make mapping.
                             results.put(name, tick);
                         }
+                		
                 	}
+
+                   
                 }//End of reading JSON.
                 reader.close();
             }
-        } catch(UnsupportedEncodingException u) {
+        }
+        catch(UnsupportedEncodingException u) {
             YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(u.toString());
          } catch (MalformedURLException e) {
@@ -1245,10 +1287,12 @@ public class StockUtil {
          	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
          	YoloTrader.logger.warning(e.toString());
          } catch (IOException e) {
+             // TODO Auto-generated catch block
          	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
-         	YoloTrader.logger.warning(e.toString());
+             YoloTrader.logger.warning(e.toString());
          }
 
         return results;
     }
+
 }
