@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is the list of stocks, that is, a stock watch list
@@ -83,6 +84,17 @@ public class StockWatchList implements Comparable<StockWatchList> {
      */
     @Override
     public int compareTo(StockWatchList o) { return this.name.compareTo(o.name); }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StockWatchList watchList = (StockWatchList) o;
+        return Objects.equals(name, watchList.name);
+    }
+
+    @Override
+    public int hashCode() { return Objects.hash(name); }
 
     @Override
     public String toString() { return "StockWatchList{name='" + name + "', dateCreated=" + dateCreated + ", stockList=" + stockList + '}'; }

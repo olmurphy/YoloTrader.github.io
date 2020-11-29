@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -20,12 +19,8 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  */
 public class FlowPanel {
 
-	
 	private JScrollPane feed;
 	private JPanel view;
-	
-	
-	
 	
 	/**
      * Constructor.
@@ -46,32 +41,20 @@ public class FlowPanel {
 		feed.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
 		feed.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
 		feed.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		feed.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER); 
-		
-		
+		feed.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 	}
 
-	
 	/**
      * The getFeed function returns a JPanel containing the feed.
      * <p>
      * @return ${@link JPanel}
      */
-	public JScrollPane getFeed() {
-		return feed;
-	}
-	
-	
-	
-	
-	
+	public JScrollPane getFeed() { return feed; }
+
 	/**
      * The addToScroll function adds x to the scrollView.
      * <p>
      * @param x ${@link Component}
      */
-	public void addToScroll(Component x) {
-		view.add(x);
-	}
-	
+	public void addToScroll(Component x) { view.add(x); }
 }

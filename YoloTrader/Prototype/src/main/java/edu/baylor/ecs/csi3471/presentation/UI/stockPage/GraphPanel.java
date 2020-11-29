@@ -61,20 +61,13 @@ public class GraphPanel extends JPanel {
      * <p>
      * @param paint		${@link Color} 
      */
-    public void setLineColor(Color paint) {
-    	lineColor = paint;
-    }
-    
-    
-    
+    public void setLineColor(Color paint) { lineColor = paint; }
+
     /**
      * the getLineColor function returns the current line color.
      * <p>
-     * @param paint		${@link Color} 
      */
-    public Color getLineColor() {
-    	return lineColor;
-    }
+    public Color getLineColor() { return lineColor; }
     
     /**
      * the changeLineColor function changes the preset line color to paint,
@@ -198,6 +191,7 @@ public class GraphPanel extends JPanel {
      */
     private double getMinPrice() {
         double minPrice = Double.MAX_VALUE;
+
         for (Double price : prices) {
             minPrice = Math.min(minPrice, price);
         }
@@ -232,18 +226,14 @@ public class GraphPanel extends JPanel {
      * the getPrices function sets the y values to costs.
      * <p>
      */
-    public Vector<Double> getPrices() {
-        return prices;
-    }
+    public Vector<Double> getPrices() { return prices; }
 
     /**
      * the getJrame function returns the JFrame object housing the 
      * GraphPanel.
      * <p>
      */
-    public JFrame getJFrame() {
-    	return frame;
-    }
+    public JFrame getJFrame() { return frame; }
     
     /**
      * the createAndShowGUI launches a new JFrame containing the
@@ -252,7 +242,6 @@ public class GraphPanel extends JPanel {
      * <p>
      */
     public void createAndShowGui() {
-       
         this.setPreferredSize(new Dimension(800, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(this);

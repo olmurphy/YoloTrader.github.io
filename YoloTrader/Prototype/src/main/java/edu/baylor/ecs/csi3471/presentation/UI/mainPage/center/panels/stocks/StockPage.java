@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * @author owenmurphy
  */
-public class AddStock {
+public class StockPage {
 
     /**
      * displays warning if the user has not selected watch list to perform an action on

@@ -28,13 +28,9 @@ public class StockWatchListService {
      */
     public boolean addWatchList(StockWatchList watchList) {
 
-        for (StockWatchList stockWatchList : this.dao.getAll()) {
-            if (stockWatchList.getName().equals(watchList.getName())) {
-                return false;
-            }
-        }
+        if (this.dao.getAll().contains(watchList)) { return false; }
+        else { this.dao.add(watchList); }
 
-        this.dao.add(watchList);
         return true;
     }
 
@@ -71,14 +67,7 @@ public class StockWatchListService {
      * @return stock watch list if found, o.w. null
      */
     public StockWatchList findStockWatchList(String listName) {
-
-        for (StockWatchList stockWatchList : this.dao.getAll()) {
-            if (stockWatchList.getName().equals(listName)) {
-                return stockWatchList; // short circuit the loop
-            }
-        }
-
-        return null;
+        return this.dao.getAll().stream().findFirst().filter(x-> x.getName().equals(listName)).stream().findFirst().orElse(null);
     }
 
     /**

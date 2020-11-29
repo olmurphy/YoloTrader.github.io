@@ -76,7 +76,7 @@ public class StockUtil {
 
     //private GenericDAO<StockWatchList> WatchLists;
     public static Exchange exchange;
-    
+
     
     private final static String SEARCH_URL ="https://financialmodelingprep.com/api/v3/search?query=";
     private final static String EXCHANGE_URL = "&limit=10&exchange=";
@@ -91,16 +91,16 @@ public class StockUtil {
     
     private final static String GRAPH_API_URL_1 = "?apikey=4819ef0b5de9d90ed219e89c51f35d34";
     private final static String GRAPH_API_URL_2 = "?apikey=9f2e6a54a66d7c7961207ce53c05e063";
-    
-    
+
+
     
     private static String NEWS_URL = "https://financialmodelingprep.com/api/v3/stock_news?tickers=";
     private static String GENERAL_NEWS_URL = "https://financialmodelingprep.com/api/v3/stock_news?limit=10";
 	
 	private static String NEWS_API = "&limit=10&apikey=4819ef0b5de9d90ed219e89c51f35d34";
 	private static String GENERAL_NEWS_API = "&apikey=4819ef0b5de9d90ed219e89c51f35d34";
-	
-	
+
+
 	private final static String NEWS_API_1 = "&limit=10&apikey=4819ef0b5de9d90ed219e89c51f35d34";
 	private final static String NEWS_API_2 = "&limit=10&apikey=9f2e6a54a66d7c7961207ce53c05e063";
 	
@@ -1350,8 +1350,8 @@ public class StockUtil {
                 	
                 	//Otherwise.
                 	else {
-                		
-                		
+
+
                 		 //Only be concerned with the symbol and name line.
                         if(line.contains(symbol)) {
 
@@ -1376,7 +1376,7 @@ public class StockUtil {
                 		
                 	}
 
-                   
+
                 }//End of reading JSON.
                 reader.close();
             }
@@ -1397,5 +1397,4 @@ public class StockUtil {
         YoloTrader.logger.info("Done.");
         return results;
     }
-
 }

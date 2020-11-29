@@ -9,7 +9,7 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.AboutSectio
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HelpSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HomeSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.ProfileSection;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.AddStock;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.StockPage;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.CreateWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.StocksSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
@@ -43,7 +43,6 @@ public class CenterPanelController {
     public static String leftButtonSide = "<html><span style=\\\"font-family:Futura;color:white;font-size:14px;\">";
     public static String rightButtonSide = "</span></html>";
 
-    // FIXME: may need to return a JScrollPane depending on what is added in the home panel
     public static JScrollPane getHomePanel(){ return HomeSection.getHomeMainPanel(); }
 
     public static JScrollPane getProfilePanel() { return ProfileSection.getProfilePanel(); }
@@ -57,14 +56,10 @@ public class CenterPanelController {
     public static MouseAdapter getGeneralButtonAction(JButton button) {
         return new MouseAdapter() {
             @Override
-            public void mouseEntered(MouseEvent e) {
-                button.setBorder(whiteBorder);
-            }
+            public void mouseEntered(MouseEvent e) { button.setBorder(whiteBorder); }
 
             @Override
-            public void mouseExited(MouseEvent e) {
-                button.setBorder(emptyButtonBorder);
-            }
+            public void mouseExited(MouseEvent e) { button.setBorder(emptyButtonBorder); }
         };
     }
 
@@ -81,9 +76,9 @@ public class CenterPanelController {
 
                 if (StocksSection.getWatchListList().isSelectionEmpty()) {
                     // no watchlist selected
-                    AddStock.getNoWatchListSelectedWarning();
+                    StockPage.getNoWatchListSelectedWarning();
                 } else {
-                    String stockName = AddStock.getAddStockInputDialog();
+                    String stockName = StockPage.getAddStockInputDialog();
 
                     // trying to add a single stock, else display the result from query using dialog from Result class
                     NorthPanelController.launchSearch(stockName, true);
@@ -104,7 +99,7 @@ public class CenterPanelController {
                 // check if watch list is clicked
                 if (StocksSection.getStockList().isSelectionEmpty()) {
                     // no stock selected
-                    AddStock.getNoStockSelectedWarning();
+                    StockPage.getNoStockSelectedWarning();
                 } else {
 
                     // deleting stock from list
@@ -159,7 +154,7 @@ public class CenterPanelController {
                 // check that a watch list is selected
                 if (StocksSection.getWatchListList().isSelectionEmpty()) {
                     // no watchlist selected
-                    AddStock.getNoWatchListSelectedWarning();
+                    StockPage.getNoWatchListSelectedWarning();
                 } else {
                     // watchlist is selected, delete it
                     deleteWatchList();
