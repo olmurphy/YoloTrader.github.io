@@ -28,6 +28,7 @@ public class FlowPanel {
 	
 	/**
      * Constructor.
+     * 
      */
 	public FlowPanel(){
 		view = new JPanel();
@@ -36,9 +37,10 @@ public class FlowPanel {
 		feed = new JScrollPane(view);
 		feed.setBackground(Color.BLACK);
 		
-		UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.WHITE.darker()));
+		UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.WHITE));
 		UIManager.put("ScrollBar.track", new ColorUIResource(Color.BLACK));
-
+		UIManager.put("ScrollBar.width", 5);
+		
 		feed.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
 		feed.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
 		feed.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -56,6 +58,8 @@ public class FlowPanel {
 	public JScrollPane getFeed() {
 		return feed;
 	}
+	
+	
 	
 	
 	
