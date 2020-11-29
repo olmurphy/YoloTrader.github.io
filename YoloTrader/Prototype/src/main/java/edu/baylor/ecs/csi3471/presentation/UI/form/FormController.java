@@ -164,9 +164,7 @@ public class FormController {
      *
      * @return true if no fields are empty
      */
-    public static boolean validateLogInFieldsNotEmpty() {
-        return !LogIn.getEmailField().getText().equals("") && LogIn.getPasswordField().getPassword().length != 0;
-    }
+    public static boolean validateLogInFieldsNotEmpty() { return !LogIn.getEmailField().getText().equals("") && LogIn.getPasswordField().getPassword().length != 0; }
 
     /**
      * check if first, last, username, re-password fields are not empty.
@@ -195,16 +193,12 @@ public class FormController {
      * calls ${@link MainPanelController#initializeProfileController()} to initialize the profile controller
      * and all the profiles in YoloTrader Application
      */
-    public static void initialize() {
-        MainPanelController.initializeProfileController();
-    }
+    public static void initialize() { MainPanelController.initializeProfileController(); }
 
     /**
      * @return true if the two passwords entered match, false o.w.
      */
-    public static boolean checkPassMatch() {
-        return Arrays.equals(LogIn.getPasswordField().getPassword(), CreateAccount.getRe_passwordField().getPassword());
-    }
+    public static boolean checkPassMatch() { return Arrays.equals(LogIn.getPasswordField().getPassword(), CreateAccount.getRe_passwordField().getPassword()); }
 
     /**
      * the logic to the forgot password button given the email that the user inputs

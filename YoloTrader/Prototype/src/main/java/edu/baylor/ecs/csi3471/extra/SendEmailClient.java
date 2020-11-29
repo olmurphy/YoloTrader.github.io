@@ -26,9 +26,7 @@ public class SendEmailClient extends JFrame {
     private JPasswordField passwordField = new JPasswordField();
     private JTextArea contentTextArea = new JTextArea();
 
-    private SendEmailClient() {
-        InitializeUI();
-    }
+    private SendEmailClient() { InitializeUI(); }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -86,8 +84,7 @@ public class SendEmailClient extends JFrame {
     }
 
     private class SendEmailActionListener implements ActionListener {
-        SendEmailActionListener() {
-        }
+        SendEmailActionListener() { }
 
         @Override
         public void actionPerformed(ActionEvent e) {

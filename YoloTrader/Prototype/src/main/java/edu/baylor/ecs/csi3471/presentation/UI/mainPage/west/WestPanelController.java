@@ -26,10 +26,7 @@ public class WestPanelController {
     /**
      * initialize the look and feel of all JPanels in the ${@link WestPanel} area
      */
-    public static void initializePublicStaticVariables() {
-        // setting home panel as initial panel
-        MainPanel.getMainPanel().add(CenterPanelController.getHomePanel(), BorderLayout.CENTER);
-    }
+    public static void initializePublicStaticVariables() { MainPanel.getMainPanel().add(CenterPanelController.getHomePanel(), BorderLayout.CENTER); }
 
     /**
      * sets the layout of the west panels to GridLayout of 1 row and 1 column

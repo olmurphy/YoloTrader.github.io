@@ -9,12 +9,9 @@ import javax.swing.*;
 public class Help {
 
     public static JPanel helpPanel;
-    public static String helpPanelLabel = "<html><span style=\"font-family:Futura;font-size:" +
-            WestPanelController.size + "px;color:white;\"><B>HELP</B>";
+    public static String helpPanelLabel = "<html><span style=\"font-family:Futura;font-size:" + WestPanelController.size + "px;color:white;\"><B>HELP</B>";
 
-    public static JPanel getHelpPanel() {
-        return helpPanel;
-    }
+    public static JPanel getHelpPanel() { return helpPanel; }
 
     public static void setHelpPanel() {
         helpPanel = WestPanelController.getEachWestSubPanel();

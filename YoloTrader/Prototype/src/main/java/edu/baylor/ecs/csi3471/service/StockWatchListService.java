@@ -17,9 +17,7 @@ public class StockWatchListService {
     /**
      * public constructor that initializes the dao to a new dao
      */
-    public StockWatchListService() {
-        this.dao = new StockWatchListDAO();
-    }
+    public StockWatchListService() { this.dao = new StockWatchListDAO(); }
 
     /**
      * traverses the list watch lists and checks the watchlist has already been made
@@ -47,33 +45,25 @@ public class StockWatchListService {
      * @param name name of watchlist to remove
      * @return true if watch list was delete, false o.w.
      */
-    public boolean removeWatchList(String name) {
-        return this.dao.getAll().removeIf(x -> x.getName().equals(name));
-    }
+    public boolean removeWatchList(String name) { return this.dao.getAll().removeIf(x -> x.getName().equals(name)); }
 
     /**
      * @return dao object used to access stock watch list data
      */
-    public GenericDAO<StockWatchList> getDao() {
-        return dao;
-    }
+    public GenericDAO<StockWatchList> getDao() { return dao;}
 
     /**
      * sets the dao to the parameter passed in
      * @param dao dao to be set to
      */
-    public void setDao(GenericDAO<StockWatchList> dao) {
-        this.dao = dao;
-    }
+    public void setDao(GenericDAO<StockWatchList> dao) { this.dao = dao; }
 
     /**
      * calls ${@link StockWatchListDAO#setAll(List)} to set the watch list to the
      * parameter passed in
      * @param list stock watch list to be set to
      */
-    public void setWatchList(List<StockWatchList> list) {
-        this.dao.setAll(list);
-    }
+    public void setWatchList(List<StockWatchList> list) { this.dao.setAll(list); }
 
     /**
      * searches the dao for the stock watch list given the list name

@@ -41,9 +41,7 @@ public class ProfileSection {
     public static int verticalLabelValueSpace = 30;
     public static int verticalButtonSpace = 20;
 
-    public static JScrollPane getProfilePanel() {
-        return descriptionScrollPanel;
-    }
+    public static JScrollPane getProfilePanel() { return descriptionScrollPanel; }
 
     /**
      * setting up the profile panel when the application opens
@@ -67,7 +65,6 @@ public class ProfileSection {
         picturePanel.setPreferredSize(new Dimension(150, CenterPanelController.centerPanelHeight));
         picturePanel.setBackground(CenterPanelController.centerPanelColor);
 
-        // FIXME: need to configure for profile picture in the left side of panel
         picturePanel.add(getPicture());
 
         return picturePanel;
@@ -76,9 +73,7 @@ public class ProfileSection {
     public static JLabel getPicture() {
         picture = new JLabel();
 
-        ImageIcon icon = new ImageIcon(
-                "Prototype/src/main/resources/test.png"
-        );
+        ImageIcon icon = new ImageIcon("Prototype/src/main/resources/test.png");
         picture.setIcon(icon);
 
         return picture;
@@ -143,21 +138,13 @@ public class ProfileSection {
         return buttonPanel;
     }
 
-    public static JLabel getFirstLabel() {
-        return firstLabel;
-    }
+    public static JLabel getFirstLabel() { return firstLabel; }
 
-    public static JLabel getLastLabel() {
-        return lastLabel;
-    }
+    public static JLabel getLastLabel() { return lastLabel; }
 
-    public static JLabel getEmailLabel() {
-        return emailLabel;
-    }
+    public static JLabel getEmailLabel() { return emailLabel; }
 
-    public static JLabel getUserLabel() {
-        return userLabel;
-    }
+    public static JLabel getUserLabel() { return userLabel; }
 
     public static JButton getChangePasswordButton() {
         changePasswordButton = new JButton(CenterPanelController.leftButtonSide + "Change Password" +
@@ -185,37 +172,21 @@ public class ProfileSection {
         return deleteAccountButton;
     }
 
-    public static void setEmailLabel(JLabel emailLabel) {
-        ProfileSection.emailLabel = emailLabel;
-    }
+    public static void setEmailLabel(JLabel emailLabel) { ProfileSection.emailLabel = emailLabel; }
 
-    public static void setFirstLabel(JLabel firstLabel) {
-        ProfileSection.firstLabel = firstLabel;
-    }
+    public static void setFirstLabel(JLabel firstLabel) { ProfileSection.firstLabel = firstLabel; }
 
-    public static void setLastLabel(JLabel lastLabel) {
-        ProfileSection.lastLabel = lastLabel;
-    }
+    public static void setLastLabel(JLabel lastLabel) { ProfileSection.lastLabel = lastLabel; }
 
-    public static void setUserLabel(JLabel userLabel) {
-        ProfileSection.userLabel = userLabel;
-    }
+    public static void setUserLabel(JLabel userLabel) { ProfileSection.userLabel = userLabel; }
 
-    public static void setFirstString(String firstString) {
-        ProfileSection.firstString = firstString;
-    }
+    public static void setFirstString(String firstString) { ProfileSection.firstString = firstString; }
 
-    public static void setLastString(String lastString) {
-        ProfileSection.lastString = lastString;
-    }
+    public static void setLastString(String lastString) { ProfileSection.lastString = lastString; }
 
-    public static void setEmailString(String emailString) {
-        ProfileSection.emailString = emailString;
-    }
+    public static void setEmailString(String emailString) { ProfileSection.emailString = emailString; }
 
-    public static void setUserString(String userString) {
-        ProfileSection.userString = userString;
-    }
+    public static void setUserString(String userString) { ProfileSection.userString = userString; }
 
     /**
      * used to set all the profile panel
@@ -235,10 +206,7 @@ public class ProfileSection {
      * pops up an input dialog asking the user for the password of the account to delete
      * @return user input for the password of the account
      */
-    public static String getPassWordDialog() {
-        return JOptionPane.showInputDialog(null, "Enter Password",
-                "Confirm credential", JOptionPane.QUESTION_MESSAGE);
-    }
+    public static String getPassWordDialog() { return JOptionPane.showInputDialog(null, "Enter Password"); }
 
     /**
      * display to the user that the password passed in was incorrect

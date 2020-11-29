@@ -93,31 +93,23 @@ public class SearchResults {
      * set the stock JList
      * @param stockList JList to be set to
      */
-    public static void setStockList(JList<String> stockList) {
-        SearchResults.stockList = stockList;
-    }
+    public static void setStockList(JList<String> stockList) { SearchResults.stockList = stockList; }
 
     /**
      * @return the sotck JList
      */
-    public static JList<String> getStockList() {
-        return stockList;
-    }
+    public static JList<String> getStockList() { return stockList; }
 
     /**
      * set the stock model
      * @param stockModel stock model to be set to
      */
-    public static void setStockModel(ListModel<String> stockModel) {
-        SearchResults.stockModel = stockModel;
-    }
+    public static void setStockModel(ListModel<String> stockModel) { SearchResults.stockModel = stockModel; }
 
     /**
      * @return the stockModel containing the names of the stocks
      */
-    public static ListModel<String> getStockModel() {
-        return stockModel;
-    }
+    public static ListModel<String> getStockModel() { return stockModel; }
 
     /**
      * sets the add stock button and adds the listener
@@ -133,16 +125,12 @@ public class SearchResults {
     /**
      * @return add stock button for when user wants to add a stock
      */
-    public static JButton getAddStockButton() {
-        return addStockButton;
-    }
+    public static JButton getAddStockButton() { return addStockButton; }
 
     /**
      * @return the open stock JButton
      */
-    public static JButton getOpenStockButton() {
-        return openStockButton;
-    }
+    public static JButton getOpenStockButton() { return openStockButton; }
 
     /**
      * sets the stock button to parameter passed in and adds the listener
@@ -191,14 +179,10 @@ public class SearchResults {
     /**
      * displays successful message that the stock was added successfully
      */
-    public static void getStockAddedSuccessfullyMessage() {
-        JOptionPane.showMessageDialog(null, "Stock was added successfully");
-    }
+    public static void getStockAddedSuccessfullyMessage() { JOptionPane.showMessageDialog(null, "Stock was added successfully"); }
 
     /**
      * display errors to user saying the stock has already been added to the list wanted to add to
      */
-    public static void getStockAlreadyAddedWarning() {
-        JOptionPane.showMessageDialog(null, "Stock already added", "Warning", JOptionPane.WARNING_MESSAGE);
-    }
+    public static void getStockAlreadyAddedWarning() { JOptionPane.showMessageDialog(null, "Stock already added", "Warning", JOptionPane.WARNING_MESSAGE); }
 }

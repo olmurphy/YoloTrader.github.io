@@ -29,9 +29,7 @@ public class StockWatchList implements Comparable<StockWatchList> {
      * Constructor
      * sets the date created
      */
-    public StockWatchList() {
-        dateCreated = new Date();
-    }
+    public StockWatchList() { dateCreated = new Date(); }
 
     /**
      * constructor constructs instance of watchlist with parameters
@@ -47,47 +45,35 @@ public class StockWatchList implements Comparable<StockWatchList> {
     /**
      * @return name of watchlist
      */
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     /**
      * sets name of watch list
      * @param name specified by user
      */
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     /**
      * @return the list of stocks of watch list
      */
-    public List<Stock> getStockList() {
-        return stockList;
-    }
+    public List<Stock> getStockList() { return stockList; }
 
     /**
      * sets watch list
      * @param stockList list of stocks specified by user
      */
-    public void setStockList(List<Stock> stockList) {
-        this.stockList = stockList;
-    }
+    public void setStockList(List<Stock> stockList) { this.stockList = stockList; }
 
     /**
      * @return date the stock watch list was created by user
      */
-    public Date getDateCreated() {
-        return dateCreated;
-    }
+    public Date getDateCreated() { return dateCreated; }
 
     /**
      * sets date created
      * @param dateCreated date the stock watch list was created
      */
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+    public void setDateCreated(Date dateCreated) { this.dateCreated = dateCreated; }
 
     /**
      * compares the name of two instances of watchlist to order them
@@ -96,16 +82,8 @@ public class StockWatchList implements Comparable<StockWatchList> {
      * @return < 0 if this.name < o.getName()
      */
     @Override
-    public int compareTo(StockWatchList o) {
-        return this.name.compareTo(o.name);
-    }
+    public int compareTo(StockWatchList o) { return this.name.compareTo(o.name); }
 
     @Override
-    public String toString() {
-        return "StockWatchList{" +
-                "name='" + name + '\'' +
-                ", dateCreated=" + dateCreated +
-                ", stockList=" + stockList +
-                '}';
-    }
+    public String toString() { return "StockWatchList{name='" + name + "', dateCreated=" + dateCreated + ", stockList=" + stockList + '}'; }
 }

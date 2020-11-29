@@ -18,39 +18,29 @@ public class StockController {
     /**
      * constructor to set the service
      */
-    public StockController() {
-        this.service = new StockService();
-    }
+    public StockController() { this.service = new StockService(); }
 
     /**
      * @return Stock the controller uses
      */
-    public Stock getStock() {
-        return stock;
-    }
+    public Stock getStock() { return stock; }
 
     /**
      * sets the stock
      * @param stock stock to be set to
      */
-    public void setStock(Stock stock) {
-        this.stock = stock;
-    }
+    public void setStock(Stock stock) { this.stock = stock; }
 
     /**
      * @return service the controller uses
      */
-    public StockService getService() {
-        return service;
-    }
+    public StockService getService() { return service; }
 
     /**
      * sets the service
      * @param service service to be set to
      */
-    public void setService(StockService service) {
-        this.service = service;
-    }
+    public void setService(StockService service) { this.service = service; }
 
     /**
      * calls @{@link StockService} to add stock to given watch list
@@ -58,9 +48,7 @@ public class StockController {
      * @param stockWatchList watch list to contain the stock
      * @return true if the watch list was added, false o.w.
      */
-    public boolean addStock(Stock stock, StockWatchList stockWatchList) {
-        return service.addStock(stock, stockWatchList);
-    }
+    public boolean addStock(Stock stock, StockWatchList stockWatchList) { return service.addStock(stock, stockWatchList); }
 
     /**
      * calls @{@link StockService} to remove the stock from the watch list
@@ -68,7 +56,5 @@ public class StockController {
      * @param list watch list that contains the stock
      * @return true if stock was removed, false o.w.
      */
-    public boolean removeStock(String name, StockWatchList list) {
-        return this.service.removeStock(name, list);
-    }
+    public boolean removeStock(String name, StockWatchList list) { return this.service.removeStock(name, list); }
 }

@@ -25,6 +25,39 @@ public class CreateAccount {
 
     public static JFrame frame;
 
+    public static JLabel getFirstLabel() { return new JLabel(firstString); }
+
+    public static void setFirstField(JTextField firstField) { CreateAccount.firstField = firstField; }
+
+    public static JTextField getFirstField() { return firstField; }
+
+    public static JLabel getLastLabel() { return new JLabel(lastString); }
+
+    public static void setLastField(JTextField lastField) { CreateAccount.lastField = lastField; }
+
+    public static JTextField getLastField() { return lastField; }
+
+    public static JLabel getUserLabel() { return new JLabel(userString); }
+
+    public static void setUserField(JTextField userField) { CreateAccount.userField = userField; }
+
+    public static JTextField getUserField() { return userField; }
+
+    public static JLabel getPasswordAgainLabel() { return new JLabel(passwordAgainStr); }
+
+    public static void setRe_passwordField(JPasswordField re_passwordField) {
+        CreateAccount.re_passwordField = re_passwordField;
+    }
+
+    public static JPasswordField getRe_passwordField() { return re_passwordField; }
+
+    public static JFrame getFrame() { return frame; }
+
+    public static void getPassNotMatchWarning() {
+        JOptionPane.showMessageDialog(null, "Passwords do NOT match",
+                "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+
     public static void startCreateAccount() {
 
         frame = new JFrame("Create Account");
@@ -126,62 +159,5 @@ public class CreateAccount {
         LogIn.getCreateAccountButton().addActionListener(FormController.getCreateAccountAction());
 
         return LogIn.getCreateAccountButton();
-    }
-
-    public static JLabel getFirstLabel() {
-        return new JLabel(firstString);
-    }
-
-    public static void setFirstField(JTextField firstField) {
-        CreateAccount.firstField = firstField;
-    }
-
-    public static JTextField getFirstField() {
-        return firstField;
-    }
-
-    public static JLabel getLastLabel() {
-        return new JLabel(lastString);
-    }
-
-    public static void setLastField(JTextField lastField) {
-        CreateAccount.lastField = lastField;
-    }
-
-    public static JTextField getLastField() {
-        return lastField;
-    }
-
-    public static JLabel getUserLabel() {
-        return new JLabel(userString);
-    }
-
-    public static void setUserField(JTextField userField) {
-        CreateAccount.userField = userField;
-    }
-
-    public static JTextField getUserField() {
-        return userField;
-    }
-
-    public static JLabel getPasswordAgainLabel() {
-        return new JLabel(passwordAgainStr);
-    }
-
-    public static void setRe_passwordField(JPasswordField re_passwordField) {
-        CreateAccount.re_passwordField = re_passwordField;
-    }
-
-    public static JPasswordField getRe_passwordField() {
-        return re_passwordField;
-    }
-
-    public static JFrame getFrame() {
-        return frame;
-    }
-
-    public static void getPassNotMatchWarning() {
-        JOptionPane.showMessageDialog(null, "Passwords do NOT match",
-                "Warning", JOptionPane.WARNING_MESSAGE);
     }
 }

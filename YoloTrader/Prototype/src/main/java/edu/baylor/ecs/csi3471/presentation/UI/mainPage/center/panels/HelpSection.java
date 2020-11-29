@@ -17,19 +17,13 @@ public class HelpSection {
     public static String leftHeaderLabel = "<html><span style=\"font-family:Futura;font-size:16px;color:white;\"><B>";
     public static String rightHeaderLabel = "</B></span></html>";
 
-    public static String helpString = "<html><span style=\"" +
-            "font-family:Futura;" +
-            "font-size:20px;" +
-            "color:white\">" +
-            "<B>NEED HELP?</B>";
+    public static String helpString = "<html><span style=\"font-family:Futura;font-size:20px;color:white\"><B>NEED HELP?</B>";
 
     public static String FAQ_String = leftHeaderLabel + "FAQ" + rightHeaderLabel;
     public static String whatAreStockString = leftHeaderLabel + "What Are Stocks?" + rightHeaderLabel;
     public static String contactString = leftHeaderLabel + "Contact" + rightHeaderLabel;
 
-    public static JPanel getHelpPanel() {
-        return helpPanel;
-    }
+    public static JPanel getHelpPanel() { return helpPanel; }
 
     public static void setHelpPanel() {
         helpPanel = new JPanel();
@@ -43,9 +37,7 @@ public class HelpSection {
         helpPanel.add(getFAQ_Panel());
     }
 
-    public static JLabel getHelpLabel() {
-        return new JLabel(helpString);
-    }
+    public static JLabel getHelpLabel() { return new JLabel(helpString); }
 
     public static JPanel getFAQ_Panel() {
         FAQ_Panel = new JPanel();
@@ -57,9 +49,7 @@ public class HelpSection {
         return FAQ_Panel;
     }
 
-    public static JLabel getFAQLabel() {
-    	return new JLabel(FAQ_String);
-    }
+    public static JLabel getFAQLabel() { return new JLabel(FAQ_String); }
 
     public static JPanel getContact_Panel() {
         contact_Panel = new JPanel();
@@ -71,9 +61,7 @@ public class HelpSection {
         return contact_Panel;
     }
 
-    public static JLabel getContactLabel() {
-    	return new JLabel(contactString);
-    }
+    public static JLabel getContactLabel() { return new JLabel(contactString); }
 
     public static JPanel getWhatAreStocksPanel() {
         whatAreStocksPanel = new JPanel();
@@ -85,7 +73,5 @@ public class HelpSection {
         return whatAreStocksPanel;
     }
 
-    public static JLabel getWhatAreStockLabel() {
-    	return new JLabel(whatAreStockString);
-    }
+    public static JLabel getWhatAreStockLabel() { return new JLabel(whatAreStockString); }
 }

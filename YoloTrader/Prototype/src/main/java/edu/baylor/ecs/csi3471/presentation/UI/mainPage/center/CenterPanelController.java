@@ -19,7 +19,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -270,9 +269,7 @@ public class CenterPanelController {
      * this class is introduced to promote low coupling between classes
      * @return JList of the watch list
      */
-    public static JList<String> getWatchListJList() {
-        return StocksSection.getWatchListList();
-    }
+    public static JList<String> getWatchListJList() { return StocksSection.getWatchListList(); }
 
     /**
      * sets the action for the delete account button
@@ -318,9 +315,7 @@ public class CenterPanelController {
      * selected watch list from the user's profile
      * @return ActionListener will perform action when the remove button is clicked on watch list
      */
-    public static ActionListener getWatchListRemoveItemListener() {
-        return e -> deleteWatchList();
-    }
+    public static ActionListener getWatchListRemoveItemListener() { return e -> deleteWatchList(); }
 
     /**
      * method calls ${@link CreateWatchList#watchListNameWindow()} to retrieve user's desire name

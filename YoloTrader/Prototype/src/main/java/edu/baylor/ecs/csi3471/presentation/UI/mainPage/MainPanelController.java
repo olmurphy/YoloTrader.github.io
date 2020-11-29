@@ -40,16 +40,12 @@ public class MainPanelController {
         MainPanelController.stockController = stockController;
     }
 
-    public static StockController getStockController() {
-        return stockController;
-    }
+    public static StockController getStockController() { return stockController; }
 
     /**
      * @return the stock watchList controller of the user's stocks
      */
-    public static StockWatchListController getStockWatchListController() {
-        return stockWatchListController;
-    }
+    public static StockWatchListController getStockWatchListController() { return stockWatchListController; }
 
     public static ProfileController getProfileController() { return profileController; }
 

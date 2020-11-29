@@ -6,13 +6,10 @@ import javax.swing.*;
 
 public class About {
 
-    public static String aboutPanelLabel = "<html><span style=\"font-family:Futura;font-size:" +
-            WestPanelController.size + "px;color:white\"><B>ABOUT</B>";
+    public static String aboutPanelLabel = "<html><span style=\"font-family:Futura;font-size:" + WestPanelController.size + "px;color:white\"><B>ABOUT</B>";
     public static JPanel aboutPanel;
 
-    public static JPanel getAboutPanel() {
-        return aboutPanel;
-    }
+    public static JPanel getAboutPanel() { return aboutPanel; }
 
     public static void setAboutPanel() {
         aboutPanel = WestPanelController.getEachWestSubPanel();

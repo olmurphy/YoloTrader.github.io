@@ -30,9 +30,7 @@ public class Profile {
     @XmlElement(name = "watchListName")
     private List<StockWatchList> watchLists;
 
-    public Profile() {
-        // do nothing
-    }
+    public Profile() { }
 
     /**
      * default constructor for creating a Profile. creates Profile with
@@ -58,43 +56,33 @@ public class Profile {
     /**
      * @return returns email attribute
      */
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
     /**
      * sets email attribute of Profile
      *
      * @param email email of user
      */
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) { this.email = email; }
 
     /**
      * @return username of the users Profile
      */
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
     /**
      * sets the user's username
      *
      * @param username username of user
      */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username = username; }
 
     /**
      * sets password of user's Profile
      *
      * @param password password user uses to login
      */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
 
     /**
      * @return users password
@@ -104,50 +92,38 @@ public class Profile {
     /**
      * @return first name of user
      */
-    public String getFirst() {
-        return first;
-    }
+    public String getFirst() { return first; }
 
     /**
      * sets first name of user
      *
      * @param first first name of user
      */
-    public void setFirst(String first) {
-        this.first = first;
-    }
+    public void setFirst(String first) { this.first = first; }
 
     /**
      * @return last name of user
      */
-    public String getLast() {
-        return last;
-    }
+    public String getLast() { return last; }
 
     /**
      * sets last name attribute of user's Profile
      *
      * @param last last name of user
      */
-    public void setLast(String last) {
-        this.last = last;
-    }
+    public void setLast(String last) { this.last = last; }
 
     /**
      * @return the stockWatchList
      */
-    public List<StockWatchList> getWatchLists() {
-        return watchLists;
-    }
+    public List<StockWatchList> getWatchLists() { return watchLists; }
 
     /**
      * sets the stockWatchList of user's Profile
      *
      * @param watchLists user's list of watch lists
      */
-    public void setWatchLists(List<StockWatchList> watchLists) {
-        this.watchLists = watchLists;
-    }
+    public void setWatchLists(List<StockWatchList> watchLists) { this.watchLists = watchLists; }
 
     @Override
     public String toString() {
@@ -170,7 +146,5 @@ public class Profile {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(email);
-    }
+    public int hashCode() { return Objects.hash(email); }
 }

@@ -25,9 +25,7 @@ public class StocksSection {
     /**
      * @return the stocks panel
      */
-    public static JPanel getStocksMainPanel() {
-        return stocksMainPanel;
-    }
+    public static JPanel getStocksMainPanel() { return stocksMainPanel; }
 
     public static void setStocksMainPanel(Profile profile) {
         stocksMainPanel = new JPanel(new BorderLayout());
@@ -176,29 +174,17 @@ public class StocksSection {
         return new JScrollPane(stockList);
     }
 
-    public static void setStockListModel(ListModel<String> stockListModel) {
-        StocksSection.stockListModel = stockListModel;
-    }
+    public static void setStockListModel(ListModel<String> stockListModel) { StocksSection.stockListModel = stockListModel; }
 
-    public static ListModel<String> getStockListModel() {
-        return stockListModel;
-    }
+    public static ListModel<String> getStockListModel() { return stockListModel; }
 
-    public static void setWatchListModel(ListModel<String> watchListModel) {
-        StocksSection.watchListModel = watchListModel;
-    }
+    public static void setWatchListModel(ListModel<String> watchListModel) { StocksSection.watchListModel = watchListModel; }
 
-    public static ListModel<String> getWatchListModel() {
-        return watchListModel;
-    }
+    public static ListModel<String> getWatchListModel() { return watchListModel; }
 
-    public static JList<String> getWatchListList() {
-        return watchListList;
-    }
+    public static JList<String> getWatchListList() { return watchListList; }
 
-    public static JList<String> getStockList() {
-        return stockList;
-    }
+    public static JList<String> getStockList() { return stockList; }
 
     /**
      * initializes the user's stock watch lists in the JList on the main frame when they login

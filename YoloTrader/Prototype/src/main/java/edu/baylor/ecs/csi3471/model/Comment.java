@@ -44,95 +44,67 @@ public class Comment {
         this.dateLastModified = new Date();
     }
 
-    public Comment() {
-        // do nothing
-    }
+    public Comment() { }
 
     /**
      *
      * @return date last modified
      */
-    public Date getDateLastModified() {
-        return dateLastModified;
-    }
+    public Date getDateLastModified() { return dateLastModified; }
 
     /**
      * sets the date Last modified
      * @param dateLastModified date the user recently modifies the comment
      */
-    public void setDateLastModified(Date dateLastModified) {
-        this.dateLastModified = dateLastModified;
-    }
+    public void setDateLastModified(Date dateLastModified) { this.dateLastModified = dateLastModified; }
 
     /**
      * @return date comment was created
      */
-    public Date getDateCreated() {
-        return dateCreated;
-    }
+    public Date getDateCreated() { return dateCreated; }
 
     /**
      * sets the date comment was created
      *
      * @param dateCreated date comment was created
      */
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+    public void setDateCreated(Date dateCreated) { this.dateCreated = dateCreated; }
 
     /**
      * @return description of comment
      */
-    public String getText() {
-        return text;
-    }
+    public String getText() { return text; }
 
     /**
      * sets description of comment
      *
      * @param text description of comment
      */
-    public void setText(String text) {
-        this.text = text;
-    }
+    public void setText(String text) { this.text = text; }
 
     /**
      * @return the subject of the comment
      */
-    public String getSubject() {
-        return subject;
-    }
+    public String getSubject() { return subject; }
 
     /**
      * sets subject of comment
      *
      * @param subject subject of comment
      */
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+    public void setSubject(String subject) { this.subject = subject; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(dateCreated, comment.dateCreated) &&
-                Objects.equals(text, comment.text) &&
-                Objects.equals(subject, comment.subject);
+        return Objects.equals(dateCreated, comment.dateCreated) && Objects.equals(text, comment.text) && Objects.equals(subject, comment.subject);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(dateCreated, text, subject);
-    }
+    public int hashCode() { return Objects.hash(dateCreated, text, subject); }
 
     @Override
-    public String toString() {
-        return "Comment{" +
-                "dateCreated=" + dateCreated +
-                ", text='" + text + '\'' +
-                ", subject='" + subject + '\'' +
-                '}';
-    }
+    public String toString() { return "Comment{" + "dateCreated=" + dateCreated + ", text='" + text + '\'' + ", subject='" + subject + '\'' + '}'; }
 }

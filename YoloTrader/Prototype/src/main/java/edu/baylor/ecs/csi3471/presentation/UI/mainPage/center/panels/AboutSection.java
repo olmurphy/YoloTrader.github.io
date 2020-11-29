@@ -34,12 +34,9 @@ public class AboutSection {
                     "<li style=color:white;font-family:Futura>Analysis and Design</li>" +
                     "<li style=color:white;font-family:Futura>Backend Development</li>"+
                     "<li style=color:white;font-family:Futura>Middleware Development</li>"+
-                "</ul>" +
-        "</html";
+                "</ul>" + "</html";
 
-    public static JPanel getMainAboutPanel() {
-        return mainAboutPanel;
-    }
+    public static JPanel getMainAboutPanel() { return mainAboutPanel; }
 
     public static void setMainAboutPanel() {
         mainAboutPanel = new JPanel();
@@ -81,21 +78,13 @@ public class AboutSection {
         return developersPanel;
     }
 
-    public static JLabel getAboutLabel() {
-    	return new JLabel(aboutString);
-    }
+    public static JLabel getAboutLabel() { return new JLabel(aboutString); }
 
-    public static JLabel getDeveloperLabel() {
-    	return new JLabel(developerString);
-    }
+    public static JLabel getDeveloperLabel() { return new JLabel(developerString); }
 
-    public static void setAboutLabelText(JLabel aboutLabelText) {
-        AboutSection.aboutLabelText = aboutLabelText;
-    }
+    public static void setAboutLabelText(JLabel aboutLabelText) { AboutSection.aboutLabelText = aboutLabelText; }
 
-    public static JLabel getAboutLabelText() {
-        return aboutLabelText;
-    }
+    public static JLabel getAboutLabelText() { return aboutLabelText; }
 
     public static JLabel loadAboutLabelText() {
         JLabel label = new JLabel();
@@ -119,11 +108,7 @@ public class AboutSection {
         return label;
     }
 
-    public static void setDeveloperLabelText(JLabel developerLabelText) {
-        AboutSection.developerLabelText = developerLabelText;
-    }
+    public static void setDeveloperLabelText(JLabel developerLabelText) { AboutSection.developerLabelText = developerLabelText; }
 
-    public static JLabel getDeveloperLabelText() {
-        return developerLabelText;
-    }
+    public static JLabel getDeveloperLabelText() { return developerLabelText; }
 }

@@ -31,9 +31,7 @@ public class StockWatchListController {
      * @param list list to add to user's list of watch lists
      * @return true if watch list was added, false o.w.
      * */
-    public boolean addWatchList(StockWatchList list) {
-        return this.service.addWatchList(list);
-    }
+    public boolean addWatchList(StockWatchList list) { return this.service.addWatchList(list); }
 
     /**
      * calls ${@link StockWatchListService} to remove watch list
@@ -41,40 +39,30 @@ public class StockWatchListController {
      * @param name name of watch list to find and remove
      * @return true if watch list was deleted, false o.w.
      */
-    public boolean removeWatchList(String name) {
-        return this.service.removeWatchList(name);
-    }
+    public boolean removeWatchList(String name) { return this.service.removeWatchList(name); }
 
     /**
      * @return watch list the controller is using
      */
-    public StockWatchList getStockWatchList() {
-        return stockWatchList;
-    }
+    public StockWatchList getStockWatchList() { return stockWatchList; }
 
     /**
      * sets the watch list of controller
      * @param stockWatchList watch list to be set to
      */
-    public void setStockWatchList(StockWatchList stockWatchList) {
-        this.stockWatchList = stockWatchList;
-    }
+    public void setStockWatchList(StockWatchList stockWatchList) { this.stockWatchList = stockWatchList; }
 
 
     /**
      * @return the service the controller users
      */
-    public StockWatchListService getService() {
-        return service;
-    }
+    public StockWatchListService getService() { return service; }
 
     /**
      * sets the service the user is using
      * @param service service to be set to
      */
-    public void setService(StockWatchListService service) {
-        this.service = service;
-    }
+    public void setService(StockWatchListService service) { this.service = service; }
 
     /**
      * calls ${@link StockWatchListService} to find the watch list given
@@ -82,9 +70,7 @@ public class StockWatchListController {
      * @param listName name of watch list to find
      * @return an instance of watch list if found, null o.w.
      */
-    public StockWatchList findStockWatchList(String listName) {
-        return service.findStockWatchList(listName);
-    }
+    public StockWatchList findStockWatchList(String listName) { return service.findStockWatchList(listName); }
 
     /**
      * calls ${@link StockWatchListService} to rename to watch list to
@@ -99,7 +85,5 @@ public class StockWatchListController {
      * of the user when the application loads
      * @param list list of stock watch lists to be set to
      */
-    public void loadStockLists(List<StockWatchList> list) {
-        this.service.setWatchList(list);
-    }
+    public void loadStockLists(List<StockWatchList> list) { this.service.setWatchList(list); }
 }

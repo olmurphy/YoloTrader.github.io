@@ -26,12 +26,33 @@ public class LogIn {
 
     public static JFrame frame;
 
-    public static String companyString = "<html><span style=\"" +
-            "font-family:Arial;" +
-            "font-size:20px;" +
-            "color:white;" +
-            "\"><B>" + FormController.title +
-            "</B>";
+    public static String companyString = "<html><span style=\"font-family:Arial;font-size:20px;color:white;\"><B>" + FormController.title + "</B>";
+
+    public static JFrame getFrame() { return frame; }
+
+    public static JLabel getCompanyLabel() { return new JLabel(companyString, JLabel.CENTER); }
+
+    public static JLabel getEmailLabel() { return new JLabel(emailString); }
+
+    public static void setEmailField(JTextField emailField) { LogIn.emailField = emailField; }
+
+    public static JTextField getEmailField() { return emailField; }
+
+    public static JLabel getPassLabel() { return new JLabel(passString); }
+
+    public static void setPasswordField(JPasswordField passwordField) { LogIn.passwordField = passwordField; }
+
+    public static JPasswordField getPasswordField() { return passwordField; }
+
+    public static JButton getLogInButton() { return loginButton; }
+
+    public static JButton getCreateAccountButton() { return createAccountButton; }
+
+    public static void setCreateAccountButton() { createAccountButton.addActionListener(FormController.getGeneralFormAction(FormController.login)); }
+
+    public static JButton getHelpButton() { return helpButton; }
+
+    public static void setHelpButton() { helpButton.addActionListener(FormController.getGeneralFormAction(FormController.login)); }
 
     public static void startFrame() {
         frame = new JFrame("Log-In");
@@ -55,10 +76,6 @@ public class LogIn {
         return logInPanel;
     }
 
-    public static JLabel getCompanyLabel() {
-        return new JLabel(companyString, JLabel.CENTER);
-    }
-
     public static JPanel getFieldPanel() {
         fieldPanel = new JPanel();
         fieldPanel.setLayout(new BoxLayout(fieldPanel, BoxLayout.Y_AXIS));
@@ -75,30 +92,6 @@ public class LogIn {
         fieldPanel.add(getPasswordField());
 
         return fieldPanel;
-    }
-
-    public static JLabel getEmailLabel() {
-        return new JLabel(emailString);
-    }
-
-    public static void setEmailField(JTextField emailField) {
-        LogIn.emailField = emailField;
-    }
-
-    public static JTextField getEmailField() {
-        return emailField;
-    }
-
-    public static JLabel getPassLabel() {
-        return new JLabel(passString);
-    }
-
-    public static void setPasswordField(JPasswordField passwordField) {
-        LogIn.passwordField = passwordField;
-    }
-
-    public static JPasswordField getPasswordField() {
-        return passwordField;
     }
 
     public static JPanel getButtonPanel() {
@@ -120,33 +113,12 @@ public class LogIn {
         return buttonPanel;
     }
 
-    public static JButton getLogInButton() {
-        return loginButton;
-    }
-
     public static void setLoginButton() {
         LogIn.loginButton
                 .addActionListener(FormController.getGeneralFormAction(FormController.login));
 
         LogIn.loginButton
                 .addActionListener(FormController.getLogInAction());
-    }
-
-    public static JButton getCreateAccountButton() {
-        return createAccountButton;
-    }
-
-    public static void setCreateAccountButton() {
-        createAccountButton
-                .addActionListener(FormController.getGeneralFormAction(FormController.login));
-    }
-
-    public static JButton getHelpButton() {
-        return helpButton;
-    }
-
-    public static void setHelpButton() {
-        helpButton.addActionListener(FormController.getGeneralFormAction(FormController.login));
     }
 
     public static void setAllButtons() {
@@ -180,10 +152,6 @@ public class LogIn {
         helpButton.addMouseListener(CenterPanelController.getGeneralButtonAction(helpButton));
         helpButton.setBackground(FormController.formColor);
         helpButton.setBorder(BorderFactory.createEmptyBorder());
-    }
-
-    public static JFrame getFrame() {
-        return frame;
     }
 
     public static void getEmptyFieldWarning() {

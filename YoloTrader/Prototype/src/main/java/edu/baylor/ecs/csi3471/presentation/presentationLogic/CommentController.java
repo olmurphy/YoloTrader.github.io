@@ -17,30 +17,22 @@ public class CommentController {
     /**
      * @return comment the controller uses
      */
-    public Comment getComment() {
-        return comment;
-    }
+    public Comment getComment() { return comment; }
 
     /**
      * sets the comment
      * @param comment comment to be set to
      */
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
+    public void setComment(Comment comment) { this.comment = comment; }
 
     /**
      * @return service the controller uses
      */
-    public CommentService getService() {
-        return service;
-    }
+    public CommentService getService() { return service; }
 
     /**
      * sets the service
      * @param service service to be set to
      */
-    public void setService(CommentService service) {
-        this.service = service;
-    }
+    public void setService(CommentService service) { this.service = service; }
 }

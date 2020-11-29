@@ -2,7 +2,6 @@ package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,18 +15,15 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.stockPage.NewsPanel;
 
 public class HomeSection {
 
-	
     public static JPanel homeMainPanel;
 
     public static JScrollPane getHomeMainPanel() {
     	
     	JScrollPane feed = new JScrollPane(homeMainPanel);
-		
-		
+
 		UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.WHITE));
 		UIManager.put("ScrollBar.track", new ColorUIResource(Color.BLACK));
 		UIManager.put("ScrollBar.width", 5);
@@ -36,8 +32,7 @@ public class HomeSection {
 		feed.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
 		feed.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		feed.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
-		
-		
+
         return feed;
     }
 
@@ -57,10 +52,8 @@ public class HomeSection {
         todaysWins.setFont(new Font("Futura", Font.PLAIN, 22));
         todaysWins.setBorder(new EmptyBorder(40, 0, 5, 0));
         
-        
         JScrollPane winners = StockUtil.getTopWinners().getFeed();
-       
-        
+
         JPanel green = new JPanel();
         green.setLayout(new BoxLayout(green, BoxLayout.Y_AXIS));
         green.setBackground(Color.BLACK);
@@ -74,11 +67,7 @@ public class HomeSection {
         
         green.add(temp1);
         green.add(winners);
-        
-        
-        
-        
-        
+
         //Set up the top losers
         JLabel todaysloss = new JLabel();
         todaysloss.setForeground(Color.WHITE);
@@ -101,10 +90,7 @@ public class HomeSection {
         
         red.add(temp);
         red.add(losers);
-        
-        
-        
-        
+
         //Set up the newsFeed.
 		JScrollPane news = StockUtil.getGeneralNews().getNewsScrollPane();
 		JPanel newsfeed = new JPanel();
@@ -133,23 +119,13 @@ public class HomeSection {
 			indexes.add(sp, BorderLayout.WEST);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			//no need to do anything. stockUtil will take care of exceptions and logging them.
 		}
-		
-		
-		
-		
 			
-		//Add components	
-		HomeSection.homeMainPanel.add(green);
-		HomeSection.homeMainPanel.add(red);
-		HomeSection.homeMainPanel.add(indexes);
-		HomeSection.homeMainPanel.add(newsfeed);
-		
-		
-		YoloTrader.logger.info("Done.");
-        
-       
+        //Add components
+        HomeSection.homeMainPanel.add(green);
+        HomeSection.homeMainPanel.add(red);
+        HomeSection.homeMainPanel.add(indexes);
+        HomeSection.homeMainPanel.add(newsfeed);
     }
 }

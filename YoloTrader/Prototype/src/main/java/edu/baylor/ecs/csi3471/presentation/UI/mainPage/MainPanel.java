@@ -35,20 +35,14 @@ public class MainPanel {
         homeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    public static JPanel getMainPanel() {
-        return mainPanel;
-    }
+    public static JPanel getMainPanel() { return mainPanel; }
 
     /* low coupling */
-    public static void getStartFrame() {
-        FormController.getStartFrame();
-    }
+    public static void getStartFrame() { FormController.getStartFrame(); }
 
     /**
      * used for closing the home frame when user logs out
      * @return the home frame
      */
-    public static JFrame getHomeFrame() {
-        return homeFrame;
-    }
+    public static JFrame getHomeFrame() { return homeFrame; }
 }

@@ -7,9 +7,6 @@ import javax.swing.*;
  */
 public class AddStock {
 
-    // FIXME: This window will perform similarly to the "Search" a stock
-    // FIXME: just with another reference place to add a stock
-
     /**
      * displays warning if the user has not selected watch list to perform an action on
      */

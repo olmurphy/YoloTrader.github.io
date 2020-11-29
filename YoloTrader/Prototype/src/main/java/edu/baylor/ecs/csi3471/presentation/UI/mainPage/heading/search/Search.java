@@ -30,9 +30,7 @@ public class Search {
         return searchStockPanel;
     }
 
-    public static JTextField getSearchTextField() {
-        return searchTextField;
-    }
+    public static JTextField getSearchTextField() { return searchTextField; }
 
     public static JButton getSearchButton() {
         searchButton = new JButton(NorthPanelController.leftButtonSide + "Search " +
@@ -54,9 +52,7 @@ public class Search {
                 JLabel.LEFT);
     }
 
-    public static void setSearchTextField() {
-        Search.searchTextField = new JTextField();
-    }
+    public static void setSearchTextField() { Search.searchTextField = new JTextField(); }
 
     public static void getSearchWarning() {
         JOptionPane.showMessageDialog(null, "Need to input a stock ticker",

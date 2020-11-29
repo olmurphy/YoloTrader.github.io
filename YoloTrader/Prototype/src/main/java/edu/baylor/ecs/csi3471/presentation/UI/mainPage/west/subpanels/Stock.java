@@ -10,9 +10,7 @@ public class Stock {
             WestPanelController.size + "px;color:white;\"><B>STOCK</B>";
     public static JPanel stockPanel;
 
-    public static JPanel getStocksPanel() {
-        return stockPanel;
-    }
+    public static JPanel getStocksPanel() { return stockPanel; }
 
     public static void setStockPanel() {
         stockPanel = WestPanelController.getEachWestSubPanel();

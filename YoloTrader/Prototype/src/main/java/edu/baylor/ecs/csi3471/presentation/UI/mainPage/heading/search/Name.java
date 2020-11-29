@@ -47,13 +47,9 @@ public class Name {
         return welcomeLabel;
     }
 
-    public static String getName() {
-        return name;
-    }
+    public static String getName() { return name; }
 
-    public static void setName(String name) {
-        Name.name = name;
-    }
+    public static void setName(String name) { Name.name = name; }
 
     public static void setLogoutButton(JButton logoutButton) {
         Name.logoutButton = logoutButton;
@@ -68,7 +64,5 @@ public class Name {
         Name.logoutButton.addMouseListener(NorthPanelController.getGeneralButtonListener(logoutButton));
     }
 
-    public static JButton getLogoutButton() {
-        return logoutButton;
-    }
+    public static JButton getLogoutButton() { return logoutButton; }
 }

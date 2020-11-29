@@ -27,9 +27,7 @@ public class Stock implements Comparable<Stock> {
     @XmlElement(name = "comment")
     private List<Comment> comments;
 
-    public Stock() {
-        this.comments = new ArrayList<>();
-    }
+    public Stock() { this.comments = new ArrayList<>(); }
 
     /**
      * constructor constructs instance of stock with fields passed in
@@ -48,63 +46,47 @@ public class Stock implements Comparable<Stock> {
     /**
      * @return stock ticker
      */
-    public String getTicker() {
-        return ticker;
-    }
+    public String getTicker() { return ticker; }
 
     /**
      * set stock ticker
      * @param ticker unique id of stock
      */
-    public void setTicker(String ticker) {
-        this.ticker = ticker;
-    }
+    public void setTicker(String ticker) { this.ticker = ticker; }
 
     /**
      * @return name of company of stock
      */
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     /**
      * set name of stock
      *
      * @param name name of stock
      */
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     /**
      * @return date the stock was added
      */
-    public Date getDateAdded() {
-        return dateAdded;
-    }
+    public Date getDateAdded() { return dateAdded; }
 
     /**
      * set date the stock was added
      * @param dateAdded date the stock was added
      */
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
-    }
+    public void setDateAdded(Date dateAdded) { this.dateAdded = dateAdded; }
 
     /**
      * @return the list of comments of the stock
      */
-    public List<Comment> getComments() {
-        return comments;
-    }
+    public List<Comment> getComments() { return comments; }
 
     /**
      * sets list of comments
      * @param comments list of comments made by user
      */
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
+    public void setComments(List<Comment> comments) { this.comments = comments; }
 
     /**
      * overridden function comparing two stock's tickers to order them
@@ -113,9 +95,7 @@ public class Stock implements Comparable<Stock> {
      * @return < 0 if this.ticker < o.ticker
      */
     @Override
-    public int compareTo(Stock o) {
-        return this.ticker.compareTo(o.ticker);
-    }
+    public int compareTo(Stock o) { return this.ticker.compareTo(o.ticker); }
 
     /**
      * this function checks if two stock instances are the smae by
@@ -137,9 +117,7 @@ public class Stock implements Comparable<Stock> {
      * @return hash code to map instance into hash table
      */
     @Override
-    public int hashCode() {
-        return Objects.hash(ticker, name);
-    }
+    public int hashCode() { return Objects.hash(ticker, name); }
 
     /**
      * used for outputting the stock

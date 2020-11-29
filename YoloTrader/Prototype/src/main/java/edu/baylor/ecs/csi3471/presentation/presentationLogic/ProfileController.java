@@ -32,9 +32,7 @@ public class ProfileController {
      * calls ${@link ProfileService#addProfile(Profile)} to add the profile to the profile list
      * @param profile profile to add to the list
      */
-    public void addProfile(Profile profile) {
-        service.addProfile(profile);
-    }
+    public void addProfile(Profile profile) { service.addProfile(profile); }
 
     /**
      * checks that the password passed in is same as password of profile, if so it calls
@@ -55,9 +53,7 @@ public class ProfileController {
     /**
      * calls ${@link ProfileService#save(int, Profile)} to save the profile at the index
      */
-    public void save() {
-        service.save(profileIndex, this.profile);
-    }
+    public void save() { service.save(profileIndex, this.profile); }
 
     /**
      * calls the ${@link ProfileService#findProfile(String, String)} to get the profile and the index
@@ -83,43 +79,33 @@ public class ProfileController {
     /**
      * @return the Profile object
      */
-    public Profile getProfile() {
-        return profile;
-    }
+    public Profile getProfile() { return profile; }
 
     /**
      * set Profile to parameter
      *
      * @param profile Profile object of controller
      */
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
+    public void setProfile(Profile profile) { this.profile = profile; }
 
     /**
      * @return return the ProfileService
      */
-    public ProfileService getService() {
-        return service;
-    }
+    public ProfileService getService() { return service; }
 
     /**
      * set the ProfileService to param
      *
      * @param service ProfileService to be set to
      */
-    public void setService(ProfileService service) {
-        this.service = service;
-    }
+    public void setService(ProfileService service) { this.service = service; }
 
     /**
      * calls the service to inject the forgot password functionality
      * @param email email of the user to check if exists
      * @return true if password changed and email sent, o.w. false
      */
-    public boolean recoverPassword(String email) {
-        return this.service.recoverPassword(email);
-    }
+    public boolean recoverPassword(String email) { return this.service.recoverPassword(email); }
 
     /**
      * calls ${@link ProfileService#isEmailUnique(String)} to check if the
@@ -127,9 +113,7 @@ public class ProfileController {
      * @param email email to be checked if unique
      * @return true if email is unique, false o.w.
      */
-    public boolean isEmailUnique(String email) {
-        return this.service.isEmailUnique(email);
-    }
+    public boolean isEmailUnique(String email) { return this.service.isEmailUnique(email); }
 
     /**
      * calls ${@link ProfileService#loadProfiles()} to load all the profiles when the application
@@ -140,7 +124,5 @@ public class ProfileController {
     /**
      * calls ${@link ProfileService#saveProfiles()} to save the profile to the database whenever a change is made
      */
-    public void saveProfiles() {
-        service.saveProfiles();
-    }
+    public void saveProfiles() { service.saveProfiles(); }
 }

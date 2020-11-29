@@ -41,9 +41,7 @@ public class Help {
 
     }
 
-    public static JButton getForgotPassButton() {
-        return forgotPassButton;
-    }
+    public static JButton getForgotPassButton() { return forgotPassButton; }
 
     public static void setForgotPassButton(JButton forgotPassButton) {
         Help.forgotPassButton = forgotPassButton;

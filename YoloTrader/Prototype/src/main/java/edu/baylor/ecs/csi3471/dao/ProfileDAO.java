@@ -22,34 +22,22 @@ public class ProfileDAO implements GenericDAO<Profile> {
     /** class is used for XML file transformations */
     private static XMLProfileDAOUtil profileDAOUtil;
 
-    public ProfileDAO() {
-        profiles = new ArrayList<>();
-    }
+    public ProfileDAO() { profiles = new ArrayList<>(); }
 
     @Override
-    public List<Profile> getAll() {
-        return profiles;
-    }
+    public List<Profile> getAll() { return profiles; }
 
     @Override
-    public void setAll(List<Profile> t) {
-        profiles = t;
-    }
+    public void setAll(List<Profile> t) { profiles = t; }
     
     @Override
-    public void add(Profile profile) {
-        profiles.add(profile);
-    }
+    public void add(Profile profile) { profiles.add(profile); }
     
     @Override
-    public void delete(Profile profile) {
-        profiles.remove(profile);
-    }
+    public void delete(Profile profile) { profiles.remove(profile); }
 
     @Override
-    public void update(int index, Profile profile) {
-        profiles.set(index, profile);
-    }
+    public void update(int index, Profile profile) { profiles.set(index, profile); }
 
     /**
      * calls ${@link XMLProfileDAOUtil#load()} to load the items into the 
@@ -83,7 +71,5 @@ public class ProfileDAO implements GenericDAO<Profile> {
      * @param index index of profile to change password
      * @param newPass new password of profile
      */
-    public void changeProfilePassword(int index, String newPass) {
-        profiles.get(index).setPassword(newPass);
-    }
+    public void changeProfilePassword(int index, String newPass) { profiles.get(index).setPassword(newPass); }
 }

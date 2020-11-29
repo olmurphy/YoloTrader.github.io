@@ -7,9 +7,7 @@ import javax.swing.*;
  */
 public class CreateWatchList {
 
-    public static String watchListNameWindow() {
-        return JOptionPane.showInputDialog("Enter watch list name:");
-    }
+    public static String watchListNameWindow() { return JOptionPane.showInputDialog("Enter watch list name:"); }
 
     public static void getWatchListNameTaken() {
         JOptionPane.showMessageDialog(null, "Name Taken",

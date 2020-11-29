@@ -22,9 +22,7 @@ public class ProfileService {
     /**
      * constructor initializes the dao
      */
-    public ProfileService() {
-        this.dao = new ProfileDAO();
-    }
+    public ProfileService() { this.dao = new ProfileDAO(); }
 
     /**
      * iterates through all of the profiles checking that the profile passed in does
@@ -40,9 +38,7 @@ public class ProfileService {
      * calls ${@link ProfileDAO#delete(Profile)} to delete the profile from the dao
      * @param profile profile to delete the profile from
      */
-    public void deleteProfile(Profile profile) {
-        this.dao.delete(profile);
-    }
+    public void deleteProfile(Profile profile) { this.dao.delete(profile); }
 
     /**
      * travers through the list of profiles looking for the email and password passed
@@ -75,18 +71,14 @@ public class ProfileService {
     /**
      * @return GenericDAO of profiles for all profiles
      */
-    public GenericDAO<Profile> getDao() {
-        return dao;
-    }
+    public GenericDAO<Profile> getDao() { return dao; }
 
     /**
      * sets dao to param passed in
      *
      * @param dao ProfileDAO using
      */
-    public void setDao(GenericDAO<Profile> dao) {
-        this.dao = dao;
-    }
+    public void setDao(GenericDAO<Profile> dao) { this.dao = dao; }
 
     /**
      * calls ${@link ProfileDAO#update(int, Profile)} to save the profile in the dao
@@ -129,9 +121,7 @@ public class ProfileService {
     /**
      * this method calls ${@link ProfileDAO#loadAll()} to load all profiles upon the application starting
      */
-    public void loadProfiles() {
-        ((ProfileDAO)dao).loadAll();
-    }
+    public void loadProfiles() { ((ProfileDAO)dao).loadAll(); }
 
     /**
      * calls ${@link ProfileDAO#saveAll()} to save all the profiles into the database
