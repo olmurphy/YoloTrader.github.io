@@ -1,6 +1,7 @@
 package edu.baylor.ecs.csi3471.main;
 
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.AddComment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,4 +31,6 @@ public class YoloTrader {
     }
 
     public static void main(String[] args) { MainPanel.getStartFrame(); }
+
+    // public static void main(String[] args) { AddComment.InitializeUI(); }
 }

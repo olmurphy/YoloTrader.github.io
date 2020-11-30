@@ -8,6 +8,8 @@ import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * @author owenmurphy
@@ -16,17 +18,21 @@ public class StockPage {
 
     public static JDialog dialog;
     public static JTabbedPane stockTabbedPane;
+    public static JPanel commentPanel;
+    public static JPanel stockPanel;
 
     public static void startStockPage() {
         dialog = new JDialog();
+        dialog.addWindowListener(getDialogWindowListener());
 
         // setting and adding tabbed pane
         setStockTabbedPane(new JTabbedPane());
         dialog.add(getStockTabbedPane());
 
         dialog.setLocationRelativeTo(null);     // centers the frame in the middle of the screen
-        // regardless of the dual monitor setup
-        //dialog.pack();                          // optimal if application is running on different computers
+                                                // regardless of the dual monitor setup
+        dialog.pack();                          // optimal if application is running on different computers
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setVisible(true);                // let the user see the frame once it is fully setup
     }
 
@@ -41,7 +47,7 @@ public class StockPage {
 
         if (dialog == null) { startStockPage(); }
 
-        JPanel stockPanel = new JPanel();
+        stockPanel = new JPanel();
         stockPanel.setLayout(new BoxLayout(stockPanel, BoxLayout.Y_AXIS));
         stockPanel.setBackground(CenterPanelController.centerPanelColor);
 
@@ -52,9 +58,11 @@ public class StockPage {
         headerPanel.add(getAddCommentButton(), BorderLayout.EAST);
 
         stockPanel.add(headerPanel);
+
+        //stockPanel.add(headerPanel);
         JLabel date = new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:14px;\"><B>Date Added: " + stock.getDateAdded().toString() +
-                "</B></span><hr></html>");
-        date.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+                "</B></span><hr></html>", JLabel.LEFT);
+        date.setAlignmentX(Component.LEFT_ALIGNMENT);
         stockPanel.add(date);
 
         GraphPanel graphPanel = StockUtil.getGraph(equity);
@@ -62,7 +70,6 @@ public class StockPage {
         stockPanel.add(graphPanel);
         JPanel panel = getComments(stock);
         stockPanel.add(panel);
-        stockPanel.remove(panel);
 
         JScrollPane feed = new JScrollPane(stockPanel);
 
@@ -71,16 +78,13 @@ public class StockPage {
 
     public static JPanel getComments(Stock stock) {
 
-        JPanel commentPanel = new JPanel();
+        commentPanel = new JPanel();
+        commentPanel.setName("Test");
         commentPanel.setLayout(new BoxLayout(commentPanel, BoxLayout.Y_AXIS));
         commentPanel.setBackground(CenterPanelController.centerPanelColor);
 
         // add all the comments if any exist
-        // if (stock.getComments().size() > 0) {for (Comment comment : stock.getComments()) { commentPanel.add(produceCommentPanel(comment)); }}
-
-        for (int i = 0; i < 20; i++) {
-            commentPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:30px;\"><B>TEST:</B></span><hr></html>"));
-        }
+        if (stock.getComments().size() > 0) {for (Comment comment : stock.getComments()) { commentPanel.add(produceCommentPanel(comment)); }}
 
         return commentPanel;
     }
@@ -100,11 +104,13 @@ public class StockPage {
         headerPanel.setBackground(CenterPanelController.centerPanelColor);
 
         // adding to header panel
-        headerPanel.add(new JLabel("Subject: " + comment.getSubject()));
-        headerPanel.add(new JLabel("Date Created: " + comment.getDateCreated().toString()));
-        headerPanel.add(new JLabel("Date Last Updated: " + comment.getDateLastModified().toString()));
+        headerPanel.add(new JLabel(CenterPanelController.leftLabelSide + "Subject: " + comment.getSubject() + CenterPanelController.rightLabelSide));
+        headerPanel.add(new JLabel(CenterPanelController.leftLabelSide + "Date Created: " + comment.getDateCreated().toString()
+                + CenterPanelController.rightLabelSide));
+        headerPanel.add(new JLabel(CenterPanelController.leftLabelSide + "Date Last Updated: " + comment.getDateLastModified().toString()
+                + CenterPanelController.rightLabelSide));
 
-
+        // add the panels to comment panel
         commentPanel.add(headerPanel, BorderLayout.NORTH);
         commentPanel.add(new JLabel(comment.getText()), BorderLayout.CENTER);
         commentPanel.add(footerPanel, BorderLayout.SOUTH);
@@ -140,23 +146,10 @@ public class StockPage {
         return editCommentButton;
     }
 
-    /**
-     * displays warning if the user has not selected watch list to perform an action on
-     */
-    public static void getNoWatchListSelectedWarning() {
-        JOptionPane.showMessageDialog(null, "Need to select a watchList to add to",
-                "Warning", JOptionPane.WARNING_MESSAGE);
+    public static WindowAdapter getDialogWindowListener() {
+        return new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) { StockPage.dialog = null; }
+        };
     }
-
-    public static void getNoStockSelectedWarning() {
-        JOptionPane.showMessageDialog(null, "No stock is selected to delete",
-                "Warning", JOptionPane.WARNING_MESSAGE);
-    }
-
-    public static String getAddStockInputDialog() {
-        return JOptionPane.showInputDialog(null, "Enter stock name to search",
-                "Add Stock", JOptionPane.QUESTION_MESSAGE);
-    }
-
-
 }

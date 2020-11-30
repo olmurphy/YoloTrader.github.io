@@ -131,10 +131,10 @@ YoloTrader.logger.info("Preparing HomePanel..");
 		newsfeed.add(newstitle);
 		newsfeed.add(news);
 
-		JPanel indexes = new JPanel();
+		/*JPanel indexes = new JPanel();
 		indexes.setPreferredSize(new Dimension(1150, 720));
 		indexes.setBorder(new EmptyBorder(0,50,50,50));
-		indexes.setBackground(CenterPanelController.centerPanelColor);
+		indexes.setBackground(CenterPanelController.centerPanelColor);*/
 
 
 

@@ -11,7 +11,7 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HelpSection
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HomeSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.ProfileSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.StockPage;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.CreateWatchList;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.Dialogs;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.StocksSection;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
@@ -77,9 +77,9 @@ public class CenterPanelController {
 
                 if (StocksSection.getWatchListList().isSelectionEmpty()) {
                     // no watchlist selected
-                    StockPage.getNoWatchListSelectedWarning();
+                    Dialogs.getNoWatchListSelectedWarning();
                 } else {
-                    String stockName = StockPage.getAddStockInputDialog();
+                    String stockName = Dialogs.getAddStockInputDialog();
 
                     // trying to add a single stock, else display the result from query using dialog from Result class
                     NorthPanelController.launchSearch(stockName, true);
@@ -100,7 +100,7 @@ public class CenterPanelController {
                 // check if watch list is clicked
                 if (StocksSection.getStockList().isSelectionEmpty()) {
                     // no stock selected
-                    StockPage.getNoStockSelectedWarning();
+                    Dialogs.getNoStockSelectedWarning();
                 } else {
 
                     // deleting stock from list
@@ -121,7 +121,7 @@ public class CenterPanelController {
 
                 YoloTrader.logger.info("adding stock list a watchlist");
 
-                String watchListName = CreateWatchList.watchListNameWindow();
+                String watchListName = Dialogs.watchListNameWindow();
 
                 StockWatchList stockWatchList = null;
                 boolean nameEmpty = false;
@@ -137,7 +137,7 @@ public class CenterPanelController {
                     // saving changes to xml file
                     MainPanelController.getProfileController().saveProfiles();
                 } else {
-                    CreateWatchList.getWatchListNameTaken();
+                    Dialogs.getWatchListNameTaken();
                 }
             }
         };
@@ -155,7 +155,7 @@ public class CenterPanelController {
                 // check that a watch list is selected
                 if (StocksSection.getWatchListList().isSelectionEmpty()) {
                     // no watchlist selected
-                    StockPage.getNoWatchListSelectedWarning();
+                    Dialogs.getNoWatchListSelectedWarning();
                 } else {
                     // watchlist is selected, delete it
                     deleteWatchList();
@@ -314,7 +314,7 @@ public class CenterPanelController {
     public static ActionListener getWatchListRemoveItemListener() { return e -> deleteWatchList(); }
 
     /**
-     * method calls ${@link CreateWatchList#watchListNameWindow()} to retrieve user's desire name
+     * method calls ${@link Dialogs#watchListNameWindow()} to retrieve user's desire name
      * for watch list. if name is not empty, it calls
      * ${@link edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController#renameStockWatchList(String, String)}
      * to rename the watch list to a new name
@@ -323,7 +323,7 @@ public class CenterPanelController {
     public static ActionListener getWatchListRenameItemListener() {
         return e -> {
             String oldName = StocksSection.getWatchListList().getSelectedValue();
-            String newName = CreateWatchList.watchListNameWindow();
+            String newName = Dialogs.watchListNameWindow();
 
             if (!newName.equals("")) {
                 MainPanelController.getStockWatchListController().renameStockWatchList(newName, oldName);
@@ -419,6 +419,18 @@ public class CenterPanelController {
     public static ActionListener getAddCommentButtonAction() {
         return e -> {
             System.out.println("adding comment to stock");
+            // FIXME: add action here
+        };
+    }
+
+    public static ActionListener getSaveCommentButtonAction() {
+        return e -> {
+            // FIXME: add action here
+        };
+    }
+
+    public static ActionListener getDeleteCommentButtonAction() {
+        return e -> {
             // FIXME: add action here
         };
     }
