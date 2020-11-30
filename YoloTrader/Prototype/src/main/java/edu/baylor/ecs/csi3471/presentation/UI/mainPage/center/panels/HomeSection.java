@@ -1,3 +1,4 @@
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
