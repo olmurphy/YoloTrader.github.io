@@ -29,8 +29,8 @@ public class StockWatchListService {
     public boolean addWatchList(StockWatchList watchList) {
 
         if (this.dao.getAll().contains(watchList)) { return false; }
-        else { this.dao.add(watchList); }
 
+        this.dao.add(watchList);
         return true;
     }
 
@@ -67,7 +67,7 @@ public class StockWatchListService {
      * @return stock watch list if found, o.w. null
      */
     public StockWatchList findStockWatchList(String listName) {
-        return this.dao.getAll().stream().findFirst().filter(x-> x.getName().equals(listName)).stream().findFirst().orElse(null);
+        return this.dao.getAll().stream().filter(x-> x.getName().equals(listName)).findFirst().orElse(null);
     }
 
     /**

@@ -978,7 +978,7 @@ public class StockUtil {
     private static int getPosition(String time) {
     	
     	int rtrn = -1;
-    	final Vector<Integer> result = new Vector<Integer>();
+    	final Vector<Integer> result = new Vector<>();
     	
 		Map<String,Integer> map = Map.ofEntries(
 				entry("09:30:00", 0), entry("10:00:00", 1), entry("10:30:00",2 ),
@@ -997,22 +997,18 @@ public class StockUtil {
 			rtrn = result.elementAt(0);
 		}
 		return rtrn;
-    	
-    	
-    
     }
-    
     
     /*FIXME: TEST IF IT CAN HANDLE DRAWING DURING THE MARKET DAY!*/
     
     /**
-     * The getGraph function returns a GraphPanel object
+     * The function returns a GraphPanel object
      * which is the visual representation of equity's price
      * movements for the day.
      * <p>
-     * @param equity	${@link yahoofinance.Stock}
+     * @param equity ${@link yahoofinance.Stock}
      * <p>
-     * @return	{@link GraphPanel} 
+     * @return {@link GraphPanel}
      */
     public static GraphPanel getGraph(yahoofinance.Stock equity ) {
     	YoloTrader.logger.info("Constructing GraphPanel for " + equity.getName() +"..");
@@ -1075,7 +1071,7 @@ public class StockUtil {
     	YoloTrader.logger.info("Fetching graph data..");
     	
     	String query = GRAPH_URL + equity.getSymbol() + GRAPH_API_URL;
-    	Vector<Double> data = new Vector<Double>();
+    	Vector<Double> data = new Vector<>();
     	String close = "close";
     	Double cls;
     	String date = "date";
@@ -1125,24 +1121,13 @@ public class StockUtil {
 			    			//call func again
 			    			data = getGraphData(equity);
 			    			switched = true;
-			    		}
-			    		
-			    		//Otherwise.
-			    		else {
-			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
-			    		}
-			    		
-	    	    		
-	    	    	}//End of if API limit has been reached.
-	    	    	
-	    	    	
+			    		} else { YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED."); }
+			    	}//End of if API limit has been reached.
+
 	    	    	//Otherwise API limit has not yet been reached.
 	    	    	else {
 	    	    		
-	    	    		
-	    	    		
-	    	    		
-	                    //Check the date.
+	    	    		//Check the date.
 		    	    	if(line.contains(date)) {
 	                    	
 	                    
@@ -1165,9 +1150,7 @@ public class StockUtil {
 			                        end = todaY.indexOf(space, begin);
 			                        todaY = todaY.substring(begin, end);
 			                        
-			                       
-			                        
-			                        
+
 			                        //At this point todaY is now the string format of today.
 			                        today = true;
 			                        
@@ -1188,18 +1171,12 @@ public class StockUtil {
 			                        //Save the data
 			                        data.set(pos,cls);
 			                        today = true;
-			                        
-		                        
 		                        }
-		                        
-		                        
 	                    	}
-	                    	
+
 	                    	//Otherwise, the date has been determined, implying that this entry is not the 
 	                    	//most recent entry.
 	                    	else {
-	                    	
-	                    		
 	                    		
 		                    	//If this entry is from today.
 		                    	if(line.contains(todaY)) {
@@ -1231,21 +1208,12 @@ public class StockUtil {
 					                        today = true;
 			                        	
 			                        }
-		                    		
 		                    	}
-		                    	
 	                    	}
-                    	
-                        
 		    	    	}//End of check date.
-		    	    	
 	    	    	}//End of API limit not reached.
-	    	    
-	    	    	
-	    	  }//End of for loop.
-	    	    reader.close();
+	    	    }//End of for loop.
 	    	}
-	    	
     	}
     	catch(UnsupportedEncodingException u) {
            YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");

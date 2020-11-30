@@ -57,4 +57,12 @@ public class StockController {
      * @return true if stock was removed, false o.w.
      */
     public boolean removeStock(String name, StockWatchList list) { return this.service.removeStock(name, list); }
+
+    /**
+     * calls @{@link StockService} to find the stock from the watch list
+     * @param name name of stock
+     * @param list stock watch list that contains the stock
+     * @return instance of stock
+     */
+    public Stock findStock(String name, StockWatchList list) { return this.service.findStock(name, list); }
 }

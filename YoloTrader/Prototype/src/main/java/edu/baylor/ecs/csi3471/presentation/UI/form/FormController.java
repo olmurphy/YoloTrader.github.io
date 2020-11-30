@@ -97,12 +97,9 @@ public class FormController {
 
                     LogIn.getFrame().dispose();
                     MainPanel.createUI();
-                } else {
-                    LogIn.getInvalidCredentialsWarning();
-                }
-            } else {
-                LogIn.getEmptyFieldWarning();
-            }
+                } else { LogIn.getInvalidCredentialsWarning(); }
+
+            } else { LogIn.getEmptyFieldWarning(); }
         };
     }
 
@@ -120,31 +117,19 @@ public class FormController {
             String email;
 
             // check that all fields are not empty
-            if (!validCreateAccountFieldsNotEmpty()) {
-                LogIn.getEmptyFieldWarning();
-            }
+            if (!validCreateAccountFieldsNotEmpty()) { LogIn.getEmptyFieldWarning(); }
 
             // check that the email used is a valid email
-            else if (!EmailValidator.getInstance().isValid(email = LogIn.getEmailField().getText())) {
-                Email.getEmailNotValidWarning();
-            }
+            else if (!EmailValidator.getInstance().isValid(email = LogIn.getEmailField().getText())) { Email.getEmailNotValidWarning(); }
 
             // check that the passwords match
-            else if (!checkPassMatch()) {
-                CreateAccount.getPassNotMatchWarning();
-            }
+            else if (!checkPassMatch()) { CreateAccount.getPassNotMatchWarning(); }
 
             // check that the email is unique
-            else if (!MainPanelController.getProfileController().isEmailUnique(email)) {
-
-                // display warning that email is not unique
-                Email.getEmailWarning();
-            }
+            else if (!MainPanelController.getProfileController().isEmailUnique(email)) { Email.getEmailWarning(); }
 
             // check that user's is inputting the correct verification code sent to their email
-            else if (!Email.getEmailSentCodeValidation(email)) {
-                Email.getEmailValidationCodeNotValid();
-            }
+            else if (!Email.getEmailSentCodeValidation(email)) { Email.getEmailValidationCodeNotValid(); }
 
             // all is good, start making account
             else {

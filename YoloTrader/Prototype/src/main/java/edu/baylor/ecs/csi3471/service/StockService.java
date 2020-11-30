@@ -39,4 +39,14 @@ public class StockService {
      * @return true if stock was deleted, o.w. false
      */
     public boolean removeStock(String name, StockWatchList list) { return list.getStockList().removeIf(stock -> stock.getName().equals(name)); }
+
+    /**
+     * method find the occurence of the stock name and returns in using Java 8 streams
+     * @param name name of stock to find
+     * @param list list that contains the stock
+     * @return instance of Stock
+     */
+    public Stock findStock(String name, StockWatchList list) {
+        return list.getStockList().stream().filter(x -> x.getName().equals(name)).findFirst().orElse(null);
+    }
 }

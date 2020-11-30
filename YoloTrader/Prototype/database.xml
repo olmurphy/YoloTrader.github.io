@@ -69,7 +69,14 @@
                 <watchListName>
                     <name>abc</name>
                     <dateCreated>2020-11-26T08:01:10.585-06:00</dateCreated>
-                    <stockList/>
+                    <stockList>
+                        <stock>
+                            <ticker>TSLA</ticker>
+                            <name>Tesla Inc</name>
+                            <dateAdded>2020-11-29T17:50:41.816-06:00</dateAdded>
+                            <commentList/>
+                        </stock>
+                    </stockList>
                 </watchListName>
             </listOfWatchLists>
         </profile>

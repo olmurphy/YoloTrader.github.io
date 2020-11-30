@@ -97,7 +97,6 @@ public class ProfileSection {
         labelValuePanel = new JPanel();
         labelValuePanel.setLayout(new BoxLayout(labelValuePanel, BoxLayout.Y_AXIS));
 
-
         // adding first name
         labelValuePanel.add(Box.createRigidArea(new Dimension(0, verticalLabelValueSpace)));
         setFirstLabel(new JLabel(CenterPanelController.leftLabelSide + firstLabelString + firstString + CenterPanelController.rightLabelSide));
@@ -212,7 +211,7 @@ public class ProfileSection {
      * display to the user that the password passed in was incorrect
      */
     public static void getPasswordNotCorrectWarning() {
-        JOptionPane.showMessageDialog(null, "password was incorrect",
-                "Warning", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, "password was incorrect", "Warning",
+                JOptionPane.WARNING_MESSAGE);
     }
 }

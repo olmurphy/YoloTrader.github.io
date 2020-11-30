@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center;
 
+import edu.baylor.ecs.csi3471.model.Comment;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
@@ -343,7 +344,13 @@ public class CenterPanelController {
      */
     public static ActionListener getStockListOpenItemListener() {
         return e -> {
-            // FIXME: add action here
+            String stockName = StocksSection.getStockList().getSelectedValue();
+            String listName = StocksSection.getWatchListList().getSelectedValue();
+
+            StockWatchList list = MainPanelController.stockWatchListController.findStockWatchList(listName);
+            Stock stock = MainPanelController.getStockController().findStock(stockName, list);
+
+            StockPage.addStockToPanel(stock);
         };
     }
 
@@ -401,5 +408,18 @@ public class CenterPanelController {
         }
 
         return false;
+    }
+
+    public static ActionListener getEditCommentButtonAction(Comment comment) {
+        return e -> {
+            // FIXME: add action here
+        };
+    }
+
+    public static ActionListener getAddCommentButtonAction() {
+        return e -> {
+            System.out.println("adding comment to stock");
+            // FIXME: add action here
+        };
     }
 }

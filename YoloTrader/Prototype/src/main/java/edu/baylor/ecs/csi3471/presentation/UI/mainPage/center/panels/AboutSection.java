@@ -94,17 +94,11 @@ public class AboutSection {
             StringBuilder str = new StringBuilder("<html><span style=\"font-family:Futura;color:white\">");
             String line;
 
-            while ((line = br.readLine()) != null) {
-                str.append(line).append(" ");
-            }
-            str.append("</span></html>");
+            while ((line = br.readLine()) != null) { str.append(line).append(" "); }
 
-            label.setText(str.toString());
+            label.setText(str.append("</span></html>").toString());
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        } catch (IOException e) { e.printStackTrace(); }
         return label;
     }
 

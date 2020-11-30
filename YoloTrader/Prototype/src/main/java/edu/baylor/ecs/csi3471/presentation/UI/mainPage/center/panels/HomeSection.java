@@ -14,6 +14,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
 
 public class HomeSection {
@@ -42,10 +43,10 @@ public class HomeSection {
         HomeSection.homeMainPanel = new JPanel();
         homeMainPanel.setLayout(new BoxLayout(homeMainPanel, BoxLayout.Y_AXIS));
         //homeMainPanel.setPreferredSize(new Dimension(1000, 3000));
-        HomeSection.homeMainPanel.setBackground(Color.BLACK);
+        HomeSection.homeMainPanel.setBackground(CenterPanelController.centerPanelColor);
 
         //Set up the top winners
-        HomeSection.homeMainPanel.setBackground(Color.BLACK);
+        HomeSection.homeMainPanel.setBackground(CenterPanelController.centerPanelColor);
         JLabel todaysWins = new JLabel();
         todaysWins.setForeground(Color.WHITE);
         todaysWins.setText("[ Today's Best Performing Stocks ]");
@@ -56,14 +57,14 @@ public class HomeSection {
 
         JPanel green = new JPanel();
         green.setLayout(new BoxLayout(green, BoxLayout.Y_AXIS));
-        green.setBackground(Color.BLACK);
+        green.setBackground(CenterPanelController.centerPanelColor);
         green.setBorder(new EmptyBorder(5,50,50,50));
        
         JPanel temp1 = new JPanel();
         temp1.setLayout(new FlowLayout(FlowLayout.LEFT));
         temp1.setPreferredSize(new Dimension(900,120));
         temp1.add(todaysWins);
-        temp1.setBackground(Color.BLACK);
+        temp1.setBackground(CenterPanelController.centerPanelColor);
         
         green.add(temp1);
         green.add(winners);
@@ -95,14 +96,14 @@ public class HomeSection {
 		JScrollPane news = StockUtil.getGeneralNews().getNewsScrollPane();
 		JPanel newsfeed = new JPanel();
 		newsfeed.setPreferredSize(new Dimension(1150, 400));
-		newsfeed.setBackground(Color.BLACK);
+		newsfeed.setBackground(CenterPanelController.centerPanelColor);
 		newsfeed.setBorder(new EmptyBorder(0,50,90,50));
 		newsfeed.setLayout(new BoxLayout(newsfeed, BoxLayout.Y_AXIS));
 		newsfeed.add(news);
 		JPanel indexes = new JPanel();
 		indexes.setPreferredSize(new Dimension(1150, 720));
 		indexes.setBorder(new EmptyBorder(0,50,50,50));
-		indexes.setBackground(Color.BLACK);
+		indexes.setBackground(CenterPanelController.centerPanelColor);
 		
 		//Set up indexes
 		try {

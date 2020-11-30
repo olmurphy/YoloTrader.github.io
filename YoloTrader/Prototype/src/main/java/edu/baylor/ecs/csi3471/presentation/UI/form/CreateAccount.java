@@ -45,9 +45,7 @@ public class CreateAccount {
 
     public static JLabel getPasswordAgainLabel() { return new JLabel(passwordAgainStr); }
 
-    public static void setRe_passwordField(JPasswordField re_passwordField) {
-        CreateAccount.re_passwordField = re_passwordField;
-    }
+    public static void setRe_passwordField(JPasswordField re_passwordField) { CreateAccount.re_passwordField = re_passwordField; }
 
     public static JPasswordField getRe_passwordField() { return re_passwordField; }
 
