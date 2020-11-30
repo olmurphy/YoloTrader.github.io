@@ -265,6 +265,18 @@ public class StockUtil {
     	return analysis;
     }
     
+	
+    /**
+     * The getPrice function returns the price of equity.
+     * <p>
+     * @param equity	${@link yahoofinance.Stock}
+     * <p>
+     * @return ${@link String}
+     */
+    public static Double getPrice(yahoofinance.Stock equity) {
+    	return equity.getQuote().getPrice().doubleValue();
+    }
+    
     
     /**
      * The getQuote function returns the price data for equity.
