@@ -113,9 +113,7 @@ public class SendEmailClient extends JFrame {
 
                 Transport.send(message, usernameField.getText(),
                         new String(passwordField.getPassword()));
-            } catch (MessagingException ex) {
-                ex.printStackTrace();
-            }
+            } catch (MessagingException ex) { ex.printStackTrace(); }
         }
     }
 }

@@ -1,22 +1,28 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages;
 
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AddComment {
+/**
+ * This feature is disabled, when run, it makes the application lag for some reason
+ * not sure why, may look into adding this feature after project is turned in
+ *
+ * @author owenmurphy
+ */
+public class CommentPage {
 
     private static final JTextField subjectField = new JTextField();
     private static final JTextArea contentTextArea = new JTextArea();
 
     public static void InitializeUI() {
         JDialog commentDialog = new JDialog();
-        commentDialog.setTitle("Add Comment");
+        commentDialog.setTitle("Comment");
         commentDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         commentDialog.setPreferredSize(new Dimension(600, 400));
 
-        commentDialog.getContentPane().setLayout(new BorderLayout());
+        commentDialog.setLayout(new BorderLayout());
 
         commentDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // make dialog open in separate window
         commentDialog.setLocationRelativeTo(null);      // centers the frame in the middle of the screen
@@ -46,9 +52,9 @@ public class AddComment {
         footerPanel.add(getDeleteCommentButton());
 
         // adding panels to dialog
-        commentDialog.getContentPane().add(headerPanel, BorderLayout.NORTH);
-        commentDialog.getContentPane().add(bodyPanel, BorderLayout.CENTER);
-        commentDialog.getContentPane().add(footerPanel, BorderLayout.SOUTH);
+        commentDialog.add(headerPanel, BorderLayout.NORTH);
+        commentDialog.add(bodyPanel, BorderLayout.CENTER);
+        commentDialog.add(footerPanel, BorderLayout.SOUTH);
 
         commentDialog.pack();                          // optimal if application is running on different computers
         commentDialog.setVisible(true);                // let the user see the frame once it is fully setup

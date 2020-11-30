@@ -127,11 +127,7 @@ public class StockUtil {
 
     private final static String DEMA_URL = "https://financialmodelingprep.com/api/v3/technical_indicator/daily/";
     private static String DEMA_API =  "?period=10&type=dema&apikey=4819ef0b5de9d90ed219e89c51f35d34";
-	
-	
-	
-    
-    
+
     /**
      * The extractData function is a helper function for parsing data from the 
      * API.
@@ -230,7 +226,7 @@ public class StockUtil {
     /**
      * The getAnalysis function returns the analysis conclusion for equity.
      * <p>
-     * @param equity	${@link yahoofinance.Stock}
+     * @param equity is a stock instance from ${@link yahoofinance.Stock} yahoofinance
      * 
      */
     public static String getAnalysis(yahoofinance.Stock equity) {
@@ -340,7 +336,7 @@ public class StockUtil {
 			    		
 			    	}
 			  }//End of for loop.
-			  reader.close();
+			  // reader.close();
 			    
 			    
 			}//out of inner try block.
@@ -398,10 +394,7 @@ public class StockUtil {
 		    	  
 		          accuracy = (Double.valueOf(right) / Double.valueOf(total));
 		      }
-			
-			
-			
-			
+
 			//confirm analysis.
 			
 			if(accuracy < 0.50) {
@@ -413,9 +406,6 @@ public class StockUtil {
 					analysis = "Buy/Calls";
 				}
 			}
-			
-			
-			
 			
 			
 			//update predictions and write this new prediction.
@@ -430,17 +420,10 @@ public class StockUtil {
 				 //Don't write  a hold predicition.
 				 if(analysis.contains("Hold") == false) {
 					 write.write(equity.getSymbol() + "\n" + StockUtil.getPrice(equity)+ "\n" + analysis + "\n" + now + "\n" );
-					 
 				 }
-					 
-				  
 				 write.close();
-				
-		       
-		    } 
-			
-			
-			else {
+
+			} else {
 		        
 		    	  //read file. Count winners and losers.
 		    	  Scanner read = new Scanner(predict);
@@ -512,29 +495,19 @@ public class StockUtil {
 			        		  String fortune = current.getSymbol() + "\n" + pastPrice + "\n" + pastPrediction + "\n" + then + "\n";
 			        		  buffer.add(fortune);
 			        	  }
-			        	  
-			        	  
+
 			        	  //Prep to check outcome of next prediction.
 			        	  pos = 0;
-			        	  
 			          }
-					  
-					  
-			          
-			          
 		          }
 		          read.close();
-		          
-		          
+
 		          //Update accuracy.
 		          FileWriter write = new FileWriter(confidence, false);
 		          
 		          write.write(right + "\n" + wrong + "\n");
 					 
 				  write.close();
-				  
-				  
-				  
 				  
 				  //Overwrite predictions file
 				  FileWriter writer = new FileWriter(predict, false);
@@ -548,33 +521,19 @@ public class StockUtil {
 					  writer.write(equity.getSymbol() + "\n" + StockUtil.getPrice(equity)+ "\n" + analysis + "\n" + now + "\n" );
 				  }
 				  writer.close();
-				 
-				      
-		    	  
-		      }
-			
-			
-			
+		    }
 		}//End of outer try block.
 		catch(UnsupportedEncodingException u) {
-	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
-	           YoloTrader.logger.warning(u.toString());
-	        } catch (MalformedURLException e) {
-	            // TODO Auto-generated catch block
-	        	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
-	        	YoloTrader.logger.warning(e.toString());
-	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	        	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
-	            YoloTrader.logger.warning(e.toString());
-	        }
-		
-    	
-    	
-    	
-    	
-    	
-    	
+			YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+			YoloTrader.logger.warning(u.toString());
+		} catch (MalformedURLException e) {
+			YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+			YoloTrader.logger.warning(e.toString());
+		} catch (IOException e) {
+			YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+			YoloTrader.logger.warning(e.toString());
+		}
+
 		YoloTrader.logger.info("Analysis Complete.");
     	return analysis;
     }
@@ -588,27 +547,13 @@ public class StockUtil {
      * @return ${@link String}
      */
     public static Double getPrice(yahoofinance.Stock equity) {
+
+    	// FIXME: this method seems to be throwing a NullPointerException
     	return equity.getQuote().getPrice().doubleValue();
     }
-    
-<<<<<<< HEAD
-=======
-    
-    
-    /**
-     * The getPrice function returns the price of equity.
-     * <p>
-     * @param equity	${@link yahoofinance.Stock}
-     * <p>
-     * @return ${@link String}
-     */
-    public static Double getPrice(yahoofinance.Stock equity) {
-    	return equity.getQuote().getPrice().doubleValue();
-    }
-    
-    
-    
->>>>>>> a6eacdc31b8c960571f2b0590ff245ca5971408e
+
+
+
     
     /**
      * The getQuote function returns the price data for equity.
@@ -1395,13 +1340,8 @@ public class StockUtil {
 		}
 		return rtrn;
     }
-    
-<<<<<<< HEAD
+
     /*FIXME: TEST IF IT CAN HANDLE DRAWING DURING THE MARKET DAY!*/
-=======
-    
-    
->>>>>>> a6eacdc31b8c960571f2b0590ff245ca5971408e
     
     /**
      * The function returns a GraphPanel object
@@ -1466,18 +1406,14 @@ public class StockUtil {
      * The getStock function returns the stock for the passed
      * ticker.
      * <p>
-     * @param equity	${@link yahoofinance.Stock}
+     * @param ticker {@link yahoofinance.Stock}
      * <p>
      * @return	{@link Vector<Double>} 
      */
     public static yahoofinance.Stock getStock(String ticker){
     	yahoofinance.Stock rtrn = null;
-    	try {
-			rtrn = yahoofinance.YahooFinance.get(ticker);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	try { rtrn = yahoofinance.YahooFinance.get(ticker); }
+    	catch (IOException e) { e.printStackTrace(); }
     	
     	return rtrn;
     }
@@ -1518,8 +1454,7 @@ public class StockUtil {
     	try {
     	
 	    	URL url = new URL(query);
-	    	
-	    
+
 	    	//read and modify the data to double
 	    	try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
 	    		
@@ -1642,17 +1577,12 @@ public class StockUtil {
            YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
            YoloTrader.logger.warning(u.toString());
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
         	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
         	YoloTrader.logger.warning(e.toString());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
         	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(e.toString());
         }
-    	
-    	
-    
     	
     	YoloTrader.logger.info("Done.");
     	
@@ -1673,7 +1603,7 @@ public class StockUtil {
     public static Map<String, String> pullUp(String query) {
     	YoloTrader.logger.info("Searching for "+ query  +"..");
 
-        Map<String, String> results = new HashMap<String, String>();
+        Map<String, String> results = new HashMap<>();
         String sanitizedQuery = "";
 
         //Shed query of any illegal characters.
@@ -1764,26 +1694,20 @@ public class StockUtil {
                             //Make mapping.
                             results.put(name, tick);
                         }
-                		
                 	}
-
-
                 }//End of reading JSON.
                 reader.close();
             }
-        }
-        catch(UnsupportedEncodingException u) {
+        } catch(UnsupportedEncodingException u) {
             YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
             YoloTrader.logger.warning(u.toString());
-         } catch (MalformedURLException e) {
-             // TODO Auto-generated catch block
-         	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
-         	YoloTrader.logger.warning(e.toString());
-         } catch (IOException e) {
-             // TODO Auto-generated catch block
-         	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
-             YoloTrader.logger.warning(e.toString());
-         }
+		} catch (MalformedURLException e) {
+			YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+			YoloTrader.logger.warning(e.toString());
+		} catch (IOException e) {
+			YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+			YoloTrader.logger.warning(e.toString());
+		}
 
         YoloTrader.logger.info("Done.");
         return results;

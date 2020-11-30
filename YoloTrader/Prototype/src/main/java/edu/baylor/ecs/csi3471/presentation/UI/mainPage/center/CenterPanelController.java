@@ -6,13 +6,8 @@ import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.AboutSection;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HelpSection;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.HomeSection;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.ProfileSection;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.StockPage;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.Dialogs;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks.StocksSection;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.*;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages.*;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 
@@ -73,12 +68,10 @@ public class CenterPanelController {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                YoloTrader.logger.info("user wants to add a stock");
-
-                if (StocksSection.getWatchListList().isSelectionEmpty()) {
-                    // no watchlist selected
-                    Dialogs.getNoWatchListSelectedWarning();
-                } else {
+                // check if stock watch list selected
+                if (StocksSection.getWatchListList().isSelectionEmpty()) { Dialogs.getNoWatchListSelectedWarning(); }
+                else {
+                    YoloTrader.logger.info("adding stock");
                     String stockName = Dialogs.getAddStockInputDialog();
 
                     // trying to add a single stock, else display the result from query using dialog from Result class
@@ -96,16 +89,9 @@ public class CenterPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 // check if watch list is clicked
-                if (StocksSection.getStockList().isSelectionEmpty()) {
-                    // no stock selected
-                    Dialogs.getNoStockSelectedWarning();
-                } else {
-
-                    // deleting stock from list
-                    deleteStockFromList();
-                }
+                if (StocksSection.getStockList().isSelectionEmpty()) { Dialogs.getNoStockSelectedWarning(); }
+                else { deleteStockFromList(); }
             }
         };
     }
@@ -151,15 +137,9 @@ public class CenterPanelController {
         return  new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 // check that a watch list is selected
-                if (StocksSection.getWatchListList().isSelectionEmpty()) {
-                    // no watchlist selected
-                    Dialogs.getNoWatchListSelectedWarning();
-                } else {
-                    // watchlist is selected, delete it
-                    deleteWatchList();
-                }
+                if (StocksSection.getWatchListList().isSelectionEmpty()) { Dialogs.getNoWatchListSelectedWarning(); }
+                else { deleteWatchList(); }
             }
         };
     }
@@ -273,15 +253,16 @@ public class CenterPanelController {
      */
     public static ActionListener getDeleteAccountListener() {
         return e -> {
-            String pass = ProfileSection.getPassWordDialog();
-            if (MainPanelController.getProfileController().deleteProfile(pass)) {
+            String pass = Dialogs.getPassWordDialog();
 
-                MainPanelController.getProfileController().saveProfiles();
+            if (!pass.equals("")) {
 
-                MainPanel.getHomeFrame().dispose();
-                MainPanel.getStartFrame();
-            } else {
-                ProfileSection.getPasswordNotCorrectWarning();
+                if (MainPanelController.getProfileController().deleteProfile(pass)) {
+                    MainPanelController.getProfileController().saveProfiles();
+
+                    MainPanel.getHomeFrame().dispose();
+                    MainPanel.getStartFrame();
+                } else { Dialogs.getPasswordNotCorrectWarning(); }
             }
         };
     }
@@ -290,11 +271,7 @@ public class CenterPanelController {
      * sets the action for the change password button action
      * @return ActionListener to listen for when the button is pressed
      */
-    public static ActionListener getChangePasswordListener() {
-        return e -> {
-
-        };
-    }
+    public static ActionListener getChangePasswordListener() { return e -> Dialogs.getChangePassDialog(); }
 
     /**
      * when the open button is clicked the information for a watch list opens
@@ -410,6 +387,8 @@ public class CenterPanelController {
         return false;
     }
 
+    public static ActionListener getEditProfileListener() { return e -> Dialogs.getEditProfileDialog(); }
+
     public static ActionListener getEditCommentButtonAction(Comment comment) {
         return e -> {
             // FIXME: add action here
@@ -419,7 +398,6 @@ public class CenterPanelController {
     public static ActionListener getAddCommentButtonAction() {
         return e -> {
             System.out.println("adding comment to stock");
-            // FIXME: add action here
         };
     }
 

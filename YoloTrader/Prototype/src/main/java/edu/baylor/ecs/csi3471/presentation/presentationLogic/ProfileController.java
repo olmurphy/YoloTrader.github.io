@@ -24,7 +24,6 @@ public class ProfileController {
      */
     public ProfileController(Profile profile) {
         this.profile = profile;
-
         this.service = new ProfileService();
     }
 
@@ -45,9 +44,7 @@ public class ProfileController {
             service.deleteProfile(this.profile);
             this.saveProfiles();
             return true;
-        } else {
-            return false;
-        }
+        } else { return false; }
     }
 
     /**
@@ -64,16 +61,13 @@ public class ProfileController {
      * @return true if the user profile was set, false o.w.
      */
     public boolean checkCredentials(String email, String pass) {
-
         Object[] objects = service.findProfile(email, pass);
 
         if (objects[0] != null) {
             this.profileIndex = Integer.parseInt(objects[0].toString());
             this.profile = (Profile)objects[1]; // this works
             return true;
-        } else {
-            return false;
-        }
+        } else { return false; }
     }
 
     /**
@@ -107,13 +101,30 @@ public class ProfileController {
      */
     public boolean recoverPassword(String email) { return this.service.recoverPassword(email); }
 
+    public void changePassword(String newPass) { this.service.changePassword(profileIndex, newPass); }
+
+    /**
+     * method checks if the password passed in is the same as the password to the profile
+     * @param pass password to check
+     * @return true if input password is same, false o.w.
+     */
+    public boolean checkPassword(String pass) { return this.profile.getPassword().equals(pass); }
+
     /**
      * calls ${@link ProfileService#isEmailUnique(String)} to check if the
      * email passed in is indeed a unique email
      * @param email email to be checked if unique
      * @return true if email is unique, false o.w.
      */
-    public boolean isEmailUnique(String email) { return this.service.isEmailUnique(email); }
+    public boolean isNotEmailUnique(String email) { return !this.service.isEmailUnique(email); }
+
+    public void changeProfileFields(String f, String l, String user, String email) {
+        this.profile.setFirst(f);
+        this.profile.setLast(l);
+        this.profile.setUsername(user);
+        this.profile.setEmail(email);
+        this.saveProfiles();
+    }
 
     /**
      * calls ${@link ProfileService#loadProfiles()} to load all the profiles when the application

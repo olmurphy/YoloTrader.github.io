@@ -88,6 +88,8 @@ public class ProfileService {
      */
     public void save(int index, Profile profile) { this.dao.update(index, profile); }
 
+    public void changePassword(int index, String newPass) { ((ProfileDAO)this.dao).changeProfilePassword(index, newPass); }
+
     /**
      * this method takes in an email and sees if it exists in the database
      * if so it changes the password associated to the email and changes the email
@@ -97,12 +99,8 @@ public class ProfileService {
     public boolean recoverPassword(String email) {
         List<Profile> profiles = this.dao.getAll();
 
-        boolean found = false;
-        for (int index = 0; index < profiles.size() && !found; index++ ) {
+        for (int index = 0; index < profiles.size(); index++ ) {
             if (profiles.get(index).getEmail().equals(email)) {
-
-                // email is associated with a profile
-                found = true;
 
                 // changing password with a random password
                 YoloTrader.logger.info("Changing password");
@@ -112,10 +110,13 @@ public class ProfileService {
                 // sending client new password
                 Email.sendEmail(email, "Changed Password", "Your new password is: " +
                         password);
+
+                // email is associated with a profile
+                return true;
             }
         }
 
-        return found;
+        return false;
     }
 
     /**

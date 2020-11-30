@@ -53,6 +53,4 @@ public class MainPanelController {
         profileController = new ProfileController(null);
         profileController.loadProfiles();
     }
-
-
 }

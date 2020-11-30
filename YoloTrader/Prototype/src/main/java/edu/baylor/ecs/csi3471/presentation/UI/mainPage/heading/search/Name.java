@@ -1,6 +1,5 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search;
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 
 import javax.swing.*;
@@ -11,25 +10,38 @@ import java.awt.*;
  */
 public class Name {
 
-    private static String name;
-    public  static JPanel welcomePanel;
-    public static JPanel labelPanel;
     public static JButton logoutButton;
+    public static JLabel welcomeLabel;
+    public static JPanel welcomePanel;
 
-    public static JPanel getWelcomePanel() {
+    public static boolean set = false;
+
+    public static void setWelcomePanel(String name) {
         welcomePanel = new JPanel(new GridLayout(1, 1));
 
+        updateLabelPanel(name);
         welcomePanel.add(getLabelPanel());
         welcomePanel.setBackground(NorthPanelController.northPanelColor);
+    }
 
-        return welcomePanel;
+    public static void updateLabelPanel(String name) {
+        if (!set) { setWelcomeLabel(); }
+
+        getLabel().setText(NorthPanelController.leftLabelSide + "Welcome, "
+                + name + "!" + NorthPanelController.rightLabelSide);
+    }
+
+    public static void setWelcomeLabel() {
+        set = true;
+        Name.welcomeLabel = new JLabel();
+        welcomeLabel.setBackground(NorthPanelController.northPanelColor);
     }
 
     public static JPanel getLabelPanel() {
-        labelPanel = new JPanel(new BorderLayout());
+        JPanel labelPanel = new JPanel(new BorderLayout());
         labelPanel.setBackground(NorthPanelController.northPanelColor);
 
-        labelPanel.add(getLabel(name), BorderLayout.WEST);
+        labelPanel.add(getLabel(), BorderLayout.WEST);
 
         setLogoutButton(new JButton(NorthPanelController.leftLabelSide + "Logout" +
                 NorthPanelController.rightLabelSide));
@@ -37,19 +49,6 @@ public class Name {
 
         return labelPanel;
     }
-
-    public static JLabel getLabel(String name) {
-        Name.name = name;
-        JLabel welcomeLabel = new JLabel(NorthPanelController.leftLabelSide + "Welcome, "
-                + Name.name + "!" + NorthPanelController.rightLabelSide, JLabel.LEFT);
-        welcomeLabel.setBackground(NorthPanelController.northPanelColor);
-
-        return welcomeLabel;
-    }
-
-    public static String getName() { return name; }
-
-    public static void setName(String name) { Name.name = name; }
 
     public static void setLogoutButton(JButton logoutButton) {
         Name.logoutButton = logoutButton;
@@ -64,5 +63,9 @@ public class Name {
         Name.logoutButton.addMouseListener(NorthPanelController.getGeneralButtonListener(logoutButton));
     }
 
+    public static JPanel getWelcomePanel() { return welcomePanel; }
+
     public static JButton getLogoutButton() { return logoutButton; }
+
+    public static JLabel getLabel() { return welcomeLabel; }
 }

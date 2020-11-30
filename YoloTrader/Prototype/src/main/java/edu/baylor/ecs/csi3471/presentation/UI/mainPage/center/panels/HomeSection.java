@@ -1,6 +1,5 @@
 package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -55,11 +54,8 @@ public class HomeSection {
         todaysWins.setForeground(Color.WHITE);
         todaysWins.setText("[ Today's Best Performing Stocks ]");
         todaysWins.setFont(new Font("Futura", Font.PLAIN, 22));
-        
-        
-        
+
         JScrollPane winners = StockUtil.getTopWinners().getFeed();
-       
         
         JPanel green = new JPanel();
         green.setLayout(new BoxLayout(green, BoxLayout.Y_AXIS));
@@ -70,7 +66,6 @@ public class HomeSection {
         green.setBackground(Color.BLACK);
         green.setBorder(new EmptyBorder(40,50,80,50));
 
-       
         JPanel temp1 = new JPanel();
         temp1.setSize(new Dimension(900,20));
         temp1.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -80,9 +75,6 @@ public class HomeSection {
         green.add(temp1);
         green.add(winners);
         green.setSize(new Dimension(900, 140));
-
-
-        
         
         //Set up the top losers
         JLabel todaysloss = new JLabel();
@@ -97,8 +89,7 @@ public class HomeSection {
         temp.setPreferredSize(new Dimension(900,10));
         temp.add(todaysloss);
         temp.setBackground(Color.BLACK);
-        
-        
+
         JPanel red = new JPanel();
         red.setLayout(new BoxLayout(red, BoxLayout.Y_AXIS));
         red.setBackground(Color.BLACK);
@@ -106,9 +97,6 @@ public class HomeSection {
         
         red.add(temp);
         red.add(losers);
-
-
-
         
         //Set up the newsFeed.
         JLabel newstitle = new JLabel();
@@ -130,13 +118,6 @@ public class HomeSection {
 		newsfeed.setLayout(new BoxLayout(newsfeed, BoxLayout.Y_AXIS));
 		newsfeed.add(newstitle);
 		newsfeed.add(news);
-
-		/*JPanel indexes = new JPanel();
-		indexes.setPreferredSize(new Dimension(1150, 720));
-		indexes.setBorder(new EmptyBorder(0,50,50,50));
-		indexes.setBackground(CenterPanelController.centerPanelColor);*/
-
-
 
 		//Set up indicators
 		JPanel indicators = new JPanel();
@@ -167,7 +148,6 @@ public class HomeSection {
 		dowJones.setBackground(Color.BLACK);
 		dowJones.setLayout(new BoxLayout(dowJones, BoxLayout.Y_AXIS));
 
-
 		JPanel nasdaq = new JPanel();
 		nasdaq.setBackground(Color.BLACK);
 		nasdaq.setPreferredSize(new Dimension(500, 400));
@@ -179,7 +159,6 @@ public class HomeSection {
 		JPanel space2 = new JPanel();
 		space2.setBackground(Color.BLACK);
 		space2.setPreferredSize(new Dimension(50,400));
-
 
 		try {
 			
@@ -201,18 +180,11 @@ public class HomeSection {
 			dowJones.add(dowtitle);
 			dowJones.add(dow);
 
-
-
-
-
 			GraphPanel sp = StockUtil.getGraph(ndaq);
 			
 			sp.setPreferredSize(new Dimension(300, 300));
 
-
-			
 			JLabel ndaqtitle = new JLabel();
-			
 			ndaqtitle.setText("[ "+ ndaq.getSymbol() +" ]");
 			ndaqtitle.setForeground(sp.getLineColor());
 			ndaqtitle.setFont(new Font("Futura", Font.PLAIN, 22));
@@ -220,36 +192,20 @@ public class HomeSection {
 			nasdaq.add(ndaqtitle);
 			nasdaq.add(sp);
 
-
 			indexes.setBorder(new EmptyBorder(40,0,50,0));
 			indexes.add(space2);
 			indexes.add(nasdaq);
 			indexes.add(space);
 			indexes.add(dowJones);
 
-
 			indicators.add(indexes);
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			//no need to do anything. stockUtil will take care of exceptions and logging them.
-		}
-
-
-
-
+		} catch (IOException ignored) { }
 
 		//Add components	
 		HomeSection.homeMainPanel.add(green);
 		HomeSection.homeMainPanel.add(red);
 		HomeSection.homeMainPanel.add(indicators);
 		HomeSection.homeMainPanel.add(newsfeed);
-
-
-		YoloTrader.logger.info("Done.");
-
-
-
-
     }
 }

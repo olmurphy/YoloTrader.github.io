@@ -47,7 +47,7 @@ public class NorthPanelController {
     /**
      * initialize the "Welcome, name" upon creating an account or logging in
      */
-    public static void setNorthPanel(String user) { setName(user); }
+    public static void setNorthPanel(String user) { Name.setWelcomePanel(user); }
 
     /**
      * logic for search button, it calls the launchSearch which makes an indirect call to the StockUtil
@@ -88,7 +88,7 @@ public class NorthPanelController {
      * sets the name on the top of the panel to username
      * @param name username of the user entering application
      */
-    public static void setName(String name) { Name.setName(name); }
+    public static void setName(String name) { Name.updateLabelPanel(name); }
 
     /**
      * The launchSearch function either opens a new tab of the desired

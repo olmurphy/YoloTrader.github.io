@@ -126,7 +126,7 @@ public class FormController {
             else if (!checkPassMatch()) { CreateAccount.getPassNotMatchWarning(); }
 
             // check that the email is unique
-            else if (!MainPanelController.getProfileController().isEmailUnique(email)) { Email.getEmailWarning(); }
+            else if (MainPanelController.getProfileController().isNotEmailUnique(email)) { Email.getEmailWarning(); }
 
             // check that user's is inputting the correct verification code sent to their email
             else if (!Email.getEmailSentCodeValidation(email)) { Email.getEmailValidationCodeNotValid(); }

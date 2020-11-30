@@ -1,10 +1,11 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.stocks;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages;
 
 import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.model.Comment;
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.stockPage.NewsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,21 +46,18 @@ public class StockPage {
         yahoofinance.Stock equity = new yahoofinance.Stock(stock.getTicker());
         equity.setName(stock.getName());
 
+        // FIXME: uncomment when the getPrice that the getAnalysis uses does not throw exception
+        // String analysis = StockUtil.getAnalysis(equity);
+
         if (dialog == null) { startStockPage(); }
 
         stockPanel = new JPanel();
         stockPanel.setLayout(new BoxLayout(stockPanel, BoxLayout.Y_AXIS));
         stockPanel.setBackground(CenterPanelController.centerPanelColor);
 
-        JPanel headerPanel = new JPanel(new BorderLayout());
-        headerPanel.setBackground(CenterPanelController.centerPanelColor);
-        headerPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>" + stock.getName() + "</B></span></html>"),
+        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>" + stock.getName() + "</B></span></html>"),
                 BorderLayout.CENTER);
-        headerPanel.add(getAddCommentButton(), BorderLayout.EAST);
 
-        stockPanel.add(headerPanel);
-
-        //stockPanel.add(headerPanel);
         JLabel date = new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:14px;\"><B>Date Added: " + stock.getDateAdded().toString() +
                 "</B></span><hr></html>", JLabel.LEFT);
         date.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -68,15 +66,20 @@ public class StockPage {
         GraphPanel graphPanel = StockUtil.getGraph(equity);
         graphPanel.setPreferredSize(new Dimension(900, 700));
         stockPanel.add(graphPanel);
-        JPanel panel = getComments(stock);
-        stockPanel.add(panel);
+
+        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Daily News" +
+                "</B></span><hr></html>", JLabel.LEFT));
+
+        NewsPanel newsPanel = StockUtil.getNewsPanel(equity);
+        newsPanel.getJPanel().setBackground(CenterPanelController.centerPanelColor);
+        stockPanel.add(newsPanel.getJPanel());
 
         JScrollPane feed = new JScrollPane(stockPanel);
 
         stockTabbedPane.addTab(stock.getName(), feed);
     }
 
-    public static JPanel getComments(Stock stock) {
+    public static void setCommentPanel(Stock stock) {
 
         commentPanel = new JPanel();
         commentPanel.setName("Test");
@@ -85,18 +88,13 @@ public class StockPage {
 
         // add all the comments if any exist
         if (stock.getComments().size() > 0) {for (Comment comment : stock.getComments()) { commentPanel.add(produceCommentPanel(comment)); }}
-
-        return commentPanel;
     }
+
+    public static JPanel getCommentPanel() { return commentPanel; }
 
     public static JPanel produceCommentPanel(Comment comment) {
         JPanel commentPanel = new JPanel(new BorderLayout());
         commentPanel.setBackground(CenterPanelController.centerPanelColor);
-
-        // setting up footer panel
-        JPanel footerPanel = new JPanel(new GridLayout(1, 1));
-        footerPanel.setBackground(CenterPanelController.centerPanelColor);
-        footerPanel.add(getEditCommentButton(comment));
 
         // setting up header panel
         JPanel headerPanel = new JPanel();
@@ -110,9 +108,15 @@ public class StockPage {
         headerPanel.add(new JLabel(CenterPanelController.leftLabelSide + "Date Last Updated: " + comment.getDateLastModified().toString()
                 + CenterPanelController.rightLabelSide));
 
+        // setting up footer panel
+        JPanel footerPanel = new JPanel(new GridLayout(1, 1));
+        footerPanel.setBackground(CenterPanelController.centerPanelColor);
+        footerPanel.add(getEditCommentButton(comment));
+
         // add the panels to comment panel
         commentPanel.add(headerPanel, BorderLayout.NORTH);
-        commentPanel.add(new JLabel(comment.getText()), BorderLayout.CENTER);
+        commentPanel.add(new JLabel(CenterPanelController.leftLabelSide + comment.getText() + CenterPanelController.rightLabelSide),
+                BorderLayout.CENTER);
         commentPanel.add(footerPanel, BorderLayout.SOUTH);
 
         return commentPanel;
