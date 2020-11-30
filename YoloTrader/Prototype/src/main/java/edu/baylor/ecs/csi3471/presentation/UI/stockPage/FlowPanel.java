@@ -1,4 +1,3 @@
-package edu.baylor.ecs.csi3471.presentation.UI.stockPage;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -29,10 +28,10 @@ public class FlowPanel {
 	public FlowPanel(){
 		view = new JPanel();
 		view.setBackground(Color.BLACK);
-		view.setLayout(new FlowLayout());
+		view.setLayout(new FlowLayout(FlowLayout.LEFT));
 		feed = new JScrollPane(view);
 		feed.setBackground(Color.BLACK);
-		feed.setPreferredSize(new Dimension(900, 120));
+		
 		
 		UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.WHITE));
 		UIManager.put("ScrollBar.track", new ColorUIResource(Color.BLACK));
