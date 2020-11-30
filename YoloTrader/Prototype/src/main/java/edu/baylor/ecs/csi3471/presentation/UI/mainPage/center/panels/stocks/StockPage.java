@@ -60,7 +60,9 @@ public class StockPage {
         GraphPanel graphPanel = StockUtil.getGraph(equity);
         graphPanel.setPreferredSize(new Dimension(900, 700));
         stockPanel.add(graphPanel);
-        stockPanel.add(getComments(stock));
+        JPanel panel = getComments(stock);
+        stockPanel.add(panel);
+        stockPanel.remove(panel);
 
         JScrollPane feed = new JScrollPane(stockPanel);
 
@@ -73,9 +75,11 @@ public class StockPage {
         commentPanel.setLayout(new BoxLayout(commentPanel, BoxLayout.Y_AXIS));
         commentPanel.setBackground(CenterPanelController.centerPanelColor);
 
-        // add all the comments
-        for (Comment comment : stock.getComments()) {
-            // commentPanel.add(produceCommentPanel(comment));
+        // add all the comments if any exist
+        // if (stock.getComments().size() > 0) {for (Comment comment : stock.getComments()) { commentPanel.add(produceCommentPanel(comment)); }}
+
+        for (int i = 0; i < 20; i++) {
+            commentPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:30px;\"><B>TEST:</B></span><hr></html>"));
         }
 
         return commentPanel;

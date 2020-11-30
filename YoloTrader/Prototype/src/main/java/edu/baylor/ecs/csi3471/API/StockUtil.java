@@ -1,4 +1,5 @@
 package edu.baylor.ecs.csi3471.API;
+
 import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
@@ -264,6 +265,18 @@ public class StockUtil {
     	return analysis;
     }
     
+	
+    /**
+     * The getPrice function returns the price of equity.
+     * <p>
+     * @param equity	${@link yahoofinance.Stock}
+     * <p>
+     * @return ${@link String}
+     */
+    public static Double getPrice(yahoofinance.Stock equity) {
+    	return equity.getQuote().getPrice().doubleValue();
+    }
+    
     
     /**
      * The getQuote function returns the price data for equity.
@@ -373,10 +386,11 @@ public class StockUtil {
 			for(int x = 0; x < tickers.size(); x++) {
 				JPanel slot = new JPanel();
 				slot.setBackground(Color.BLACK);
-				slot.setPreferredSize(new Dimension(100,80));
-				slot.setLayout(new BoxLayout(slot, BoxLayout.PAGE_AXIS));
+				slot.setPreferredSize(new Dimension(100,100));
+				slot.setLayout(new BoxLayout(slot, BoxLayout.Y_AXIS));
+				slot.setBorder(new LineBorder(Color.RED.brighter().brighter().brighter(), 2, true));
 				JLabel title = new JLabel();
-				title.setBorder(new EmptyBorder(5,0,5,0));
+				title.setBorder(new EmptyBorder(5,0,10,0));
 				title.setText(tickers.elementAt(x));
 				title.setForeground(Color.RED.darker().darker());
 				title.setFont(new Font("Futura", Font.PLAIN, 22));
@@ -384,11 +398,21 @@ public class StockUtil {
 				move.setFont(new Font("Futura", Font.PLAIN, 14));
 				move.setText(percentage.elementAt(x));
 				move.setVerticalAlignment(JLabel.BOTTOM);
+			
 				move.setForeground(Color.RED.brighter().brighter().brighter());
+				JPanel titlepan = new JPanel();
+				titlepan.setLayout(new FlowLayout(FlowLayout.CENTER));
+				titlepan.setBackground(Color.BLACK);
 				
-				slot.add(title);
+				titlepan.add(title);
+				JPanel movepan = new JPanel();
+				movepan.setLayout(new FlowLayout(FlowLayout.CENTER));
+				movepan.setBackground(Color.BLACK);
 				
-				slot.add(move);
+				movepan.add(move);
+				
+				slot.add(titlepan);
+				slot.add(movepan);
 				feed.addToScroll(slot);
 			}
 			
@@ -513,8 +537,9 @@ public class StockUtil {
 			for(int x = 0; x < tickers.size(); x++) {
 				JPanel slot = new JPanel();
 				slot.setBackground(Color.BLACK);
-				slot.setPreferredSize(new Dimension(100,80));
-				slot.setLayout(new BoxLayout(slot, BoxLayout.PAGE_AXIS));
+				slot.setPreferredSize(new Dimension(100,100));
+				slot.setLayout(new BoxLayout(slot, BoxLayout.Y_AXIS));
+				slot.setBorder(new LineBorder(Color.GREEN, 2, true));
 				JLabel title = new JLabel();
 				title.setBorder(new EmptyBorder(5,0,10,0));
 				title.setText(tickers.elementAt(x));
@@ -526,10 +551,19 @@ public class StockUtil {
 				move.setVerticalAlignment(JLabel.BOTTOM);
 			
 				move.setForeground(Color.GREEN);
+				JPanel titlepan = new JPanel();
+				titlepan.setLayout(new FlowLayout(FlowLayout.CENTER));
+				titlepan.setBackground(Color.BLACK);
 				
-				slot.add(title);
+				titlepan.add(title);
+				JPanel movepan = new JPanel();
+				movepan.setLayout(new FlowLayout(FlowLayout.CENTER));
+				movepan.setBackground(Color.BLACK);
 				
-				slot.add(move);
+				movepan.add(move);
+				
+				slot.add(titlepan);
+				slot.add(movepan);
 				feed.addToScroll(slot);
 			}
 			
@@ -1058,6 +1092,27 @@ public class StockUtil {
     	
     }
     
+    
+    
+    /**
+     * The getStock function returns the stock for the passed
+     * ticker.
+     * <p>
+     * @param equity	${@link yahoofinance.Stock}
+     * <p>
+     * @return	{@link Vector<Double>} 
+     */
+    public static yahoofinance.Stock getStock(String ticker){
+    	yahoofinance.Stock rtrn = null;
+    	try {
+			rtrn = yahoofinance.YahooFinance.get(ticker);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return rtrn;
+    }
     
     
     /**
