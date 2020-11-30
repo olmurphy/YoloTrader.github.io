@@ -13,12 +13,12 @@ public class ProfileSection {
 
     public static JScrollPane descriptionScrollPanel;
 
-    public static String emailLabelString = "<html><span style=\"font-family:Futura;font-size:14px;color:white;\"><B>Email: </B>";
-    public static String firstLabelString = "<html><span style=\"font-family:Futura;font-size:14px;color:white;\"><B>First: </B>";
-    public static String lastLabelString = "<html><span style=\"font-family:Futura;font-size:14px;color:white;\"><B>Last: </B>";
-    public static String userLabelString = "<html><span style=\"font-family:Futura;font-size:14px;color:white;\"><B>Username: </B>";
+    public static String emailLabelString = "<B>Email: </B>";
+    public static String firstLabelString = "<B>First: </B>";
+    public static String lastLabelString = "<B>Last: </B>";
+    public static String userLabelString = "<B>Username: </B>";
 
-    public static String startUserFieldsFormat = "<span style=\"font-family:Futura;font-size:14px;color:white;\">";
+    public static String startUserFieldsFormat = "<html><span style=\"font-family:Futura;font-size:14px;color:white;\">";
 
     public static JLabel firstLabel;
     public static JLabel lastLabel;
@@ -40,7 +40,7 @@ public class ProfileSection {
      */
     public static void setProfilePanel(Profile profile) {
         // initialize the fields of the profile panel upon user entering the application
-        addTextToProfileLabels(profile.getFirst(), profile.getLast(), profile.getUsername(), profile.getEmail());
+        updateProfileLabels(profile.getFirst(), profile.getLast(), profile.getUsername(), profile.getEmail());
 
         JPanel profilePanel = new JPanel(new BorderLayout());
         profilePanel.add(getPicturePanel(), BorderLayout.WEST);
@@ -177,27 +177,27 @@ public class ProfileSection {
     }
 
     /**
-     * used to set all the profile panel
+     * updates all the profile labels
      * @param first first name of user
      * @param last last name of user
      * @param email email of user
      * @param user user's username to display
      */
-    public static void addTextToProfileLabels(String first, String last, String user, String email) {
+    public static void updateProfileLabels(String first, String last, String user, String email) {
 
         if (!set) { setAllProfileLabels(); }
 
         // setting first name
-        getFirstLabel().setText(firstLabelString + startUserFieldsFormat + first);
+        getFirstLabel().setText(startUserFieldsFormat + firstLabelString + first + "</span></html>");
 
         // adding last name
-        getLastLabel().setText(lastLabelString + startUserFieldsFormat + last );
+        getLastLabel().setText(startUserFieldsFormat + lastLabelString + last + "</span></html>");
 
         // adding username
-        getUserLabel().setText(userLabelString + startUserFieldsFormat + user );
+        getUserLabel().setText(startUserFieldsFormat + userLabelString + user + "</span></html>");
 
         // adding email
-        getEmailLabel().setText(emailLabelString + startUserFieldsFormat + email);
+        getEmailLabel().setText(startUserFieldsFormat + emailLabelString + email + "</span></html>");
     }
 
     public static void setAllProfileLabels() {

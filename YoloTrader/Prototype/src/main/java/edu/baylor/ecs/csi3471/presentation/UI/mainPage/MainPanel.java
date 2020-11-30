@@ -18,6 +18,9 @@ public class MainPanel {
     public static JPanel mainPanel;
     public static Color backGroundColor = Color.BLACK;
 
+    /**
+     * sets the main User Interface panel
+     */
     public static void createUI () {
         homeFrame = new JFrame();
 
@@ -35,9 +38,12 @@ public class MainPanel {
         homeFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
+    /** @return the main panel*/
     public static JPanel getMainPanel() { return mainPanel; }
 
-    /* low coupling */
+    /**
+     * return the start frame, that is the login page
+     */
     public static void getStartFrame() { FormController.getStartFrame(); }
 
     /**

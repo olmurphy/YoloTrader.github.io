@@ -44,14 +44,10 @@ public class WestPanelController {
     public static MouseAdapter getGeneralWestPanelActions(JPanel panel, String panelName) {
         return new MouseAdapter() {
             @Override
-            public void mouseEntered(MouseEvent e) {
-                if (!panelName.equals(currPanel)) { panel.setBorder(whiteBorder); }
-            }
+            public void mouseEntered(MouseEvent e) { if (!panelName.equals(currPanel)) { panel.setBorder(whiteBorder); } }
 
             @Override
-            public void mouseExited(MouseEvent e) {
-                if (!panelName.equals(currPanel)) { panel.setBorder(emptyBorder); }
-            }
+            public void mouseExited(MouseEvent e) { if (!panelName.equals(currPanel)) { panel.setBorder(emptyBorder); } }
         };
     }
 
@@ -67,11 +63,8 @@ public class WestPanelController {
 
                 BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
 
-                try {
-                    MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
-                } catch (NullPointerException n) {
-                    YoloTrader.logger.warning("NullPointerException raised");
-                }
+                try { MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER)); }
+                catch (NullPointerException n) { YoloTrader.logger.warning("NullPointerException raised"); }
 
                 MainPanel.getMainPanel().add(CenterPanelController.getProfilePanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
@@ -94,11 +87,8 @@ public class WestPanelController {
 
                 BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
 
-                try {
-                    MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
-                } catch (NullPointerException n) {
-                    YoloTrader.logger.warning("NullPointerException raised");
-                }
+                try { MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER)); }
+                catch (NullPointerException n) { YoloTrader.logger.warning("NullPointerException raised"); }
 
                 MainPanel.getMainPanel().add(CenterPanelController.getAboutPanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
@@ -120,11 +110,9 @@ public class WestPanelController {
                 YoloTrader.logger.info("User clicks on help panel");
 
                 BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
-                try {
-                    MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
-                } catch (NullPointerException n) {
-                    YoloTrader.logger.warning("NullPointerException raised");
-                }
+
+                try { MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER)); }
+                catch (NullPointerException n) { YoloTrader.logger.warning("NullPointerException raised"); }
 
                 MainPanel.getMainPanel().add(CenterPanelController.getHelpPanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
@@ -146,11 +134,10 @@ public class WestPanelController {
                 YoloTrader.logger.info("navigating to home panel");
 
                 BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
-                try {
-                    MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
-                } catch (NullPointerException n) {
-                    YoloTrader.logger.warning("NullPointerException raised");
-                }
+
+                try { MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER)); }
+                catch (NullPointerException n) { YoloTrader.logger.warning("NullPointerException raised"); }
+
                 MainPanel.getMainPanel().add(CenterPanelController.getHomePanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
                 panel.setBorder(whiteBorder);
@@ -171,11 +158,10 @@ public class WestPanelController {
                 YoloTrader.logger.info("User clicks on stock panel");
 
                 BorderLayout layout = (BorderLayout)MainPanel.getMainPanel().getLayout();
-                try {
-                    MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER));
-                } catch (NullPointerException n) {
-                    YoloTrader.logger.warning("NullPointerException raised");
-                }
+
+                try { MainPanel.getMainPanel().remove(layout.getLayoutComponent(BorderLayout.CENTER)); }
+                catch (NullPointerException n) { YoloTrader.logger.warning("NullPointerException raised"); }
+
                 MainPanel.getMainPanel().add(CenterPanelController.getStockPanel(), BorderLayout.CENTER);
                 resetAllPanelColors();
                 panel.setBorder(whiteBorder);

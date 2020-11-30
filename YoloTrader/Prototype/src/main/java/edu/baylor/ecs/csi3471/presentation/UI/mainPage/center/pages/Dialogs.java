@@ -102,7 +102,7 @@ public class Dialogs {
             }
 
             MainPanelController.getProfileController().changeProfileFields(first.getText(), last.getText(), user.getText(), emailStr);
-            ProfileSection.setProfilePanel(MainPanelController.getProfileController().getProfile());
+            ProfileSection.updateProfileLabels(first.getText(), last.getText(), user.getText(), emailStr);
             Name.updateLabelPanel(user.getText());
 
         } else { YoloTrader.logger.info("Editing profile cancelled"); }

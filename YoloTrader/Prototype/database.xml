@@ -30,24 +30,11 @@
             </listOfWatchLists>
         </profile>
         <profile>
-            <email>owen261@icloud.com</email>
-            <username>olmurphy</username>
-            <password>l</password>
-            <first>owen</first>
-            <last>murphy</last>
-            <listOfWatchLists>
-                <watchListName>
-                    <dateCreated>2020-11-23T19:10:11.427-06:00</dateCreated>
-                    <stockList/>
-                </watchListName>
-            </listOfWatchLists>
-        </profile>
-        <profile>
             <email>l</email>
-            <username>kala-bali</username>
+            <username>Kal-Abali</username>
             <password>l</password>
             <first>Prince</first>
-            <last>Kalu</last>
+            <last>Kalue</last>
             <listOfWatchLists>
                 <watchListName>
                     <name>new3</name>
@@ -59,6 +46,12 @@
                             <dateAdded>2020-11-27T09:12:53.947-06:00</dateAdded>
                             <commentList/>
                         </stock>
+                        <stock>
+                            <ticker>TSLA</ticker>
+                            <name>Tesla, Inc.</name>
+                            <dateAdded>2020-11-30T16:01:50.452-06:00</dateAdded>
+                            <commentList/>
+                        </stock>
                     </stockList>
                 </watchListName>
                 <watchListName>
@@ -67,7 +60,7 @@
                     <stockList/>
                 </watchListName>
                 <watchListName>
-                    <name>abc</name>
+                    <name>working?</name>
                     <dateCreated>2020-11-26T08:01:10.585-06:00</dateCreated>
                     <stockList>
                         <stock>
@@ -86,6 +79,14 @@
             <password>o</password>
             <first>o</first>
             <last>o</last>
+            <listOfWatchLists/>
+        </profile>
+        <profile>
+            <email>owen261@icloud.com</email>
+            <username>olmurphy</username>
+            <password>m</password>
+            <first>owen</first>
+            <last>murphy</last>
             <listOfWatchLists/>
         </profile>
     </profileList>

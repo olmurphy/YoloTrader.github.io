@@ -6,6 +6,7 @@ import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages.StockPage;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Name;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Search;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
@@ -57,9 +58,8 @@ public class NorthPanelController {
      */
     public static ActionListener getSearchButtonListener(JTextField search) {
         return e -> {
-            if (search.getText().equals("")) {
-                Search.getSearchWarning();
-            } else {
+            if (search.getText().equals("")) { Search.getSearchWarning(); }
+            else {
                 YoloTrader.logger.info("Searching stock...");
 
                 // 2nd parameter is false because all we want is to display the results from the query,
@@ -106,9 +106,8 @@ public class NorthPanelController {
         // results is  a mapping of company name -> ticker.
         results = StockUtil.pullUp(query);
 
-        if (results.size() == 0) {
-            SearchResults.getNoResultsWarning();
-        } else if (addSingleStock && results.size() == 1) {
+        if (results.size() == 0) { SearchResults.getNoResultsWarning(); }
+        else if (addSingleStock && results.size() == 1) {
 
             // get the stock watch list
             StockWatchList list = MainPanelController.getStockWatchListController()
@@ -144,9 +143,8 @@ public class NorthPanelController {
         return e -> {
 
             String listName;
-            if (SearchResults.getStockList().isSelectionEmpty()) {
-                SearchResults.getNoStockSelectedWarning();
-            } else {
+            if (SearchResults.getStockList().isSelectionEmpty()) { SearchResults.getNoStockSelectedWarning(); }
+            else {
                 String stockString = SearchResults.getStockList().getSelectedValue();
                 Stock stock = new Stock(stockString, results.get(stockString), new Date());
 
@@ -194,13 +192,8 @@ public class NorthPanelController {
 
                             // send successful message
                             SearchResults.getStockAddedSuccessfullyMessage();
-                        } else {
-                            SearchResults.getStockAlreadyAddedWarning();
-                        }
-                    } else {
-                        // display error that the list does not exist
-                        SearchResults.getListNotExistWarning();
-                    }
+                        } else { SearchResults.getStockAlreadyAddedWarning(); }
+                    } else { SearchResults.getListNotExistWarning(); } // display error that the list does not exist
                 }
             }
         };
@@ -226,12 +219,11 @@ public class NorthPanelController {
      */
     public static ActionListener getOpenStockButtonListener() {
         return e -> {
-            if (SearchResults.getStockList().isSelectionEmpty()) {
-                // no stock selected, display warning
-                SearchResults.getNoStockSelectedWarning();
-            } else {
-                // open the stock panel FIXME: need to add open graph panel
-                System.out.println(SearchResults.getStockList().getSelectedValue());
+            if (SearchResults.getStockList().isSelectionEmpty()) { SearchResults.getNoStockSelectedWarning(); }
+            else {
+                String stockName = SearchResults.getStockList().getSelectedValue();
+                String ticker = results.get(stockName);
+                StockPage.addStockToPanel(new Stock(stockName, ticker, new Date()));
             }
         };
     }

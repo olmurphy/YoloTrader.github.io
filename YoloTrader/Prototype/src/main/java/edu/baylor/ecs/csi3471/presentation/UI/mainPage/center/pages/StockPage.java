@@ -25,6 +25,7 @@ public class StockPage {
     public static void startStockPage() {
         dialog = new JDialog();
         dialog.addWindowListener(getDialogWindowListener());
+        dialog.setBackground(CenterPanelController.centerPanelColor);
 
         // setting and adding tabbed pane
         setStockTabbedPane(new JTabbedPane());

@@ -7,6 +7,9 @@ import edu.baylor.ecs.csi3471.model.StockWatchList;
 import java.util.List;
 
 /**
+ * this class injects the service for ${@link edu.baylor.ecs.csi3471.presentation.presentationLogic.StockController}
+ * class
+ *
  * @author owenmurphy
  */
 public class StockWatchListService {
@@ -78,13 +81,6 @@ public class StockWatchListService {
      * @param oldName old name to find the stock watch list
      */
     public void renameStockWatchList(String newName, String oldName) {
-
-        // traverse the watch lists
-        for (StockWatchList stockWatchList : this.dao.getAll()) {
-            if (stockWatchList.getName().equals(oldName)) {
-                stockWatchList.setName(newName);
-                return; // short circuit the loop for performance
-            }
-        }
+        this.dao.getAll().stream().filter(x -> x.getName().equals(oldName)).findFirst().ifPresent(list -> list.setName(newName));
     }
 }

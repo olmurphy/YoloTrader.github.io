@@ -29,10 +29,7 @@ public class ProfileService {
      * not match a profile in the list of profiles
      * @param profile profile to be added into the list of profiles
      */
-    public void addProfile(Profile profile) {
-
-        this.dao.add(profile);
-    }
+    public void addProfile(Profile profile) { this.dao.add(profile); }
 
     /**
      * calls ${@link ProfileDAO#delete(Profile)} to delete the profile from the dao
@@ -50,21 +47,16 @@ public class ProfileService {
      * list of profile, else returns null indicating email and pass do not match
      */
     public Object[] findProfile(String email, String pass) {
-        Object[] objects = new Object[2];
+        Object[] objects = {null, null};
+        int index = 0;
 
-        objects[0] = null;
-        objects[1] = null;
-
-        List<Profile> profiles = dao.getAll();
-        boolean found = false;
-        for (int index = 0; !found && index < profiles.size(); index++) {
-            if (profiles.get(index).getEmail().equals(email) && profiles.get(index).getPassword().equals(pass)) {
+        for (Profile profile : this.dao.getAll()) {
+            if (profile.getEmail().equals(email) && profile.getPassword().equals(pass)) {
                 objects[0] = index;
-                objects[1] = profiles.get(index);
-                found = true;
-            }
+                objects[1] = profile;
+                return objects;
+            } else { index ++; }
         }
-
         return objects;
     }
 
@@ -88,6 +80,11 @@ public class ProfileService {
      */
     public void save(int index, Profile profile) { this.dao.update(index, profile); }
 
+    /**
+     * changes the password at the given index in the dao
+     * @param index index of the profile to change password
+     * @param newPass new password to change to
+     */
     public void changePassword(int index, String newPass) { ((ProfileDAO)this.dao).changeProfilePassword(index, newPass); }
 
     /**
@@ -97,25 +94,22 @@ public class ProfileService {
      * @return true if email found and email sent, o.w. false
      */
     public boolean recoverPassword(String email) {
-        List<Profile> profiles = this.dao.getAll();
+        int index = 0;
 
-        for (int index = 0; index < profiles.size(); index++ ) {
-            if (profiles.get(index).getEmail().equals(email)) {
+        for (Profile profile : this.dao.getAll()) {
+            if (profile.getEmail().equals(email)) {
 
                 // changing password with a random password
                 YoloTrader.logger.info("Changing password");
                 String password = Email.getRandomString();
-                ((ProfileDAO)this.dao).changeProfilePassword(index, password);
 
+                ((ProfileDAO)this.dao).changeProfilePassword(index, password);
                 // sending client new password
                 Email.sendEmail(email, "Changed Password", "Your new password is: " +
                         password);
-
-                // email is associated with a profile
-                return true;
-            }
+                return true; // email is associated with a profile
+            } else { index++; }
         }
-
         return false;
     }
 
@@ -129,12 +123,12 @@ public class ProfileService {
      */
     public void saveProfiles() { ((ProfileDAO)dao).saveAll(); }
 
+    /**
+     * checks if the email passed in is found in the ${@link ProfileDAO}
+     * @param email email to check in the DAO
+     * @return true if the email passed in was not found (i.e. unique) false o.w.
+     */
     public boolean isEmailUnique(String email) {
-        for (Profile profile : this.getDao().getAll()) {
-            if (profile.getEmail().equals(email)) {
-                return false;
-            }
-        }
-        return true;
+        return this.dao.getAll().stream().filter(x -> x.getEmail().equals(email)).findFirst().orElse(null) != null;
     }
 }

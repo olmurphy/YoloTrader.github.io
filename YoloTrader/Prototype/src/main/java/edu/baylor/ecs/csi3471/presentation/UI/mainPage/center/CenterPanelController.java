@@ -172,9 +172,8 @@ public class CenterPanelController {
                 StockWatchList watchList = MainPanelController.getStockWatchListController().findStockWatchList(watchListName);
                 if (watchList != null) {
                     List<Stock> stockList = watchList.getStockList();
-                    for (Stock stock : stockList) {
-                        ((DefaultListModel<String>) StocksSection.getStockListModel()).addElement(stock.getName());
-                    }
+
+                    for (Stock stock : stockList) { ((DefaultListModel<String>) StocksSection.getStockListModel()).addElement(stock.getName()); }
                 }
             }
         };
@@ -235,9 +234,8 @@ public class CenterPanelController {
         if (!StocksSection.getWatchListList().isSelectionEmpty()) {
             ((DefaultListModel<String>)StocksSection.getStockListModel()).removeAllElements();
             List<Stock> list = MainPanelController.getStockWatchListController().findStockWatchList(StocksSection.getWatchListList().getSelectedValue()).getStockList();
-            for (Stock stock : list) {
-                ((DefaultListModel<String>) StocksSection.getStockListModel()).addElement(stock.getName());
-            }
+
+            for (Stock stock : list) { ((DefaultListModel<String>) StocksSection.getStockListModel()).addElement(stock.getName()); }
         }
     }
 
@@ -277,11 +275,7 @@ public class CenterPanelController {
      * when the open button is clicked the information for a watch list opens
      * @return ActionListener will perform action when the open button is clicked on watch list
      */
-    public static ActionListener getWatchListOpenItemListener() {
-        return e -> {
-            // FIXME: add action here
-        };
-    }
+    public static ActionListener getWatchListOpenItemListener() { return e -> { }; }
 
     /**
      * when the remove button is clicked it calls ${@link #deleteWatchList()} to delete the
@@ -336,11 +330,7 @@ public class CenterPanelController {
      * delete the stock from the list
      * @return ActionListener will perform action when the remove button is clicked on stock
      */
-    public static ActionListener getStockListRemoveItemListener() {
-        return e -> {
-            deleteStockFromList();
-        };
-    }
+    public static ActionListener getStockListRemoveItemListener() { return e -> deleteStockFromList(); }
 
     /**
      * the method deletes a watch list from the user's profile.
@@ -389,27 +379,11 @@ public class CenterPanelController {
 
     public static ActionListener getEditProfileListener() { return e -> Dialogs.getEditProfileDialog(); }
 
-    public static ActionListener getEditCommentButtonAction(Comment comment) {
-        return e -> {
-            // FIXME: add action here
-        };
-    }
+    public static ActionListener getEditCommentButtonAction(Comment comment) { return e -> { }; }
 
-    public static ActionListener getAddCommentButtonAction() {
-        return e -> {
-            System.out.println("adding comment to stock");
-        };
-    }
+    public static ActionListener getAddCommentButtonAction() { return e -> System.out.println("adding comment to stock"); }
 
-    public static ActionListener getSaveCommentButtonAction() {
-        return e -> {
-            // FIXME: add action here
-        };
-    }
+    public static ActionListener getSaveCommentButtonAction() { return e -> { }; }
 
-    public static ActionListener getDeleteCommentButtonAction() {
-        return e -> {
-            // FIXME: add action here
-        };
-    }
+    public static ActionListener getDeleteCommentButtonAction() { return e -> { }; }
 }

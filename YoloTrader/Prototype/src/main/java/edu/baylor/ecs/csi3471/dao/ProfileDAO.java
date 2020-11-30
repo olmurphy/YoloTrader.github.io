@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.dao;
 
+import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.util.XMLProfileDAOUtil;
 
@@ -57,10 +58,7 @@ public class ProfileDAO implements GenericDAO<Profile> {
      * calls the ${@link XMLProfileDAOUtil#doSave(GenericDAO)} to save all the profiles in the database
      */
     public void saveAll() {
-        System.out.println("--------Inside DAO saving---------");
-        profiles.forEach(System.out::println);
-        System.out.println("----------------------------------\n\n");
-
+        YoloTrader.logger.info("Saving into Database");
         profileDAOUtil = new XMLProfileDAOUtil();
 
         profileDAOUtil.doSave(this);

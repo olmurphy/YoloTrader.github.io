@@ -36,9 +36,7 @@ public class MainPanelController {
         WestPanelController.setAllPanels();
     }
 
-    public static void setStockController(StockController stockController) {
-        MainPanelController.stockController = stockController;
-    }
+    public static void setStockController(StockController stockController) { MainPanelController.stockController = stockController; }
 
     public static StockController getStockController() { return stockController; }
 
