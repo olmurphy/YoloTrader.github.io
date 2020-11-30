@@ -21,12 +21,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.MalformedURLException;
 
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -38,6 +43,9 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import java.io.File;
+import java.io.FileWriter;
 
 import static java.util.Map.entry;
 
@@ -117,8 +125,8 @@ public class StockUtil {
 	private final static String LOSERS_URL = "https://financialmodelingprep.com/api/v3/losers?apikey=";
 	private static String LOSERS_API =  P_KEY;
 
-    
-	
+    private final static String DEMA_URL = "https://financialmodelingprep.com/api/v3/technical_indicator/daily/";
+    private static String DEMA_API =  "?period=10&type=dema&apikey=4819ef0b5de9d90ed219e89c51f35d34";
 	
 	
 	
@@ -226,42 +234,348 @@ public class StockUtil {
      * 
      */
     public static String getAnalysis(yahoofinance.Stock equity) {
-    	String analysis = "";
+    	String analysis = "Hold/Watch";
     	
-    	//Get the moving average and volume for the past week, so a position
+    	//Get the moving average and volume for the past two weeks, so a position
     	//cost distribution can be mentally constructed.
+    	YoloTrader.logger.info("Analyzing "+ equity.getName() +"..");
+    	
+    	
+		
+		
+		String pull = DEMA_URL+ equity.getSymbol()  + DEMA_API;
+		String dema = "dema";
+		String volume = "volume";
+		
+		String demaData = "";
+		Double demaValue = 0.0;
+		
+		String volData = "";
+		Double volValue = 0.0;
+		
+		Double currentPrice = StockUtil.getPrice(equity);
+		
+		
+		Double sellImbalance = 0.0;
+		Double buyImbalance = 0.0;
+		
+		
+		int count = 0;
+		int time = 14;
+		
+		
+		
+		try {
+			URL url = new URL(pull);
+	
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+				
+			    for (String line; (line = reader.readLine()) != null && count < time;) {
+			    	
+			    	
+			    	//If API limit reached.
+			    	if(line.contains("Error")) {
+			    		
+			    		String plausibleKey = getWorkingKey(DEMA_API);
+			    		
+			    		//If there is a working key.
+			    		if(plausibleKey != null) {
+			    			DEMA_API = plausibleKey;
+			    			
+			    			//call func again
+			    			analysis = getAnalysis(equity);
+			    		}
+			    		
+			    		//Otherwise.
+			    		else {
+			    			
+			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
+			    			return null;
+			    		}
+			    		
+			    
+			    	}
+			    	
+			    	//Otherwise, API limit hasn't been reached.
+			    	else {
+			    		
+			    		
+			    		//If dema data.
+			    		if(line.contains(dema)) {
+			    			//record it.
+			    		
+			    			demaValue = StockUtil.extractIndicator(line);
+			    			
+			    			
+			    			
+			    			//Tabulate
+			    			if(demaValue < currentPrice) {
+			    				buyImbalance += volValue;
+			    			}
+			    			else {
+			    				sellImbalance += volValue;
+			    			}
+			    			
+			    			
+			    			
+			    			
+			    			
+			    			//adjust count;
+			    			count++;
+			    			
+			    		}
+			    		
+			    		//else if volume data.
+			    		else if(line.contains(volume)) {
+			    			//record it
+			    			
+			    		
+			    			volValue = StockUtil.extractPrice(line);
+			    			
+			    			
+			    			
+			    		}
+			    		
+			    		
+			    		
+			    	}
+			  }//End of for loop.
+			  reader.close();
+			    
+			    
+			}//out of inner try block.
+			
+			
+			
+			
+			if(sellImbalance >= (buyImbalance * 1.4)) {
+				analysis = "Sell/Puts";
+			}
+			
+			else if(buyImbalance >= (sellImbalance*1.4)) {
+				analysis = "Buy/Calls";
+			}
+			
+			
+			
+			YoloTrader.logger.info("Connecting to Machine Learning Framework..");
+			
+			//Fetch accuracy and confirm analysis.
+			File confidence = new File("src/main/resources/confidence.txt");
+			Double accuracy = 1.00;
+			int right = 1;
+			int wrong = 0;
+			int total = 1;
+			
+			if (confidence.createNewFile()) {
+				
+				 FileWriter write = new FileWriter(confidence, false);
+				 
+				 
+				 write.write("1\n0\n");
+				 
+				 write.close();
+		       
+		      } else {
+		        
+		    	  Scanner read = new Scanner(confidence);
+		    	  boolean stop = false;
+		          while (read.hasNextLine() && stop == false) {
+		        	  String data = read.nextLine();
+			            
+			          right = Integer.parseInt(data);
+			          
+			          if(read.hasNextLine()) {
+				          data = read.nextLine();
+				          
+				          wrong = Integer.parseInt(data);
+				          stop = true;
+			          }
+		          }
+		          read.close();
+		          
+		          total = right + wrong;
+		    	  
+		          accuracy = (Double.valueOf(right) / Double.valueOf(total));
+		      }
+			
+			
+			
+			
+			//confirm analysis.
+			
+			if(accuracy < 0.50) {
+				if(analysis.contains("Buy")) {
+					analysis = "Sell/Puts";
+				}
+				
+				else if(analysis.contains("Sell")) {
+					analysis = "Buy/Calls";
+				}
+			}
+			
+			
+			
+			
+			
+			//update predictions and write this new prediction.
+			
+			File predict = new File("src/main/resources/predictions.txt");
+			LocalDateTime now = LocalDateTime.now();  
+			if (predict.createNewFile()) {
+				
+				 FileWriter write = new FileWriter(predict, false);
+				
+			
+				 //Don't write  a hold predicition.
+				 if(analysis.contains("Hold") == false) {
+					 write.write(equity.getSymbol() + "\n" + StockUtil.getPrice(equity)+ "\n" + analysis + "\n" + now + "\n" );
+					 
+				 }
+					 
+				  
+				 write.close();
+				
+		       
+		    } 
+			
+			
+			else {
+		        
+		    	  //read file. Count winners and losers.
+		    	  Scanner read = new Scanner(predict);
+		    	  String data;
+	        	  
+				  LocalDateTime then = LocalDateTime.now();
+				  int pos = 0;
+				  yahoofinance.Stock current = equity;
+				  Double pastPrice = 0.0;
+				  Double goalPrice = 0.0;
+				  Double presentPrice = 0.0;
+				  String pastPrediction = "";
+				  boolean buy;
+				  Vector<String> buffer = new Vector<String>();
+		          while (read.hasNextLine()) {
+		        	  
+		        	  data = read.nextLine();
+		        	  
+			          if(pos == 0 ) {
+			        	  current = StockUtil.getStock(data);
+			        	  if(current != null) {
+			        		  presentPrice = StockUtil.getPrice(current);
+			        		  pos++;
+			        	  }
+			        	  
+			          }
+			          else if(pos == 1) {
+			        	  pastPrice = Double.parseDouble(data);
+			        	  pos++;
+			        	  
+			          }
+			          else if(pos == 2) {
+			        	  pastPrediction = data;
+			        	  buy = false;
+			        	  goalPrice = pastPrice - (pastPrice * .05);
+			        	  if(pastPrediction.contains("Buy")) {
+			        		  buy = true;
+			        		  goalPrice = pastPrice + (pastPrice * .05);
+			        	  }
+			        	  pos++;
+			          }
+			          
+			          else if(pos == 3) {
+			        	  //Decide if marked as winner, and erased. or marked as loser and erased, or left alone to
+			        	  //finish the prediction window.
+			        	  then = LocalDateTime.parse(data);
+			        	  
+			        	  //If correct.
+			        	  if(goalPrice <= presentPrice) {
+			        		  right++;
+			        		  total = right + wrong;
+			        		  
+			        		  
+			        	  }
+			        	  
+			        	  //else if wrong && prediction window expired.
+			        	  else if( (presentPrice < goalPrice) &&
+			        			   (ChronoUnit.DAYS.between(then, LocalDateTime.now()) > 13) ){
+			        		  
+			        		  wrong++;
+			        		  total = right + wrong;
+			        		  
+			        	  }
+			        	  
+			        	  
+			        	  //Otherwise, prediction has not yet come true, but there is still time.
+			        	  else {
+			        		  //Write prediction to buffer.
+			        		  String fortune = current.getSymbol() + "\n" + pastPrice + "\n" + pastPrediction + "\n" + then + "\n";
+			        		  buffer.add(fortune);
+			        	  }
+			        	  
+			        	  
+			        	  //Prep to check outcome of next prediction.
+			        	  pos = 0;
+			        	  
+			          }
+					  
+					  
+			          
+			          
+		          }
+		          read.close();
+		          
+		          
+		          //Update accuracy.
+		          FileWriter write = new FileWriter(confidence, false);
+		          
+		          write.write(right + "\n" + wrong + "\n");
+					 
+				  write.close();
+				  
+				  
+				  
+				  
+				  //Overwrite predictions file
+				  FileWriter writer = new FileWriter(predict, false);
+				  
+				  for(int x = 0; x < buffer.size(); x++) {
+					  writer.write(buffer.elementAt(x));
+				  }
+				  
+				  
+				  if(analysis.contains("Hold") == false) {
+					  writer.write(equity.getSymbol() + "\n" + StockUtil.getPrice(equity)+ "\n" + analysis + "\n" + now + "\n" );
+				  }
+				  writer.close();
+				 
+				      
+		    	  
+		      }
+			
+			
+			
+		}//End of outer try block.
+		catch(UnsupportedEncodingException u) {
+	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+	           YoloTrader.logger.warning(u.toString());
+	        } catch (MalformedURLException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+	        	YoloTrader.logger.warning(e.toString());
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	        	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+	            YoloTrader.logger.warning(e.toString());
+	        }
+		
     	
     	
     	
-    	//Get the current price
-    	
-    	//compute & discern the imbalance(x) is, is there greater(+140% < x) volume below the current price
-    	//or above? If insufficient imbalance(+100% < x < +140% \), assume that there is more volume below the current price.
-    	
-    	//If insufficient imbalance, hold/watch.
-    	
-    	
-    	//else
-	    	//If the imbalance lies below the current price, then its a buy.
-	    	
-	    	
-	    	//otherwise, the imbalance nests above the current price, so its a sell.
-	    	
-    	
-    	
-    	//finally, check the current accuracy percentage.
-    		
-    		//If the accuracy is below 51%, negate the conclusion.
-    	
-    		
-    	
-    	
-    	//record this prediction in the prediction file.
     	
     	
     	
-    	
-    	
+		YoloTrader.logger.info("Analysis Complete.");
     	return analysis;
     }
     
@@ -277,6 +591,24 @@ public class StockUtil {
     	return equity.getQuote().getPrice().doubleValue();
     }
     
+<<<<<<< HEAD
+=======
+    
+    
+    /**
+     * The getPrice function returns the price of equity.
+     * <p>
+     * @param equity	${@link yahoofinance.Stock}
+     * <p>
+     * @return ${@link String}
+     */
+    public static Double getPrice(yahoofinance.Stock equity) {
+    	return equity.getQuote().getPrice().doubleValue();
+    }
+    
+    
+    
+>>>>>>> a6eacdc31b8c960571f2b0590ff245ca5971408e
     
     /**
      * The getQuote function returns the price data for equity.
@@ -594,6 +926,7 @@ public class StockUtil {
     /**
      * The getGeneralNews function returns a NewsPanel containing general news.
      * <p>
+     * @return ${@link NewsPanel}
      */
 	public static NewsPanel getGeneralNews() {
 		YoloTrader.logger.info("Fetching general news..");
@@ -1001,6 +1334,36 @@ public class StockUtil {
     }
     
     
+    /**
+     * The extractIndicator function is used to parse indicator data from the API.
+     * <p>
+     * @param line	${@link String}
+     * <p>
+     * @return	{@link Double} 
+     */
+    private static Double extractIndicator(String line) {
+    	String separate = ":";
+        String start = " ";
+        
+        int begin;
+    	
+    	
+  
+        begin= line.lastIndexOf(start);
+        begin++;
+        String data = line.substring(begin);
+        
+
+        
+        
+        
+        return Double.parseDouble(data);
+        
+        
+        
+    }
+    
+    
     
     /**
      * The getPosition function is a helper function for the getGraphData function.
@@ -1033,7 +1396,12 @@ public class StockUtil {
 		return rtrn;
     }
     
+<<<<<<< HEAD
     /*FIXME: TEST IF IT CAN HANDLE DRAWING DURING THE MARKET DAY!*/
+=======
+    
+    
+>>>>>>> a6eacdc31b8c960571f2b0590ff245ca5971408e
     
     /**
      * The function returns a GraphPanel object

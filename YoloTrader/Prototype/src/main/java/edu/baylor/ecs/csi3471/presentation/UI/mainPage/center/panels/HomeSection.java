@@ -38,7 +38,7 @@ public class HomeSection {
     }
 
     public static void setHomeMainPanel() {
-YoloTrader.logger.info("Preparing HomePanel..");
+    	YoloTrader.logger.info("Preparing HomePanel..");
     	
         HomeSection.homeMainPanel = new JPanel();
         homeMainPanel.setLayout(new BoxLayout(homeMainPanel, BoxLayout.Y_AXIS));

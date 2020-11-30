@@ -23,17 +23,18 @@ public class AboutSection {
 
      public static String developerLabelString = "<html>" +
              "<ul>" +
-            "<li style=color:white;font-family:Futura>Owen Murphy [Leader] (responsibilities):</li>" +
+            "<li style=color:white;font-family:Futura>Owen Murphy [ Leader ] (responsibilities):</li>" +
                 "<ul>" +
                     "<li style=color:white;font-family:Futura>User Interface</li>" +
                     "<li style=color:white;font-family:Futura>Analysis and Design</li>" +
                     "<li style=color:white;font-family:Futura>Database Configuration</li>" +
                 "</ul>" +
-            "<li style=color:white;font-family:Futura>Prince Kalu (responsibilities):</li>" +
+            "<li style=color:white;font-family:Futura>Prince Kalu [ Chief Software Engineer ] (responsibilities):</li>" +
                 "<ul>" +
                     "<li style=color:white;font-family:Futura>Analysis and Design</li>" +
                     "<li style=color:white;font-family:Futura>Backend Development</li>"+
                     "<li style=color:white;font-family:Futura>Middleware Development</li>"+
+                    "<li style=color:white;font-family:Futura>Machine Learning Development</li>"+
                 "</ul>" + "</html";
 
     public static JPanel getMainAboutPanel() { return mainAboutPanel; }
