@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.presentation.UI.stockPage;
 
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
