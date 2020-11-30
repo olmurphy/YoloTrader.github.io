@@ -1,3 +1,5 @@
+package edu.baylor.ecs.csi3471.API;
+
 import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
