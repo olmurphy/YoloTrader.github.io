@@ -1,4 +1,4 @@
-
+package edu.baylor.ecs.csi3471.presentation.UI.stockPage;
 
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
