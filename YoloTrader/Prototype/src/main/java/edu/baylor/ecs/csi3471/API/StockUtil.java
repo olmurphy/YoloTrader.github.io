@@ -17,11 +17,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
+import java.io.*;
 import java.net.MalformedURLException;
 
 import java.net.URISyntaxException;
@@ -43,9 +39,6 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-import java.io.File;
-import java.io.FileWriter;
 
 import static java.util.Map.entry;
 
@@ -274,29 +267,16 @@ public class StockUtil {
 			      accuracy = (Double.valueOf(right) / Double.valueOf(total));
 			  }
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
-		
-		
-		
 		//update predictions.
-		
 		File predict = new File("src/main/resources/predictions.txt");
-    	
-    	
-    	
+
     	
     	 //read file. Count winners and losers.
     	 Scanner read;
@@ -313,10 +293,10 @@ public class StockUtil {
 			  Double presentPrice = 0.0;
 			  String pastPrediction = "";
 			  boolean buy;
-			  Vector<String> buffer = new Vector<String>();
+			  Vector<String> buffer = new Vector<>();
 	        while (read.hasNextLine()) {
 	      	  
-	      	  data = read.nextLine();
+				  data = read.nextLine();
 	      	  
 		          if(pos == 0 ) {
 		        	  current = StockUtil.getStock(data);
@@ -377,10 +357,6 @@ public class StockUtil {
 		        	  pos = 0;
 		        	  
 		          }
-				  
-				  
-		          
-		          
 	        }
 	        read.close();
 	        
@@ -390,34 +366,21 @@ public class StockUtil {
 	        
 	        write.write(right + "\n" + wrong + "\n");
 				 
-			  write.close();
-			  
-			  
-			  
-			  
-			  //Overwrite predictions file
-			  FileWriter writer = new FileWriter(predict, false);
-			  
-			  for(int x = 0; x < buffer.size(); x++) {
-				  writer.write(buffer.elementAt(x));
-			  }
-			  
-			 
-			  
-			  writer.close();
-			 
-			      
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		  	write.close();
+
+			//Overwrite predictions file
+			FileWriter writer = new FileWriter(predict, false);
+
+			for(int x = 0; x < buffer.size(); x++) {
+				writer.write(buffer.elementAt(x));
+			}
+
+			writer.close();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-  	  	 
-		
 		YoloTrader.logger.info("Update Complete.");
-  	  
     }
     
     
@@ -760,9 +723,7 @@ public class StockUtil {
      * <p>
      * @return ${@link String}
      */
-    public static String getQuote(yahoofinance.Stock equity) {
-    	return equity.getQuote().toString();
-    }
+    public static String getQuote(yahoofinance.Stock equity) { return equity.getQuote().toString(); }
     
     
     /**
@@ -1647,7 +1608,7 @@ public class StockUtil {
         for(int x = 0; x < 14; x++) {
         	data.add(-1.0);
         }
-    	
+
     	
     	try {
     	
@@ -1825,21 +1786,22 @@ public class StockUtil {
         int begin, end;
 
         try {
+        	Exchange exchange = Exchange.values()[Exchange.values().length - 1];
             for(int x = 0; x < 2; x++) {
+            	exchange = exchange.next();
 
                 //Access FinancialModelingPrepAPI.
                 String search1 = SEARCH_URL + sanitizedQuery + EXCHANGE_URL;
 
-                if(x == 0) {
-                    search1 += Exchange.NASDAQ;
-                }
+                search1 += exchange;
 
-                else {
+                /*if(x == 0) {
+                    search1 += exchange;
+                } else {
                     search1 += Exchange.NYSE;
-                }
+                }*/
 
                 String search =  search1 + SEARCH_API_URL;
-
 
                 URL url = new URL(search);
 
@@ -1856,20 +1818,11 @@ public class StockUtil {
 			    			
 			    			//call func again
 			    			results = pullUp(query);
-			    		}
-			    		
-			    		//Otherwise.
-			    		else {
+			    		} else {
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
 			    		}
-			    		
-                		
-                		
-                	}
-                	
-                	//Otherwise.
-                	else {
 
+                	} else {
 
                 		 //Only be concerned with the symbol and name line.
                         if(line.contains(symbol)) {

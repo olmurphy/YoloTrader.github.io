@@ -3,6 +3,8 @@ package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages;
 import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.model.Comment;
 import edu.baylor.ecs.csi3471.model.Stock;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.NewsPanel;
@@ -31,9 +33,10 @@ public class StockPage {
         setStockTabbedPane(new JTabbedPane());
         dialog.add(getStockTabbedPane());
 
-        dialog.setLocationRelativeTo(null);     // centers the frame in the middle of the screen
-                                                // regardless of the dual monitor setup
+
         dialog.pack();                          // optimal if application is running on different computers
+        dialog.setLocationRelativeTo(MainPanel.getMainPanel());         // centers the frame in the middle of the screen
+                                                // regardless of the dual monitor setup
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setVisible(true);                // let the user see the frame once it is fully setup
     }
@@ -71,8 +74,14 @@ public class StockPage {
         stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Daily News" +
                 "</B></span><hr></html>", JLabel.LEFT));
 
+        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Daily Quote" +
+                "</B></span><hr></html>", JLabel.LEFT));
+        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;\">" + StockUtil.getQuote(equity) + "</span></html>"));
+
         NewsPanel newsPanel = StockUtil.getNewsPanel(equity);
         newsPanel.getJPanel().setBackground(CenterPanelController.centerPanelColor);
+        newsPanel.getJPanel().setPreferredSize(new Dimension(900, 500));
+
         stockPanel.add(newsPanel.getJPanel());
 
         JScrollPane feed = new JScrollPane(stockPanel);
