@@ -47,8 +47,8 @@ public class StockPage {
         yahoofinance.Stock equity = new yahoofinance.Stock(stock.getTicker());
         equity.setName(stock.getName());
 
-        // FIXME: uncomment when the getPrice that the getAnalysis uses does not throw exception
-        // String analysis = StockUtil.getAnalysis(equity);
+        
+        String analysis = StockUtil.getAnalysis(equity);
 
         if (dialog == null) { startStockPage(); }
 

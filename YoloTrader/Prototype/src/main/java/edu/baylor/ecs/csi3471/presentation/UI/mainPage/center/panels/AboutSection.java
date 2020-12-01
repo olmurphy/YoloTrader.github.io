@@ -28,15 +28,13 @@ public class AboutSection {
                     "<li style=color:white;font-family:Futura>Analysis and Design</li>" +
                     "<li style=color:white;font-family:Futura>User Interface</li>" +
                     "<li style=color:white;font-family:Futura>Database Configuration</li>" +
-                    "<li style=color:white;font-family:Futura>Middleware Development</li>"+
                 "</ul>" +
             "<li style=color:white;font-family:Futura>Prince Kalu [ Chief Software Engineer ] (responsibilities):</li>" +
                 "<ul>" +
                     "<li style=color:white;font-family:Futura>Analysis and Design</li>" +
-                    "<li style=color:white;font-family:Futura>User Interface</li>" +
                     "<li style=color:white;font-family:Futura>Backend Development</li>"+
                     "<li style=color:white;font-family:Futura>Middleware Development</li>"+
-                    "<li style=color:white;font-family:Futura>Machine Learning Development</li>"+
+                    "<li style=color:white;font-family:Futura>Artifical Intelligence Development</li>"+
                 "</ul>" + "</html";
 
     public static JPanel getMainAboutPanel() { return mainAboutPanel; }
