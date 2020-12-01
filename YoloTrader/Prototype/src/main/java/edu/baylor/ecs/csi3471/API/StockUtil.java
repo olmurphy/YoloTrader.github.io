@@ -45,6 +45,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 
 import static java.util.Map.entry;
@@ -437,29 +438,34 @@ public class StockUtil {
     	
 		
 		
-		String pull = DEMA_URL+ equity.getSymbol()  + DEMA_API;
-		String dema = "dema";
-		String volume = "volume";
-		
-		String demaData = "";
-		Double demaValue = 0.0;
-		
-		String volData = "";
-		Double volValue = 0.0;
-		
-		Double currentPrice = StockUtil.getPrice(equity);
-		
-		
-		Double sellImbalance = 0.0;
-		Double buyImbalance = 0.0;
-		
-		
-		int count = 0;
-		int time = 14;
 		
 		
 		
 		try {
+			
+			
+
+			String pull = DEMA_URL+ equity.getSymbol()  + DEMA_API;
+			String dema = "dema";
+			String volume = "volume";
+			
+			String demaData = "";
+			Double demaValue = 0.0;
+			
+			String volData = "";
+			Double volValue = 0.0;
+			
+			Double currentPrice = StockUtil.getPrice(equity);
+			
+			
+			Double sellImbalance = 0.0;
+			Double buyImbalance = 0.0;
+			
+			
+			int count = 0;
+			int time = 14;
+			
+			
 			URL url = new URL(pull);
 	
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
@@ -746,8 +752,16 @@ public class StockUtil {
      */
     public static Double getPrice(yahoofinance.Stock equity) {
 
-    	// FIXME: this method seems to be throwing a NullPointerException
-    	return equity.getQuote().getPrice().doubleValue();
+    	
+    	Double rtrn = -1.0;
+    	
+    	try {
+    		rtrn = equity.getQuote().getPrice().doubleValue();
+    	}catch(NullPointerException ne) {
+    		YoloTrader.logger.info("Null Pointer Exception caught while fetching price.");
+    		ne.printStackTrace();
+    	}
+    	return  rtrn;
     }
 
 
@@ -761,7 +775,14 @@ public class StockUtil {
      * @return ${@link String}
      */
     public static String getQuote(yahoofinance.Stock equity) {
-    	return equity.getQuote().toString();
+    	String rtrn = "";
+    	try {
+    		rtrn =  equity.getQuote().toString();
+    	}catch(NullPointerException ne) {
+    		YoloTrader.logger.info("Null Pointer Exception caught while fetching Quote.");
+    		ne.printStackTrace();
+    	}
+    	return rtrn;
     }
     
     

@@ -25,7 +25,32 @@
                 <watchListName>
                     <name>apple</name>
                     <dateCreated>2020-11-24T19:09:40.364-06:00</dateCreated>
-                    <stockList/>
+                    <stockList>
+                        <stock>
+                            <ticker>GM</ticker>
+                            <name>General Motors Co</name>
+                            <dateAdded>2020-11-30T20:15:07.200-06:00</dateAdded>
+                            <commentList/>
+                        </stock>
+                        <stock>
+                            <ticker>CRON</ticker>
+                            <name>Cronos Group Inc</name>
+                            <dateAdded>2020-11-30T20:21:00.309-06:00</dateAdded>
+                            <commentList/>
+                        </stock>
+                    </stockList>
+                </watchListName>
+                <watchListName>
+                    <name>money</name>
+                    <dateCreated>2020-11-30T20:21:59.542-06:00</dateCreated>
+                    <stockList>
+                        <stock>
+                            <ticker>DKNG</ticker>
+                            <name>Draftkings Inc</name>
+                            <dateAdded>2020-11-30T20:22:11.521-06:00</dateAdded>
+                            <commentList/>
+                        </stock>
+                    </stockList>
                 </watchListName>
             </listOfWatchLists>
         </profile>
