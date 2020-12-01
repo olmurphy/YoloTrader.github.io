@@ -13,10 +13,10 @@ public class ProfileSection {
 
     public static JScrollPane descriptionScrollPanel;
 
-    public static String emailLabelString = "<B>Email: </B>";
-    public static String firstLabelString = "<B>First: </B>";
-    public static String lastLabelString = "<B>Last: </B>";
-    public static String userLabelString = "<B>Username: </B>";
+    public static String emailLabelString = "<B>EMAIL: </B>";
+    public static String firstLabelString = "<B>FIRST: </B>";
+    public static String lastLabelString = "<B>LAST: </B>";
+    public static String userLabelString = "<B>USERNAME: </B>";
 
     public static String startUserFieldsFormat = "<html><span style=\"font-family:Futura;font-size:14px;color:white;\">";
 

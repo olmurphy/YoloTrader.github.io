@@ -1,5 +1,6 @@
 package edu.baylor.ecs.csi3471.main;
 
+import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class YoloTrader {
             LogManager.getLogManager().readConfiguration(configFile);
             assert configFile != null;
             configFile.close();
+            StockUtil.updateAI();
         } catch (IOException ex) {
             System.out.println("WARNING: Could not open configuration file");
             System.out.println("WARNING: Logging not configured (console output only)");
