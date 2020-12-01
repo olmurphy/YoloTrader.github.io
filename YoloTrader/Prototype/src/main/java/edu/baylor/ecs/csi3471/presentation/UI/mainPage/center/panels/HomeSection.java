@@ -112,7 +112,7 @@ public class HomeSection {
 		newsfeed.setBorder(new EmptyBorder(0,50,90,50));
 
 		newsfeed.setPreferredSize(new Dimension(1150, 500));
-		newsfeed.setBackground(Color.BLACK);
+		newsfeed.setBackground(CenterPanelController.centerPanelColor);
 		newsfeed.setBorder(new EmptyBorder(150,50,90,50));
 
 		newsfeed.setLayout(new BoxLayout(newsfeed, BoxLayout.Y_AXIS));
@@ -123,11 +123,11 @@ public class HomeSection {
 		JPanel indicators = new JPanel();
 		indicators.setLayout(new BoxLayout(indicators, BoxLayout.Y_AXIS));
 		indicators.setPreferredSize(new Dimension(1150, 500));
-		indicators.setBackground(Color.BLACK);
+		indicators.setBackground(CenterPanelController.centerPanelColor);
 		
 		JPanel indicateTitle = new JPanel();
 		indicateTitle.setLayout(new FlowLayout(FlowLayout.CENTER));
-		indicateTitle.setBackground(Color.BLACK);
+		indicateTitle.setBackground(CenterPanelController.centerPanelColor);
 		indicateTitle.setPreferredSize(new Dimension(1150, 160));
 		
 		JLabel indicate = new JLabel();
@@ -140,7 +140,7 @@ public class HomeSection {
 	    JPanel indexes = new JPanel();
 		indexes.setPreferredSize(new Dimension(1000, 720));
 		indexes.setBorder(new EmptyBorder(0,0,50,0));
-		indexes.setBackground(Color.BLACK);
+		indexes.setBackground(CenterPanelController.centerPanelColor);
 		indexes.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		JPanel dowJones = new JPanel();

@@ -32,7 +32,4 @@ public class YoloTrader {
     }
 
     public static void main(String[] args) { MainPanel.getStartFrame(); }
-
-    // public static void main(String[] args) { CommentPage.InitializeUI(); }
-
 }

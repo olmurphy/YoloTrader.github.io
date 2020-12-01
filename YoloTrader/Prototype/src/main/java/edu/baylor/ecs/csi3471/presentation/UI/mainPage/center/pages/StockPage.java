@@ -8,9 +8,11 @@ import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelControl
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 
 /**
  * @author owenmurphy
@@ -43,47 +45,73 @@ public class StockPage {
     public static JTabbedPane getStockTabbedPane() { return stockTabbedPane; }
 
     public static void addStockToPanel(Stock stock) {
-
-
         yahoofinance.Stock equity = StockUtil.getStock(stock.getTicker());
 
         String analysis = StockUtil.getAnalysis(equity);
+        String quote = StockUtil.getQuote(equity);
+        quote = parseQuote(quote.split(", "));
 
         if (dialog == null) { startStockPage(); }
 
+        JPanel stockNamePanel = new JPanel(new BorderLayout());
+        stockNamePanel.setBackground(CenterPanelController.centerPanelColor);
         stockPanel = new JPanel();
         stockPanel.setLayout(new BoxLayout(stockPanel, BoxLayout.Y_AXIS));
         stockPanel.setBackground(CenterPanelController.centerPanelColor);
+        stockNamePanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:25px;\"><B>" + stock.getName() + "</B></span></html>"),
+                BorderLayout.WEST);
+        stockPanel.add(stockNamePanel);
 
-        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>" + stock.getName() + "</B></span></html>"),
-                BorderLayout.CENTER);
-
+        JPanel datePanel = new JPanel(new BorderLayout());
+        datePanel.setBackground(CenterPanelController.centerPanelColor);
         JLabel date = new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:14px;\"><B>Date Added: " + stock.getDateAdded().toString() +
                 "</B></span><hr></html>", JLabel.LEFT);
+
         date.setAlignmentX(Component.LEFT_ALIGNMENT);
-        stockPanel.add(date);
+        datePanel.add(date, BorderLayout.WEST);
+        stockPanel.add(datePanel);
 
         GraphPanel graphPanel = StockUtil.getGraph(equity);
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(CenterPanelController.centerPanelColor);
+        JLabel header = new JLabel("Price vs. Time", JLabel.CENTER);
+        header.setForeground(graphPanel.getLineColor());
+        header.setFont(new Font("Futura", Font.PLAIN, 50));
+        header.setBorder(new EmptyBorder(50, 0, 0, 0));
+        header.setAlignmentX(JLabel.CENTER);
+        panel.add(header, BorderLayout.CENTER);
+
+        stockPanel.add(panel);
+
         graphPanel.setPreferredSize(new Dimension(900, 700));
         stockPanel.add(graphPanel);
 
+        stockPanel.add(Box.createRigidArea(new Dimension(0, 75)));
+
+        JPanel dailyQuotePanel = new JPanel();
+        dailyQuotePanel.setBackground(CenterPanelController.centerPanelColor);
+
         // adding daily quote
-        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Daily Quote" +
-                "</B></span><hr></html>", JLabel.LEFT));
-        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;\">" + StockUtil.getQuote(equity) + "</span></html>"));
+        assert analysis != null;
+        JLabel label = new JLabel("<html><center><span style=\"font-family:Futura;color:white;font-size:25px;\"><B>[ Daily Quote ]</B></span></center><br>" +
+                quote +
+                "<br><br><br><br><br>" +
+                "<center><span style=\"font-family:Futura;color:white;font-size:25px;\"><B>[ Analysis ]</B></span></center><br>" +
+                "<center><span style=\"font-family:Futura;font-size:17;color:" + parseAnalysis(analysis) + ";\">" + analysis + "</span></center>" +
+                "<br><br><br><br><br>" +
+                "<center><span style=\"font-family:Futura;color:white;font-size:25px;\"><B>[ Daily News ]</B></span></center><br>" +
+                "</html>");
+        label.setAlignmentX(JLabel.CENTER);
+        dailyQuotePanel.add(label);
+        stockPanel.add(dailyQuotePanel);
 
-        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Analysis</B></span><hr></html>"),
-                BorderLayout.CENTER);
-        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>" + analysis + "</B></span></html>"),
-                BorderLayout.CENTER);
-
-        // adding news stuff
-        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Daily News" +
-                "</B></span><hr></html>", JLabel.LEFT));
         JScrollPane newsPanel = StockUtil.getNewsPanel(equity).getNewsScrollPane();
+        newsPanel.setBorder(BorderFactory.createEmptyBorder());
         JPanel newsFeed = new JPanel();
         newsFeed.setPreferredSize(new Dimension(1150, 700));
         newsFeed.setBackground(CenterPanelController.centerPanelColor);
+
 
         newsFeed.setLayout(new BoxLayout(newsFeed, BoxLayout.Y_AXIS));
         newsFeed.add(newsPanel);
@@ -94,6 +122,8 @@ public class StockPage {
 
         stockTabbedPane.addTab(stock.getName(), feed);
     }
+
+
 
     public static void setCommentPanel(Stock stock) {
 
@@ -136,6 +166,20 @@ public class StockPage {
         commentPanel.add(footerPanel, BorderLayout.SOUTH);
 
         return commentPanel;
+    }
+
+    public static String parseAnalysis(String analysis) {  // "Buy/Calls" "Sell/Puts" "Hold/Watch"
+        if (analysis.toLowerCase().equals("buy/calls")) { return "green"; }
+        else if (analysis.toLowerCase().equals("sell/puts")) { return "red"; }
+        return "yellow";
+    }
+
+    public static String parseQuote(String []split) {
+        StringBuilder stringBuilder = new StringBuilder("<center><ul style=\"list-style-type:none;\">");
+
+        for (String str : split) { stringBuilder.append("<li style=color:white;font-family:Futura;font-size:17px;>").append(str).append("</li>"); }
+
+        return stringBuilder.append("</ul></center>").toString();
     }
 
     public static JButton getAddCommentButton() {

@@ -23,7 +23,7 @@ public class AboutSection {
 
      public static String developerLabelString = "<html>" +
              "<ul>" +
-            "<li style=color:white;font-family:Futura>Owen Murphy [ Leader ] (responsibilities):</li>" +
+            "<li style=color:white;font-family:Futura>Owen Murphy (responsibilities):</li>" +
                 "<ul>" +
                     "<li style=color:white;font-family:Futura>Analysis and Design</li>" +
                     "<li style=color:white;font-family:Futura>User Interface</li>" +

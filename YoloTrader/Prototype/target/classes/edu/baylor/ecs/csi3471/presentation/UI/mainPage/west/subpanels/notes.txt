@@ -1,3 +1,0 @@
-When using 2 JList side by side, need to implement "ListSelectionListener" to
-have the desire effect
-
