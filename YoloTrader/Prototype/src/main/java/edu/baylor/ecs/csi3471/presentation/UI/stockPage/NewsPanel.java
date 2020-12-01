@@ -1,6 +1,9 @@
 package edu.baylor.ecs.csi3471.presentation.UI.stockPage;
 
 
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -30,7 +33,7 @@ public class NewsPanel {
 		view = new JPanel();
 		view.setLayout(new BoxLayout(view, BoxLayout.PAGE_AXIS));
 
-		view.setBackground(Color.BLACK);
+		view.setBackground(MainPanel.backGroundColor);
 		newsFeed = new JScrollPane(view);
 		newsFeed.setPreferredSize(new Dimension(900, 500));
 		

@@ -4,10 +4,8 @@ import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.model.Comment;
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.stockPage.NewsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +31,6 @@ public class StockPage {
         setStockTabbedPane(new JTabbedPane());
         dialog.add(getStockTabbedPane());
 
-
         dialog.pack();                          // optimal if application is running on different computers
         dialog.setLocationRelativeTo(MainPanel.getMainPanel());         // centers the frame in the middle of the screen
                                                 // regardless of the dual monitor setup
@@ -47,11 +44,8 @@ public class StockPage {
 
     public static void addStockToPanel(Stock stock) {
 
-        yahoofinance.Stock equity = new yahoofinance.Stock(stock.getTicker());
-        equity.setName(stock.getName());
-
-        // FIXME: uncomment when the getPrice that the getAnalysis uses does not throw exception
-        // String analysis = StockUtil.getAnalysis(equity);
+        yahoofinance.Stock equity = StockUtil.getStock(stock.getTicker());
+        String analysis = StockUtil.getAnalysis(equity);
 
         if (dialog == null) { startStockPage(); }
 
@@ -71,18 +65,28 @@ public class StockPage {
         graphPanel.setPreferredSize(new Dimension(900, 700));
         stockPanel.add(graphPanel);
 
-        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Daily News" +
-                "</B></span><hr></html>", JLabel.LEFT));
-
+        // adding daily quote
         stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Daily Quote" +
                 "</B></span><hr></html>", JLabel.LEFT));
         stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;\">" + StockUtil.getQuote(equity) + "</span></html>"));
 
-        NewsPanel newsPanel = StockUtil.getNewsPanel(equity);
-        newsPanel.getJPanel().setBackground(CenterPanelController.centerPanelColor);
-        newsPanel.getJPanel().setPreferredSize(new Dimension(900, 500));
+        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Analysis</B></span><hr></html>"),
+                BorderLayout.CENTER);
+        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>" + analysis + "</B></span></html>"),
+                BorderLayout.CENTER);
 
-        stockPanel.add(newsPanel.getJPanel());
+        // adding news stuff
+        stockPanel.add(new JLabel("<html><span style=\"font-family:Futura;color:white;font-size:20px;\"><B>Daily News" +
+                "</B></span><hr></html>", JLabel.LEFT));
+        JScrollPane newsPanel = StockUtil.getNewsPanel(equity).getNewsScrollPane();
+        JPanel newsFeed = new JPanel();
+        newsFeed.setPreferredSize(new Dimension(1150, 700));
+        newsFeed.setBackground(CenterPanelController.centerPanelColor);
+
+        newsFeed.setLayout(new BoxLayout(newsFeed, BoxLayout.Y_AXIS));
+        newsFeed.add(newsPanel);
+
+        stockPanel.add(newsFeed);
 
         JScrollPane feed = new JScrollPane(stockPanel);
 

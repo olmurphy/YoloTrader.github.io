@@ -24,8 +24,8 @@ public class HomeSection {
     	
     	JScrollPane feed = new JScrollPane(homeMainPanel);
 
-		UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.WHITE));
-		UIManager.put("ScrollBar.track", new ColorUIResource(Color.BLACK));
+		UIManager.put("ScrollBar.thumb", new ColorUIResource(CenterPanelController.centerPanelColor));
+		UIManager.put("ScrollBar.track", new ColorUIResource(CenterPanelController.centerPanelColor));
 		UIManager.put("ScrollBar.width", 5);
 		
 		feed.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
@@ -46,7 +46,7 @@ public class HomeSection {
         HomeSection.homeMainPanel.setBackground(CenterPanelController.centerPanelColor);
 
         homeMainPanel.setPreferredSize(new Dimension(1000, 2000));
-        HomeSection.homeMainPanel.setBackground(Color.BLACK);
+        HomeSection.homeMainPanel.setBackground(CenterPanelController.centerPanelColor);
 
         //Set up the top winners
         HomeSection.homeMainPanel.setBackground(CenterPanelController.centerPanelColor);
