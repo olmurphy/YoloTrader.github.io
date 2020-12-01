@@ -6,9 +6,6 @@ import edu.baylor.ecs.csi3471.model.StockWatchList;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.FlowPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
 import edu.baylor.ecs.csi3471.presentation.UI.stockPage.NewsPanel;
-import yahoofinance.*;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -23,7 +20,6 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
@@ -172,9 +168,9 @@ public class StockUtil {
     			if(line.contains("Error") == false) {
     				//Change to O's API key.
     				rtrn = Key.replace(P_KEY, O_KEY);
-    				
+
     			}
-    			
+
     			check.close();
     		}
     		
@@ -194,41 +190,38 @@ public class StockUtil {
     				rtrn = Key.replace(O_KEY, P_KEY);
     				
     			}
-    			
+
     			check.close();
-    			
+
     		}
-    		
-    		
-    	
-		}catch(UnsupportedEncodingException u) {
-	           YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
-	           YoloTrader.logger.warning(u.toString());
-	        } catch (MalformedURLException e) {
-	            // TODO Auto-generated catch block
-	        	YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
-	        	YoloTrader.logger.warning(e.toString());
-	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	        	YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
-	            YoloTrader.logger.warning(e.toString());
-	        }
+
+
+
+		} catch(UnsupportedEncodingException u) {
+			YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
+			YoloTrader.logger.warning(u.toString());
+		} catch (MalformedURLException e) {
+			YoloTrader.logger.warning("A Malformed(BAD) URL exception was caught..Printing stack trace...\n");
+			YoloTrader.logger.warning(e.toString());
+		} catch (IOException e) {
+			YoloTrader.logger.warning("An Input/Output exception was caught..Printing stack trace...\n");
+			YoloTrader.logger.warning(e.toString());
+		}
 		
 		return rtrn;
-    	
-		
+
+
     }
-    
 	
     /**
      * The updateAnalysis function updates the AI framework. 
      * <p>
      */
     public static void  updateAnalysis() {
-    	
-    	
-    	
-    	
+
+
+
+
     	YoloTrader.logger.info("Updating Machine Learning Framework..");
 		
 		//Fetch accuracy and confirm analysis.
@@ -242,8 +235,8 @@ public class StockUtil {
 			if (confidence.createNewFile()) {
 				
 				 FileWriter write = new FileWriter(confidence, false);
-				 
-				 
+
+
 				 write.write("1\n0\n");
 				 
 				 write.close();
@@ -335,36 +328,36 @@ public class StockUtil {
 		        	  if(goalPrice <= presentPrice) {
 		        		  right++;
 		        		  total = right + wrong;
-		        		  
-		        		  
+
+
 		        	  }
 		        	  
 		        	  //else if wrong && prediction window expired.
 		        	  else if( (presentPrice < goalPrice) &&
 		        			   (ChronoUnit.DAYS.between(then, LocalDateTime.now()) > 13) ){
-		        		  
+
 		        		  wrong++;
 		        		  total = right + wrong;
-		        		  
+
 		        	  }
-		        	  
-		        	  
+
+
 		        	  //Otherwise, prediction has not yet come true, but there is still time.
 		        	  else {
 		        		  //Write prediction to buffer.
 		        		  String fortune = current.getSymbol() + "\n" + pastPrice + "\n" + pastPrediction + "\n" + then + "\n";
 		        		  buffer.add(fortune);
 		        	  }
-		        	  
-		        	  
+
+
 		        	  //Prep to check outcome of next prediction.
 		        	  pos = 0;
 		        	  
 		          }
 	        }
 	        read.close();
-	        
-	        
+
+
 	        //Update accuracy.
 	        FileWriter write = new FileWriter(confidence, false);
 	        
@@ -386,8 +379,7 @@ public class StockUtil {
 		}
 		YoloTrader.logger.info("Update Complete.");
     }
-    
-    
+
     /**
      * The getAnalysis function returns the analysis conclusion for equity.
      * <p>
@@ -400,16 +392,16 @@ public class StockUtil {
     	//Get the moving average and volume for the past two weeks, so a position
     	//cost distribution can be mentally constructed.
     	YoloTrader.logger.info("Analyzing "+ equity.getName() +"..");
-    	
-    	
-		
-		
-		
-		
+
+
+
+
+
+
 		
 		try {
-			
-			
+
+
 
 			String pull = DEMA_URL+ equity.getSymbol()  + DEMA_API;
 			String dema = "dema";
@@ -422,23 +414,23 @@ public class StockUtil {
 			Double volValue = 0.0;
 			
 			Double currentPrice = StockUtil.getPrice(equity);
-			
-			
+
+
 			Double sellImbalance = 0.0;
 			Double buyImbalance = 0.0;
-			
+
 			
 			int count = 0;
 			int time = 14;
-			
-			
+
+
 			URL url = new URL(pull);
 	
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
 				
 			    for (String line; (line = reader.readLine()) != null && count < time;) {
-			    	
-			    	
+
+
 			    	//If API limit reached.
 			    	if(line.contains("Error")) {
 			    		
@@ -454,26 +446,26 @@ public class StockUtil {
 			    		
 			    		//Otherwise.
 			    		else {
-			    			
+
 			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
 			    			return null;
 			    		}
-			    		
-			    
+
+
 			    	}
 			    	
 			    	//Otherwise, API limit hasn't been reached.
 			    	else {
-			    		
-			    		
+
+
 			    		//If dema data.
 			    		if(line.contains(dema)) {
 			    			//record it.
 			    		
 			    			demaValue = StockUtil.extractIndicator(line);
-			    			
-			    			
-			    			
+
+
+
 			    			//Tabulate
 			    			if(demaValue < currentPrice) {
 			    				buyImbalance += volValue;
@@ -481,39 +473,39 @@ public class StockUtil {
 			    			else {
 			    				sellImbalance += volValue;
 			    			}
-			    			
-			    			
-			    			
+
+
+
 			    			
 			    			
 			    			//adjust count;
 			    			count++;
-			    			
+
 			    		}
 			    		
 			    		//else if volume data.
 			    		else if(line.contains(volume)) {
 			    			//record it
-			    			
-			    		
+
+
 			    			volValue = StockUtil.extractPrice(line);
-			    			
-			    			
-			    			
+
+
+
 			    		}
-			    		
-			    		
-			    		
+
+
+
 			    	}
 			  }//End of for loop.
 			  // reader.close();
-			    
-			    
+
+
 			}//out of inner try block.
-			
-			
-			
-			
+
+
+
+
 			if(sellImbalance >= (buyImbalance * 1.4)) {
 				analysis = "Sell/Puts";
 			}
@@ -521,8 +513,8 @@ public class StockUtil {
 			else if(buyImbalance >= (sellImbalance*1.4)) {
 				analysis = "Buy/Calls";
 			}
-			
-			
+
+
 			
 			YoloTrader.logger.info("Connecting to Machine Learning Framework..");
 			
@@ -536,8 +528,8 @@ public class StockUtil {
 			if (confidence.createNewFile()) {
 				
 				 FileWriter write = new FileWriter(confidence, false);
-				 
-				 
+
+
 				 write.write("1\n0\n");
 				 
 				 write.close();
@@ -571,13 +563,13 @@ public class StockUtil {
 				if(analysis.contains("Buy")) {
 					analysis = "Sell/Puts";
 				}
-				
+
 				else if(analysis.contains("Sell")) {
 					analysis = "Buy/Calls";
 				}
 			}
-			
-			
+
+
 			//update predictions and write this new prediction.
 			
 			File predict = new File("src/main/resources/predictions.txt");
@@ -585,7 +577,7 @@ public class StockUtil {
 			if (predict.createNewFile()) {
 				
 				 FileWriter write = new FileWriter(predict, false);
-				
+
 			
 				 //Don't write  a hold predicition.
 				 if(analysis.contains("Hold") == false) {
@@ -645,8 +637,8 @@ public class StockUtil {
 			        	  if(goalPrice <= presentPrice) {
 			        		  right++;
 			        		  total = right + wrong;
-			        		  
-			        		  
+
+
 			        	  }
 			        	  
 			        	  //else if wrong && prediction window expired.
@@ -707,8 +699,7 @@ public class StockUtil {
 		YoloTrader.logger.info("Analysis Complete.");
     	return analysis;
     }
-    
-	
+
     /**
      * The getPrice function returns the price of equity.
      * <p>
@@ -717,22 +708,16 @@ public class StockUtil {
      * @return ${@link String}
      */
     public static Double getPrice(yahoofinance.Stock equity) {
-
-    	
     	Double rtrn = -1.0;
     	
-    	try {
-    		rtrn = equity.getQuote().getPrice().doubleValue();
-    	}catch(NullPointerException ne) {
+    	try { rtrn = equity.getQuote().getPrice().doubleValue(); }
+    	catch(NullPointerException ne) {
     		YoloTrader.logger.info("Null Pointer Exception caught while fetching price.");
     		ne.printStackTrace();
     	}
     	return  rtrn;
     }
 
-
-
-    
     /**
      * The getQuote function returns the price data for equity.
      * <p>
@@ -750,8 +735,7 @@ public class StockUtil {
     	}
     	return rtrn;
     }
-    
-    
+
     /**
      * The getTopWinners function returns a FlowPanel containing
      * the day's worst performing stocks.
@@ -899,8 +883,7 @@ public class StockUtil {
 		return feed;
     	
     }
-    
-    
+
     /**
      * The getTopWinners function returns a FlowPanel containing
      * the day's best performing stocks.
@@ -1050,9 +1033,7 @@ public class StockUtil {
 		return feed;
     	
     }
-    
-    
-    
+
     /**
      * The getGeneralNews function returns a NewsPanel containing general news.
      * <p>
@@ -1164,10 +1145,6 @@ public class StockUtil {
 		YoloTrader.logger.info("Done.");
 		return feed;
 	}
-    
-    
-    
-    
     
     /**
      * The constructNewsPanel function is a helper function for
@@ -1320,8 +1297,6 @@ public class StockUtil {
     	return feed;
     }
     
-    
-    
     /**
      * The getNewsPanel function returns the NewsPanel for equity.
      * <p>
@@ -1431,7 +1406,6 @@ public class StockUtil {
 		YoloTrader.logger.info("Done.");
 		return feed;
 	}
-    
     
     /**
      * The extractPrice function is used to parse price data from the API.
@@ -1550,9 +1524,8 @@ public class StockUtil {
     			values.remove(x);
     			
     			if(x == 1) {
-    				values.add(values.elementAt(0));
-    			}
-    				
+					values.add(values.elementAt(0));
+				}
     		}
     	}
     	
@@ -1576,16 +1549,12 @@ public class StockUtil {
     	
     	graph.setLineColor(Color.GREEN);
     	
-    	if(last < first) {
-    		graph.setLineColor(Color.RED);
-    	}
+    	if(last < first) { graph.setLineColor(Color.RED); }
     	
     	YoloTrader.logger.info("Done.");
     	return graph;
     	
     }
-    
-    
     
     /**
      * The getStock function returns the stock for the passed
@@ -1631,9 +1600,7 @@ public class StockUtil {
         boolean switched = false;
         
         //Set all  14 values in vector to -1;
-        for(int x = 0; x < 14; x++) {
-        	data.add(-1.0);
-        }
+        for(int x = 0; x < 14; x++) { data.add(-1.0); }
 
     	
     	try {
@@ -1642,8 +1609,7 @@ public class StockUtil {
 
 	    	//read and modify the data to double
 	    	try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-	    		
-	    	
+
 	    		  	
 	    	    for (String line; (line = reader.readLine()) != null && switched == false;) {
 	    	    	
@@ -1651,7 +1617,7 @@ public class StockUtil {
 	    	    	 * 					- Only read entries from the current day.
 	    	    	 *						-only read the closing tags of these entries.
 	    	    	*/
-	    	    	
+
 	    	    	
 	    	    	//If API limit has been reached
 	    	    	if(line.contains("Error")) {
@@ -1672,7 +1638,6 @@ public class StockUtil {
 	    	    		
 	    	    		//Check the date.
 		    	    	if(line.contains(date)) {
-	                    	
 	                    
 	                        //If today's date has not been determined.
 	                    	if(today == false) {
@@ -1698,17 +1663,11 @@ public class StockUtil {
 			                        today = true;
 			                        
 			                        //This also means that this entry is the most recent entry.
-			                        while(line.contains(close) == false) {
-			                        	
-			                        	line = reader.readLine();
-			                        	
-			                        }
+			                        while(line.contains(close) == false) { line = reader.readLine(); }
 			                        
 			                        //Now at close tag, get closing price.
-			                   
 			                        cls= extractPrice(line);
-			                       
-			                        
+
 			                        int pos = getPosition(time);
 			                        
 			                        //Save the data
@@ -1729,26 +1688,21 @@ public class StockUtil {
 			                        begin = line.indexOf(space);
 			                        begin++;
 			                        time = line.substring(begin);
-			                        
-			                        
+
 			                        //if this is a desired time.
 			                        if(getPosition(time) != -1) {
 			                        	
-			                        	 	//Extract the closing price
-			                        		while(line.contains(close) == false) {
-			                        			
-					                        	line = reader.readLine();
-					                        }
-					                        
-					                     	//Now at close tag, get closing price.
-			                        		
-					                        cls= extractPrice(line);
-					                        
-					                        int pos = getPosition(time);
-					                        
-					                        //Save the data
-					                        data.set(pos, cls);
-					                        today = true;
+										//Extract the closing price
+										while(line.contains(close) == false) { line = reader.readLine(); }
+
+										//Now at close tag, get closing price.
+										cls= extractPrice(line);
+
+										int pos = getPosition(time);
+
+										//Save the data
+										data.set(pos, cls);
+										today = true;
 			                        	
 			                        }
 		                    	}
@@ -1757,8 +1711,7 @@ public class StockUtil {
 	    	    	}//End of API limit not reached.
 	    	    }//End of for loop.
 	    	}
-    	}
-    	catch(UnsupportedEncodingException u) {
+    	} catch(UnsupportedEncodingException u) {
            YoloTrader.logger.warning("An Unsupported encoding exception was caught..Printing stack trace...\n");
            YoloTrader.logger.warning(u.toString());
         } catch (MalformedURLException e) {
@@ -1770,12 +1723,9 @@ public class StockUtil {
         }
     	
     	YoloTrader.logger.info("Done.");
-    	
-	    //return data
+
     	return data;
-    	
     }
-    
 
     /**
      * The pullUp function returns a ${@link Map} of name keys to ticker values. The name
@@ -1820,12 +1770,6 @@ public class StockUtil {
                 String search1 = SEARCH_URL + sanitizedQuery + EXCHANGE_URL;
 
                 search1 += exchange;
-
-                /*if(x == 0) {
-                    search1 += exchange;
-                } else {
-                    search1 += Exchange.NYSE;
-                }*/
 
                 String search =  search1 + SEARCH_API_URL;
 
