@@ -760,7 +760,7 @@ public class StockUtil {
 									new edu.baylor.ecs.csi3471.model.Stock(StockUtil.getStock(title.getText()).getName(), title.getText(), Date.from(Instant.now()));
 							
 							StockPage.addStockToPanel(equity);
-							StockPage.startStockPage();
+							
 		    		    }
 		    		 
 		    		    @Override
@@ -948,7 +948,7 @@ public class StockUtil {
 									new edu.baylor.ecs.csi3471.model.Stock(StockUtil.getStock(title.getText()).getName(), title.getText(), Date.from(Instant.now()));
 							
 							StockPage.addStockToPanel(equity);
-							StockPage.startStockPage();
+							
 		    		    }
 		    		 
 		    		    @Override
