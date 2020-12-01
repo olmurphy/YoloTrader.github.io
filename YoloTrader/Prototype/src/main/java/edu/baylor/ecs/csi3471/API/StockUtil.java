@@ -1200,10 +1200,6 @@ public class StockUtil {
 	    		
 	    		article.add(articleTitle);
 			    article.add(pic);
-			    
-	    		
-	    		
-	    		
 	    		
 	    		
 	    		//article.setBackground(Color.BLACK);

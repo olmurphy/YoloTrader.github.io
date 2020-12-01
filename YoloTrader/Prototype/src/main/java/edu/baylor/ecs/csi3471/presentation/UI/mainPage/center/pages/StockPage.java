@@ -108,10 +108,10 @@ public class StockPage {
 
         JScrollPane newsPanel = StockUtil.getNewsPanel(equity).getNewsScrollPane();
         newsPanel.setBorder(BorderFactory.createEmptyBorder());
-        JPanel newsFeed = new JPanel();
-        newsFeed.setPreferredSize(new Dimension(1150, 700));
-        newsFeed.setBackground(CenterPanelController.centerPanelColor);
+        newsPanel.setBackground(CenterPanelController.centerPanelColor);
+        newsPanel.setPreferredSize(new Dimension(1150, 700));
 
+        JPanel newsFeed = new JPanel();
 
         newsFeed.setLayout(new BoxLayout(newsFeed, BoxLayout.Y_AXIS));
         newsFeed.add(newsPanel);
