@@ -16,6 +16,9 @@ import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController;
 import edu.baylor.ecs.csi3471.presentation.ui.stockPage.GraphPanel;
 
+/**
+ * @author Prince Kalu
+ */
 public class HomeSection {
 
     public static JPanel homeMainPanel;
