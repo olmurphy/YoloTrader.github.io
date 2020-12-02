@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.presentation.ui.form;
+package edu.baylor.ecs.csi3471.presentation.UI.form;
 
 import javax.swing.*;
 import java.awt.*;

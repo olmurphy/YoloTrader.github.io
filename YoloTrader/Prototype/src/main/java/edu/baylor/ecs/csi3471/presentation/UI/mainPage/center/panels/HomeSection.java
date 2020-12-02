@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.panels;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,10 +11,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
-import edu.baylor.ecs.csi3471.api.StockUtil;
+import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController;
-import edu.baylor.ecs.csi3471.presentation.ui.stockPage.GraphPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
 
 /**
  * @author Prince Kalu

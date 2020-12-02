@@ -1,9 +1,9 @@
-package edu.baylor.ecs.csi3471.presentation.ui.mainPage.west;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.west;
 
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.subpanels.*;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.subpanels.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;

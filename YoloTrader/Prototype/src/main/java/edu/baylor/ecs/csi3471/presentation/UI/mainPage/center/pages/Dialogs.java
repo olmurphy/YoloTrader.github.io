@@ -1,10 +1,10 @@
-package edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.pages;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages;
 
 import edu.baylor.ecs.csi3471.main.YoloTrader;
-import edu.baylor.ecs.csi3471.presentation.ui.form.Email;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanelController;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.panels.ProfileSection;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.search.Name;
+import edu.baylor.ecs.csi3471.presentation.UI.form.Email;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.ProfileSection;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Name;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.swing.*;

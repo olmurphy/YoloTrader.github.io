@@ -1,6 +1,6 @@
-package edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.subpanels;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.subpanels;
 
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.WestPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.WestPanelController;
 
 import javax.swing.*;
 

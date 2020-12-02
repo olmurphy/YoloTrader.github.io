@@ -1,16 +1,16 @@
-package edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading;
 
-import edu.baylor.ecs.csi3471.api.StockUtil;
+import edu.baylor.ecs.csi3471.API.StockUtil;
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanelController;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.pages.StockPage;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.search.Name;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.search.Search;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages.StockPage;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Name;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.Search;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.search.SearchResults;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.SearchResults;
 
 import javax.swing.*;
 import javax.swing.border.Border;

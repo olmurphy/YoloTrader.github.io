@@ -4,7 +4,7 @@ import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.dao.ProfileDAO;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
-import edu.baylor.ecs.csi3471.presentation.ui.form.Email;
+import edu.baylor.ecs.csi3471.presentation.UI.form.Email;
 
 /**
  * this class injects the functionality of the

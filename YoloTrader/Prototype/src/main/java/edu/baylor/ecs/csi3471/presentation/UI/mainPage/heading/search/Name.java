@@ -1,6 +1,6 @@
-package edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.search;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search;
 
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.NorthPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,14 +1,14 @@
-package edu.baylor.ecs.csi3471.presentation.ui.mainPage.center;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center;
 
 import edu.baylor.ecs.csi3471.model.Comment;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanelController;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.panels.*;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.pages.*;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.NorthPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.*;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages.*;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 
 import javax.swing.*;

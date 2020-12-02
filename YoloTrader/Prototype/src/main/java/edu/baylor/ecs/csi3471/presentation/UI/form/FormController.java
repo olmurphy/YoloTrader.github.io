@@ -1,9 +1,9 @@
-package edu.baylor.ecs.csi3471.presentation.ui.form;
+package edu.baylor.ecs.csi3471.presentation.UI.form;
 
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanelController;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.awt.*;

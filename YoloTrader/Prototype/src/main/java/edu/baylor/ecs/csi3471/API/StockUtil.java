@@ -1,10 +1,10 @@
-package edu.baylor.ecs.csi3471.api;
+package edu.baylor.ecs.csi3471.API;
 
 import edu.baylor.ecs.csi3471.main.YoloTrader;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.pages.StockPage;
-import edu.baylor.ecs.csi3471.presentation.ui.stockPage.FlowPanel;
-import edu.baylor.ecs.csi3471.presentation.ui.stockPage.GraphPanel;
-import edu.baylor.ecs.csi3471.presentation.ui.stockPage.NewsPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages.StockPage;
+import edu.baylor.ecs.csi3471.presentation.UI.stockPage.FlowPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.stockPage.NewsPanel;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;

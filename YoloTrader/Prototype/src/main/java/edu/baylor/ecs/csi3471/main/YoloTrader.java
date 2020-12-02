@@ -1,7 +1,7 @@
 package edu.baylor.ecs.csi3471.main;
 
-import edu.baylor.ecs.csi3471.api.StockUtil;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.API.StockUtil;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
 
 import java.io.IOException;
 import java.io.InputStream;

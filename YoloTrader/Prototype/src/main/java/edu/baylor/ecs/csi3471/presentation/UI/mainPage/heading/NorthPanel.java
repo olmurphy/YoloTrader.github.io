@@ -1,7 +1,7 @@
-package edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading;
+package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading;
 
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.search.SearchPanel;
-import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.title.CompanyName;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search.SearchPanel;
+import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.title.CompanyName;
 
 import javax.swing.*;
 import java.awt.*;
