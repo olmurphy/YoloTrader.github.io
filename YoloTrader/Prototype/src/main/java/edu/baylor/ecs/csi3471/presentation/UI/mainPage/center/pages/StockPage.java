@@ -116,6 +116,7 @@ public class StockPage {
         newsPanel.setPreferredSize(new Dimension(1150, 700));
 
         JPanel newsFeed = new JPanel();
+        newsFeed.setBorder(new EmptyBorder(150,50,90,50));
 
         newsFeed.setLayout(new BoxLayout(newsFeed, BoxLayout.Y_AXIS));
         newsFeed.add(newsPanel);
