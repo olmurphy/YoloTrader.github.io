@@ -1192,8 +1192,7 @@ public class StockUtil {
 	    		Border border = new LineBorder(Color.WHITE, 4, true);
 	    		article.setBorder(border);
 
-				// FIXME: Line 1196 is the only line that was modified to get the newsPanel -> all gray when in full view mode on stockPage
-				article.setBackground(Color.BLACK.brighter().brighter().brighter().brighter().brighter().brighter());
+				article.setBackground(Color.BLACK);
 	    		JPanel articleTitle = new JPanel();
 	    		articleTitle.setBackground(Color.BLACK.brighter().brighter().brighter().brighter().brighter().brighter());
 	    		articleTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
