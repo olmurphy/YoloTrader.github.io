@@ -85,6 +85,11 @@ public class StockWatchList implements Comparable<StockWatchList> {
     @Override
     public int compareTo(StockWatchList o) { return this.name.compareTo(o.name); }
 
+    /**
+     * tests if two instances of stock watch lists are the same based on their name attribute
+     * @param o instance of profile to check
+     * @return true if two have same email, false o.w.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,9 +98,14 @@ public class StockWatchList implements Comparable<StockWatchList> {
         return Objects.equals(name, watchList.name);
     }
 
+    /**
+     * produces hash code for instance of Stock watch lists based on its name attribute
+     * @return hash value calculated from email
+     */
     @Override
     public int hashCode() { return Objects.hash(name); }
 
+    /** @return stock watch list and all its attributes in a string */
     @Override
     public String toString() { return "StockWatchList{name='" + name + "', dateCreated=" + dateCreated + ", stockList=" + stockList + '}'; }
 }

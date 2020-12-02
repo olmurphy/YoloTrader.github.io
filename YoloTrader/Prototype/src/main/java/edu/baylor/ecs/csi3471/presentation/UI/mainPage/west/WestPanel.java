@@ -1,11 +1,11 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.west;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage.west;
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.subpanels.About;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.subpanels.Help;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.subpanels.Home;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.subpanels.Stock;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.subpanels.Profile;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.subpanels.About;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.subpanels.Help;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.subpanels.Home;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.subpanels.Stock;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.subpanels.Profile;
 
 import javax.swing.*;
 import java.awt.*;

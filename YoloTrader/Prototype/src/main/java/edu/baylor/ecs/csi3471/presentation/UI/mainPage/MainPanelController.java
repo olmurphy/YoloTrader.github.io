@@ -1,8 +1,8 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage;
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.WestPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.NorthPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.WestPanelController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.ProfileController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockController;
 import edu.baylor.ecs.csi3471.presentation.presentationLogic.StockWatchListController;

@@ -1,7 +1,6 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.title;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.title;
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.NorthPanelController;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,9 +1,9 @@
-package edu.baylor.ecs.csi3471.presentation.UI.form;
+package edu.baylor.ecs.csi3471.presentation.ui.form;
 
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanelController;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.awt.*;
@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 /**
+ * handles the actions for the buttons present on the ${@link CreateAccount}, ${@link LogIn}
+ * ${@link Help} forms
  * @author owenmurphy
  */
 public class FormController {
@@ -24,16 +26,22 @@ public class FormController {
     /** value for createAcc button */
     public static String createAcc = "Create Account";
 
-    /** project title */
+    /** company name */
     public static String title = "YoloTrader";
 
     /** this is the color of the whole application interface the user will have */
     public static Color formColor = MainPanel.backGroundColor;
 
+    /** html formatting for the left side of label */
     public static String leftLabelSide = "<html><span style=\"font-family:Futura;color:white;font-size:16px;\">";
+
+    /** html formatting for the ride side of label */
     public static String rightLabelSide = "</span></html>";
 
+    /** html formatting for the left side of button */
     public static String leftButtonSide = "<html><span style=\\\"font-family:Futura;color:white;font-size:16px;\">";
+
+    /** html formatting for the right side of button */
     public static String rightButtonSide = "</span></html>";
 
     /**
@@ -41,10 +49,7 @@ public class FormController {
      *
      * In addition, this method allows for low coupling between classes
      */
-    public static void getStartFrame() {
-        initialize();
-        LogIn.startFrame();
-    }
+    public static void getStartFrame() { initialize(); LogIn.startFrame(); }
 
     /**
      * method redirects user to appropriate page that is NOT the same page the user is already on.
@@ -59,18 +64,15 @@ public class FormController {
         return e -> {
             if (!action.equals(e.getActionCommand())) {
                 if (e.getActionCommand().equals(login)) {
-
-                    CreateAccount.getFrame().dispose();
-                    LogIn.startFrame();
+                    CreateAccount.getFrame().dispose(); // dispose create account form
+                    LogIn.startFrame(); // start the login form
 
                     YoloTrader.logger.info("switch to log-in");
                 } else if (e.getActionCommand().equals(help)) {
-
-                    YoloTrader.logger.info("go to help");
+                    YoloTrader.logger.info("got to help");
                     Help.createHelp();
 
                 } else if (e.getActionCommand().equals(createAcc)) {
-
                     LogIn.getFrame().dispose();
                     CreateAccount.startCreateAccount();
                     YoloTrader.logger.info("switch to create an account");
@@ -86,7 +88,6 @@ public class FormController {
      */
     public static ActionListener getLogInAction() {
         return e -> {
-
             // check for valid email format
             if (validateLogInFieldsNotEmpty()) {
 
@@ -113,7 +114,6 @@ public class FormController {
      */
     public static ActionListener getCreateAccountAction() {
         return e -> {
-
             String email;
 
             // check that all fields are not empty
@@ -126,7 +126,7 @@ public class FormController {
             else if (!checkPassMatch()) { CreateAccount.getPassNotMatchWarning(); }
 
             // check that the email is unique
-            else if (MainPanelController.getProfileController().isNotEmailUnique(email)) { Email.getEmailWarning(); }
+            else if (!MainPanelController.getProfileController().isNotEmailUnique(email)) { Email.getEmailWarning(); }
 
             // check that user's is inputting the correct verification code sent to their email
             else if (!Email.getEmailSentCodeValidation(email)) { Email.getEmailValidationCodeNotValid(); }
@@ -191,23 +191,16 @@ public class FormController {
      */
     public static ActionListener getForgotPasswordButtonListener() {
         return e -> {
-
-            // get email from user
-            String email = Email.getEmailInputDialog();
+            String email = Email.getEmailInputDialog(); // get email from user
 
             // check if password was changed given the email (email to recipient is also sent if condition is true)
             if (MainPanelController.getProfileController().recoverPassword(email)) {
                 YoloTrader.logger.info("Changed password");
 
-                // save to database
-                MainPanelController.getProfileController().saveProfiles();
+                MainPanelController.getProfileController().saveProfiles(); // save to database
 
-                // let user know the password was successfully changed
-                Email.getPasswordChangedSuccessful();
-            } else {
-                // display warning
-                Email.getEmailNotFound();
-            }
+                Email.getPasswordChangedSuccessful(); // let user know the password was successfully changed
+            } else { Email.getEmailNotFound(); } // display warning
         };
     }
 }

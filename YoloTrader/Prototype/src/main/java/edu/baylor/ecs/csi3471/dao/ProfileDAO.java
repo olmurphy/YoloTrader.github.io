@@ -10,12 +10,14 @@ import java.util.List;
 
 
 /**
+ * this class handles the adding/deleting/updating a profile in list of profiles
  * @author owenmurphy
  */
 @XmlRootElement(namespace = "Database")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ProfileDAO implements GenericDAO<Profile> {
 
+    /** list of profiles to handle */
     @XmlElementWrapper(name = "profileList")
     @XmlElement(name = "profile")
     private static List<Profile> profiles;
@@ -23,22 +25,43 @@ public class ProfileDAO implements GenericDAO<Profile> {
     /** class is used for XML file transformations */
     private static XMLProfileDAOUtil profileDAOUtil;
 
+    /** constructor declares an instance of profiles */
     public ProfileDAO() { profiles = new ArrayList<>(); }
 
+    /**
+     * @return list of profiles
+     */
     @Override
     public List<Profile> getAll() { return profiles; }
 
+    /**
+     * sets the list of profiles to the parameter passed in
+     * @param t list of items
+     */
     @Override
     public void setAll(List<Profile> t) { profiles = t; }
-    
-    @Override
-    public void add(Profile profile) { profiles.add(profile); }
-    
-    @Override
-    public void delete(Profile profile) { profiles.remove(profile); }
 
+    /**
+     * add the profile into the list of profiles
+     * @param t item to be added
+     */
     @Override
-    public void update(int index, Profile profile) { profiles.set(index, profile); }
+    public void add(Profile t) { profiles.add(t); }
+
+    /**
+     * deletes the profile from the list of profiles
+     * @param t item to be deleted
+     */
+    @Override
+    public void delete(Profile t) { profiles.remove(t); }
+
+    /**
+     * updates the profiles in the list of profiles at the provided index
+     * @param index index of item
+     * @param t item to be updated
+     */
+    @Override
+    public void update(int index, Profile t) { profiles.set(index, t); }
 
     /**
      * calls ${@link XMLProfileDAOUtil#load()} to load the items into the 

@@ -1,6 +1,6 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.panels;
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController;
 
 import javax.swing.*;
 

@@ -3,7 +3,7 @@ package edu.baylor.ecs.csi3471.dao;
 import java.util.List;
 
 /**
- * This is a generic DAO that defines the methods of all the DAO's that we use
+ * This is a generic DAO that defines the methods of all the DAO's that the applications uses
  *
  * @author owenmurphy
  * @param <T> data type t

@@ -1,6 +1,6 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.search;
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.NorthPanelController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,8 +27,7 @@ public class Name {
     public static void updateLabelPanel(String name) {
         if (!set) { setWelcomeLabel(); }
 
-        getLabel().setText(NorthPanelController.leftLabelSide + "Welcome, "
-                + name + "!" + NorthPanelController.rightLabelSide);
+        getLabel().setText(NorthPanelController.leftLabelSide + "Welcome, " + name + "!" + NorthPanelController.rightLabelSide);
     }
 
     public static void setWelcomeLabel() {
@@ -41,10 +40,9 @@ public class Name {
         JPanel labelPanel = new JPanel(new BorderLayout());
         labelPanel.setBackground(NorthPanelController.northPanelColor);
 
-        labelPanel.add(getLabel(), BorderLayout.WEST);
+        labelPanel.add(getLabel(), BorderLayout.WEST); // add label
 
-        setLogoutButton(new JButton(NorthPanelController.leftLabelSide + "Logout" +
-                NorthPanelController.rightLabelSide));
+        setLogoutButton(new JButton(NorthPanelController.leftLabelSide + "Logout" + NorthPanelController.rightLabelSide));
         labelPanel.add(getLogoutButton(), BorderLayout.EAST);
 
         return labelPanel;

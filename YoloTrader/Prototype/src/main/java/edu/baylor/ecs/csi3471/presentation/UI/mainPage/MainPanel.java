@@ -1,8 +1,8 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage;
 
-import edu.baylor.ecs.csi3471.presentation.UI.form.FormController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.west.WestPanel;
+import edu.baylor.ecs.csi3471.presentation.ui.form.FormController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.NorthPanel;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.west.WestPanel;
 
 import javax.swing.*;
 import java.awt.*;

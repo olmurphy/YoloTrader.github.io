@@ -1,6 +1,6 @@
-package edu.baylor.ecs.csi3471.presentation.UI.form;
+package edu.baylor.ecs.csi3471.presentation.ui.form;
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,32 +28,52 @@ public class LogIn {
 
     public static String companyString = "<html><span style=\"font-family:Arial;font-size:20px;color:white;\"><B>" + FormController.title + "</B>";
 
+    /** return the frame of the log-ing page */
     public static JFrame getFrame() { return frame; }
 
+    /** @return label storing the company name that is used on the log-in page and the create account forms */
     public static JLabel getCompanyLabel() { return new JLabel(companyString, JLabel.CENTER); }
 
+    /** @return email label associated with its email field */
     public static JLabel getEmailLabel() { return new JLabel(emailString); }
 
+    /**
+     * sets the email field to receive user input for their email
+     * @param emailField field to be set to
+     */
     public static void setEmailField(JTextField emailField) { LogIn.emailField = emailField; }
 
+    /** @return email field to add to log-in page of UI */
     public static JTextField getEmailField() { return emailField; }
 
+    /** @return password label associated with its respective field  */
     public static JLabel getPassLabel() { return new JLabel(passString); }
 
+    /**
+     * sets the password field to listen for user input
+     * @param passwordField field to be set to
+     */
     public static void setPasswordField(JPasswordField passwordField) { LogIn.passwordField = passwordField; }
 
+    /** @return password field to add to log-in page of UI */
     public static JPasswordField getPasswordField() { return passwordField; }
 
+    /** returns the log-in button to add to UI of log-in page */
     public static JButton getLogInButton() { return loginButton; }
 
+    /** @return create account button to add to log-in page UI */
     public static JButton getCreateAccountButton() { return createAccountButton; }
 
+    /** sets the create account button which switches to create account form if it is pressed inside the log-ing form */
     public static void setCreateAccountButton() { createAccountButton.addActionListener(FormController.getGeneralFormAction(FormController.login)); }
 
+    /** @return button for the help to add to UI */
     public static JButton getHelpButton() { return helpButton; }
 
+    /** sets the help button and adds the listener and well as the UI listener */
     public static void setHelpButton() { helpButton.addActionListener(FormController.getGeneralFormAction(FormController.login)); }
 
+    /** method is called at the beginning of the application to start on the log-in form page */
     public static void startFrame() {
         frame = new JFrame("Log-In");
 
@@ -64,6 +84,7 @@ public class LogIn {
         frame.setVisible(true);
     }
 
+    /** @return JPanel that stores the log-in form on */
     public static JPanel getLogInPanel() {
         logInPanel = new JPanel();
         logInPanel.setLayout(new BoxLayout(logInPanel, BoxLayout.Y_AXIS));
@@ -76,6 +97,7 @@ public class LogIn {
         return logInPanel;
     }
 
+    /** @return JPanel storing the email and password fields */
     public static JPanel getFieldPanel() {
         fieldPanel = new JPanel();
         fieldPanel.setLayout(new BoxLayout(fieldPanel, BoxLayout.Y_AXIS));
@@ -94,6 +116,7 @@ public class LogIn {
         return fieldPanel;
     }
 
+    /** @return  JPanel storing the buttons on the log-in form */
     public static JPanel getButtonPanel() {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 1));
@@ -113,20 +136,23 @@ public class LogIn {
         return buttonPanel;
     }
 
+    /** sets the login button and adds the log-in action */
     public static void setLoginButton() {
-        LogIn.loginButton
-                .addActionListener(FormController.getGeneralFormAction(FormController.login));
+        // action will switch to crete account
+        LogIn.loginButton.addActionListener(FormController.getGeneralFormAction(FormController.login));
 
-        LogIn.loginButton
-                .addActionListener(FormController.getLogInAction());
+        // action will generate credential checking if log-in is pressed
+        LogIn.loginButton.addActionListener(FormController.getLogInAction());
     }
 
+    /** sets all buttons when the app starts */
     public static void setAllButtons() {
         setLoginButton();
         setHelpButton();
         setCreateAccountButton();
     }
 
+    /** initialize all buttons when app starts */
     public static void initializeButtons() {
 
         FormController.login = FormController.leftButtonSide +  FormController.login + FormController.rightButtonSide;
@@ -154,11 +180,13 @@ public class LogIn {
         helpButton.setBorder(BorderFactory.createEmptyBorder());
     }
 
+    /** creates warning dialog notifying user that fields are empty */
     public static void getEmptyFieldWarning() {
         JOptionPane.showMessageDialog(null, "Some fields have not been filled in",
                 "Warning", JOptionPane.WARNING_MESSAGE);
     }
 
+    /** lets user know the credentials input are no match in database */
     public static void getInvalidCredentialsWarning() {
         JOptionPane.showMessageDialog(null, "Invalid Credentials",
                 "Warning", JOptionPane.WARNING_MESSAGE);

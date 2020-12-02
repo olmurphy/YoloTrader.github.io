@@ -44,6 +44,7 @@ public class Comment {
         this.dateLastModified = new Date();
     }
 
+    /** constructor does nothing */
     public Comment() { }
 
     /**
@@ -94,6 +95,11 @@ public class Comment {
      */
     public void setSubject(String subject) { this.subject = subject; }
 
+    /**
+     * equals method takes in another comment and sees if they are equal
+     * @param o instance of comment to compare to
+     * @return true if they are equal, false o.w.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -102,9 +108,14 @@ public class Comment {
         return Objects.equals(dateCreated, comment.dateCreated) && Objects.equals(text, comment.text) && Objects.equals(subject, comment.subject);
     }
 
+    /**
+     * method maps an instance of comment to a hash value to place in hash table
+     * @return hash value calculated from the attributes
+     */
     @Override
     public int hashCode() { return Objects.hash(dateCreated, text, subject); }
 
+    /** @return string of the comment and its attribute */
     @Override
     public String toString() { return "Comment{" + "dateCreated=" + dateCreated + ", text='" + text + '\'' + ", subject='" + subject + '\'' + '}'; }
 }

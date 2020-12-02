@@ -30,6 +30,7 @@ public class Profile {
     @XmlElement(name = "watchListName")
     private List<StockWatchList> watchLists;
 
+    /** constructor does nothing */
     public Profile() { }
 
     /**
@@ -125,6 +126,7 @@ public class Profile {
      */
     public void setWatchLists(List<StockWatchList> watchLists) { this.watchLists = watchLists; }
 
+    /** @return profile and all its attributes in a string */
     @Override
     public String toString() {
         return "Profile{" +
@@ -137,6 +139,11 @@ public class Profile {
                 '}';
     }
 
+    /**
+     * tests if two instances of profiles are the same based on their email
+     * @param o instance of profile to check
+     * @return true if two have same email, false o.w.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -145,6 +152,10 @@ public class Profile {
         return Objects.equals(email, profile.email);
     }
 
+    /**
+     * produces hash code for instance of profile based on its email attribute
+     * @return hash value calculated from email
+     */
     @Override
     public int hashCode() { return Objects.hash(email); }
 }

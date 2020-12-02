@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.presentation.UI.form;
+package edu.baylor.ecs.csi3471.presentation.ui.form;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +9,11 @@ import java.awt.*;
  * @author owenmurphy
  */
 public class Help {
-    
+
+    /** use this to reset pass of email given */
     private static JButton forgotPassButton;
 
+    /** create the help frame with the company name and the forgot pass button */
     public static void createHelp() {
         JDialog helpDialog = new JDialog();
         helpDialog.setTitle("Help");
@@ -38,11 +40,15 @@ public class Help {
 
         helpDialog.pack();
         helpDialog.setVisible(true);
-
     }
 
+    /** @return forgot password button to add to ui */
     public static JButton getForgotPassButton() { return forgotPassButton; }
 
+    /**
+     * sets the forgot pass button and adds the listener from the FormController
+     * @param forgotPassButton button to set to
+     */
     public static void setForgotPassButton(JButton forgotPassButton) {
         Help.forgotPassButton = forgotPassButton;
 

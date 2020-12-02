@@ -1,26 +1,30 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.pages;
 
-import edu.baylor.ecs.csi3471.API.StockUtil;
+import edu.baylor.ecs.csi3471.api.StockUtil;
 import edu.baylor.ecs.csi3471.model.Comment;
 import edu.baylor.ecs.csi3471.model.Stock;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.CenterPanelController;
-import edu.baylor.ecs.csi3471.presentation.UI.stockPage.GraphPanel;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.stockPage.GraphPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Arrays;
 
 /**
+ * class displays the stockPage
  * @author owenmurphy
  */
 public class StockPage {
 
+    /** holds the stock page on the dialog */
     public static JDialog dialog;
+
+    /** each tab is a stock with the corresponding stock page on it */
     public static JTabbedPane stockTabbedPane;
+
     public static JPanel commentPanel;
     public static JPanel stockPanel;
 
@@ -123,8 +127,6 @@ public class StockPage {
         stockTabbedPane.addTab(stock.getName(), feed);
     }
 
-
-
     public static void setCommentPanel(Stock stock) {
 
         commentPanel = new JPanel();
@@ -210,6 +212,9 @@ public class StockPage {
         return editCommentButton;
     }
 
+    /**
+     * sets the dialog to null if window closes
+     * @return WindowAdapter that listens for when the dialog window closes */
     public static WindowAdapter getDialogWindowListener() {
         return new WindowAdapter() {
             @Override

@@ -1,4 +1,4 @@
-package edu.baylor.ecs.csi3471.presentation.UI.form;
+package edu.baylor.ecs.csi3471.presentation.ui.form;
 
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 
@@ -6,7 +6,6 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.*;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.Random;
 
@@ -15,8 +14,8 @@ import java.util.Random;
  */
 public class Email {
 
+    /** represents the company email */
     public static String companyEmail = "volatiles.stocks@gmail.com";
-
 
     /**
      * dialog responsible for letting the user know that the email was not unique upond creating
@@ -36,7 +35,7 @@ public class Email {
      */
     public static void sendEmail(String email, String subject, String text) {
 
-        // Sender's email ID needs to be mentioned
+        // sending from company email
         String from = Email.companyEmail;
 
         // Assuming you are sending email from localhost
@@ -51,11 +50,7 @@ public class Email {
 
         // Get the default Session object.
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-
-                return new PasswordAuthentication(Email.companyEmail, "Hint@123");
-
-            }
+            protected PasswordAuthentication getPasswordAuthentication() { return new PasswordAuthentication(Email.companyEmail, "Hint@123"); }
         });
 
         try {
@@ -77,9 +72,7 @@ public class Email {
             // Send message
             Transport.send(message);
             YoloTrader.logger.info("Sent message successfully....");
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
-        }
+        } catch (MessagingException mex) { mex.printStackTrace(); }
     }
 
     /**
@@ -135,39 +128,40 @@ public class Email {
                 "email inbox for it.");
     }
 
+    /** opens dialog telling user that the email input is not valid */
     public static void getEmailNotValidWarning() {
         JOptionPane.showMessageDialog(null, "Email is not valid.",
                 "Warning", JOptionPane.WARNING_MESSAGE);
     }
 
+    /**
+     * takes the email and calls ${@link #sendEmail(String, String, String)} to send email of the
+     * salt string generated from ${@link #getRandomNumberString()}
+     * asks the user to input the code sent and checks if it is valid. Allows user up to 3 tries.
+     * @param email email to send message to
+     * @return true if user input the right code, false after 3 failed attempts
+     */
     public static boolean getEmailSentCodeValidation(String email) {
         String actualCode = getRandomNumberString();
 
-        sendEmail(email, "Email Code to Validate", actualCode);
-
+        sendEmail(email, "Code to Validate email", actualCode);
         int count = 1;
 
         do {
-
             String code = JOptionPane.showInputDialog(null, "Email with code has been sent." +
-                            "\nInput code: (Attempt: " + count + " of 3)",
-                    "Email Validation", JOptionPane.QUESTION_MESSAGE);
+                            "\nInput code: (Attempt: " + count + " of 3)", "Email Validation", JOptionPane.QUESTION_MESSAGE);
 
-            if (code.equals(actualCode)) {
-                return true;
-            } else {
-                count++;
-            }
+            if (code.equals(actualCode)) { return true; }
+            else { count++; }
 
         } while (count < 4);
 
         JOptionPane.showMessageDialog(null, "Code is not valid: ");
-
         return false;
     }
 
+    /** opens dialog letting user know the they have not entered the right code to validate email after 3 failed attempts */
     public static void getEmailValidationCodeNotValid() {
-        JOptionPane.showMessageDialog(null, "Code is not valid",
-                "Warning", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Code is not valid", "Warning", JOptionPane.WARNING_MESSAGE);
     }
 }

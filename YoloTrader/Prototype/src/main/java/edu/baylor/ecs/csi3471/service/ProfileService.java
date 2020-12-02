@@ -4,9 +4,7 @@ import edu.baylor.ecs.csi3471.dao.GenericDAO;
 import edu.baylor.ecs.csi3471.dao.ProfileDAO;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 import edu.baylor.ecs.csi3471.model.Profile;
-import edu.baylor.ecs.csi3471.presentation.UI.form.Email;
-
-import java.util.List;
+import edu.baylor.ecs.csi3471.presentation.ui.form.Email;
 
 /**
  * this class injects the functionality of the
@@ -98,15 +96,15 @@ public class ProfileService {
 
         for (Profile profile : this.dao.getAll()) {
             if (profile.getEmail().equals(email)) {
+                YoloTrader.logger.info("Changing password");
 
                 // changing password with a random password
-                YoloTrader.logger.info("Changing password");
                 String password = Email.getRandomString();
 
                 ((ProfileDAO)this.dao).changeProfilePassword(index, password);
-                // sending client new password
-                Email.sendEmail(email, "Changed Password", "Your new password is: " +
-                        password);
+
+                Email.sendEmail(email, "Changed Password", "Your new password is: " + password); // sending client new password
+
                 return true; // email is associated with a profile
             } else { index++; }
         }

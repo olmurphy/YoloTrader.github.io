@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1a59cb99-d0d3-4f1a-8c5b-bb627dd0767e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Prototype/database.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/database.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/API/StockUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/API/StockUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/extra/SendEmailClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/main/YoloTrader.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/main/YoloTrader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/CreateAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/Email.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/FormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/FormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/Help.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/LogIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/form/LogIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/MainPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/MainPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/pages/CommentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/pages/CommentPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/pages/Dialogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/pages/Dialogs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/pages/StockPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/pages/StockPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/AboutSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/AboutSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/HelpSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/HelpSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/HomeSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/HomeSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/ProfileSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/ProfileSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/StocksSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/StocksSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/Name.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/SearchPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/SearchResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/SearchResults.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/title/CompanyName.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/title/CompanyName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/About.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/About.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Help.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/stockPage/FlowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/stockPage/FlowPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/stockPage/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/stockPage/GraphPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/stockPage/NewsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/presentation/UI/stockPage/NewsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/service/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/java/edu/baylor/ecs/csi3471/service/ProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/src/main/resources/predictions.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/src/main/resources/predictions.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/API/StockUtil$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/API/StockUtil$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/API/StockUtil$Exchange.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/API/StockUtil$Exchange.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/API/StockUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/API/StockUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/extra/SendEmailClient$SendEmailActionListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/extra/SendEmailClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/main/YoloTrader.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/main/YoloTrader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/CreateAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/CreateAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/Email$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/Email$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/Email.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/Email.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/FormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/FormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/Help.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/Help.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/LogIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/form/LogIn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/MainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/MainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/MainPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/MainPanelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/CenterPanelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/AboutSection.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/AboutSection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/HelpSection.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/HelpSection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/HomeSection.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/HomeSection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/ProfileSection.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/center/panels/ProfileSection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanelController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/NorthPanelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/Name.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/Name.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/Search.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/Search.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/SearchPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/SearchPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/SearchResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/search/SearchResults.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/title/CompanyName.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/heading/title/CompanyName.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/WestPanelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/About.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/About.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Help.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Help.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Home.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Profile.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Profile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/mainPage/west/subpanels/Stock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/stockPage/FlowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/stockPage/FlowPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/stockPage/GraphPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/stockPage/GraphPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/stockPage/NewsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/presentation/UI/stockPage/NewsPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/service/ProfileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Prototype/target/classes/edu/baylor/ecs/csi3471/service/ProfileService.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1l4IofYl6TTK9wFDk7sq6Ukxent" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1a59cb99-d0d3-4f1a-8c5b-bb627dd0767e" name="Default Changelist" comment="" />
+      <created>1606850114246</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606850114246</updated>
+      <workItem from="1606850116305" duration="12000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

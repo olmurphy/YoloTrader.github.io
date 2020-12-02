@@ -110,8 +110,16 @@
             <email>owen261@icloud.com</email>
             <username>olmurphy</username>
             <password>m</password>
-            <first>owen</first>
-            <last>murphy</last>
+            <first>Owen</first>
+            <last>Murphy</last>
+            <listOfWatchLists/>
+        </profile>
+        <profile>
+            <email>lee</email>
+            <username>lee</username>
+            <password>lee</password>
+            <first>lee</first>
+            <last>lee</last>
             <listOfWatchLists/>
         </profile>
     </profileList>

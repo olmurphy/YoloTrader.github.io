@@ -4,7 +4,7 @@ import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.service.ProfileService;
 
 /**
- * class defines the method that the user is able to user
+ * class defines the method that the user has access to in the application
  * @author owenmurphy
  */
 public class ProfileController {
@@ -47,9 +47,7 @@ public class ProfileController {
         } else { return false; }
     }
 
-    /**
-     * calls ${@link ProfileService#save(int, Profile)} to save the profile at the index
-     */
+    /** calls ${@link ProfileService#save(int, Profile)} to save the profile at the index */
     public void save() { service.save(profileIndex, this.profile); }
 
     /**
@@ -70,14 +68,11 @@ public class ProfileController {
         } else { return false; }
     }
 
-    /**
-     * @return the Profile object
-     */
+    /** @return the Profile object */
     public Profile getProfile() { return profile; }
 
     /**
      * set Profile to parameter
-     *
      * @param profile Profile object of controller
      */
     public void setProfile(Profile profile) { this.profile = profile; }
@@ -101,6 +96,11 @@ public class ProfileController {
      */
     public boolean recoverPassword(String email) { return this.service.recoverPassword(email); }
 
+    /**
+     * calls ${@link ProfileService} to change the password of the user in the list of profiles
+     * at the index passed in
+     * @param newPass new password to set the user's profile to
+     */
     public void changePassword(String newPass) { this.service.changePassword(profileIndex, newPass); }
 
     /**
@@ -118,6 +118,14 @@ public class ProfileController {
      */
     public boolean isNotEmailUnique(String email) { return !this.service.isEmailUnique(email); }
 
+    /**
+     * changes the user's profiles to the parameters. called by ${@link edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.CenterPanelController}
+     * to handle for when the user wants to edit the information of their profile
+     * @param f first name of the user
+     * @param l last name of the user
+     * @param user username of the user
+     * @param email email of the user
+     */
     public void changeProfileFields(String f, String l, String user, String email) {
         this.profile.setFirst(f);
         this.profile.setLast(l);

@@ -1,11 +1,12 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.search;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.search;
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.NorthPanelController;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
+ *
  * @author owenmurphy
  */
 public class Search {
@@ -17,15 +18,13 @@ public class Search {
     public static JPanel getSearchStockPanel() {
         searchStockPanel = new JPanel(new BorderLayout());
 
-        // setting the search field
-        setSearchTextField();
+        setSearchTextField(); // setting the search field
 
         // adding search field, search button
         searchStockPanel.add(getSearchTextField(), BorderLayout.CENTER);
         searchStockPanel.add(getSearchButton(), BorderLayout.EAST);
 
-        // setting the background color
-        searchStockPanel.setBackground(NorthPanelController.northPanelColor);
+        searchStockPanel.setBackground(NorthPanelController.northPanelColor); // setting the background color
 
         return searchStockPanel;
     }
@@ -48,8 +47,7 @@ public class Search {
 
     public static JLabel getSearchLabel() {
         return new JLabel(NorthPanelController.leftLabelSide + "Enter stock name to search" +
-                NorthPanelController.rightLabelSide,
-                JLabel.LEFT);
+                NorthPanelController.rightLabelSide, JLabel.LEFT);
     }
 
     public static void setSearchTextField() { Search.searchTextField = new JTextField(); }

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * The test class test ${@link Profile} class and its various methods
- *
  * @author owenmurphy
  */
 public class ProfileTest {

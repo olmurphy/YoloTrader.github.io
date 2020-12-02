@@ -1,8 +1,7 @@
-package edu.baylor.ecs.csi3471.presentation.UI.stockPage;
+package edu.baylor.ecs.csi3471.presentation.ui.stockPage;
 
 
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
 
 import java.awt.Color;
 import java.awt.Component;

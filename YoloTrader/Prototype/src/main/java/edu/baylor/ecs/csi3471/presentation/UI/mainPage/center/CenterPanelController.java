@@ -1,14 +1,14 @@
-package edu.baylor.ecs.csi3471.presentation.UI.mainPage.center;
+package edu.baylor.ecs.csi3471.presentation.ui.mainPage.center;
 
 import edu.baylor.ecs.csi3471.model.Comment;
 import edu.baylor.ecs.csi3471.model.Profile;
 import edu.baylor.ecs.csi3471.model.Stock;
 import edu.baylor.ecs.csi3471.model.StockWatchList;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanel;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.MainPanelController;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.panels.*;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.center.pages.*;
-import edu.baylor.ecs.csi3471.presentation.UI.mainPage.heading.NorthPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanel;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.MainPanelController;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.panels.*;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.center.pages.*;
+import edu.baylor.ecs.csi3471.presentation.ui.mainPage.heading.NorthPanelController;
 import edu.baylor.ecs.csi3471.main.YoloTrader;
 
 import javax.swing.*;
@@ -67,7 +67,6 @@ public class CenterPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 // check if stock watch list selected
                 if (StocksSection.getWatchListList().isSelectionEmpty()) { Dialogs.getNoWatchListSelectedWarning(); }
                 else {
@@ -104,27 +103,19 @@ public class CenterPanelController {
         return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
-                YoloTrader.logger.info("adding stock list a watchlist");
-
                 String watchListName = Dialogs.watchListNameWindow();
 
                 StockWatchList stockWatchList = null;
                 boolean nameEmpty = false;
-                if (watchListName.equals("")) {
-                    nameEmpty = true;
-                } else {
-                    stockWatchList = new StockWatchList(watchListName, new Date());
-                }
+
+                if (watchListName == null || watchListName.equals("")) { nameEmpty = true; }
+                else { stockWatchList = new StockWatchList(watchListName, new Date()); }
 
                 if (!nameEmpty && MainPanelController.stockWatchListController.addWatchList(stockWatchList)) {
                     ((DefaultListModel<String>)StocksSection.watchListModel).addElement(stockWatchList.getName());
 
-                    // saving changes to xml file
-                    MainPanelController.getProfileController().saveProfiles();
-                } else {
-                    Dialogs.getWatchListNameTaken();
-                }
+                    MainPanelController.getProfileController().saveProfiles(); // saving to database
+                } else { Dialogs.getWatchListNameTaken(); }
             }
         };
     }
@@ -188,15 +179,11 @@ public class CenterPanelController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
+                    list.setSelectedIndex(list.locationToIndex(e.getPoint())); // set the index of the item that was clicked
 
-                    // set the index of the item that was clicked
-                    list.setSelectedIndex(list.locationToIndex(e.getPoint()));
+                    JPopupMenu menu = StocksSection.getWatchListPopupMenu(); // get the menu item
 
-                    // get the menu item
-                    JPopupMenu menu = StocksSection.getWatchListPopupMenu();
-
-                    // show the menu
-                    menu.show(list, e.getPoint().x, e.getPoint().y);
+                    menu.show(list, e.getPoint().x, e.getPoint().y); // show the menu
                 }
             }
         };
@@ -211,15 +198,11 @@ public class CenterPanelController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
+                    list.setSelectedIndex(list.locationToIndex(e.getPoint())); // set the index of the item that was clicked
 
-                    // set the index of the item that was clicked
-                    list.setSelectedIndex(list.locationToIndex(e.getPoint()));
+                    JPopupMenu menu = StocksSection.getStockListPopupMenu(); // get the menu item
 
-                    // get the menu item
-                    JPopupMenu menu = StocksSection.getStockListPopupMenu();
-
-                    // show the menu
-                    menu.show(list, e.getPoint().x, e.getPoint().y);
+                    menu.show(list, e.getPoint().x, e.getPoint().y); // show the menu
                 }
             }
         };
@@ -253,7 +236,7 @@ public class CenterPanelController {
         return e -> {
             String pass = Dialogs.getPassWordDialog();
 
-            if (!pass.equals("")) {
+            if (pass != null && !pass.equals("")) {
 
                 if (MainPanelController.getProfileController().deleteProfile(pass)) {
                     MainPanelController.getProfileController().saveProfiles();
@@ -299,8 +282,7 @@ public class CenterPanelController {
             if (!newName.equals("")) {
                 MainPanelController.getStockWatchListController().renameStockWatchList(newName, oldName);
 
-                // saving profiles to database
-                MainPanelController.getProfileController().saveProfiles();
+                MainPanelController.getProfileController().saveProfiles(); // saving profiles to database
 
                 // updating the watch list names
                 ((DefaultListModel<String>)StocksSection.getWatchListModel()).removeElement(oldName);
@@ -344,12 +326,10 @@ public class CenterPanelController {
             ((DefaultListModel<String>)StocksSection.watchListModel).removeElement(listName);
             YoloTrader.logger.info("deleting watchList");
 
-            // saving changes to xml file
-            MainPanelController.getProfileController().saveProfiles();
+            MainPanelController.getProfileController().saveProfiles(); // saving changes database
 
             return true;
         }
-
         return  false;
     }
 
@@ -359,21 +339,21 @@ public class CenterPanelController {
      * @return true if stock was deleted, else false
      */
     public static boolean deleteStockFromList() {
-        String listName = StocksSection.getWatchListList().getSelectedValue();
-        String stockName = StocksSection.getStockList().getSelectedValue();
+        String listName = StocksSection.getWatchListList().getSelectedValue();  // get selected watchlist name
+        String stockName = StocksSection.getStockList().getSelectedValue();     // get selected stock name
 
-        StockWatchList watchList = MainPanelController.stockWatchListController.findStockWatchList(listName);
-        if(MainPanelController.getStockController().removeStock(stockName, watchList)) {
+        StockWatchList watchList = MainPanelController.stockWatchListController.findStockWatchList(listName); // find watch list
 
-            ((DefaultListModel<String>)StocksSection.getStockListModel()).removeElement(stockName);
+        if(MainPanelController.getStockController().removeStock(stockName, watchList)) { // check if the stock was removed
 
-            YoloTrader.logger.info("stock deleted...");
+            ((DefaultListModel<String>)StocksSection.getStockListModel()).removeElement(stockName); // delete from JList UI
 
-            MainPanelController.getProfileController().saveProfiles();
+            YoloTrader.logger.info("stock deleted..."); // log message
+
+            MainPanelController.getProfileController().saveProfiles(); // save to database
 
             return true;
         }
-
         return false;
     }
 
