@@ -35,7 +35,7 @@ public class AboutSection {
                     "<li style=color:white;font-family:Futura>Backend Development</li>"+
                     "<li style=color:white;font-family:Futura>Middleware Development</li>"+
                     "<li style=color:white;font-family:Futura>Artifical Intelligence Development</li>"+
-                "</ul>" + "</html";
+                "</ul>" + "</html>";
 
     public static JPanel getMainAboutPanel() { return mainAboutPanel; }
 
