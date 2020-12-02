@@ -1107,7 +1107,7 @@ public class StockUtil {
     private static NewsPanel constructNewsPanel( Vector<String> images,  Vector<String> titles,  Vector<String> links) {
     	YoloTrader.logger.info("Constructing NewsPanel");
     	NewsPanel feed = new NewsPanel();
-    	
+
     	
     	//Make a map of titles to links.
     	Map<String, String> hyperLink = new HashMap<String,String>();
@@ -1191,7 +1191,9 @@ public class StockUtil {
 	    		
 	    		Border border = new LineBorder(Color.WHITE, 4, true);
 	    		article.setBorder(border);
-	    		article.setBackground(Color.BLACK);
+
+				// FIXME: Line 1196 is the only line that was modified to get the newsPanel -> all gray when in full view mode on stockPage
+				article.setBackground(Color.BLACK.brighter().brighter().brighter().brighter().brighter().brighter());
 	    		JPanel articleTitle = new JPanel();
 	    		articleTitle.setBackground(Color.BLACK.brighter().brighter().brighter().brighter().brighter().brighter());
 	    		articleTitle.setLayout(new FlowLayout(FlowLayout.LEFT));
