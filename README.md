@@ -1,15 +1,12 @@
-# Software Project I 
+# YoloTrader
 
-## Yolo Trader
-YoloTrader is a day trading stock analysis application
-that allows users the following functionality:
-- create a stock watch list (i.e. a StockWatchList)
-- add stock to a watch list
-- comment on a stock watch list
-- delete stock watch list
+## About
+YoloTrader is a stock analysis service targeted to retail Investors. It offers stock price tracking,
+current stock related news articles, stock organization, and houses artificial intelligence 
+framework that analyzes stocks on user request. YoloTrader supports all stocks listed on 
+NYSE and NASDAQ, as well as their market indexes.
 
-from this, the basic idea is the user is able to keep a list of
-stocks they are interested in and track them.
+
 
 #### Contributors:
 - Owen Murphy
