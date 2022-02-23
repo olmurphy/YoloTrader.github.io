@@ -858,24 +858,18 @@ public class StockUtil {
 			    		
 			    		//Otherwise.
 			    		else {
-			    			
-			    			YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
-			    			return null;
-			    		}
-			    		
-			    
+
+							YoloTrader.logger.warning("API LIMIT REACHED. 24 HOUR COOLDOWN NEEDED.");
+							return null;
+						}
 			    	}
 			    	
 			    	//Otherwise, API limit hasn't been reached.
 			    	else {
-			    		
-			    		
-			    		
 			    		//If image data.
 			    		if(line.contains(tick)) {
 			    			//consider as candidate.
 			    			candidate = extractData(line);
-			    			
 			    		}
 			    		
 			    		//else if title data.
@@ -996,7 +990,6 @@ public class StockUtil {
 				
 		YoloTrader.logger.info("Done.");
 		return feed;
-    	
     }
 
     /**

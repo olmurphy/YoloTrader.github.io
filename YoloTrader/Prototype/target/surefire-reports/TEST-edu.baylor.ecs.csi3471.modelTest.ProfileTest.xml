@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.031" tests="9" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="15"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/test-classes:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/classes:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/plugins/YahooFinanceAPI-3.15.0.jar:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/plugins/YahooFinanceAPI-3.15.0-javadoc.jar:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/plugins/YahooFinanceAPI-3.15.0-sources.jar:/Users/owenmurphy/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar:/Users/owenmurphy/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.1/jackson-databind-2.13.1.jar:/Users/owenmurphy/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.1/jackson-annotations-2.13.1.jar:/Users/owenmurphy/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.1/jackson-core-2.13.1.jar:/Users/owenmurphy/.m2/repository/javax/mail/javax.mail-api/1.5.6/javax.mail-api-1.5.6.jar:/Users/owenmurphy/.m2/repository/javax/mail/mail/1.4.7/mail-1.4.7.jar:/Users/owenmurphy/.m2/repository/javax/xml/bind/jaxb-api/2.2.11/jaxb-api-2.2.11.jar:/Users/owenmurphy/.m2/repository/com/sun/xml/bind/jaxb-core/2.2.11/jaxb-core-2.2.11.jar:/Users/owenmurphy/.m2/repository/com/sun/xml/bind/jaxb-impl/2.2.11/jaxb-impl-2.2.11.jar:/Users/owenmurphy/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar:/Users/owenmurphy/.m2/repository/com/sun/mail/javax.mail/1.6.0/javax.mail-1.6.0.jar:/Users/owenmurphy/.m2/repository/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/plugins/commons-validator-1.7.jar:/Users/owenmurphy/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/owenmurphy/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/owenmurphy/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/owenmurphy/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/owenmurphy/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/owenmurphy/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/owenmurphy/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/owenmurphy/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://openjdk.java.net/"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="15"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="419"/>
+    <property name="sun.boot.library.path" value="/usr/local/Cellar/openjdk/15.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/surefire/surefirebooter13602903853888349415.jar /Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/surefire 2022-02-23T13-58-09_200-jvmRun1 surefire7092706982757616428tmp surefire_014834183234415903116tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/test-classes:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/classes:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/plugins/YahooFinanceAPI-3.15.0.jar:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/plugins/YahooFinanceAPI-3.15.0-javadoc.jar:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/plugins/YahooFinanceAPI-3.15.0-sources.jar:/Users/owenmurphy/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar:/Users/owenmurphy/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.1/jackson-databind-2.13.1.jar:/Users/owenmurphy/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.1/jackson-annotations-2.13.1.jar:/Users/owenmurphy/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.1/jackson-core-2.13.1.jar:/Users/owenmurphy/.m2/repository/javax/mail/javax.mail-api/1.5.6/javax.mail-api-1.5.6.jar:/Users/owenmurphy/.m2/repository/javax/mail/mail/1.4.7/mail-1.4.7.jar:/Users/owenmurphy/.m2/repository/javax/xml/bind/jaxb-api/2.2.11/jaxb-api-2.2.11.jar:/Users/owenmurphy/.m2/repository/com/sun/xml/bind/jaxb-core/2.2.11/jaxb-core-2.2.11.jar:/Users/owenmurphy/.m2/repository/com/sun/xml/bind/jaxb-impl/2.2.11/jaxb-impl-2.2.11.jar:/Users/owenmurphy/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar:/Users/owenmurphy/.m2/repository/com/sun/mail/javax.mail/1.6.0/javax.mail-1.6.0.jar:/Users/owenmurphy/.m2/repository/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar:/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/plugins/commons-validator-1.7.jar:/Users/owenmurphy/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.2/junit-jupiter-5.8.2.jar:/Users/owenmurphy/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/owenmurphy/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/owenmurphy/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/owenmurphy/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/owenmurphy/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.2/junit-jupiter-params-5.8.2.jar:/Users/owenmurphy/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/owenmurphy/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/owenmurphy"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2020-10-20"/>
+    <property name="java.home" value="/usr/local/Cellar/openjdk/15.0.1/libexec/openjdk.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="surefire.real.class.path" value="/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype/target/surefire/surefirebooter13602903853888349415.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="15.0.1+9"/>
+    <property name="user.name" value="owenmurphy"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="12.2.1"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/owenmurphy/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/var/folders/h3/tpw8zs356mz1d9cqqzqlyjs40000gn/T/"/>
+    <property name="java.version" value="15.0.1"/>
+    <property name="user.dir" value="/Users/owenmurphy/Desktop/10_Sen_Spring/yolotrader/YoloTrader/Prototype"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.library.path" value="/Users/owenmurphy/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="N/A"/>
+    <property name="java.vm.version" value="15.0.1+9"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="59.0"/>
+  </properties>
+  <testcase name="notSameLast" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.015"/>
+  <testcase name="notSamePass" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0"/>
+  <testcase name="notSameUser" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.001"/>
+  <testcase name="testFirst" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.001"/>
+  <testcase name="testLast" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.001"/>
+  <testcase name="testPass" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.001"/>
+  <testcase name="testUser" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.001"/>
+  <testcase name="insertProfile" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.001"/>
+  <testcase name="notSameFirst" classname="edu.baylor.ecs.csi3471.modelTest.ProfileTest" time="0.001"/>
+</testsuite>

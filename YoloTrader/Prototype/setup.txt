@@ -1,0 +1,8 @@
+
+Step 1:
+$ mvn compile
+
+Step 2:
+goto project in Intelliji, right click on YoloTrader.class file in folder named target.
+
+
